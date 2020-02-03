@@ -41,7 +41,7 @@
 	}
 </script>
 
-<style>
+<style lang='scss'>
 	/* #ifndef APP-PLUS-NVUE */
 	/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
 	@import './common/uni.css';
@@ -114,7 +114,17 @@
 			border: 0;
 		} */
 	}
+	.icon-xiatubiao:before {
+		content: '\e608';
+	}
 	
+	.icon-gouwuche:before {
+		content: '\e609';
+	}
+	
+	.icon-shoucang:before {
+		content: '\e645';
+	}
 	uni-button[type=default],
 	button[type=default] {
 		color: $font-color-dark;
