@@ -46,6 +46,19 @@
 	/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
 	@import './common/uni.css';
 	@import './common/zxs.scss';
+	/* @import './common/z-colors.scss'; */
+	@import "colorui/main.css";
+	/* @import "colorui/icon.css"; */
+
+	@import './static/fontface/iconfont.css';
+	@import './common/vuecolors.scss';
+	@import "./common/markrgba/font.css";
+	@import "./common/markrgba/layout.css";
+	@import "./common/markrgba/padding.css";
+	@import "./common/markrgba/margin.css";
+	@import "./common/markrgba/other.css";
+	@import "./common/markrgba/border.css";
+	@import "./common/markrgba/color.css";
 
 	/* 以下样式用于 hello uni-app 演示所需 */
 	page {
@@ -82,24 +95,47 @@
 		color: #808080;
 	}
 
-	/* #endif*/
+	/* #endif */
 	/*
 		全局公共样式和字体图标
 	*/
-	@font-face {
+/* 	@font-face {
 		font-family: yticon;
 		font-weight: normal;
 		font-style: normal;
-		src: url('https://at.alicdn.com/t/font_1078604_w4kpxh0rafi.ttf') format('truetype');
-	}
+		src: url('https://at.alicdn.com/t/font_985780_km7mi63cihi.ttf?t=1545807318834') format('truetype'),
+
+	} */
 	
-	.yticon {
+/* 	.yticon {
 		font-family: "yticon" !important;
 		font-size: 16px;
 		font-style: normal;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+	} */
+	.icon-youyong4:before {
+	  content: "\e627";
+	} 
+	
+	.icon-zhuazhualiugou:before {
+	  content: "\e621";
 	}
+	 
+	.icon-shuijue:before {
+	  content: "\e635";
+	}
+	
+	.iconfont {
+	font-family:"iconfont" !important;
+	font-size:40rpx;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	margin-right: 14rpx;
+	}
+	
+	
 	
 	/* button样式改写 */
 	uni-button,
@@ -128,5 +164,13 @@
 	uni-button[type=default],
 	button[type=default] {
 		color: $font-color-dark;
+	}
+	
+	.icon {
+	  width: 1em;
+	  height: 1em;
+	  vertical-align: -0.15em;
+	  fill: currentColor;
+	  overflow: hidden;
 	}
 </style>

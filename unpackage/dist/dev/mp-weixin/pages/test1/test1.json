@@ -1,4 +1,7 @@
 {
-  "navigationBarTitleText": "about",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-transition": "/components/uni-transition/uni-transition",
+    "uni-drawer": "/components/uni-drawer/uni-drawer",
+    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"
+  }
 }

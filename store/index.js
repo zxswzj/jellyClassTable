@@ -3,25 +3,94 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-var colors = require('../common/colors.js');
+var {colors, colorSets} = require('../common/colors.js');
 
 const store = new Vuex.Store({
 	state: {
+		sysInfo: [],
+		cfg: {
+			bgc: '#cccccc',
+			bgcGradient: '#cccccc',
+			colBgc: 'transparent',
+			colBgcGradient: 'transparent',
+			hilightCurrentDay: true,
+			daysMode: false, //false: day5; true: day7
+			axisColor: '#00ff00',
+			axisColor1: '#ff0000',
+			axisTextColor: '#ffffff',
+			axisTextBgColor: '#000000'
+		},
+		colors: colors,
+		colorSets: colorSets,
 		count: 0,
 		hasLogin: false,
 		loginProvider: "",
 		openid: null,
 		testvuex: false,
+		icons:[
+			'icon-youyong4',
+			'icon-zhuazhualiugou',
+			'icon-shuijue',
+			'icon-38464',
+			'icon-kafeicoffee61',
+			'icon-yuehuiqipao',
+			'icon-guangjie',
+			'icon-zhengzhi:before',
+			'icon-2',
+			'icon-fendoumubiao',
+			'icon-kezuofan',
+			'icon-pashan',
+			'icon-xuexi',
+			'icon-weibiaoti--',
+			'icon-kezuofan1',
+			'icon-yinle',
+			'icon-xizao',
+			'icon-youxi',
+			'icon-yingyushuiping',
+			'icon-sanbu',
+			'icon-xiyifuwu',
+			'icon-xinaixin',
+			'icon-shijian',
+			'icon-xiuli',
+			'icon-xiuxi',
+			'icon-paobu',
+			'icon-wuli',
+			'icon-xizaomuyu',
+			'icon-beer',
+			'icon-baijiu_',
+			'icon-shaokao',
+			'icon-weibiaoti',
+			'icon-icon-test',
+			'icon-icon-test1',
+			'icon-kandianying-weijihuo',
+			'icon--huihua',
+			'icon-yuwen',
+			'icon-shuxue',
+			'icon-huaxue',
+			'icon-shaokao1',
+			'icon-youyong',
+			'icon-paobu1',
+			'icon-rest',
+			'icon-ziyuan',
+			'icon-guzhang',
+			'icon-wanfatubiao-daochu-',
+			'icon-yule',
+			'icon-fendou',
+			'icon-jisuanji',
+			'icon-pinpaishangou',
+			'icon-yuehui',
+			'icon-quntidajia',
+			'icon-getidajia',
+			'icon-chifancopy-',
+			'icon-xiyifuwu1',
+			'icon-shengwu'
+			
+		],
 		projs: {
-			// displayFullThres: 100,
-			// displayNormalThres: 75,
-			// displayLessThres: 50,
-			// displayNoneThres: 25,
-			tableHeight: 0,
+			tableHeight: 600,
 			rpx: 0,
-			tableMode: 5, //5day mode
 			startLineTime: 480,
-			endLineTime: 0,
+			endLineTime: 600,
 			timeSpan: 0,
 			days: [{
 					weekday: 'monday',
@@ -29,25 +98,85 @@ const store = new Vuex.Store({
 					marginTop: 100,
 					classes: [{
 							weekday: 'monday',
-							icon: 'success',
-							name: 'm1',
+							icon: 'icon-youyong4',
+							name: '语文',
 							time: 480,
 							dur: 60,
 							margintop: 100,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-red-lighten-1'
+
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 20, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 20, //文字边框弧度
+
+							showIcon: true, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 40, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 20, //图标边框颜色
+							
+							showTime: false,
+							timeBgColor: "00ff00",
+							timeSize: 10,
+							timeShowBorder: false,
+							showDur: false,
+							durBgColor: "00ff00",
+							durSize: 10,
+							durShowBorder: false	
 						},
 						{
 							weekday: 'monday',
-							icon: 'warn',
+							icon: 'icon-yingyushuiping',
 							name: 'm2',
 							time: 720,
 							dur: 120,
 							margintop: 50,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-blue-lighten-1'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 20, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 20, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#9943ff', //图标边框颜色
+							iconBorderRadio: 20, //图标边框颜色
+							showTime: false,
+							timeBgColor: "00ff00",
+							timeSize: 10,
+							timeShowBorder: false,
+							showDur: false,
+							durBgColor: "00ff00",
+							durSize: 10,
+							durShowBorder: false	
 						}
 					]
 				},
@@ -56,25 +185,67 @@ const store = new Vuex.Store({
 					icon: 'like-o',
 					classes: [{
 							weekday: 'tuesday',
-							icon: 'download',
+							icon: 'icon-yingyushuiping',
 							name: 'm2',
 							time: 480,
 							dur: 45,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-pink-lighten-1'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						},
 						{
 							weekday: 'tuesday',
-							icon: 'info',
+							icon: 'icon-yingyushuiping',
 							name: 'math',
 							time: 540,
 							dur: 60,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-purple-lighten-1'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						}
 					]
 				},
@@ -83,48 +254,136 @@ const store = new Vuex.Store({
 					icon: 'like-o',
 					classes: [{
 							weekday: 'wednesday',
+							icon: 'icon-yingyushuiping',
 							name: 'chinese',
 							time: 480,
 							dur: 45,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-deep-purple-lighten-1'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						},
 						{
 							weekday: 'wednesday',
+							icon: 'icon-yingyushuiping',
 							name: 'math',
 							time: 600,
 							dur: 60,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-indigo-base'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						}
 					]
 				},
 				{
-					weekday: 'thuesday',
+					weekday: 'thursday',
 					icon: 'like-o',
 					classes: [{
-							weekday: 'thuesday',
+							weekday: 'thursday',
+							icon: 'icon-yingyushuiping',
 							name: 'chinese',
 							time: 600,
 							dur: 45,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-light-blue-base'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						},
 						{
-							weekday: 'thuesday',
+							weekday: 'thursday',
+							icon: 'icon-yingyushuiping',
 							name: 'math',
 							time: 700,
 							dur: 60,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-cyan-lighten-1'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						}
 					]
 				},
@@ -133,23 +392,204 @@ const store = new Vuex.Store({
 					icon: 'like-o',
 					classes: [{
 							weekday: 'friday',
+							icon: 'icon-yingyushuiping',
 							name: 'chinese',
 							time: 800,
 							dur: 45,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-teal-darken-1'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						},
 						{
 							weekday: 'friday',
+							icon: 'icon-yingyushuiping',
 							name: 'math',
 							time: 900,
 							dur: 60,
 							marginTop: 10,
 							height: 100,
 							displayMode: 2,
-							color: 'colors-green-darken-1'
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
+						}
+					]
+				},
+				{
+					weekday: 'saturday',
+					icon: 'like-o',
+					classes: [{
+							weekday: 'saturday',
+							icon: 'icon-yingyushuiping',
+							name: 'chinese',
+							time: 800,
+							dur: 45,
+							marginTop: 10,
+							height: 100,
+							displayMode: 2,
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
+						},
+						{
+							weekday: 'saturday',
+							icon: 'icon-yingyushuiping',
+							name: 'math',
+							time: 900,
+							dur: 60,
+							marginTop: 10,
+							height: 100,
+							displayMode: 2,
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
+						}
+					]
+				}, {
+					weekday: 'sunday',
+					icon: 'like-o',
+					classes: [{
+							weekday: 'sunday',
+							icon: 'icon-yingyushuiping',
+							name: 'chinese',
+							time: 800,
+							dur: 45,
+							marginTop: 10,
+							height: 100,
+							displayMode: 2,
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
+						},
+						{
+							weekday: 'sunday',
+							icon: 'icon-yingyushuiping',
+							name: 'math',
+							time: 900,
+							dur: 60,
+							marginTop: 10,
+							height: 100,
+							displayMode: 2,
+							bgc: 'transparent', //课程背景颜色
+							bgcGradient: 'transparent', //课程背景渐变色
+
+							showBorder: false, //是否显示课程外框
+							borderColor: '#123456', //课程外框颜色
+							borderRadio: 5, //课程边框弧度
+
+							showName: false, //是否显示课程名称
+							textColor: '#FFFFFF', //名称颜色
+							textBgColor: 'transparent', //名称背景颜色
+							textSize: 20, //文字尺寸
+							textShowBorder: false, //是否显示文字边框
+							textBorderColor: '#F44336', //文字边框颜色
+							textBorderRadio: 5, //文字边框弧度
+
+							showIcon: false, //是否显示图标
+							iconColor: '#ff0000', //图标颜色
+							iconBgColor: 'transparent', //图标背景颜色
+							iconSize: 20, //图标尺寸
+							iconShowBorder: false, //是否显示图标边框
+							iconBorderCorlor: '#0000ff', //图标边框颜色
+							iconBorderRadio: 5, //图标边框颜色
 						}
 					]
 				}
@@ -157,7 +597,11 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
+		setSysInfo(state, sysInfo) {
+			state.sysInfo = sysInfo;
+		},
 		setTableHeight(state, tableHeight) {
+			console.log('setTableHeight: ' + tableHeight);
 			state.projs.tableHeight = tableHeight;
 			state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan;
 		},
@@ -193,16 +637,17 @@ const store = new Vuex.Store({
 		},
 		updateProjs(state) {
 			console.log('store.updateProjs');
-			
+			// console.log(JSON.stringify(state.projs));
+
 			let pretime = 0;
 			let start = 480;
 			let stop = 720;
 
 			state.projs.days.forEach(function(item1, i) {
-				console.log(JSON.stringify(item1));
+				// console.log('x:' + i + JSON.stringify(item1));
 				item1.classes.forEach(function(item2, j) {
-					console.log(JSON.stringify(item2));
-					
+					// console.log('xy:' + i + j + JSON.stringify(item2));
+
 					if (item2.time < start) {
 						start = item2.time;
 						console.log('i:' + i + '; j:' + j + ';start:' + start);
@@ -213,13 +658,13 @@ const store = new Vuex.Store({
 					}
 				})
 			})
-			state.projs.startLineTime = start;
-			state.projs.endLineTime = stop;
+			state.projs.startLineTime = Math.floor(start);
+			state.projs.endLineTime = Math.ceil(stop);
 			console.log('store.updateProjs: start:' + start)
 			console.log('store.updateProjs: stop:' + stop)
 
-			state.projs.timeSpan = stop - start;
-			state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan;
+			state.projs.timeSpan = (state.projs.endLineTime - state.projs.startLineTime) / 60;
+			state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
 			state.projs.days.forEach(function(item1) {
 				item1.classes.forEach(function(item2, index2) {
 					if (index2 == 0) {
@@ -244,7 +689,6 @@ const store = new Vuex.Store({
 				})
 			})
 		},
-
 		addClass(state, item) {
 			console.log('addClass');
 			// console.log(JSON.stringify(item));
@@ -258,7 +702,7 @@ const store = new Vuex.Store({
 			console.log('store:updateClass');
 			// console.log(JSON.stringify(item));
 			// console.log(JSON.stringify(state.projs.days[x].classes[y]))
-			state.projs.days[item.x].classes[item.y] = item.currentClass;
+			state.projs.days[item.x].classes[item.y] = item.cfgt;
 			//  state.projs.days.forEach(function(i1) {
 			//      if (i1.weekday == item.weekday) {
 			//          i1.classes.forEach(function(i2) {
@@ -271,6 +715,12 @@ const store = new Vuex.Store({
 			console.log('store:deleteClass');
 			// console.log(JSON.stringify(item));
 			state.projs.days[item.x].classes.splice(item.y, 1);
+		},
+		updateCfg(state, item) {
+			state.cfg = item;
+		},
+		addNewIcon(state,item) {
+			state.icons = item;
 		}
 	},
 	actions: {

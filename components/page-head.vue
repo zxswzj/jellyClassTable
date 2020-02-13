@@ -1,6 +1,6 @@
 <template name="page-head">
 	<view class="uni-page-head">
-		<view class="uni-page-head-title">{{title}}</view>
+		<view class="uni-page-head-title">aaaa{{title}}</view>
 	</view>
 </template>
 <script>

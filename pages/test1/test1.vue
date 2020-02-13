@@ -1,76 +1,180 @@
 <template>
-	<view>
-		<div class="clear_float">
-			<div class="goods_cell">
-				<div><img class="img_goods" src="../../static/api.png" alt="" /></div>
-				<div class="text_goods">双宫茧桑蚕丝被</div>
-				<div class="goods_price">
-					<div class="price_span">活动秒杀价：</div>
-					<div class="price_num">¥  499.00</div>
-				</div>
-				<div class="goods_seckill">
-					<div class="seckill_left">
-						仅剩
-						<span>23:59:00</span>
-					</div>
-					<div class="seckill_right">秒杀</div>
-				</div>
-			</div>
-			<div class="goods_cell">
-				<div><img class="img_goods" src="../../static/c1.png" alt="" /></div>
-				<div class="text_goods">双宫茧桑蚕丝被</div>
-				<div class="goods_price">
-					<div class="price_span">活动秒杀价：</div>
-					<div class="price_num">¥  499.00</div>
-				</div>
-				<div class="goods_seckill">
-					<div class="seckill_left">
-						仅剩
-						<span>23:59:00</span>
-					</div>
-					<div class="seckill_right">秒杀</div>
-				</div>
-			</div>
-			<div class="goods_cell">
-				<div><img class="img_goods" src="../../static/c2.png" alt="" /></div>
-				<div class="text_goods">双宫茧桑蚕丝被</div>
-				<div class="goods_price">
-					<div class="price_span">活动秒杀价：</div>
-					<div class="price_num">¥  499.00</div>
-				</div>
-				<div class="goods_seckill">
-					<div class="seckill_left">
-						仅剩
-						<span>23:59:00</span>
-					</div>
-					<div class="seckill_right">秒杀</div>
-				</div>
-			</div>
-			<div class="goods_cell">
-				<div><img class="img_goods" src="../../static/c3.png" alt="" /></div>
-				<div class="text_goods">双宫茧桑蚕丝被</div>
-				<div class="goods_price">
-					<div class="price_span">活动秒杀价：</div>
-					<div class="price_num">¥  499.00</div>
-				</div>
-				<div class="goods_seckill">
-					<div class="seckill_left">
-						仅剩
-						<span>23:59:00</span>
-					</div>
-					<div class="seckill_right">秒杀</div>
-				</div>
-			</div>
-		</div>
+	<view id="topview" style="height: 100%;">
+		<view class="uni-padding-wrap mt-50">
+			<uni-segmented-control :current="classStyleTabIndex" :values="classStyleTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeClassStyleTabItem" />
+		</view>
+		<button @click="calViewSize">计算view size</button>
+		<scroll-view style="height: 100%;">{{ JSON.stringify(sysInfo) }}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!！！！！！！！！！！！！！！！！！！！！</scroll-view>
 	</view>
 </template>
+<!-- 		<uni-popup class="pop-top-view" ref="popup" type="center">
+			<view class="uni-form-item uni-row">
+				<view class="pop-title">课程</view>
+				<input class="pop-input" @input="onUpdateClassName" :value="cfgt.name" />
+			</view>
+			<view class="uni-form-item uni-row">
+				<view class="pop-title">日期</view>
+				<radio-group name="week">
+					<label @click="onChangeWeekday('monday')">
+						<radio value="monday" :checked="cfgt.weekday == 'monday'" />
+						<text>星期一</text>
+					</label>
+					<label @click="onChangeWeekday('tuesday')">
+						<radio value="tuesday" :checked="cfgt.weekday == 'tuesday'" />
+						<text>星期二</text>
+					</label>
+					<label @click="onChangeWeekday('wednesday')">
+						<radio value="wednesday" :checked="cfgt.weekday == 'wednesday'" />
+						<text>星期三</text>
+					</label>
+					<label @click="onChangeWeekday('thursday')">
+						<radio value="thursday" :checked="cfgt.weekday == 'thursday'" />
+						<text>星期四</text>
+					</label>
+					<label @click="onChangeWeekday('friday')">
+						<radio value="friday" :checked="cfgt.weekday == 'friday'" />
+						<text>星期五</text>
+					</label>
+					<label v-show="tableMode == 7 ? true : false" @click="onChangeWeekday('saterday')">
+						<radio value="saterday" :checked="cfgt.weekday == 'saterday'" />
+						<text>星期六</text>
+					</label>
+					<label v-show="tableMode == 7 ? true : false" @click="onChangeWeekday('sunday')">
+						<radio value="sunday" :checked="cfgt.weekday == 'sunday'" />
+						<text>星期日</text>
+					</label>
+				</radio-group>
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">课程开始时间（分钟）:{{ formatDate(cfgt.time) }}</view>
+				<slider :value="cfgt.time" @change="sliderClassTimeChange" max="1439" step="5" show-value />
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">课时长度（分钟）</view>
+				<slider :value="cfgt.dur" max="240" @change="sliderClassDurChange" name="slider" show-value></slider>
+			</view>
+			<view class="uni-btn-v">
+				<button type="primary" @click="submitAddClass" v-show="drawerMode == 2">提交新课程</button>
+				<button type="primary" @click="submitUpdateClass" v-show="drawerMode == 1">修改课程</button>
+				<button type="primary" @click="onDeleteCurrClass">删除</button>
+				<button type="primary" @click="cancelCreateProj">cancel</button>
+			</view>
+			<view class="uni-share-btn" @click="cancel('share')">取消分享</view>
+		</uni-popup> -->
+<!-- <uni-drawer :visible="drawerMode != 0" mode="right" @close="drawerMode = 0">
+			<view class="uni-form-item uni-column">
+				<view class="title" v-show="drawMode == 1">create class</view>
+				<view class="title" v-show="drawMode == 2">update class</view>
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">课程</view>
+				<input class="uni-input" @input="onUpdateClassName" :value="cfgt.name" />
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">日期</view>
+				<radio-group name="week">
+					<label @click="onChangeWeekday('monday')">
+						<radio value="monday" :checked="cfgt.weekday == 'monday'" />
+						<text>星期一</text>
+					</label>
+					<label @click="onChangeWeekday('tuesday')">
+						<radio value="tuesday" :checked="cfgt.weekday == 'tuesday'" />
+						<text>星期二</text>
+					</label>
+					<label @click="onChangeWeekday('wednesday')">
+						<radio value="wednesday" :checked="cfgt.weekday == 'wednesday'" />
+						<text>星期三</text>
+					</label>
+					<label @click="onChangeWeekday('thursday')">
+						<radio value="thursday" :checked="cfgt.weekday == 'thursday'" />
+						<text>星期四</text>
+					</label>
+					<label @click="onChangeWeekday('friday')">
+						<radio value="friday" :checked="cfgt.weekday == 'friday'" />
+						<text>星期五</text>
+					</label>
+					<label v-show="tableMode == 7 ? true : false" @click="onChangeWeekday('saterday')">
+						<radio value="saterday" :checked="cfgt.weekday == 'saterday'" />
+						<text>星期六</text>
+					</label>
+					<label v-show="tableMode == 7 ? true : false" @click="onChangeWeekday('sunday')">
+						<radio value="sunday" :checked="cfgt.weekday == 'sunday'" />
+						<text>星期日</text>
+					</label>
+				</radio-group>
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">课程开始时间（分钟）:{{ formatDate(cfgt.time) }}</view>
+				<slider :value="cfgt.time" @change="sliderClassTimeChange" max="1439" step="5" show-value />
+			</view>
+			<view class="uni-form-item uni-column">
+				<view class="title">课时长度（分钟）</view>
+				<slider :value="cfgt.dur" max="240" @change="sliderClassDurChange" name="slider" show-value></slider>
+			</view>
+			<view class="uni-btn-v">
+				<button type="primary" @click="submitAddClass" v-show="drawerMode == 2">提交新课程</button>
+				<button type="primary" @click="submitUpdateClass" v-show="drawerMode == 1">修改课程</button>
+				<button type="primary" @click="onDeleteCurrClass">删除</button>
+				<button type="primary" @click="cancelCreateProj">cancel</button>
+			</view>
+		</uni-drawer> -->
 
 <script>
-export default {
-	data() {
-		return {};
+import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
+import uniTransition from '@/components/uni-transition/uni-transition.vue';
+import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
+
+import { mapState, mapMutations } from 'vuex';
+
+export default { 
+	components: {
+		uniTransition,
+		uniDrawer,
+		uniSegmentedControl
 	},
-	methods: {}
+	data() {
+		return {
+			classStyleTabIndex: 0,
+			classStyleTabItems: ['2','4','8'],
+			systemInfo1: [],
+			skin: true,
+			showme: false,
+			transfromClass: {
+				position: 'fixed',
+				bottom: 0,
+				top: 0,
+				left: 0,
+				right: 0,
+				width: 'auto',
+				height: 'auto',
+				margin: 'auto',
+				display: 'flex',
+				'justify-content': 'center',
+				'align-items': 'center',
+				'background-color': 'rgba(0, 0, 0, 0.4)'
+			}
+		};
+	},
+	methods: {
+		onShowme() {
+			this.showme = !this.showme;
+		},
+		calViewSize: function() {
+
+		}
+	},
+	computed: {
+		...mapState(['cfg', 'colors', 'icons', 'projs', 'sysInfo'])
+	},
+	onLoad() {
+		// 获取系统信息
+		console.log('getSystemInfo');
+		uni.getSystemInfo({
+			success: res => {
+				this.systemInfo1 = res;
+			}
+		});
+	}
 };
 </script>
 
@@ -151,5 +255,42 @@ export default {
 	line-height: 10px;
 	padding: 2.5px 8px;
 	text-align: center;
+}
+.switch-sex::after {
+	content: '\e716';
+}
+
+.switch-sex::before {
+	content: '\e7a9';
+}
+
+.switch-music::after {
+	content: '\e66a';
+}
+
+.switch-music::before {
+	content: '\e6db';
+}
+.nodisplay {
+	display: none;
+}
+.test {
+	display: flex;
+	width: 50px;
+	height: 50px;
+}
+
+.pop-top-view {
+	--dir-row: row;
+	--dir-col: column;
+
+	width: 100%;
+	height: auto;
+	display: flex;
+	justify-content: center;
+	background: $grey-lighten-3;
+	border-radius: 10px;
+	padding: 20rpx;
+	flex-direction: var(--dir);
 }
 </style>

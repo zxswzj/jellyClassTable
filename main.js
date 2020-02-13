@@ -5,6 +5,9 @@ import pageHead from './components/page-head.vue'
 import pageFoot from './components/page-foot.vue'
 import uLink from '@/components/uLink.vue'
 import store from './store'
+// import viewHilight from './components/view-hilight.vue'
+import uniPromise from './common/uniPromise.js'
+
 
 Vue.config.productionTip = false
 
@@ -14,10 +17,23 @@ Vue.prototype.$backgroundAudioData = {
 	playTime: 0,
 	formatedPlayTime: '00:00:00'
 }
+Vue.prototype.$uni = uniPromise.uniPromise;
+
+const json = type=>{
+	//模拟异步请求数据
+	return new Promise(resolve=>{
+		setTimeout(()=>{
+			resolve(Json[type]);
+		}, 500)
+	})
+}
 
 Vue.component('page-head', pageHead)
 Vue.component('page-foot', pageFoot)
 Vue.component('uLink', uLink)
+// Vue.component('view-hilight', viewHilight)
+
+Vue.prototype.$api = { json };
 
 App.mpType = 'app'
 

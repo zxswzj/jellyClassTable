@@ -14,7 +14,10 @@ var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ 9));
 
 
 
-var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 15));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var pageHead = function pageHead() {return __webpack_require__.e(/*! import() | components/page-head */ "components/page-head").then(__webpack_require__.bind(null, /*! ./components/page-head.vue */ 48));};var pageFoot = function pageFoot() {return __webpack_require__.e(/*! import() | components/page-foot */ "components/page-foot").then(__webpack_require__.bind(null, /*! ./components/page-foot.vue */ 53));};var uLink = function uLink() {return __webpack_require__.e(/*! import() | components/uLink */ "components/uLink").then(__webpack_require__.bind(null, /*! @/components/uLink.vue */ 60));};
+var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 15));
+
+var _uniPromise = _interopRequireDefault(__webpack_require__(/*! ./common/uniPromise.js */ 21));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var pageHead = function pageHead() {return __webpack_require__.e(/*! import() | components/page-head */ "components/page-head").then(__webpack_require__.bind(null, /*! ./components/page-head.vue */ 64));};var pageFoot = function pageFoot() {return __webpack_require__.e(/*! import() | components/page-foot */ "components/page-foot").then(__webpack_require__.bind(null, /*! ./components/page-foot.vue */ 69));};var uLink = function uLink() {return __webpack_require__.e(/*! import() | components/uLink */ "components/uLink").then(__webpack_require__.bind(null, /*! @/components/uLink.vue */ 76));};
+
 
 _vue.default.config.productionTip = false;
 
@@ -24,10 +27,23 @@ _vue.default.prototype.$backgroundAudioData = {
   playTime: 0,
   formatedPlayTime: '00:00:00' };
 
+_vue.default.prototype.$uni = _uniPromise.default.uniPromise;
+
+var json = function json(type) {
+  //模拟异步请求数据
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(Json[type]);
+    }, 500);
+  });
+};
 
 _vue.default.component('page-head', pageHead);
 _vue.default.component('page-foot', pageFoot);
 _vue.default.component('uLink', uLink);
+// Vue.component('view-hilight', viewHilight)
+
+_vue.default.prototype.$api = { json: json };
 
 _App.default.mpType = 'app';
 

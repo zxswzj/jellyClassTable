@@ -737,7 +737,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7065,7 +7065,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7086,14 +7086,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7169,7 +7169,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8508,7 +8508,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/test/test": { "navigationBarTitleText": "课程表" }, "pages/test1/test1": { "navigationBarTitleText": "about" }, "pages/cfg/cfg": { "navigationBarTitleText": "cfg" } }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "Hello uniapp", "navigationBarBackgroundColor": "#007AFF", "backgroundColor": "#F8F8F8", "backgroundColorTop": "#F4F5F6", "backgroundColorBottom": "#F4F5F6" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/jellyTable/jellyTable": {}, "pages/cfg/cfg": { "navigationBarTitleText": "cfg" }, "pages/dbg/dbg": {}, "pages/test/test": {}, "pages/test1/test1": {} }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "课程表", "navigationBarBackgroundColor": "#007AFF", "backgroundColor": "#F8F8F8", "backgroundColorTop": "#F4F5F6", "backgroundColorBottom": "#F4F5F6" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -8658,27 +8658,96 @@ function normalizeComponent (
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
 var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
 
-_vue.default.use(_vuex.default);
+_vue.default.use(_vuex.default);var _require =
 
-var colors = __webpack_require__(/*! ../common/colors.js */ 20);
+__webpack_require__(/*! ../common/colors.js */ 20),colors = _require.colors,colorSets = _require.colorSets;
 
 var store = new _vuex.default.Store({
   state: {
+    sysInfo: [],
+    cfg: {
+      bgc: '#cccccc',
+      bgcGradient: '#cccccc',
+      colBgc: 'transparent',
+      colBgcGradient: 'transparent',
+      hilightCurrentDay: true,
+      daysMode: false, //false: day5; true: day7
+      axisColor: '#00ff00',
+      axisColor1: '#ff0000',
+      axisTextColor: '#ffffff',
+      axisTextBgColor: '#000000' },
+
+    colors: colors,
+    colorSets: colorSets,
     count: 0,
     hasLogin: false,
     loginProvider: "",
     openid: null,
     testvuex: false,
+    icons: [
+    'icon-youyong4',
+    'icon-zhuazhualiugou',
+    'icon-shuijue',
+    'icon-38464',
+    'icon-kafeicoffee61',
+    'icon-yuehuiqipao',
+    'icon-guangjie',
+    'icon-zhengzhi:before',
+    'icon-2',
+    'icon-fendoumubiao',
+    'icon-kezuofan',
+    'icon-pashan',
+    'icon-xuexi',
+    'icon-weibiaoti--',
+    'icon-kezuofan1',
+    'icon-yinle',
+    'icon-xizao',
+    'icon-youxi',
+    'icon-yingyushuiping',
+    'icon-sanbu',
+    'icon-xiyifuwu',
+    'icon-xinaixin',
+    'icon-shijian',
+    'icon-xiuli',
+    'icon-xiuxi',
+    'icon-paobu',
+    'icon-wuli',
+    'icon-xizaomuyu',
+    'icon-beer',
+    'icon-baijiu_',
+    'icon-shaokao',
+    'icon-weibiaoti',
+    'icon-icon-test',
+    'icon-icon-test1',
+    'icon-kandianying-weijihuo',
+    'icon--huihua',
+    'icon-yuwen',
+    'icon-shuxue',
+    'icon-huaxue',
+    'icon-shaokao1',
+    'icon-youyong',
+    'icon-paobu1',
+    'icon-rest',
+    'icon-ziyuan',
+    'icon-guzhang',
+    'icon-wanfatubiao-daochu-',
+    'icon-yule',
+    'icon-fendou',
+    'icon-jisuanji',
+    'icon-pinpaishangou',
+    'icon-yuehui',
+    'icon-quntidajia',
+    'icon-getidajia',
+    'icon-chifancopy-',
+    'icon-xiyifuwu1',
+    'icon-shengwu'],
+
+
     projs: {
-      // displayFullThres: 100,
-      // displayNormalThres: 75,
-      // displayLessThres: 50,
-      // displayNoneThres: 25,
-      tableHeight: 0,
+      tableHeight: 600,
       rpx: 0,
-      tableMode: 5, //5day mode
       startLineTime: 480,
-      endLineTime: 0,
+      endLineTime: 600,
       timeSpan: 0,
       days: [{
         weekday: 'monday',
@@ -8686,25 +8755,85 @@ var store = new _vuex.default.Store({
         marginTop: 100,
         classes: [{
           weekday: 'monday',
-          icon: 'success',
-          name: 'm1',
+          icon: 'icon-youyong4',
+          name: '语文',
           time: 480,
           dur: 60,
           margintop: 100,
           height: 100,
           displayMode: 2,
-          color: 'colors-red-lighten-1' },
+
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
+
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 20, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 20, //文字边框弧度
+
+          showIcon: true, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 40, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 20, //图标边框颜色
+
+          showTime: false,
+          timeBgColor: "00ff00",
+          timeSize: 10,
+          timeShowBorder: false,
+          showDur: false,
+          durBgColor: "00ff00",
+          durSize: 10,
+          durShowBorder: false },
 
         {
           weekday: 'monday',
-          icon: 'warn',
+          icon: 'icon-yingyushuiping',
           name: 'm2',
           time: 720,
           dur: 120,
           margintop: 50,
           height: 100,
           displayMode: 2,
-          color: 'colors-blue-lighten-1' }] },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
+
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 20, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 20, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#9943ff', //图标边框颜色
+          iconBorderRadio: 20, //图标边框颜色
+          showTime: false,
+          timeBgColor: "00ff00",
+          timeSize: 10,
+          timeShowBorder: false,
+          showDur: false,
+          durBgColor: "00ff00",
+          durSize: 10,
+          durShowBorder: false }] },
 
 
 
@@ -8713,26 +8842,68 @@ var store = new _vuex.default.Store({
         icon: 'like-o',
         classes: [{
           weekday: 'tuesday',
-          icon: 'download',
+          icon: 'icon-yingyushuiping',
           name: 'm2',
           time: 480,
           dur: 45,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-pink-lighten-1' },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        },
         {
           weekday: 'tuesday',
-          icon: 'info',
+          icon: 'icon-yingyushuiping',
           name: 'math',
           time: 540,
           dur: 60,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-purple-lighten-1' }] },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        }] },
 
 
       {
@@ -8740,49 +8911,137 @@ var store = new _vuex.default.Store({
         icon: 'like-o',
         classes: [{
           weekday: 'wednesday',
+          icon: 'icon-yingyushuiping',
           name: 'chinese',
           time: 480,
           dur: 45,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-deep-purple-lighten-1' },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        },
         {
           weekday: 'wednesday',
+          icon: 'icon-yingyushuiping',
           name: 'math',
           time: 600,
           dur: 60,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-indigo-base' }] },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        }] },
 
 
       {
-        weekday: 'thuesday',
+        weekday: 'thursday',
         icon: 'like-o',
         classes: [{
-          weekday: 'thuesday',
+          weekday: 'thursday',
+          icon: 'icon-yingyushuiping',
           name: 'chinese',
           time: 600,
           dur: 45,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-light-blue-base' },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        },
         {
-          weekday: 'thuesday',
+          weekday: 'thursday',
+          icon: 'icon-yingyushuiping',
           name: 'math',
           time: 700,
           dur: 60,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-cyan-lighten-1' }] },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        }] },
 
 
       {
@@ -8790,31 +9049,216 @@ var store = new _vuex.default.Store({
         icon: 'like-o',
         classes: [{
           weekday: 'friday',
+          icon: 'icon-yingyushuiping',
           name: 'chinese',
           time: 800,
           dur: 45,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-teal-darken-1' },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        },
         {
           weekday: 'friday',
+          icon: 'icon-yingyushuiping',
           name: 'math',
           time: 900,
           dur: 60,
           marginTop: 10,
           height: 100,
           displayMode: 2,
-          color: 'colors-green-darken-1' }] }] } },
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
 
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        }] },
+
+
+      {
+        weekday: 'saturday',
+        icon: 'like-o',
+        classes: [{
+          weekday: 'saturday',
+          icon: 'icon-yingyushuiping',
+          name: 'chinese',
+          time: 800,
+          dur: 45,
+          marginTop: 10,
+          height: 100,
+          displayMode: 2,
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
+
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        },
+        {
+          weekday: 'saturday',
+          icon: 'icon-yingyushuiping',
+          name: 'math',
+          time: 900,
+          dur: 60,
+          marginTop: 10,
+          height: 100,
+          displayMode: 2,
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
+
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        }] },
+
+      {
+        weekday: 'sunday',
+        icon: 'like-o',
+        classes: [{
+          weekday: 'sunday',
+          icon: 'icon-yingyushuiping',
+          name: 'chinese',
+          time: 800,
+          dur: 45,
+          marginTop: 10,
+          height: 100,
+          displayMode: 2,
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
+
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        },
+        {
+          weekday: 'sunday',
+          icon: 'icon-yingyushuiping',
+          name: 'math',
+          time: 900,
+          dur: 60,
+          marginTop: 10,
+          height: 100,
+          displayMode: 2,
+          bgc: 'transparent', //课程背景颜色
+          bgcGradient: 'transparent', //课程背景渐变色
+
+          showBorder: false, //是否显示课程外框
+          borderColor: '#123456', //课程外框颜色
+          borderRadio: 5, //课程边框弧度
+
+          showName: false, //是否显示课程名称
+          textColor: '#FFFFFF', //名称颜色
+          textBgColor: 'transparent', //名称背景颜色
+          textSize: 20, //文字尺寸
+          textShowBorder: false, //是否显示文字边框
+          textBorderColor: '#F44336', //文字边框颜色
+          textBorderRadio: 5, //文字边框弧度
+
+          showIcon: false, //是否显示图标
+          iconColor: '#ff0000', //图标颜色
+          iconBgColor: 'transparent', //图标背景颜色
+          iconSize: 20, //图标尺寸
+          iconShowBorder: false, //是否显示图标边框
+          iconBorderCorlor: '#0000ff', //图标边框颜色
+          iconBorderRadio: 5 //图标边框颜色
+        }] }] } },
 
 
 
 
 
   mutations: {
+    setSysInfo: function setSysInfo(state, sysInfo) {
+      state.sysInfo = sysInfo;
+    },
     setTableHeight: function setTableHeight(state, tableHeight) {
+      console.log('setTableHeight: ' + tableHeight);
       state.projs.tableHeight = tableHeight;
       state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan;
     },
@@ -8850,15 +9294,16 @@ var store = new _vuex.default.Store({
     },
     updateProjs: function updateProjs(state) {
       console.log('store.updateProjs');
+      // console.log(JSON.stringify(state.projs));
 
       var pretime = 0;
       var start = 480;
       var stop = 720;
 
       state.projs.days.forEach(function (item1, i) {
-        console.log(JSON.stringify(item1));
+        // console.log('x:' + i + JSON.stringify(item1));
         item1.classes.forEach(function (item2, j) {
-          console.log(JSON.stringify(item2));
+          // console.log('xy:' + i + j + JSON.stringify(item2));
 
           if (item2.time < start) {
             start = item2.time;
@@ -8870,13 +9315,13 @@ var store = new _vuex.default.Store({
           }
         });
       });
-      state.projs.startLineTime = start;
-      state.projs.endLineTime = stop;
+      state.projs.startLineTime = Math.floor(start);
+      state.projs.endLineTime = Math.ceil(stop);
       console.log('store.updateProjs: start:' + start);
       console.log('store.updateProjs: stop:' + stop);
 
-      state.projs.timeSpan = stop - start;
-      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan;
+      state.projs.timeSpan = (state.projs.endLineTime - state.projs.startLineTime) / 60;
+      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
       state.projs.days.forEach(function (item1) {
         item1.classes.forEach(function (item2, index2) {
           if (index2 == 0) {
@@ -8901,7 +9346,6 @@ var store = new _vuex.default.Store({
         });
       });
     },
-
     addClass: function addClass(state, item) {
       console.log('addClass');
       // console.log(JSON.stringify(item));
@@ -8915,7 +9359,7 @@ var store = new _vuex.default.Store({
       console.log('store:updateClass');
       // console.log(JSON.stringify(item));
       // console.log(JSON.stringify(state.projs.days[x].classes[y]))
-      state.projs.days[item.x].classes[item.y] = item.currentClass;
+      state.projs.days[item.x].classes[item.y] = item.cfgt;
       //  state.projs.days.forEach(function(i1) {
       //      if (i1.weekday == item.weekday) {
       //          i1.classes.forEach(function(i2) {
@@ -8928,6 +9372,12 @@ var store = new _vuex.default.Store({
       console.log('store:deleteClass');
       // console.log(JSON.stringify(item));
       state.projs.days[item.x].classes.splice(item.y, 1);
+    },
+    updateCfg: function updateCfg(state, item) {
+      state.cfg = item;
+    },
+    addNewIcon: function addNewIcon(state, item) {
+      state.icons = item;
     } },
 
   actions: {
@@ -10717,17 +11167,142 @@ var index_esm = {
 
 "use strict";
 module.exports = {
-  'red-base': 'F44336',
-  'red-lighten-5': 'FFEBEE' };
+  "colors": [{
+    "name": "redbase",
+    "color": "#F44336" },
+  {
+    "name": "pinkbase",
+    "color": "#e91e63" },
+  {
+    "name": "purplebase",
+    "color": "#9c27b0" },
+  {
+    "name": "deeppurplebase",
+    "color": "#673ab7" },
+  {
+    "name": "indigobase",
+    "color": "#3f51b5" },
+  {
+    "name": "bluebase",
+    "color": "#2196F3" },
+  {
+    "name": "lightbluebase",
+    "color": "#03a9f4" },
+  {
+    "name": "cyanbase",
+    "color": "#00bcd4" },
+  {
+    "name": "tealbase",
+    "color": "#009688" },
+  {
+    "name": "greenbase",
+    "color": "#4CAF50" },
+  {
+    "name": "lightgreenbase",
+    "color": "#8bc34a" },
+  {
+    "name": "limebase",
+    "color": "#cddc39" },
+  {
+    "name": "yellowbase",
+    "color": "#ffeb3b" },
+  {
+    "name": "amberbase",
+    "color": "#ffc107" },
+  {
+    "name": "orangebase",
+    "color": "#ff9800" },
+  {
+    "name": "deeporangebase",
+    "color": "#ff5722" },
+  {
+    "name": "brownbase",
+    "color": "#795548" },
+  {
+    "name": "bluegreybase",
+    "color": "#607d8b" },
+  {
+    "name": "greybase",
+    "color": "#9e9e9e" },
+  {
+    "name": "white",
+    "color": "#ffffff" },
+  {
+    "name": "black",
+    "color": "#000000" },
+  {
+    "name": "transparent",
+    "color": "transparent" }],
+
+  "colorSets": [{
+    "name": "singleComplementary69bc38",
+    "colors": [{
+      "color": "#69bc38" },
+    {
+      "color": '#94dd69' },
+    {
+      "color": '#a8dd88' },
+    {
+      "color": '#c53b5b' },
+    {
+      "color": '#5e8d43' },
+    {
+      "color": '#944658' },
+    {
+      "color": '#397a12' },
+    {
+      "color": '#80132c' },
+    {
+      "color": '#e26b87' },
+    {
+      "color": '#e28b9f' }] },
+
+  {
+    "name": "singleadcd83",
+    "colors": [{
+      "color": "#adcd83" },
+    {
+      "color": '#cbe6a8' },
+    {
+      "color": '#d2e6b8' },
+    {
+      "color": '#5e852b' },
+    {
+      "color": '#889a70' }] }] };
 
 /***/ }),
-/* 21 */,
+/* 21 */
+/*!****************************************************!*\
+  !*** C:/proj/jellyClassTable/common/uniPromise.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ /**
+               * uniPromise
+               * */
+var uniPromise = function uniPromise(param) {
+  return function () {var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return new Promise(function (resolve, reject) {
+      object.success = function (res) {return resolve(res);};
+      object.fail = function (res) {return reject(res);};
+      param(object);
+    });
+  };
+};
+
+module.exports = {
+  uniPromise: uniPromise };
+
+/***/ }),
 /* 22 */,
 /* 23 */,
 /* 24 */,
 /* 25 */,
 /* 26 */,
-/* 27 */
+/* 27 */,
+/* 28 */
 /*!**********************************************!*\
   !*** C:/proj/jellyClassTable/common/util.js ***!
   \**********************************************/
@@ -10822,50 +11397,32 @@ module.exports = {
   getTime: getTime };
 
 /***/ }),
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */
-/*!**********************************************!*\
-  !*** C:/proj/jellyClassTable/static/api.png ***!
-  \**********************************************/
+/* 29 */
+/*!********************************************!*\
+  !*** C:/proj/jellyClassTable/common/wx.js ***!
+  \********************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFEAAABRCAYAAACqj0o2AAAFcElEQVR4nO2aaYgcRRSAv/VAJaKOBoWAQUbEG8SowSgeyXrARn8Y14gHKCyzHsEfStg1M+wwZibsIuKF4MwaE9SIZqMghqAkGuNtdMGgqKCOKB6gkf0hJkaN8cercifJzHRVdc/srLwPmmq6X3dVv3716r2qAkVRFEVRFEVRFEVRFEVRFEVRFEVRpiddroLLhpZHiQwDaaAfmIjRppZQKuQAyOaLGaAXGCwVcuON5Lu6nFXDAXEbZygDA0CFDlRgLaVCrgJUgY3ZfHFOEu9MQollIINY4KYE3tdySoVcPwkqMq4SM+aomGM6cZ0p12bzxVScF8VRYhrxg1VgME4jpoJSIVdFek8a6U3BxFFiGUgRfyA5FlgB3OkoPw+4G1gNfAh8A3wKjAFLgYtdKy4VcmOIC+rN5ou97k3em4MCn+sFuk0D4vrBWcC9wHbgsSZyZwAPAJc3uH86cK05fw3pHR851N8PfI30qjEH+f0ItcRhU44EPl/LX6b8sYnMXOBtJhX4DOKL5wHnmvvXA4+b+wuAN5Cf3RTTrStA2oQ/3oQosRfxI0lYoQuHAWuBI4EfgPnAzcAo8B5ibVuB54HbgbOAcWCGuXaiQx12UBwIaWCoEiHQ9AO4CZgN/IH4u80R8tsQC60iycRDURWYoHscsUZv3+irxBTtV+IFplyJ+C4X/gSK5nwh4i+jsN/T7d40wVeJtoJNtCcz6QJOM+cveD77XM35qQ7yVoktt0Qb3U9FZuKezAo7gRuBHmB9lLAZYKpAyjeLCVViw8Q9YfYAn5vzkJHzWWAD4k9dqJqypUq03bnaVCpZnjDlYqAEHNzCumwP80oDfZSYrjlvpxLfAobM+TIkrOnD80M98RpcQpXYbpYjivsO6WqjwLeIgkvICHwecFTMeoLcVGjaNxWsREbcG5DsZD5woTks24EtwEvIaOvqC/elpT4R2jeo1ON3xAoXIDl3DzLpMIqkhTOBRcBTSNDdE1iPl6sIscROmbn+yRwbaq6lgfOBHHAKEtrcBTzayoaEWOJU+sYoqsAaJEC/z1x7BLjE8z1ecbCPEq0FtkqJexJ+Vx6ZcwRYkuC798NHiSG+8BDcM40D61ybDWSBawLqBhm5Aa50lLcDilcI59udfSL6l5FRMordpqznzFcgEwl9Du+px2+IVc5wlLdtaKkSrTW6dOmFyCRq1OBl27Czzr13TTkXmVf0JY30hO8d5YPS2lAluljiF8gHHB8hZydN633oOmAHcDQyje/LVabc6ijfDVAq5Fo2sIDfdNErpmy0JmK51JQf1Ln3M/CwOR9C1llcmcXkpMWLUcLZfNGmet7zpCE+cRzpJlFderUp7wdObiBzDjKlDxIg12MIeB/xV+8Q/VMALjKyxyAz4WscnqmdK/UiJE60fypqamobsnp3OJKK3YJ03RSi1AzwOnAoknF81uA9fwNXI8ujRwCvIt28DzgbOM4cc4BbkfWYLcAJwJtMLtJHkUHCOG9LDMlYKsiCTgZZ7WuWwSwBdiHrxKvMtX/Y++etAm6LqPMXJBNZCtyBpHaLmsh/CTzJ5KpkU8wqXwqolAo574wsNO0bQRpoFdmMe4CngSuQmZaZwK+IZW1GuqoLu02dDyJx30nAmUgsuQP4CnE3nyAW7oNd5QtaAg6dxbHW6LoT7GNzJMEu3OJPJ4wVpoERs0TgTeji/QQScqRw7DKdiNnIZPcTBW9EiLMXZwyxQrtpcjry336iEF9oibu1bhAJecp4TmRONdl8cQD5+f2+wfW+xFXiBHAZ0h3sX+14jB8cRkbj2Psqk9gpaxUJsJEOV6RRYBlRYEgqqSiKoiiKoiiKoiiKoiiKoiiKoijK/4Z/AQIfLBzTJlOsAAAAAElFTkSuQmCC"
+"use strict";
+function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Promise化小程序接口
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */
+var api = function api(name, opts) {
+  return new Promise(function (success, fail) {
+    var obj = _objectSpread({},
+    opts,
+    {
+      success: success,
+      fail: fail });
 
-/***/ }),
-/* 35 */
-/*!*********************************************!*\
-  !*** C:/proj/jellyClassTable/static/c1.png ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
 
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAAM1BMVEVMaXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADlf1jlAAAAEHRSTlMAnyAfZA/vf99Av5BPsC/P8UqnggAAAP1JREFUeNrt120OgyAQRVGoICgfzv5XW9O0IYDxT2dIad7ZAHlqblABAAAA/De7fVgl5BFWeluFDomJiqAE5NeIYhF4TJ5qmnuDO6iTFR8btacLO98BoUxobDxvIZUFPa9YaLpjeIYQyQ8JA4bYlS4wF8XVT6c50ikWnordPIgEimLo4zBL96VpziFenyecZIZstCcXl/KCKkkJsGtbFAGmTaMETxUzYIifdsjWFUXA3hZFQJYfIlWUQqgovdAMmbYobkRRmiERRbkR+yHyRZk2jYkqYdqi6BFFoVoeV5T5L1sHLlt3Dly2vigKLltX5H/fCuMqWQEAAADAb3oC/8Y6asrRIuwAAAAASUVORK5CYII="
+    wx[name](obj);
+  });
+};
 
-/***/ }),
-/* 36 */
-/*!*********************************************!*\
-  !*** C:/proj/jellyClassTable/static/c2.png ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAANlBMVEVMaXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADisHBNAAAAEXRSTlMAXxAf3++fv4A/b48vz7APTxHT2E0AAAE+SURBVHja7djJkoMwDEVRHMuDbDO8///Zrs6uRRGaRGITnW0Wt4RBBZmcc84559z7Bodac/m11LrxpIzbMmOntKg2QCs4VFij0Amv9U8TjXDuw0YE7CP9hsgj3RCp+BetQajUyk+tk2ok4Cnl8PeR25JihABQH9MO60UCsGwHebXInOPhT2qR9fiOgIhYCDdEHmQfkcuGbrhYYINGE41gcB5ZNLJ+g0k0uv0YCOqJmkQisXaiJQglWk+B1HQTMSdIi+4YXLBDrJoIhB0KykdhnRgZe2WzPgrkYZ2gumom4oKdEsyfvByNNy2orcoLpEOYw6RszPqfa1JI+utD6gaLVsriMOINjdW+gVxfGArvbGfSe1MOCBZ/EMy4Iiq8fJ7JCl/sRoNUXFGmtxCuYIXb12iQXK7gyTnnnHPOfZUfx3FVD6Wckg4AAAAASUVORK5CYII="
-
-/***/ }),
-/* 37 */
-/*!*********************************************!*\
-  !*** C:/proj/jellyClassTable/static/c3.png ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAAANlBMVEVMaXEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADisHBNAAAAEXRSTlMAgH9vn1rvD8DPHy8/30CPsJFh28oAAAFnSURBVHja7djLbsQgDAVQ87aBhPj/f7ajSiM1cjsZDSbqwmeZzdUlAaOAMcYYY4z5x+qenHP4bTiXdtC1h0gskWugowXkv1FSKcEXsMA05CtUYVLlawSTIr9hQRFJr0hGRFoRUjI/bDH0+nySRlYO8cxHqHBWSTWkYKggdRGywh0hlc8iLBD4JBfQVzY+CbDAuGGxEp9QAXXlWJ5RXOaTqJ3R0sFnOcC86p4iIguihvowybHq7myJgmihW4RiKqCl5N877KDIv1isuq6I/gZJ/FJuoGDjVSlS6737QSwRaCtBNkugroht42EBuiMk3BHil78TeZZlWKDmG1bruOG6FVjnulX394cLfv75/DVTd+IzKjOH+yHHXkkoT8fZfYA/fmm03SELW4NPZX4TFe0pJQ3tKSVRB1hcZEswg9ZHwM5XcuwwqY7tZQeta2MLx8ZSxpEaqOo9eO8HIg7/0HsBY4wxxhjzoS/37FSOkw2ECwAAAABJRU5ErkJggg=="
+module.exports = {
+  api: api };
 
 /***/ })
 ]]);

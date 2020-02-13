@@ -2,28 +2,40 @@
 	"pages": [
 		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
+			"path": "pages/jellyTable/jellyTable",
+			"style": {
+				// "navigationBarTitleText": "课程表"
+			}
+		},
+		{
+		    "path" : "pages/cfg/cfg",
+		    "style" : {
+				"navigationBarTitleText": "cfg"
+			}
+		},
+		{
+		    "path" : "pages/dbg/dbg",
+		    "style" : {
+				// "navigationBarTitleText": "test2"			
+			}
+		},
+		{
 			"path": "pages/test/test",
 			"style": {
-				"navigationBarTitleText": "课程表"
+				// "navigationBarTitleText": "测试"
 			}
 		},
 		{
 			"path": "pages/test1/test1",
 			"style": {
-				"navigationBarTitleText": "about"
+				// "navigationBarTitleText": "test1"
 			}
-		},
-        {
-            "path" : "pages/cfg/cfg",
-            "style" : {
-			"navigationBarTitleText": "cfg"
-			}
-        }
+		}
     ],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "Hello uniapp",
+		"navigationBarTitleText": "课程表",
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
@@ -38,7 +50,7 @@
 		"borderStyle": "black",
 		"backgroundColor": "#F8F8F8",
 		"list": [{
-				"pagePath": "pages/test/test",
+				"pagePath": "pages/jellyTable/jellyTable",
 				"iconPath": "static/component.png",
 				"selectedIconPath": "static/componentHL.png",
 				"text": "课程表"
@@ -53,8 +65,14 @@
 				"pagePath": "pages/test1/test1",
 				"iconPath": "static/api.png",
 				"selectedIconPath": "static/apiHL.png",
-				"text": "设置"
+				"text": "关于"
 			}
+			// {
+			// 	"pagePath": "pages/dbg/dbg",
+			// 	"iconPath": "static/api.png",
+			// 	"selectedIconPath": "static/apiHL.png",
+			// 	"text": "debug"
+			// }
 		]
 	}
 }

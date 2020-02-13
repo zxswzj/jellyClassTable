@@ -1,41 +1,54 @@
 <template>
-	<view class="uni-flex uni-row">
-		<!-- 				<view class="block">
-			直接使用: {{ util1.getTime(2) }}
-		</view> -->
+	<view class="body">
 		<view class="ruler"><view class="uni-flex">ruler</view></view>
 		<view class="main">
 			<view class="head"></view>
 			<view class="table">
 				<view
-					class="uni-flex uni-column devide5 col-frame"
+					class="col-frame"
+					v-show="isDayDisplayed(i)"
 					:class="[{ emphasis: isEmphasis(i) }]"
-					:style="{ height: systemInfo.windowHeight + 'px' }"
+					:style="{ height: projs.tableHeight + 'px' }"
 					v-for="(item1, i) in projs.days"
 					:key="i"
+					@click.stop="onNewClass"
 					@longpress.stop="onNewClass"
 					:data-class="item1"
 					:data-x="i"
 				>
 					<view
 						class="item-frame"
-						:class="[item2.color]"
+						:class="[colorList[item2.colorIdx]]"
 						v-for="(item2, j) in item1.classes"
 						:key="j"
 						:style="[{ 'margin-top': item2.margintop + 'px' }, { height: item2.height + 'px' }]"
 						@longpress.stop="onEditClass"
-						@click="onPopup"
+						@click.stop="onEditClass"
 						id="class"
 						:data-class="item2"
 						:data-x="i"
 						:data-y="j"
-					></view>
+					>
+						<!-- 						<view class="tag" style="--font-size: var(--font-size-36)" v-show="cfg.markAllNames || (cfg.markCurrentName && i == today)">{{ item2.name }}</view>
+						<view class="" v-show="cfg.markAllNames || (cfg.markCurrentName && i == today)">
+							<view class="cu-tag" style="--font-size: var(--font-size-36)">{{ item2.name }}</view>
+						</view>
+						<view class="cu-capsule round" v-show="cfg.markAllIcons || (cfg.markCurrentIcon && i == today)">
+							<view class="cu-tag bg-blue "><text class="cuIcon-likefill"></text></view>
+							<view class="cu-tag line-blue">{{ item2.time }}</view>
+						</view> -->
+						<!-- <view class="badge"></view> -->
+						<view class="test" style="background-color: #00897B;" />
+						<view class="test" style="background-color: #0066CC;" />
+						<view class="test" style="background-color: #00ff00;" />
+					</view>
 				</view>
 			</view>
 			<!-- <view class="foot"></view> -->
 		</view>
 
-		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showPop" @change="transChange">
+		<uni-drawer :visible="showPop" mode="right" @close="drawerMode = 0">	
+		<!-- <uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showPop > 0" @change="transChange"> -->
 			<view class="pop-top-view">
 				<view class="pop-item-base">
 					<view class="pop-title">课程</view>
@@ -44,54 +57,55 @@
 				<view class="pop-item-base">
 					<view class="pop-title">日期</view>
 					<radio-group name="week">
-						<label class="radio-1" @click="onChangeWeekday('monday')">
+						<label class="radio-bg" @click="onChangeWeekday('monday')">
 							<radio value="monday" :checked="currentClass.weekday == 'monday'" />
 							<text class="pop-text">周一</text>
 						</label>
-						<label class="radio-1" @click="onChangeWeekday('tuesday')">
+						<label class="radio-bg" @click="onChangeWeekday('tuesday')">
 							<radio value="tuesday" :checked="currentClass.weekday == 'tuesday'" />
 							<text class="pop-text">周二</text>
 						</label>
-						<label class="radio-1" @click="onChangeWeekday('wednesday')">
+						<label class="radio-bg" @click="onChangeWeekday('wednesday')">
 							<radio value="wednesday" :checked="currentClass.weekday == 'wednesday'" />
 							<text class="pop-text">周三</text>
 						</label>
-						<label class="radio-1" @click="onChangeWeekday('thursday')">
+						<label class="radio-bg" @click="onChangeWeekday('thursday')">
 							<radio value="thursday" :checked="currentClass.weekday == 'thursday'" />
 							<text class="pop-text">周四</text>
 						</label>
-						<label class="radio-1" @click="onChangeWeekday('friday')">
+						<label class="radio-bg" @click="onChangeWeekday('friday')">
 							<radio value="friday" :checked="currentClass.weekday == 'friday'" />
 							<text class="pop-text">周五</text>
 						</label>
-						<label v-show="tableMode == 7 ? true : false" @click="onChangeWeekday('saterday')">
+						<label class="radio-bg" v-show="cfg.daysMode" @click="onChangeWeekday('saterday')">
 							<radio value="saterday" :checked="currentClass.weekday == 'saterday'" />
-							<text class="pop-text">星期六</text>
+							<text class="pop-text">周六</text>
 						</label>
-						<label v-show="tableMode == 7 ? true : false" @click="onChangeWeekday('sunday')">
+						<label class="radio-bg" v-show="cfg.daysMode" @click="onChangeWeekday('sunday')">
 							<radio value="sunday" :checked="currentClass.weekday == 'sunday'" />
-							<text class="pop-text">星期日</text>
+							<text class="pop-text">周日</text>
 						</label>
 					</radio-group>
 				</view>
 				<view class="pop-item-base">
 					<view class="pop-title">开始时间</view>
 					<view class="pop-title">{{ formatDate(currentClass.time) }}</view>
+					<view class="pop-text-warning" v-show="currentClass.time >= 1200">太晚了吧，救救孩子</view>
 					<!-- <input class="pop-input" @input="onUpdateStartTime" :value="formatDate(currentClass.time)" /> -->
 				</view>
 				<view class="pop-item-base" :style="[{ 'justify-content': 'space-between' }, { 'align-items': center }]">
 					<view class="slide-sub-btn pop-title" @click="onSubClassTime">-</view>
-					<slider style="flex:1" :value="currentClass.time" @changing="sliderClassTimeChange" max="1439" step="5" />
+					<slider style="flex:1" :value="currentClass.time" @change="sliderClassTimeChange" @changing="sliderClassTimeChange" max="1439" step="5" />
 					<view class="slide-add-btn pop-title" @click="onAddClassTime">+</view>
 				</view>
 				<view class="pop-item-base">
 					<view class="pop-title">时长</view>
 					<view class="pop-title">{{ formatDate(currentClass.dur) }}</view>
-					<view :class="[{ 'radio-1': currentClass.dur >= 240 }]" v-show="currentClass.dur >= 240">时间太长了吧，救救孩子</view>
+					<view class="pop-text-warning" v-show="currentClass.dur >= 240">时间太长了吧，救救孩子</view>
 				</view>
 				<view class="pop-item-base" :style="[{ 'justify-content': 'space-between' }, { 'align-items': center }]">
 					<view class="slide-sub-btn pop-title" @click="onSubClassDur">-</view>
-					<slider style="flex:1" :value="currentClass.dur" @changing="sliderClassDurChange" :max="currentClass.durMax" step="5" />
+					<slider style="flex:1" :value="currentClass.dur" @change="sliderClassDurChange" @changing="sliderClassDurChange" :max="durMax" step="5" />
 					<view class="slide-add-btn pop-title" @click="onAddClassDur">+</view>
 					<view class="radio-1" @click="onExtendClassDurMax" v-show="currentClass.dur >= 240">></view>
 				</view>
@@ -99,8 +113,7 @@
 					<view class="pop-title">颜色</view>
 					<view
 						class="pop-color-block"
-						:class="[{ popColorBlockSelected: i == blockToken }]"
-						:style="[{ 'background-color': item }]"
+						:class="[{ popColorBlockSelected: i == currentClass.colorIdx }, item]"
 						v-for="(item, i) in colorList"
 						:key="item"
 						@click="onSelectColor"
@@ -110,12 +123,15 @@
 				</view>
 
 				<view class="pop-item-base" style="flex-flow:row wrap">
-					<button type="primary" @click="submitUpdateClass">修改</button>
+					<button type="primary" @click="submitUpdateClass" v-show="showPop == 1">修改</button>
+					<button type="primary" @click="submitAddClass" v-show="showPop == 2">增加</button>
 					<button type="default" @click="cancelCreateProj">取消</button>
 					<button type="warn" @click="onDeleteCurrClass">删除</button>
 				</view>
 			</view>
-		</uni-transition>
+		<!-- </uni-transition> -->
+		</uni-drawer>
+		
 
 		<!-- 		<uni-popup class="pop-top-view" ref="popup" type="center">
 			<view class="uni-form-item uni-row">
@@ -238,9 +254,7 @@ import uniTag from '@/components/uni-tag/uni-tag.vue';
 import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import uniTransition from '@/components/uni-transition/uni-transition.vue';
-
 var util = require('../../common/util.js');
-var colors = require('../../common/colors.js');
 
 export default {
 	components: {
@@ -252,66 +266,27 @@ export default {
 	data() {
 		return {
 			e: [],
+			key: 'KEY_PROJECT',
+			durMax: 240,
 			drawerMode: 0, //0:drawer close; 1: createClass drawer; 2: updateClass drawer;
 			currentClass: {
 				weekday: 'monday',
 				name: '语文',
 				time: 480,
 				dur: 45,
-				durMax: 240,
 				icon: 'success',
 				margintop: 0,
 				height: 0,
 				color: 'red'
 			},
-			// show: {
-			// 	middle: false,
-			// 	top: false,
-			// 	bottom: false,
-			// 	right: false,
-			// 	right2: false
-			// },
-			// e: [],
 			x: 0,
 			y: 0,
 			systemInfo: [],
 			util1: util,
 			timestamp: 'abc',
 			colors: colors,
-			today: 'aaa',
-			bottomData: [
-				{
-					text: '微信',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-2.png',
-					name: 'wx'
-				},
-				{
-					text: '支付宝',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-8.png',
-					name: 'wx'
-				},
-				{
-					text: 'QQ',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/gird-3.png',
-					name: 'qq'
-				},
-				{
-					text: '新浪',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-1.png',
-					name: 'sina'
-				},
-				{
-					text: '百度',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-7.png',
-					name: 'copy'
-				},
-				{
-					text: '其他',
-					icon: 'https://img-cdn-qiniu.dcloud.net.cn/uni-ui/grid-5.png',
-					name: 'more'
-				}
-			],
-			showPop: false,
+			today: 1,
+			showPop: 0,
 			transfromClass: {
 				position: 'fixed',
 				bottom: 0,
@@ -325,28 +300,6 @@ export default {
 				'justify-content': 'center',
 				'align-items': 'center'
 			},
-			colorList: [
-				'#F44336',
-				'#e91e63',
-				'#9c27b0',
-				'#673ab7',
-				'#3f51b5',
-				'#2196F3',
-				'#03a9f4',
-				'#00bcd4',
-				'#009688',
-				'#4CAF50',
-				'#8bc34a',
-				'#cddc39',
-				'#ffeb3b',
-				'#ffc107',
-				'#ff9800',
-				'#ff5722',
-				'#795548',
-				'#607d8b',
-				'#9e9e9e'
-			],
-			blockToken: 0
 		};
 	},
 	methods: {
@@ -405,11 +358,11 @@ export default {
 					key: key,
 					data: data,
 					success: res => {
-						uni.showModal({
-							title: '存储数据成功',
-							content: ' ',
-							showCancel: false
-						});
+						// uni.showModal({
+						// 	title: '存储数据成功',
+						// 	content: ' ',
+						// 	showCancel: false
+						// });
 					},
 					fail: () => {
 						uni.showModal({
@@ -478,26 +431,22 @@ export default {
 				dur: 45,
 				icon: 'success',
 				margintop: 0,
-				height: 0
+				height: 0,
+				colorIdx: 0
 			};
-			this.drawerMode = 2;
+			// this.drawerMode = 2;
 			this.x = e.currentTarget.dataset.x;
+			this.showPop = 2;
 		},
 		onEditClass(e) {
 			console.log('onEditClass');
 			// console.log(JSON.stringify(e.currentTarget.dataset));
-			this.drawerMode = 1;
+			// this.drawerMode = 1;
+			this.showPop = 1;
 			this.e = e;
 			this.currentClass = e.currentTarget.dataset.class;
 			this.x = e.currentTarget.dataset.x;
 			this.y = e.currentTarget.dataset.y;
-		},
-		onPopup(e) {
-			// this.$refs.popup.open();
-			this.currentClass = e.currentTarget.dataset.class;
-			this.x = e.currentTarget.dataset.x;
-			this.y = e.currentTarget.dataset.y;
-			this.showPop = !this.showPop;
 		},
 		toggle(type) {
 			// console.log(type);
@@ -509,27 +458,25 @@ export default {
 			this.currentClass.height = this.currentClass.dur * this.projs.rpx;
 			this.updateClass({ currentClass: this.currentClass, x: this.x, y: this.y });
 			this.updateProjs();
-			this.drawerMode = 0;
-			this.showPop = false;
-			// this.cancelCreateProj();
+			this.showPop = 0;
+			// this.setStorage();
 		},
 		submitAddClass: function() {
 			console.log('submitCreateProj');
 			this.currentClass.height = this.currentClass.dur * this.projs.rpx;
 			this.addClass(this.currentClass);
 			this.updateProjs();
-			this.drawerMode = 0;
+			this.showPop = 0;
+			// this.setStorage();
 		},
 		cancelCreateProj: function() {
-			this.drawerMode = 0;
-			this.showPop = false;
+			this.showPop = 0;
 		},
 		onDeleteCurrClass: function() {
 			console.log('onDeleteCurrClass');
 			// console.log(JSON.stringify(this.currentClass));
 			this.deleteClass({ currentClass: this.currentClass, x: this.x, y: this.y });
 			this.updateProjs();
-			this.drawerMode = 0;
 			this.showPop = false;
 		},
 		sliderClassTimeChange: function(e) {
@@ -551,7 +498,7 @@ export default {
 			this.currentClass.dur++;
 		},
 		onExtendClassDurMax: function() {
-			this.currentClass.durMax += 10;
+			this.durMax += 10;
 			// this.currentClass.dur ++;
 		},
 		onChangeWeekday: function(day) {
@@ -563,18 +510,25 @@ export default {
 		onUpdateStartTime: function(e) {
 			this.currentClass.time = e.detail.value;
 		},
-		isEmphasis: function(i) {
+		isEmphasis: function(day) {
 			// console.log('isEmphasis');
-			let weex = new Date().getDay();
-			// console.log(weex);
-			if (i == weex - 1) return true;
+			if (this.today == day && this.cfg.hilightCurrentDay) return true;
 			else return false;
 		},
 		transChange: function() {},
 		onSelectColor: function(e) {
 			this.e = e;
-			// console.log(e.currentTarget.dataset.color);
-			this.blockToken = e.currentTarget.dataset.index;
+			this.currentClass.colorIdx = e.currentTarget.dataset.index;
+		},
+		isDayDisplayed: function(day) {
+			// console.log('isDayDisplayed' + day);
+			// console.log('daysMode:' + this.cfg.daysMode);
+			if (!this.cfg.daysMode) {
+				if (day > 4) {
+					return false;
+				}
+			}
+			return true;
 		}
 	},
 	computed: {
@@ -587,7 +541,8 @@ export default {
 				console.log('projs set');
 				this.$store.commit('setProjs', val);
 			}
-		}
+		},
+		...mapState(['cfg'])
 	},
 	onLoad() {
 		// 获取系统信息
@@ -595,13 +550,14 @@ export default {
 		uni.getSystemInfo({
 			success: res => {
 				this.systemInfo = res;
-				this.$store.commit('setTableHeight', res.windowHeight);
+				this.$store.commit('setTableHeight', res.windowHeight * 0.9);
 			}
 		});
 		//this.loadData();
-		//this.getStorage();
+		// this.getStorage();
 		this.updateProjs();
-		this.today = this.isEmphasis(1);
+		//获取当前日期，1：星期一。。。
+		this.today = new Date().getDay() - 1;
 	},
 	created() {
 		// this.timestamp = new Date().getTime();
@@ -611,11 +567,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../common/_colors.scss';
+	@import '../../common/vuecolors.scss';
 
 $bgcolor: lightblue;
 $textcolor: darkblue;
 $fontsize: 18px;
+
 .slide-sub-btn {
 	width: 20px;
 	height: 20px;
@@ -632,6 +589,7 @@ $fontsize: 18px;
 	display: flex;
 	justify-content: center;
 }
+.radio-bg,
 .radio-1 {
 	margin: 0 15rpx;
 	background-color: $blue-lighten-3;
@@ -642,6 +600,9 @@ $fontsize: 18px;
 	font-size: 40rpx;
 }
 .radio-1:nth-of-type(2n + 1) {
+	background-color: $blue-lighten-1;
+}
+.radio-bg:nth-of-type(2n + 1) {
 	background-color: $blue-lighten-1;
 }
 @mixin pop-title-base($color) {
@@ -665,7 +626,7 @@ $fontsize: 18px;
 	justify-content: center;
 	background: $grey-lighten-3;
 	border-radius: 10px;
-	padding: 50rpx;
+	padding: 20rpx;
 
 	.pop-item-base {
 		display: flex;
@@ -690,6 +651,15 @@ $fontsize: 18px;
 		padding: 15rpx 0;
 		text-align: center;
 		color: $cyan-darken-3;
+	}
+	.pop-text-warning {
+		margin: 0 15rpx;
+		background-color: $red-lighten-1;
+		border-radius: 10px;
+		// display: inline-block;
+		align-items: stretch;
+		line-height: 40rpx;
+		font-size: 40rpx;
 	}
 	.pop-input {
 		margin: 0 10rpx;
@@ -724,20 +694,20 @@ $fontsize: 18px;
 	align-content: center;
 	flex: 1;
 	width: 10%;
-	height: auto;
+	height: 100%;
 }
 .main {
 	display: flex;
 	flex-direction: column;
 	width: 90%;
-	height: auto;
+	height: 100%;
 	background: #f8f8f8;
 }
 .head {
 	display: flex;
 	flex-direction: row;
 	width: auto;
-	height: 20%;
+	height: 10%;
 	background: #c0c0c0;
 	align-content: flex-start;
 }
@@ -745,7 +715,7 @@ $fontsize: 18px;
 	display: flex;
 	flex-direction: row;
 	width: auto;
-	height: 80%;
+	height: 90%;
 	background: $grey-lighten-4;
 }
 .foot {
@@ -757,9 +727,12 @@ $fontsize: 18px;
 	align-content: flex-end;
 }
 .col-frame {
+	flex: 1;
+	background: $grey-lighten-3;
 	display: flex;
 	flex-direction: column;
-	border: 1px solid;
+	// border: 1px solid;
+	margin: 0 2px;
 	border-radius: 5px;
 	align-items: stretch;
 	// background: linear-gradient(#74fff4, #448de0);
@@ -770,6 +743,7 @@ $fontsize: 18px;
 	//justify-content: center;
 	background-clip: border-box;
 	flex-flow: column wrap;
+	width: 1px;
 }
 .col-frame:nth-of-type(2n + 1) {
 	// background: linear-gradient(#aaffff, #b5eeff);
@@ -813,8 +787,52 @@ $fontsize: 18px;
 	box-shadow: 2px 2px 5px 4px #0080ff;
 	background-color: $grey-lighten-2;
 }
-
 .nodisplay {
-	display: !important;
+	display: none;
+}
+.tag {
+	--font-size-18: 18rpx;
+	--font-size-36: 36rpx;
+	font-size: var(--font-size);
+	vertical-align: left;
+	// position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 0rpx 12rpx;
+	height: 36rpx;
+	font-family: Helvetica Neue, Helvetica, sans-serif;
+	white-space: nowrap;
+}
+.badge {
+	border-radius: 20rpx;
+	// position: absolute;
+	// top: -10upx;
+	// right: -10upx;
+	font-size: 2rupx;
+	padding: 10rpx 10rpx;
+	height: 20rpx;
+	width: 20rpx;
+	background-color: red;
+	margin: 20rpx;
+	display: flex;
+}
+.test {
+	width: 10px;
+	height: 10px;
+	display: flex;
+}
+.body {
+  // background: linear-gradient(rgba(71, 67, 120, 204), rgba(94, 80, 246, 204));
+  /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../../static/purple_bg.png) no-repeat center center/cover; */
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-wrap: column nowrap;
+  justify-content: center;
+  align-items: stretch;
+  z-index: -99;
 }
 </style>

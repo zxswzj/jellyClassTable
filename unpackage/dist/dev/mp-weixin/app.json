@@ -1,13 +1,15 @@
 {
   "pages": [
+    "pages/jellyTable/jellyTable",
+    "pages/cfg/cfg",
+    "pages/dbg/dbg",
     "pages/test/test",
-    "pages/test1/test1",
-    "pages/cfg/cfg"
+    "pages/test1/test1"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "white",
-    "navigationBarTitleText": "Hello uniapp",
+    "navigationBarTitleText": "课程表",
     "navigationBarBackgroundColor": "#007AFF",
     "backgroundColor": "#F8F8F8",
     "backgroundColorTop": "#F4F5F6",
@@ -20,7 +22,7 @@
     "backgroundColor": "#F8F8F8",
     "list": [
       {
-        "pagePath": "pages/test/test",
+        "pagePath": "pages/jellyTable/jellyTable",
         "iconPath": "static/component.png",
         "selectedIconPath": "static/componentHL.png",
         "text": "课程表"
@@ -35,7 +37,7 @@
         "pagePath": "pages/test1/test1",
         "iconPath": "static/api.png",
         "selectedIconPath": "static/apiHL.png",
-        "text": "设置"
+        "text": "关于"
       }
     ]
   },
@@ -49,5 +51,5 @@
     "page-foot": "/components/page-foot",
     "u-link": "/components/uLink"
   },
-  "sitemapLocation": "sitemap74.json"
+  "sitemapLocation": "sitemap52.json"
 }
