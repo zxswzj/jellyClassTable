@@ -8,9 +8,9 @@
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "white",
+    "navigationBarTextStyle": "black",
     "navigationBarTitleText": "课程表",
-    "navigationBarBackgroundColor": "#007AFF",
+    "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8",
     "backgroundColorTop": "#F4F5F6",
     "backgroundColorBottom": "#F4F5F6"
@@ -49,7 +49,7 @@
   "usingComponents": {
     "page-head": "/components/page-head",
     "page-foot": "/components/page-foot",
-    "u-link": "/components/uLink"
-  },
-  "sitemapLocation": "sitemap52.json"
+    "u-link": "/components/uLink",
+    "view-highlight": "/components/view-highlight"
+  }
 }

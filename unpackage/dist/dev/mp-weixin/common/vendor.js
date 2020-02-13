@@ -8508,7 +8508,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/jellyTable/jellyTable": {}, "pages/cfg/cfg": { "navigationBarTitleText": "cfg" }, "pages/dbg/dbg": {}, "pages/test/test": {}, "pages/test1/test1": {} }, "globalStyle": { "navigationBarTextStyle": "white", "navigationBarTitleText": "课程表", "navigationBarBackgroundColor": "#007AFF", "backgroundColor": "#F8F8F8", "backgroundColorTop": "#F4F5F6", "backgroundColorBottom": "#F4F5F6" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/jellyTable/jellyTable": {}, "pages/cfg/cfg": { "navigationBarTitleText": "cfg" }, "pages/dbg/dbg": {}, "pages/test/test": {}, "pages/test1/test1": {} }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "课程表", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8", "backgroundColorTop": "#F4F5F6", "backgroundColorBottom": "#F4F5F6" } };exports.default = _default;
 
 /***/ }),
 /* 8 */
@@ -8664,6 +8664,32 @@ __webpack_require__(/*! ../common/colors.js */ 20),colors = _require.colors,colo
 
 var store = new _vuex.default.Store({
   state: {
+    g: {
+      "iBgc": 1,
+      "iBgcGradient": 2,
+      "iColBgc": 3,
+      "iColBgcGradient": 4,
+      "iColBorderColor": 5,
+      "iClassBgc": 6,
+      "iClassBgcGradient": 7,
+      "iClassBorderColor": 8,
+      "iNameColor": 9,
+      "iNaneBgColor": 10,
+      "iNameBorderColor": 11,
+      "iIconColor": 12,
+      "iIconBgColor": 13,
+      "iIconBorderColor": 14,
+      "iStimeColor": 15,
+      "iStimeBgColor": 16,
+      "iStimeBorderColor": 17,
+      "iDurColor": 18,
+      "iDurBgColor": 19,
+      "iDurBorderColor": 20,
+      "iAxisBgc": 21,
+      "iAxisBgcGradient": 22,
+      "iAxisTextColor": 24,
+      "iAxisTexgBgColor": 25 },
+
     sysInfo: [],
     cfg: {
       bgc: '#cccccc',
@@ -8786,14 +8812,18 @@ var store = new _vuex.default.Store({
           iconBorderCorlor: '#0000ff', //图标边框颜色
           iconBorderRadio: 20, //图标边框颜色
 
-          showTime: false,
-          timeBgColor: "00ff00",
-          timeSize: 10,
-          timeShowBorder: false,
+          showStime: false,
+          stimeColor: "#ff0000",
+          stimeBgColor: "#00ff00",
+          stimeSize: 10,
+          stimeShowBorder: false,
+          stimeBorderColor: "#00ff00",
           showDur: false,
-          durBgColor: "00ff00",
+          durColor: "#0000ff",
+          durBgColor: "#00ff00",
           durSize: 10,
-          durShowBorder: false },
+          durShowBorder: false,
+          durBorderColor: "#00ff00" },
 
         {
           weekday: 'monday',

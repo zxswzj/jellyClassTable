@@ -7,6 +7,32 @@ var {colors, colorSets} = require('../common/colors.js');
 
 const store = new Vuex.Store({
 	state: {
+		g:{
+			"iBgc": 1,
+			"iBgcGradient": 2,
+			"iColBgc": 3,
+			"iColBgcGradient": 4,
+			"iColBorderColor": 5,
+			"iClassBgc": 6,
+			"iClassBgcGradient": 7,
+			"iClassBorderColor": 8,
+			"iNameColor": 9,
+			"iNaneBgColor": 10,
+			"iNameBorderColor": 11,
+			"iIconColor": 12,
+			"iIconBgColor": 13,
+			"iIconBorderColor": 14,	
+			"iStimeColor": 15,
+			"iStimeBgColor": 16,
+			"iStimeBorderColor": 17,
+			"iDurColor": 18,
+			"iDurBgColor": 19,
+			"iDurBorderColor": 20,
+			"iAxisBgc": 21,
+			"iAxisBgcGradient": 22,
+			"iAxisTextColor": 24,
+			"iAxisTexgBgColor": 25
+		},
 		sysInfo: [],
 		cfg: {
 			bgc: '#cccccc',
@@ -129,14 +155,18 @@ const store = new Vuex.Store({
 							iconBorderCorlor: '#0000ff', //图标边框颜色
 							iconBorderRadio: 20, //图标边框颜色
 							
-							showTime: false,
-							timeBgColor: "00ff00",
-							timeSize: 10,
-							timeShowBorder: false,
+							showStime: false,
+							stimeColor: "#ff0000",
+							stimeBgColor: "#00ff00",
+							stimeSize: 10,
+							stimeShowBorder: false,
+							stimeBorderColor: "#00ff00",
 							showDur: false,
-							durBgColor: "00ff00",
+							durColor: "#0000ff",
+							durBgColor: "#00ff00",
 							durSize: 10,
-							durShowBorder: false	
+							durShowBorder: false,
+							durBorderColor: "#00ff00"
 						},
 						{
 							weekday: 'monday',

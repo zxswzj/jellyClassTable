@@ -2,7 +2,7 @@
   "navigationBarTitleText": "cfg",
   "usingComponents": {
     "uni-transition": "/components/uni-transition/uni-transition",
-    "view-hilight": "/components/view-hilight",
+    "view-highlight": "/components/view-highlight",
     "uni-badge": "/components/uni-badge/uni-badge",
     "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"
   }

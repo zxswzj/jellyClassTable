@@ -268,13 +268,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | components/uni-drawer/uni-drawer */ "components/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @/components/uni-drawer/uni-drawer.vue */ 88));};var uniTransition = function uniTransition() {return __webpack_require__.e(/*! import() | components/uni-transition/uni-transition */ "components/uni-transition/uni-transition").then(__webpack_require__.bind(null, /*! @/components/uni-transition/uni-transition.vue */ 102));};var uniSegmentedControl = function uniSegmentedControl() {return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 109));};var _default =
+
+
+var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | components/uni-drawer/uni-drawer */ "components/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @/components/uni-drawer/uni-drawer.vue */ 95));};var uniTransition = function uniTransition() {return __webpack_require__.e(/*! import() | components/uni-transition/uni-transition */ "components/uni-transition/uni-transition").then(__webpack_require__.bind(null, /*! @/components/uni-transition/uni-transition.vue */ 109));};var uniSegmentedControl = function uniSegmentedControl() {return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 116));};var viewHighlight = function viewHighlight() {return __webpack_require__.e(/*! import() | components/view-highlight */ "components/view-highlight").then(__webpack_require__.bind(null, /*! @/components/view-highlight.vue */ 81));};var _default =
 
 {
   components: {
     uniTransition: uniTransition,
     uniDrawer: uniDrawer,
-    uniSegmentedControl: uniSegmentedControl },
+    uniSegmentedControl: uniSegmentedControl,
+    viewHighlight: viewHighlight },
 
   data: function data() {
     return {
@@ -295,8 +298,9 @@ var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {
         display: 'flex',
         'justify-content': 'center',
         'align-items': 'center',
-        'background-color': 'rgba(0, 0, 0, 0.4)' } };
+        'background-color': 'rgba(0, 0, 0, 0.4)' },
 
+      color: "#123456" };
 
   },
   methods: {
@@ -305,6 +309,9 @@ var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {
     },
     calViewSize: function calViewSize() {
 
+    },
+    getColor: function getColor(c) {
+      this.color = c;
     } },
 
   computed: _objectSpread({},

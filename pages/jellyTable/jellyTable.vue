@@ -10,11 +10,11 @@
 					v-for="(item, i) in projs.timeSpan"
 					:key="i"
 				>
-					<view class="dot dp-fc" style="text-align: center;" :style="[{color: cfg.axisTextColor},{background:cfg.axisTextBgColor}]">
+					<view class="dot dp-fc" style="text-align: center;" :style="[{ color: cfg.axisTextColor }, { background: cfg.axisTextBgColor }]">
 						<text>{{ projs.startLineTime / 60 + i }}</text>
 					</view>
 				</view>
-			</view> 
+			</view>
 			<view class="dp-fc fd-c ruler-dummy" />
 			<view id="idtable" class="table">
 				<view
@@ -29,7 +29,7 @@
 					:data-class="item1"
 					:data-x="i"
 				>
-											<!--  -->
+					<!--  -->
 					<view
 						class="dp-f fw-w item-frame"
 						v-for="(item2, j) in item1.classes"
@@ -76,11 +76,31 @@
 							v-show="item2.showIcon"
 						/>
 						<!-- <uni-tag :text="formatDate(item2.time)"></uni-tag> -->
-						<view class="w100 dp-fc">
-							<view>{{ formatDate(item2.time) }}</view>
-							/
-							<view>{{ formatDate(item2.dur) }}</view>
-						</view>
+						<!-- <view class="w100 dp-fc"> -->
+						<text
+							v-if="item2.showStime"
+							:style="[
+								{ border: item2.stimeShowBorder ? '1px solid ' + item2.stimeBorderCorlor : transparent },
+								{ 'border-radius': item2.stimeBorderRadio ? '20px 0 0 20px' : '' },
+								{ color: item2.stimeColor },
+								{ 'font-size': item2.stimeSize + 'px' }
+							]"
+						>
+							{{ formatDate(item2.time) }}
+						</text>
+						<text v-if="item2.showDur">/</text>
+						<text
+							:style="[
+								{ border: item2.durShowBorder ? '1px solid ' + item2.durBorderCorlor : transparent },
+								{ 'border-radius': item2.durBorderRadio ? '20px 0 0 20px' : '' },
+								{ color: item2.durColor },
+								{ 'font-size': item2.durSize + 'px' }
+							]"
+							v-if="item2.showDur"
+						>
+							{{ formatDate(item2.dur) }}
+						</text>
+						<!-- </view> -->
 						<!-- 						<image
 							src="../../static/apiIndex.png"
 							:style="[
@@ -177,194 +197,296 @@
 				</view>
 
 				<view class="uni-padding-wrap mt-50">
-					<uni-segmented-control :current="classStyleTabIndex" :values="classStyleTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeClassStyleTabItem" />
-				</view>
-
-				<view class="form-item margin-top colors-white-base" v-if="classStyleTabIndex === 0">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">课程背景颜色</text>
-					</view>
-					<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
-						<view :style="{ background: cfgt.bgc }" class="test" @click="showColorPicker = 1" />
-						<view :style="{ background: cfgt.bgcGradient }" class="test" @click="showColorPicker = 2" />
-					</view>
-				</view>
-
-				<view class="form-item colors-white-base" v-if="classStyleTabIndex === 0">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">显示课程外框</text>
-					</view>
-					<switch
-						class="switch-sex"
-						@change="cfgt.showBorder = !cfgt.showBorder"
-						:class="cfgt.showBorder ? 'checked' : ''"
-						color="#39B54A"
-						:checked="cfg.showBorder ? true : false"
-					></switch>
-				</view>
-
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 0">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">外框颜色</text>
-					</view>
-					<view class="action"><view :style="{ background: cfgt.borderColor }" class="test" @click="showColorPicker = 3" /></view>
-				</view>
-
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 0">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">外框弧度</text>
-					</view>
-					<slider style="flex:1" :value="cfgt.borderRadio" @change="sliderBorderRadio" min="0" max="20" show-value />
-				</view>
-
-				<view class="form-item margin-top colors-white-base" v-if="classStyleTabIndex === 1">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">显示课程名称</text>
-					</view>
-					<switch
-						class="switch-sex"
-						@change="cfgt.showName = !cfgt.showName"
-						:class="cfgt.showName ? 'checked' : ''"
-						color="#39B54A"
-						:checked="cfgt.showName ? true : false"
-					></switch>
-				</view>
-
-				<view class="form-item margin-top colors-white-base" v-if="classStyleTabIndex === 1">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">名称颜色/名称背景颜色</text>
-					</view>
-					<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
-						<view class="action"><view :style="{ background: cfgt.textColor }" class="test" @click="showColorPicker = 4" /></view>
-						<view class="action"><view :style="{ background: cfgt.textBgColor }" class="test" @click="showColorPicker = 5" /></view>
-					</view>
-				</view>
-
-				<view class="form-item margin-top colors-white-base indent-s" v-if="classStyleTabIndex === 1">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">名称大小</text>
-					</view>
-					<slider style="flex:1" :value="cfgt.textSize" @change="sliderTextSize" min="0" max="30" show-value />
-				</view>
-
-				<view class="form-item margin-top colors-white-base " v-if="classStyleTabIndex === 1">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">显示文字边框</text>
-					</view>
-					<switch
-						class="switch-sex"
-						@change="cfgt.textShowBorder = !cfgt.textShowBorder"
-						:class="cfgt.textShowBorder ? 'checked' : ''"
-						color="#39B54A"
-						:checked="cfgt.textShowBorder ? true : false"
-					></switch>
-				</view>
-
-				<view class="form-item margin-top colors-white-base indent-s" v-if="classStyleTabIndex === 1">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">文字边框颜色</text>
-					</view>
-					<view class="action"><view :style="{ background: cfgt.textBorderColor }" class="test" @click="showColorPicker = 6" /></view>
-				</view>
-
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 1">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">文字边框弧度</text>
-					</view>
-					<slider style="flex:1" :value="cfgt.textBorderRadio" @change="sliderTextBorderRadio" min="0" max="10" show-value />
-				</view>
-
-				<view class="form-item colors-white-base " v-if="classStyleTabIndex === 2">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">显示图标</text>
-					</view>
-					<switch
-						class="switch-sex"
-						@change="cfgt.showIcon = !cfgt.showIcon"
-						:class="cfgt.showIcon ? 'checked' : ''"
-						color="#39B54A"
-						:checked="cfgt.showIcon ? true : false"
-					></switch>
-				</view>
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 2">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">选择图标</text>
-					</view>
-					<view class="iconfont" :class="cfgt.icon" @click="showIconPicker = true" />
-				</view>
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 2">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">图标颜色/图标背景颜色</text>
-					</view>
-					<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
-						<view class="action"><view :style="{ background: cfgt.iconColor }" class="test" @click="showColorPicker = 7" /></view>
-						<view class="action"><view :style="{ background: cfgt.iconBgColor }" class="test" @click="showColorPicker = 8" /></view>
-					</view>
-				</view>
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 2">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">图标大小</text>
-					</view>
-					<slider style="flex:1" :value="cfgt.iconSize" @change="sliderIconSize" min="0" max="50" show-value />
-				</view>
-				<view class="form-item colors-white-base " v-if="classStyleTabIndex === 2">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">显示图标边框</text>
-					</view>
-					<switch
-						class="switch-sex"
-						@change="cfgt.iconShowBorder = !cfgt.iconShowBorder"
-						:class="cfgt.iconShowBorder ? 'checked' : ''"
-						color="#39B54A"
-						:checked="cfgt.iconShowBorder ? true : false"
-					></switch>
-				</view>
-
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 2">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">图标边框颜色</text>
-					</view>
-					<view class="action"><view :style="{ background: cfgt.iconBorderCorlor }" class="test" @click="showColorPicker = 9" /></view>
-				</view>
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 2">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">图标边框弧度</text>
-					</view>
-					<slider style="flex:1" :value="cfgt.iconBorderRadio" @change="sliderIconBorderRadio" min="0" max="10" show-value />
-				</view>
-
-				<view class="form-item colors-white-base indent-s" v-if="classStyleTabIndex === 3">
-					<view class="content">
-						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">显示开始时间</text>
-					</view>
-					<switch
-						class="switch-sex"
-						@change="cfgt.iconShowTime = !cfgt.iconShowTime"
-						:class="cfgt.iconShowTime ? 'checked' : ''"
-						color="#39B54A"
-						:checked="cfgt.iconShowTime ? true : false"
+					<uni-segmented-control
+						:current="classStyleTabIndex"
+						:values="classStyleTabItems"
+						style-type="button"
+						active-color="#007aff"
+						@clickItem="onChangeClassStyleTabItem"
 					/>
 				</view>
+				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 0">
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">课程背景颜色</text>
+						</view>
+						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
+							<view :style="{ background: cfgt.bgc }" class="test" @click="showColorPicker = g.iBgc" />
+							<view :style="{ background: cfgt.bgcGradient }" class="test" @click="showColorPicker = g.iBgcGradient" />
+						</view>
+					</view>
 
-				<view class="form-item margin-top colors-white-base">
+					<view class="dp-f jc-sb c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示课程外框</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.showBorder = !cfgt.showBorder"
+							:class="cfgt.showBorder ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfg.showBorder ? true : false"
+						></switch>
+					</view>
+
+					<view class="dp-f jc-sb c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">外框颜色</text>
+						</view>
+						<view class="action"><view :style="{ background: cfgt.borderColor }" class="test" @click="showColorPicker = 3" /></view>
+					</view>
+
+					<view class="dp-f jc-sb ai-c c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">外框弧度</text>
+						</view>
+						<slider style="flex:1" :value="cfgt.borderRadio" @change="sliderBorderRadio" min="0" max="20" show-value />
+					</view>
+				</view>
+
+				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 1">
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示课程名称</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.showName = !cfgt.showName"
+							:class="cfgt.showName ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.showName ? true : false"
+						></switch>
+					</view>
+
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">名称颜色/名称背景颜色</text>
+						</view>
+						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
+							<view class="action"><view :style="{ background: cfgt.textColor }" class="test" @click="showColorPicker = 4" /></view>
+							<view class="action"><view :style="{ background: cfgt.textBgColor }" class="test" @click="showColorPicker = 5" /></view>
+						</view>
+					</view>
+
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">名称大小</text>
+						</view>
+						<slider style="flex:1" :value="cfgt.textSize" @change="sliderTextSize" min="0" max="30" show-value />
+					</view>
+
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示文字边框</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.textShowBorder = !cfgt.textShowBorder"
+							:class="cfgt.textShowBorder ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.textShowBorder ? true : false"
+						></switch>
+					</view>
+
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">文字边框颜色</text>
+						</view>
+						<view class="action"><view :style="{ background: cfgt.textBorderColor }" class="test" @click="showColorPicker = 6" /></view>
+					</view>
+
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">文字边框弧度</text>
+						</view>
+						<slider style="flex:1" :value="cfgt.textBorderRadio" @change="sliderTextBorderRadio" min="0" max="10" show-value />
+					</view>
+				</view>
+
+				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 2">
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示图标</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.showIcon = !cfgt.showIcon"
+							:class="cfgt.showIcon ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.showIcon ? true : false"
+						></switch>
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">选择图标</text>
+						</view>
+						<view class="iconfont" :class="cfgt.icon" @click="showIconPicker = true" />
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">图标颜色/图标背景颜色</text>
+						</view>
+						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
+							<view class="action"><view :style="{ background: cfgt.iconColor }" class="test" @click="showColorPicker = 7" /></view>
+							<view class="action"><view :style="{ background: cfgt.iconBgColor }" class="test" @click="showColorPicker = 8" /></view>
+						</view>
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">图标大小</text>
+						</view>
+						<slider style="flex:1" :value="cfgt.iconSize" @change="sliderIconSize" min="0" max="50" show-value />
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示图标边框</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.iconShowBorder = !cfgt.iconShowBorder"
+							:class="cfgt.iconShowBorder ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.iconShowBorder ? true : false"
+						></switch>
+					</view>
+
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">图标边框颜色</text>
+						</view>
+						<view class="action"><view :style="{ background: cfgt.iconBorderCorlor }" class="test" @click="showColorPicker = 9" /></view>
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">图标边框弧度</text>
+						</view>
+						<slider style="flex:1" :value="cfgt.iconBorderRadio" @change="sliderIconBorderRadio" min="0" max="10" show-value />
+					</view>
+				</view>
+
+				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 3">
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示开始时间</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.showStime = !cfgt.showStime"
+							:class="cfgt.showStime ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.showStime ? true : false"
+						/>
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">颜色/背景颜色</text>
+						</view>
+						<view class="dp-fc">
+							<view class="action"><view :style="{ background: cfgt.stimeColor }" class="test" @click="showColorPicker = 9" /></view>
+							<view class="action"><view :style="{ background: cfgt.stimeBgColor }" class="test" @click="showColorPicker = 9" /></view>
+						</view>
+					</view>
+					<view class="dp-f jc-sb ai-c c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">字体大小</text>
+						</view>
+						<slider style="flex:1" :value="cfgt.stimeSize" @change="sliderSimeSize" min="0" max="50" show-value />
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示边框</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.stimeShowBorder = !cfgt.stimeShowBorder"
+							:class="cfgt.stimeShowBorder ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.stimeShowBorder ? true : false"
+						/>
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100 indent-s">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">边框颜色</text>
+						</view>
+						<view class="action"><view :style="{ background: cfgt.stimeBorderColor }" class="test" @click="showColorPicker = 9" /></view>
+					</view>
+
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示开始时间</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.showDur = !cfgt.showDur"
+							:class="cfgt.showDur ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.showDur ? true : false"
+						/>
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">颜色/背景颜色</text>
+						</view>
+						<view class="dp-fc">
+							<view class="action"><view :style="{ background: cfgt.durColor }" class="test" @click="showColorPicker = 9" /></view>
+							<view class="action"><view :style="{ background: cfgt.durBgColor }" class="test" @click="showColorPicker = 9" /></view>
+						</view>
+					</view>
+					<view class="dp-f jc-sb ai-c c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">字体大小</text>
+						</view>
+						<slider style="flex:1" :value="cfgt.durSize" @change="sliderDurSize" min="0" max="50" show-value />
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">显示边框</text>
+						</view>
+						<switch
+							class="switch-sex"
+							@change="cfgt.durShowBorder = !cfgt.durShowBorder"
+							:class="cfgt.durShowBorder ? 'checked' : ''"
+							color="#39B54A"
+							:checked="cfgt.durShowBorder ? true : false"
+						/>
+					</view>
+					<view class="dp-f jc-sb mt-10 c-fff w100">
+						<view class="content">
+							<text class="cuIcon-circlefill text-grey"></text>
+							<text class="text-grey">边框颜色</text>
+						</view>
+						<view class="action"><view :style="{ background: cfgt.durBorderColor }" class="test" @click="timeBorderColor = 9" /></view>
+					</view>
+				</view>
+
+				<view class="form-item margin-top colors-white-base ai-c">
+					<!-- <view class="dp-fc btn w-200 h-80 c-000" @click="submitUpdateClass = false" v-show="showPop == 1">修改</view> -->
 					<button type="primary" @click="submitUpdateClass" v-show="showPop == 1">修改</button>
 					<button type="primary" @click="submitAddClass" v-show="showPop == 2">增加</button>
 					<button type="default" @click="cancelCreateProj">取消</button>
@@ -375,7 +497,13 @@
 		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showColorPicker > 0" @change="transChange">
 			<view class="form-top-view dp-fc fd-c w100 h100">
 				<view class="uni-padding-wrap uni-common-mt">
-					<uni-segmented-control :current="colorSetsTabIndex" :values="colorSetsTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeColorSetTabItem" />
+					<uni-segmented-control
+						:current="colorSetsTabIndex"
+						:values="colorSetsTabItems"
+						style-type="button"
+						active-color="#007aff"
+						@clickItem="onChangeColorSetTabItem"
+					/>
 				</view>
 				<view class="pop-item-base" style="flex-flow:row wrap" v-if="colorSetsTabIndex == 0">
 					<view
@@ -426,7 +554,7 @@
 						:data-index="i"
 					></view>
 				</view>
-		<view class="dp-fc"><view class="dp-fc btn w-200 h-80 mt-50 c-000" @click="showColorPicker = false">确定</view></view>
+				<view class="dp-fc"><view class="dp-fc btn w-200 h-80 mt-50 c-000" @click="showColorPicker = false">确定</view></view>
 			</view>
 		</uni-transition>
 		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showIconPicker" @change="cfgChanged = false">
@@ -470,7 +598,7 @@ import uniSection from '@/components/uni-section/uni-section.vue';
 var util = require('../../common/util.js');
 // let wsAPI = require('@/common/wxApi.js');
 let wxapi = require('@/common/wx.js');
- 
+
 export default {
 	components: {
 		uniTag,
@@ -485,7 +613,7 @@ export default {
 			classStyleTabIndex: 0,
 			colorSetsTabIndex: 0,
 			classStyleTabItems: ['课程', '名称', '图标', '时间'],
-			colorSetsTabItems: ['1c-69bc38','1-adcd83'],
+			colorSetsTabItems: ['1c-69bc38', '1-adcd83'],
 			cfgChanged: false, //设置页面发生变化
 			showColorPicker: 0,
 			showIconPicker: false,
@@ -526,14 +654,18 @@ export default {
 				iconBorderCorlor: '#0000ff', //图标边框颜色
 				iconBorderRadio: 5, //图标边框颜色
 
-				showTime: false,
-				timeBgColor: '00ff00',
-				timeSize: 10,
-				timeShowBorder: false,
-				showDur: false,
-				durBgColor: '00ff00',
-				durSize: 10,
-				durShowBorder: false
+							showStime: false,
+							stimeColor: "#ff0000",
+							stimeBgColor: "#00ff00",
+							stimeSize: 10,
+							stimeShowBorder: false,
+							stimeBorderColor: "#00ff00",
+							showDur: false,
+							durColor: "#0000ff",
+							durBgColor: "#00ff00",
+							durSize: 10,
+							durShowBorder: false,
+							durBorderColor: "#00ff00"
 			},
 			x: 0,
 			y: 0,
@@ -856,7 +988,7 @@ export default {
 		}
 	},
 	computed: {
-		projs: { 
+		projs: {
 			get: function() {
 				console.log('projs get');
 				return this.$store.state.projs;
@@ -866,7 +998,7 @@ export default {
 				this.$store.commit('setProjs', val);
 			}
 		},
-		...mapState(['cfg', 'colors', 'icons', 'colorSets'])
+		...mapState(['cfg', 'colors', 'icons', 'colorSets', 'g'])
 	},
 	onLoad() {
 		// 获取系统信息
@@ -1026,7 +1158,7 @@ export default {
 	// border-radius: 10px;
 	// align-items: stretch;
 	// box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
-	box-shadow:  -5px -5px 10px #666666, 5px 5px 10px #ffffff;
+	box-shadow: -5px -5px 10px #666666, 5px 5px 10px #ffffff;
 	color: #757575;
 	font-size: 13px;
 	// text-align: left;

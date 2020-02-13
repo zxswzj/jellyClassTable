@@ -34,9 +34,10 @@
     ],
 
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
+		// "navigationStyle": "custom",
+		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "课程表",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"backgroundColorTop": "#F4F5F6",
 		"backgroundColorBottom": "#F4F5F6",

@@ -1,5 +1,6 @@
 <template>
 	<view id="topview" style="height: 100%;">
+		<view-highlight @click="getColor"> aaa </view-highlight>
 		<view class="uni-padding-wrap mt-50">
 			<uni-segmented-control :current="classStyleTabIndex" :values="classStyleTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeClassStyleTabItem" />
 		</view>
@@ -123,6 +124,7 @@
 import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 import uniTransition from '@/components/uni-transition/uni-transition.vue';
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
+import viewHighlight from '@/components/view-highlight.vue';
 
 import { mapState, mapMutations } from 'vuex';
 
@@ -130,7 +132,8 @@ export default {
 	components: {
 		uniTransition,
 		uniDrawer,
-		uniSegmentedControl
+		uniSegmentedControl,
+		viewHighlight
 	},
 	data() {
 		return {
@@ -152,7 +155,8 @@ export default {
 				'justify-content': 'center',
 				'align-items': 'center',
 				'background-color': 'rgba(0, 0, 0, 0.4)'
-			}
+			},
+			color: "#123456"
 		};
 	},
 	methods: {
@@ -161,6 +165,9 @@ export default {
 		},
 		calViewSize: function() {
 
+		},
+		getColor(c) {
+			this.color = c;
 		}
 	},
 	computed: {

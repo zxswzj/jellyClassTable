@@ -134,14 +134,14 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import uniTransition from '@/components/uni-transition/uni-transition.vue';
-import viewHilight from '@/components/view-hilight.vue';
+import viewHighlight from '@/components/view-highlight.vue';
 import uniBadge from '@/components/uni-badge/uni-badge.vue';
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
 
 export default {
 	components: {
 		uniTransition,
-		viewHilight,
+		viewHighlight,
 		uniBadge,
 		uniSegmentedControl
 	},

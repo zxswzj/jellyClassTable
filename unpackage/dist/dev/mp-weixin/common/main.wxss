@@ -10805,10 +10805,10 @@ scroll-view.cu-steps .cu-item {
   margin: 5rpx 0 5rpx 40rpx;
 }
 .indent-m {
-  margin: 5rpx 0 5rpx 60rpx;
+  margin: 5rpx 0 5rpx 80rpx;
 }
 .indent-l {
-  margin: 5rpx 0 5rpx 80rpx;
+  margin: 5rpx 0 5rpx 120rpx;
 }
 .z-flex {
   --dir-row: row;

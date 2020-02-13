@@ -5,7 +5,7 @@ import pageHead from './components/page-head.vue'
 import pageFoot from './components/page-foot.vue'
 import uLink from '@/components/uLink.vue'
 import store from './store'
-// import viewHilight from './components/view-hilight.vue'
+import viewHighlight from './components/view-highlight.vue'
 import uniPromise from './common/uniPromise.js'
 
 
@@ -31,7 +31,7 @@ const json = type=>{
 Vue.component('page-head', pageHead)
 Vue.component('page-foot', pageFoot)
 Vue.component('uLink', uLink)
-// Vue.component('view-hilight', viewHilight)
+Vue.component('view-highlight', viewHighlight)
 
 Vue.prototype.$api = { json };
 

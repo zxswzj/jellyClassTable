@@ -143,11 +143,11 @@ var render = function() {
     }
 
     _vm.e4 = function($event) {
-      _vm.showColorPicker = 1
+      _vm.showColorPicker = _vm.g.iBgc
     }
 
     _vm.e5 = function($event) {
-      _vm.showColorPicker = 2
+      _vm.showColorPicker = _vm.g.iBgcGradient
     }
 
     _vm.e6 = function($event) {
@@ -203,18 +203,54 @@ var render = function() {
     }
 
     _vm.e19 = function($event) {
-      _vm.cfgt.iconShowTime = !_vm.cfgt.iconShowTime
+      _vm.cfgt.showStime = !_vm.cfgt.showStime
     }
 
     _vm.e20 = function($event) {
-      _vm.showColorPicker = false
+      _vm.showColorPicker = 9
     }
 
     _vm.e21 = function($event) {
-      _vm.cfgChanged = false
+      _vm.showColorPicker = 9
     }
 
     _vm.e22 = function($event) {
+      _vm.cfgt.stimeShowBorder = !_vm.cfgt.stimeShowBorder
+    }
+
+    _vm.e23 = function($event) {
+      _vm.showColorPicker = 9
+    }
+
+    _vm.e24 = function($event) {
+      _vm.cfgt.showDur = !_vm.cfgt.showDur
+    }
+
+    _vm.e25 = function($event) {
+      _vm.showColorPicker = 9
+    }
+
+    _vm.e26 = function($event) {
+      _vm.showColorPicker = 9
+    }
+
+    _vm.e27 = function($event) {
+      _vm.cfgt.durShowBorder = !_vm.cfgt.durShowBorder
+    }
+
+    _vm.e28 = function($event) {
+      _vm.timeBorderColor = 9
+    }
+
+    _vm.e29 = function($event) {
+      _vm.showColorPicker = false
+    }
+
+    _vm.e30 = function($event) {
+      _vm.cfgChanged = false
+    }
+
+    _vm.e31 = function($event) {
       _vm.showIconPicker = false
     }
   }
@@ -724,7 +760,135 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniTag = function uniTag() {return __webpack_require__.e(/*! import() | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/components/uni-tag/uni-tag.vue */ 81));};var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | components/uni-drawer/uni-drawer */ "components/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @/components/uni-drawer/uni-drawer.vue */ 88));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 95));};var uniTransition = function uniTransition() {return __webpack_require__.e(/*! import() | components/uni-transition/uni-transition */ "components/uni-transition/uni-transition").then(__webpack_require__.bind(null, /*! @/components/uni-transition/uni-transition.vue */ 102));};var uniSegmentedControl = function uniSegmentedControl() {return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 109));};var uniSection = function uniSection() {return __webpack_require__.e(/*! import() | components/uni-section/uni-section */ "components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/components/uni-section/uni-section.vue */ 116));};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniTag = function uniTag() {return __webpack_require__.e(/*! import() | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/components/uni-tag/uni-tag.vue */ 88));};var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | components/uni-drawer/uni-drawer */ "components/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @/components/uni-drawer/uni-drawer.vue */ 95));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 102));};var uniTransition = function uniTransition() {return __webpack_require__.e(/*! import() | components/uni-transition/uni-transition */ "components/uni-transition/uni-transition").then(__webpack_require__.bind(null, /*! @/components/uni-transition/uni-transition.vue */ 109));};var uniSegmentedControl = function uniSegmentedControl() {return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 116));};var uniSection = function uniSection() {return __webpack_require__.e(/*! import() | components/uni-section/uni-section */ "components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/components/uni-section/uni-section.vue */ 123));};
 
 
 
@@ -790,14 +954,18 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 29);var _default =
         iconBorderCorlor: '#0000ff', //图标边框颜色
         iconBorderRadio: 5, //图标边框颜色
 
-        showTime: false,
-        timeBgColor: '00ff00',
-        timeSize: 10,
-        timeShowBorder: false,
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgColor: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
         showDur: false,
-        durBgColor: '00ff00',
+        durColor: "#0000ff",
+        durBgColor: "#00ff00",
         durSize: 10,
-        durShowBorder: false },
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
 
       x: 0,
       y: 0,
@@ -1130,7 +1298,7 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 29);var _default =
         this.$store.commit('setProjs', val);
       } } },
 
-  (0, _vuex.mapState)(['cfg', 'colors', 'icons', 'colorSets'])),
+  (0, _vuex.mapState)(['cfg', 'colors', 'icons', 'colorSets', 'g'])),
 
   onLoad: function onLoad() {var _this4 = this;
     // 获取系统信息
