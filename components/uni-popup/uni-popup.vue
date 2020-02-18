@@ -11,6 +11,7 @@
 
 <script>
 	import uniTransition from '../uni-transition/uni-transition.vue'
+	import uniPopup from '@/components/uni-popup/uni-popup.vue';
 
 	/**
 	 * PopUp 弹出层
@@ -28,7 +29,7 @@
 	export default {
 		name: 'UniPopup',
 		components: {
-			uniTransition
+			uniTransition,uniPopup
 		},
 		props: {
 			// 开启动画

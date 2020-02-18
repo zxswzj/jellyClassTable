@@ -50,6 +50,9 @@
     "page-head": "/components/page-head",
     "page-foot": "/components/page-foot",
     "u-link": "/components/uLink",
-    "view-highlight": "/components/view-highlight"
-  }
+    "view-highlight": "/components/view-highlight",
+    "color-picker": "/components/color-picker",
+    "icon-picker": "/components/icon-picker"
+  },
+  "sitemapLocation": "sitemap24.json"
 }

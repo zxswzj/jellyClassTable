@@ -1,16 +1,16 @@
 <template>
-	<view class="form-top-view z-flex" style="--dir:var(--dir-col);--wrap:var(--wrap-no)">
-		<view class="form-item margin-top colors-white-base">
-			<view class="iconfont">
-				<text class="cuIcon-title text-blue"></text>
-				<text class="form-item-text">显示模式</text>
-				<text class="form-item-text" v-if="!cfg.daysMode">5天模式</text>
-				<text class="form-item-text" v-if="cfg.daysMode">7天模式</text>
+	<view class="dp-f fd-c w100 h100 ai-s ac-fs">
+		<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+			<view class="iconfont dp-f ai-c">
+				<text class="icon-xianshimoshi c-27"></text>
+				<text class="fs-32 c-3c">显示模式:</text>
+				<text class="fs-32 c-5b pl-10" v-if="!cfg.daysMode">5天模式</text>
+				<text class="fs-32 c-5b pl-10" v-if="cfg.daysMode">7天模式</text>
 			</view>
 
 			<view class="action">
 				<switch
-					class="switch-sex"
+					class="switch-57"
 					@change="switchDaysMode"
 					:class="cfg.switchDaysMode ? 'checked' : ''"
 					color="#39B54A"
@@ -18,15 +18,15 @@
 				></switch>
 			</view>
 		</view>
-		<view class="form-item margin-top colors-white-base">
-			<view class="iconfont">
-				<text class="cuIcon-title text-blue"></text>
-				<text class="form-item-text">高亮当前日期</text>
+		<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+			<view class="iconfont dp-f ai-c">
+				<text class="icon-CombinedShape c-27"></text>
+				<text class="fs-32 c-3c">高亮当前日期</text>
 			</view>
 
 			<view class="action">
 				<switch
-					class="switch-sex"
+					class="switch-hilight"
 					@change="switchHilightCurrentDay"
 					:class="cfg.hilightCurrentDay ? 'checked' : ''"
 					color="#39B54A"
@@ -34,100 +34,63 @@
 				></switch>
 			</view>
 		</view>
-		<view class="uni-padding-wrap uni-common-mt">
-			<uni-segmented-control :current="sysStyleTabIndex" :values="sysStyleTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeSysStyleTabItem" />
-		</view>
-		<view class="dp-f ai-fs w100 h100" v-if="sysStyleTabIndex == 0">
-			<view class="form-item w100 colors-white-base">
-				<view class="iconfont">
-					<text class="icon-xiuli"></text>
-					<text>背景颜色</text>
-				</view>
-				<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
-					<view class="pop-color-block" :style="{ background: cfg.bgc }" @click="showColorPicker = 1" />
-					<view class="pop-color-block" :style="{ background: cfg.bgcGradient }" @click="showColorPicker = 2" />
-				</view>
+		<!-- <uni-segmented-control :current="sysStyleTabIndex" :values="sysStyleTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeSysStyleTabItem" /> -->
+		<!-- <view class="dp-f fd-c ai-fs w100 h100" v-if="sysStyleTabIndex == 0"> -->
+		<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+			<view class="iconfont dp-f ai-c">
+				<text class="icon-yanse c-27"></text>
+				<text class="fs-32 c-3c">表背景颜色</text>
+			</view>
+			<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
+				<color-picker w="60" h="60" :defColor="cfg.bgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetBgc" />
+				<color-picker w="60" h="60" :defColor="cfg.bgcGradient" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetBgcGradient" />
 			</view>
 		</view>
-		<view class="dp-f ai-fs w100 h100" v-if="sysStyleTabIndex == 1">
-			<view class="form-item w100 colors-white-base">
-				<view class="iconfont">
-					<text class="icon-xiuli"></text>
-					<text class="form-item-text">背景颜色</text>
-				</view>
-				<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
-					<view class="pop-color-block" :style="{ background: cfg.colBgc }" @click="showColorPicker = 3" />
-					<view class="pop-color-block" :style="{ background: cfg.colBgcGradient }" @click="showColorPicker = 4" />
-				</view>
+		<!-- 		</view>
+		<view class="dp-f fd-c ai-fs w100 h100" v-if="sysStyleTabIndex == 1"> -->
+		<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+			<view class="iconfont dp-f ai-c">
+				<text class="icon-yanse c-27"></text>
+				<text class="fs-32 c-3c">列背景颜色</text>
+			</view>
+			<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
+				<color-picker w="60" h="60" :defColor="cfg.colBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetColBgc" />
+				<color-picker w="60" h="60" :defColor="cfg.colBgcGradient" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetColBgcGradient" />
 			</view>
 		</view>
-
-		<view class="dp-f fd-c ai-fs w100 h100" v-if="sysStyleTabIndex == 2">
-			<view class="form-item w100 colors-white-base">
-				<view class="iconfont">
-					<text class="icon-xiuli"></text>
-					<text class="form-item-text">时间轴颜色</text>
-				</view>
-				<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
-					<view class="pop-color-block" :style="{ background: cfg.axisColor }" @click="showColorPicker = 5" />
-					<view class="pop-color-block" :style="{ background: cfg.axisColor1 }" @click="showColorPicker = 6" />
-				</view>
+		<!-- 		</view>
+		<view class="dp-f fd-c ai-fs w100 h100" v-if="sysStyleTabIndex == 2"> -->
+		<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+			<view class="iconfont dp-f ai-c">
+				<text class="icon-yanse c-27"></text>
+				<text class="fs-32 c-3c">时间轴颜色</text>
 			</view>
-
-			<view class="form-item w100 colors-white-base">
-				<view class="iconfont">
-					<text class="icon-xiuli"></text>
-					<text class="form-item-text">时间轴文字颜色/背景颜色</text>
-				</view>
-				<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
-					<view class="pop-color-block" :style="{ background: cfg.axisTextColor }" @click="showColorPicker = 7" />
-					<view class="pop-color-block" :style="{ background: cfg.axisTextBgColor }" @click="showColorPicker = 8" />
-				</view>
+			<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
+				<color-picker w="60" h="60" :defColor="cfg.axisColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetAxisColor" />
+				<color-picker w="60" h="60" :defColor="cfg.axisColorGradient" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetAxisColorGradient" />
 			</view>
 		</view>
 
-<!-- 		<view class="dp-fc"><view class="dp-fc btn w-200 h-80 mt-50 c-000" @click="showColorPicker = false">确定</view></view>
- -->
-		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showColorPicker > 0" @change="transChange">
-			<view class="form-top-view dp-f fd-c w100 h100">
-				<view class="uni-padding-wrap uni-common-mt">
-					<uni-segmented-control
-						:current="colorSetsTabIndex"
-						:values="colorSetsTabItems"
-						style-type="button"
-						active-color="#007aff"
-						@clickItem="onChangeColorSetTabItem"
-					/>
-				</view>
-				<view class="pop-item-base" style="flex-flow:row wrap">
-					<view class="pop-title">颜色</view>
-					<view
-						class="pop-color-block"
-						:class="[
-							{
-								popColorBlockSelected:
-									(colors[i].color == cfg.bgc && showColorPicker == 1) ||
-									(colors[i].color == cfg.bgcGradient && showColorPicker == 2) ||
-									(colors[i].color == cfg.colBgc && showColorPicker == 3) ||
-									(colors[i].color == cfg.colBgcGradient && showColorPicker == 4) ||
-									(colors[i].color == cfg.axisColor && showColorPicker == 5) ||
-									(colors[i].color == cfg.axisColor1 && showColorPicker == 6) ||
-									(colors[i].color == cfg.axisTextColor && showColorPicker == 7) ||
-									(colors[i].color == cfg.axisTextBgColor && showColorPicker == 8)
-							}
-						]"
-						:style="{ background: item.color }"
-						v-for="(item, i) in colorSets[colorSetsTabIndex].colors"
-						:key="i"
-						@click="onSelectColor"
-						:data-color="item"
-						:data-index="i"
-					/>
-				</view>
-
-				<view class="dp-fc"><view class="dp-fc btn w-200 h-80 mt-50 c-000" @click="showColorPicker = false">确定</view></view>
+		<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+			<view class="iconfont dp-f ai-c">
+				<text class="icon-yanse c-27"></text>
+				<text class="fs-32 c-3c">时间轴文字颜色/背景颜色</text>
 			</view>
-		</uni-transition>
+			<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
+				<color-picker w="60" h="60" :defColor="cfg.axisTextColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetAxisTextColor" />
+				<color-picker w="60" h="60" :defColor="cfg.axisTextBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetAxisTextBgc" />
+			</view>
+		</view>
+		<!-- </view> -->
+		<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+			<view class="iconfont dp-f ai-c">
+				<text class="icon-yanse c-27"></text>
+				<text class="fs-32 c-3c">高亮框颜色</text>
+			</view>
+			<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no);">
+				<color-picker w="60" h="60" :defColor="cfg.highlightBorderColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetHighlightBorderColor" />
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -135,6 +98,7 @@
 import { mapState, mapMutations } from 'vuex';
 import uniTransition from '@/components/uni-transition/uni-transition.vue';
 import viewHighlight from '@/components/view-highlight.vue';
+import colorPicker from '@/components/color-picker.vue';
 import uniBadge from '@/components/uni-badge/uni-badge.vue';
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
 
@@ -143,10 +107,12 @@ export default {
 		uniTransition,
 		viewHighlight,
 		uniBadge,
-		uniSegmentedControl
+		uniSegmentedControl,
+		colorPicker
 	},
 	data() {
 		return {
+			tempColor: '#f0f0f0',
 			e: [],
 			sysStyleTabIndex: 0,
 			sysStyleTabItems: ['表', '列', '时间轴'],
@@ -164,7 +130,7 @@ export default {
 				display: 'flex',
 				'justify-content': 'center',
 				'align-items': 'center',
-				'background-color': 'rgba(0, 0, 0, 0.4)'
+				'background-color': 'rgba(0, 0, 0, 0.99)'
 			},
 			showColorPicker: 0,
 			updated: false,
@@ -194,6 +160,36 @@ export default {
 		};
 	},
 	methods: {
+		cpGetBgc(c) {
+			this.cfg.bgc = c;
+		},
+		cpGetBgcGradient(c) {
+			this.cfg.bgcGradient = c;
+		},
+		cpGetColBgc(c) {
+			this.cfg.colBgc = c;
+		},
+		cpGetColBgcGradient(c) {
+			this.cfg.colBgcGradient = c;
+		},
+		cpGetAxisColor(c) {
+			this.cfg.axisColor = c;
+		},
+		cpGetAxisColorGradient(c) {
+			this.cfg.axisColorGradient = c;
+		},
+		cpGetAxisTextColor(c) {
+			this.cfg.axisTextColor = c;
+		},
+		cpGetAxisTextBgc(c) {
+			this.cfg.axisTextBgc = c;
+		},
+		cpGetHighlightBorderColor(c) {
+			this.cfg.highlightBorderColor = c;
+		},
+		getColor(c) {
+			this.tempColor = c;
+		},
 		onChangeSysStyleTabItem(e) {
 			if (this.sysStyleTabIndex !== e.currentIndex) {
 				this.sysStyleTabIndex = e.currentIndex;
@@ -366,7 +362,7 @@ export default {
 				this.$store.commit('updateCfg', val);
 			}
 		},
-		...mapState(['colors', 'colorSets'])
+		...mapState(['colors', 'colorSets', 'colorSetNames'])
 	},
 	onLoad: function() {
 		console.log('onLoad');
@@ -386,6 +382,10 @@ export default {
 <style lang="scss">
 @import '../../common/vuecolors.scss';
 
+.icon-c1:before {
+	content: '\e621';
+}
+
 /* parameter
 --dir: flex方向 */
 .form-row {
@@ -401,25 +401,30 @@ export default {
 	border: 1px solid hsl(190, 100%, 41%);
 	border-radius: 20rpx;
 }
-// .indent {
-// 	margin: 5rpx 0 5rpx 40rpx;
-// }
 
 .switch-sex::after {
-	content: '\e716';
+	content: '\e610';
 }
 
 .switch-sex::before {
-	content: '\e7a9';
+	content: '\e601';
 }
 
-.switch-music::after {
-	content: '\e66a';
+.switch-57::after {
+	content: '\e670';
+}
+.switch-57::before {
+	content: '\e658';
 }
 
-.switch-music::before {
-	content: '\e6db';
+.switch-hilight:before {
+	content: '\e612';
 }
+.switch-hilight:after {
+	content: '\e612';
+	color: #0066cc;
+}
+
 .indent {
 	margin-left: 20rpx;
 }

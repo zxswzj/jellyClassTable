@@ -490,4 +490,39 @@
   border: 1px solid #2196F3;
   border-radius: 50%;
 }
+.switch-outline::after {
+  content: '\E611';
+  color: #0066cc;
+}
+.switch-outline::before {
+  content: '\E611';
+}
+.switch-class::after {
+  content: '\E637';
+  color: #0066cc;
+}
+.switch-class::before {
+  content: '\E637';
+}
+.switch-icon::after {
+  content: '\E60D';
+  color: #0066cc;
+}
+.switch-icon::before {
+  content: '\E60A';
+}
+.switch-time::after {
+  content: '\E606';
+  color: #0066cc;
+}
+.switch-time::before {
+  content: '\E606';
+}
+.switch-timeLen::after {
+  content: '\E747';
+  color: #0066cc;
+}
+.switch-timeLen::before {
+  content: '\E747';
+}
 

@@ -16,6 +16,9 @@
 }
 
 /* 主轴方向 */
+.fd-r {
+	flex-direction:row;/* 主轴方向从右到左,默认从左到右 */
+}
 .fd-rr {
 	flex-direction:row-reverse;/* 主轴方向从右到左,默认从左到右 */
 }
@@ -58,6 +61,9 @@
   justify-content: space-around;/* 等距对齐*/
 }
 
+.fb-100{
+	flex-basis: 100%;
+}
 
 /* align-items属性 */
 .ai-fs {
@@ -74,6 +80,9 @@
 
 .ai-bl {
   align-items: baseline;/* 水平居中 */
+}
+.ai-s {
+	align-items: stretch;
 }
 
 /* align-content属性(多列对齐) */

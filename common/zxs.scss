@@ -36,7 +36,7 @@
 	height: 100%;
 	display: flex;
 	justify-content: flex-start;
-	background: $grey-lighten-3;
+	background-color: $grey-lighten-3;
 	border-radius: 10px;
 	padding: 20rpx 20rpx;
 	// flex-direction: var(--dir); 
@@ -110,10 +110,6 @@
 		border-radius: 10rpx;
 		border: 1px solid black;
 	}
-	.popColorBlockSelected {
-		// border: 5px solid $blue-lighten-4;
-		background-color: $blue-lighten-4;
-	}
 }
 
 .btn {
@@ -142,4 +138,12 @@
 
 .btn:hover:before {
 	left: 100%;
+}
+
+.color-picker {
+	width: 150px;
+	height: 150px;
+	border-radius: 15rpx;
+	border: 1px solid #000000;
+	z-index: 99;
 }

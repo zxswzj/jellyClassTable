@@ -94,8 +94,8 @@ radio {
 
 switch::after,
 switch::before {
-	font-family: "cuIcon";
-	content: "\e645";
+	font-family: "iconfont";
+	content: "\e621";
 	position: absolute;
 	color: #ffffff !important;
 	top: 0%;
@@ -114,7 +114,7 @@ switch::before {
 }
 
 switch::before {
-	content: "\e646";
+	content: "\e627";
 	right: 0;
 	transform: scale(1, 1);
 	left: auto;

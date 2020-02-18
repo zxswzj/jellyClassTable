@@ -98,14 +98,17 @@ __webpack_require__(/*! uni-pages?{"type":"view"} */ 1);
 function initView() {
   function injectStyles(context) {
 
-    var style0 = __webpack_require__(/*! ./App.vue?vue&type=style&index=0&lang=scss& */ 110);
+    var style0 = __webpack_require__(/*! ./App.vue?vue&type=style&index=0&lang=scss& */ 118);
     if (style0.__inject__) style0.__inject__(context);
 
   }
   injectStyles();
-  Vue.component('page-head', __webpack_require__(/*! ./components/page-head.vue */ 113).default);
-  Vue.component('page-foot', __webpack_require__(/*! ./components/page-foot.vue */ 118).default);
-  Vue.component('uLink', __webpack_require__(/*! @/components/uLink.vue */ 126).default);
+  Vue.component('page-head', __webpack_require__(/*! ./components/page-head.vue */ 123).default);
+  Vue.component('page-foot', __webpack_require__(/*! ./components/page-foot.vue */ 128).default);
+  Vue.component('uLink', __webpack_require__(/*! @/components/uLink.vue */ 136).default);
+  Vue.component('view-highlight', __webpack_require__(/*! ./components/view-highlight.vue */ 67).default);
+  Vue.component('color-picker', __webpack_require__(/*! ./components/color-picker.vue */ 83).default);
+  Vue.component('icon-picker', __webpack_require__(/*! ./components/icon-picker.vue */ 141).default);
   UniViewJSBridge.publishHandler('webviewReady');
 }
 if (typeof plus !== 'undefined') {
@@ -129,9 +132,9 @@ if (uni.restoreGlobal) {
 }
 __definePage('pages/jellyTable/jellyTable', function () {return Vue.extend(__webpack_require__(/*! pages/jellyTable/jellyTable.vue */ 2).default);});
 __definePage('pages/cfg/cfg', function () {return Vue.extend(__webpack_require__(/*! pages/cfg/cfg.vue */ 62).default);});
-__definePage('pages/dbg/dbg', function () {return Vue.extend(__webpack_require__(/*! pages/dbg/dbg.vue */ 86).default);});
-__definePage('pages/test/test', function () {return Vue.extend(__webpack_require__(/*! pages/test/test.vue */ 94).default);});
-__definePage('pages/test1/test1', function () {return Vue.extend(__webpack_require__(/*! pages/test1/test1.vue */ 102).default);});
+__definePage('pages/dbg/dbg', function () {return Vue.extend(__webpack_require__(/*! pages/dbg/dbg.vue */ 94).default);});
+__definePage('pages/test/test', function () {return Vue.extend(__webpack_require__(/*! pages/test/test.vue */ 102).default);});
+__definePage('pages/test1/test1', function () {return Vue.extend(__webpack_require__(/*! pages/test1/test1.vue */ 110).default);});
 
 /***/ }),
 /* 2 */
@@ -289,7 +292,6 @@ var render = function() {
                   ],
                   key: item1,
                   staticClass: _vm._$g("10-" + $31, "sc"),
-                  class: _vm._$g("10-" + $31, "c"),
                   style: _vm._$g("10-" + $31, "s"),
                   attrs: {
                     "data-class": _vm._$g("10-" + $31, "a-data-class"),
@@ -316,12 +318,6 @@ var render = function() {
                     {
                       key: item2,
                       staticClass: _vm._$g("11-" + $31 + $32, "sc"),
-                      staticStyle: {
-                        "--dir": "var(--dir-row)",
-                        "--wrap": "var(--wrap-yes)",
-                        width: "100%",
-                        "text-align": "center"
-                      },
                       style: _vm._$g("11-" + $31 + $32, "s"),
                       attrs: {
                         "data-class": _vm._$g(
@@ -354,12 +350,6 @@ var render = function() {
                             }
                           ],
                           staticClass: _vm._$g("12-" + $31 + $32, "sc"),
-                          staticStyle: {
-                            "text-align": "center",
-                            "--dir": "var(--dir-row)",
-                            "--wrap": "var(--wrap-yes)",
-                            margin: "0 auto"
-                          },
                           style: _vm._$g("12-" + $31 + $32, "s"),
                           attrs: { _i: "12-" + $31 + $32 }
                         },
@@ -376,25 +366,19 @@ var render = function() {
                         ],
                         1
                       ),
-                      _c("v-uni-view", {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm._$g("14-" + $31 + $32, "v-show"),
-                            expression: "_$g((\"14-\"+$31+$32),'v-show')"
-                          }
-                        ],
-                        staticClass: _vm._$g("14-" + $31 + $32, "sc"),
-                        class: _vm._$g("14-" + $31 + $32, "c"),
-                        staticStyle: {
-                          "text-align": "center",
-                          margin: "0 auto",
-                          width: "100%"
-                        },
-                        style: _vm._$g("14-" + $31 + $32, "s"),
-                        attrs: { _i: "14-" + $31 + $32 }
-                      }),
+                      _vm._$g("14-" + $31 + $32, "i")
+                        ? _c("v-uni-view", {
+                            staticClass: _vm._$g("14-" + $31 + $32, "sc"),
+                            class: _vm._$g("14-" + $31 + $32, "c"),
+                            staticStyle: {
+                              "text-align": "center",
+                              margin: "0 auto",
+                              width: "100%"
+                            },
+                            style: _vm._$g("14-" + $31 + $32, "s"),
+                            attrs: { _i: "14-" + $31 + $32 }
+                          })
+                        : _vm._e(),
                       _c(
                         "v-uni-view",
                         {
@@ -402,17 +386,33 @@ var render = function() {
                           attrs: { _i: "15-" + $31 + $32 }
                         },
                         [
-                          _c(
-                            "v-uni-view",
-                            { attrs: { _i: "16-" + $31 + $32 } },
-                            [_vm._v(_vm._$g("16-" + $31 + $32, "t0"))]
-                          ),
-                          _vm._v("\n\t\t\t\t\t\t\t/\n\t\t\t\t\t\t\t"),
-                          _c(
-                            "v-uni-view",
-                            { attrs: { _i: "17-" + $31 + $32 } },
-                            [_vm._v(_vm._$g("17-" + $31 + $32, "t0"))]
-                          )
+                          _vm._$g("16-" + $31 + $32, "i")
+                            ? _c(
+                                "v-uni-text",
+                                {
+                                  style: _vm._$g("16-" + $31 + $32, "s"),
+                                  attrs: { _i: "16-" + $31 + $32 }
+                                },
+                                [_vm._v(_vm._$g("16-" + $31 + $32, "t0"))]
+                              )
+                            : _vm._e(),
+                          _vm._$g("17-" + $31 + $32, "i")
+                            ? _c(
+                                "v-uni-text",
+                                { attrs: { _i: "17-" + $31 + $32 } },
+                                [_vm._v("/")]
+                              )
+                            : _vm._e(),
+                          _vm._$g("18-" + $31 + $32, "i")
+                            ? _c(
+                                "v-uni-text",
+                                {
+                                  style: _vm._$g("18-" + $31 + $32, "s"),
+                                  attrs: { _i: "18-" + $31 + $32 }
+                                },
+                                [_vm._v(_vm._$g("18-" + $31 + $32, "t0"))]
+                              )
+                            : _vm._e()
                         ],
                         1
                       )
@@ -429,56 +429,45 @@ var render = function() {
         1
       ),
       _c(
-        "uni-transition",
-        {
-          attrs: { _i: 18 },
-          on: {
-            change: function($event) {
-              return _vm.$handleViewEvent($event)
-            }
-          }
-        },
+        "uni-popup",
+        { ref: "popupCfg", attrs: { _i: 19 } },
         [
           _c(
             "v-uni-scroll-view",
             {
-              staticClass: _vm._$g(19, "sc"),
-              staticStyle: {
-                "--dir": "var(--dir-col)",
-                "--wrap": "var(--wrap-no)"
-              },
-              style: _vm._$g(19, "s"),
-              attrs: { "scroll-y": "true", "show-scrollbar": "true", _i: 19 }
+              staticClass: _vm._$g(20, "sc"),
+              style: _vm._$g(20, "s"),
+              attrs: { "scroll-y": "true", "show-scrollbar": "true", _i: 20 }
             },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(20, "sc"), attrs: { _i: 20 } },
+                { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
+                    { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
                     [
                       _c("v-uni-text", {
-                        staticClass: _vm._$g(22, "sc"),
-                        attrs: { _i: 22 }
+                        staticClass: _vm._$g(23, "sc"),
+                        attrs: { _i: 23 }
                       }),
                       _c(
                         "v-uni-text",
-                        { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
+                        { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
                         [_vm._v("课程")]
                       )
                     ],
                     1
                   ),
                   _c("v-uni-input", {
-                    staticClass: _vm._$g(24, "sc"),
+                    staticClass: _vm._$g(25, "sc"),
                     staticStyle: {
                       display: "flex",
                       flex: "1",
                       "align-items": "center"
                     },
-                    attrs: { value: _vm._$g(24, "a-value"), _i: 24 },
+                    attrs: { value: _vm._$g(25, "a-value"), _i: 25 },
                     on: {
                       input: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -490,276 +479,52 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
+                { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+                    { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
                     [
                       _c("v-uni-text", {
-                        staticClass: _vm._$g(27, "sc"),
-                        attrs: { _i: 27 }
+                        staticClass: _vm._$g(28, "sc"),
+                        attrs: { _i: 28 }
                       }),
                       _c(
                         "v-uni-text",
-                        { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
+                        { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
                         [_vm._v("日期")]
                       )
                     ],
                     1
                   ),
-                  _c(
-                    "v-uni-radio-group",
-                    { attrs: { name: "week", _i: 29 } },
-                    [
-                      _c(
-                        "v-uni-label",
-                        {
-                          staticClass: _vm._$g(30, "sc"),
-                          attrs: { _i: 30 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("v-uni-radio", {
-                            attrs: {
-                              value: "monday",
-                              checked: _vm._$g(31, "a-checked"),
-                              _i: 31
-                            }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(32, "sc"),
-                              attrs: { _i: 32 }
-                            },
-                            [_vm._v("周一")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-label",
-                        {
-                          staticClass: _vm._$g(33, "sc"),
-                          attrs: { _i: 33 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("v-uni-radio", {
-                            attrs: {
-                              value: "tuesday",
-                              checked: _vm._$g(34, "a-checked"),
-                              _i: 34
-                            }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(35, "sc"),
-                              attrs: { _i: 35 }
-                            },
-                            [_vm._v("周二")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-label",
-                        {
-                          staticClass: _vm._$g(36, "sc"),
-                          attrs: { _i: 36 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("v-uni-radio", {
-                            attrs: {
-                              value: "wednesday",
-                              checked: _vm._$g(37, "a-checked"),
-                              _i: 37
-                            }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(38, "sc"),
-                              attrs: { _i: 38 }
-                            },
-                            [_vm._v("周三")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-label",
-                        {
-                          staticClass: _vm._$g(39, "sc"),
-                          attrs: { _i: 39 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("v-uni-radio", {
-                            attrs: {
-                              value: "thursday",
-                              checked: _vm._$g(40, "a-checked"),
-                              _i: 40
-                            }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(41, "sc"),
-                              attrs: { _i: 41 }
-                            },
-                            [_vm._v("周四")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-label",
-                        {
-                          staticClass: _vm._$g(42, "sc"),
-                          attrs: { _i: 42 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("v-uni-radio", {
-                            attrs: {
-                              value: "friday",
-                              checked: _vm._$g(43, "a-checked"),
-                              _i: 43
-                            }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(44, "sc"),
-                              attrs: { _i: 44 }
-                            },
-                            [_vm._v("周五")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-label",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm._$g(45, "v-show"),
-                              expression: "_$g(45,'v-show')"
-                            }
-                          ],
-                          staticClass: _vm._$g(45, "sc"),
-                          attrs: { _i: 45 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("v-uni-radio", {
-                            attrs: {
-                              value: "saterday",
-                              checked: _vm._$g(46, "a-checked"),
-                              _i: 46
-                            }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(47, "sc"),
-                              attrs: { _i: 47 }
-                            },
-                            [_vm._v("周六")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-label",
-                        {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value: _vm._$g(48, "v-show"),
-                              expression: "_$g(48,'v-show')"
-                            }
-                          ],
-                          staticClass: _vm._$g(48, "sc"),
-                          attrs: { _i: 48 },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        },
-                        [
-                          _c("v-uni-radio", {
-                            attrs: {
-                              value: "sunday",
-                              checked: _vm._$g(49, "a-checked"),
-                              _i: 49
-                            }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(50, "sc"),
-                              attrs: { _i: 50 }
-                            },
-                            [_vm._v("周日")]
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
+                  _c("uni-segmented-control", {
+                    staticClass: _vm._$g(30, "sc"),
+                    attrs: { _i: 30 },
+                    on: {
+                      clickItem: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      }
+                    }
+                  })
                 ],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(51, "sc"), attrs: { _i: 51 } },
+                { staticClass: _vm._$g(31, "sc"), attrs: { _i: 31 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(52, "sc"), attrs: { _i: 52 } },
+                    { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
                     [
                       _c("v-uni-text", {
-                        staticClass: _vm._$g(53, "sc"),
-                        attrs: { _i: 53 }
+                        staticClass: _vm._$g(33, "sc"),
+                        attrs: { _i: 33 }
                       }),
                       _c(
                         "v-uni-text",
-                        { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
-                        [_vm._v("开始时间 " + _vm._$g(54, "t0"))]
+                        { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
+                        [_vm._v("开始时间 " + _vm._$g(34, "t0"))]
                       )
                     ],
                     1
@@ -771,12 +536,12 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm._$g(55, "v-show"),
-                          expression: "_$g(55,'v-show')"
+                          value: _vm._$g(35, "v-show"),
+                          expression: "_$g(35,'v-show')"
                         }
                       ],
-                      staticClass: _vm._$g(55, "sc"),
-                      attrs: { _i: 55 }
+                      staticClass: _vm._$g(35, "sc"),
+                      attrs: { _i: 35 }
                     },
                     [_vm._v("太晚了吧，救救孩子")]
                   )
@@ -785,13 +550,13 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(56, "sc"), attrs: { _i: 56 } },
+                { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
                 [
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g(57, "sc"),
-                      attrs: { _i: 57 },
+                      staticClass: _vm._$g(37, "sc"),
+                      attrs: { _i: 37 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -803,10 +568,10 @@ var render = function() {
                   _c("v-uni-slider", {
                     staticStyle: { flex: "1" },
                     attrs: {
-                      value: _vm._$g(58, "a-value"),
+                      value: _vm._$g(38, "a-value"),
                       max: "1439",
                       step: "5",
-                      _i: 58
+                      _i: 38
                     },
                     on: {
                       change: function($event) {
@@ -820,8 +585,8 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g(59, "sc"),
-                      attrs: { _i: 59 },
+                      staticClass: _vm._$g(39, "sc"),
+                      attrs: { _i: 39 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -835,20 +600,20 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(60, "sc"), attrs: { _i: 60 } },
+                { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(61, "sc"), attrs: { _i: 61 } },
+                    { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
                     [
                       _c("v-uni-text", {
-                        staticClass: _vm._$g(62, "sc"),
-                        attrs: { _i: 62 }
+                        staticClass: _vm._$g(42, "sc"),
+                        attrs: { _i: 42 }
                       }),
                       _c(
                         "v-uni-text",
-                        { staticClass: _vm._$g(63, "sc"), attrs: { _i: 63 } },
-                        [_vm._v("时长:" + _vm._$g(63, "t0"))]
+                        { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
+                        [_vm._v("时长:" + _vm._$g(43, "t0"))]
                       )
                     ],
                     1
@@ -860,12 +625,12 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm._$g(64, "v-show"),
-                          expression: "_$g(64,'v-show')"
+                          value: _vm._$g(44, "v-show"),
+                          expression: "_$g(44,'v-show')"
                         }
                       ],
-                      staticClass: _vm._$g(64, "sc"),
-                      attrs: { _i: 64 }
+                      staticClass: _vm._$g(44, "sc"),
+                      attrs: { _i: 44 }
                     },
                     [_vm._v("时间太长了吧，救救孩子")]
                   )
@@ -874,13 +639,13 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(65, "sc"), attrs: { _i: 65 } },
+                { staticClass: _vm._$g(45, "sc"), attrs: { _i: 45 } },
                 [
                   _c(
                     "v-uni-text",
                     {
-                      staticClass: _vm._$g(66, "sc"),
-                      attrs: { _i: 66 },
+                      staticClass: _vm._$g(46, "sc"),
+                      attrs: { _i: 46 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -892,10 +657,10 @@ var render = function() {
                   _c("v-uni-slider", {
                     staticStyle: { flex: "1" },
                     attrs: {
-                      value: _vm._$g(67, "a-value"),
-                      max: _vm._$g(67, "a-max"),
+                      value: _vm._$g(47, "a-value"),
+                      max: _vm._$g(47, "a-max"),
                       step: "5",
-                      _i: 67
+                      _i: 47
                     },
                     on: {
                       changing: function($event) {
@@ -906,8 +671,8 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g(68, "sc"),
-                      attrs: { _i: 68 },
+                      staticClass: _vm._$g(48, "sc"),
+                      attrs: { _i: 48 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -923,12 +688,12 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm._$g(69, "v-show"),
-                          expression: "_$g(69,'v-show')"
+                          value: _vm._$g(49, "v-show"),
+                          expression: "_$g(49,'v-show')"
                         }
                       ],
-                      staticClass: _vm._$g(69, "sc"),
-                      attrs: { _i: 69 },
+                      staticClass: _vm._$g(49, "sc"),
+                      attrs: { _i: 49 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -942,10 +707,10 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(70, "sc"), attrs: { _i: 70 } },
+                { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
                 [
                   _c("uni-segmented-control", {
-                    attrs: { _i: 71 },
+                    attrs: { _i: 51 },
                     on: {
                       clickItem: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -955,57 +720,187 @@ var render = function() {
                 ],
                 1
               ),
-              _vm._$g(72, "i")
+              _vm._$g(52, "i")
                 ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(72, "sc"), attrs: { _i: 72 } },
+                    { staticClass: _vm._$g(52, "sc"), attrs: { _i: 52 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(73, "sc"), attrs: { _i: 73 } },
+                        { staticClass: _vm._$g(53, "sc"), attrs: { _i: 53 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(74, "sc"),
-                            attrs: { _i: 74 }
-                          }),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
                             {
-                              staticClass: _vm._$g(75, "sc"),
-                              attrs: { _i: 75 }
+                              staticClass: _vm._$g(54, "sc"),
+                              attrs: { _i: 54 }
                             },
-                            [_vm._v("课程背景颜色")]
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(55, "sc"),
+                                attrs: { _i: 55 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(56, "sc"),
+                                  attrs: { _i: 56 }
+                                },
+                                [_vm._v("课程背景颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(57, "sc"),
+                              staticStyle: {
+                                "--dir": "var(--dir-row)",
+                                "--wrap": "var(--wrap-yes)"
+                              },
+                              attrs: { _i: 57 }
+                            },
+                            [
+                              _c("color-picker", {
+                                attrs: { _i: 58 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              }),
+                              _c("color-picker", {
+                                attrs: { _i: 59 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              })
+                            ],
+                            1
                           )
                         ],
                         1
                       ),
                       _c(
                         "v-uni-view",
-                        {
-                          staticClass: _vm._$g(76, "sc"),
-                          staticStyle: {
-                            "--dir": "var(--dir-row)",
-                            "--wrap": "var(--wrap-yes)"
-                          },
-                          attrs: { _i: 76 }
-                        },
+                        { staticClass: _vm._$g(60, "sc"), attrs: { _i: 60 } },
                         [
-                          _c("v-uni-view", {
-                            staticClass: _vm._$g(77, "sc"),
-                            style: _vm._$g(77, "s"),
-                            attrs: { _i: 77 },
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(61, "sc"),
+                              attrs: { _i: 61 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(62, "sc"),
+                                attrs: { _i: 62 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(63, "sc"),
+                                  attrs: { _i: 63 }
+                                },
+                                [_vm._v("显示课程外框")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(64, "sc"),
+                            class: _vm._$g(64, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(64, "a-checked"),
+                              _i: 64
+                            },
                             on: {
-                              click: function($event) {
+                              change: function($event) {
                                 return _vm.$handleViewEvent($event)
                               }
                             }
-                          }),
-                          _c("v-uni-view", {
-                            staticClass: _vm._$g(78, "sc"),
-                            style: _vm._$g(78, "s"),
-                            attrs: { _i: 78 },
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(65, "sc"), attrs: { _i: 65 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(66, "sc"),
+                              attrs: { _i: 66 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(67, "sc"),
+                                attrs: { _i: 67 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(68, "sc"),
+                                  attrs: { _i: 68 }
+                                },
+                                [_vm._v("外框颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("color-picker", {
+                            attrs: { _i: 69 },
                             on: {
-                              click: function($event) {
+                              loadColorPicker: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(70, "sc"), attrs: { _i: 70 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(71, "sc"),
+                              attrs: { _i: 71 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(72, "sc"),
+                                attrs: { _i: 72 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(73, "sc"),
+                                  attrs: { _i: 73 }
+                                },
+                                [_vm._v("外框弧度")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-slider", {
+                            staticStyle: { flex: "1" },
+                            attrs: {
+                              value: _vm._$g(74, "a-value"),
+                              min: "0",
+                              max: "20",
+                              "show-value": true,
+                              _i: 74
+                            },
+                            on: {
+                              change: function($event) {
                                 return _vm.$handleViewEvent($event)
                               }
                             }
@@ -1017,68 +912,109 @@ var render = function() {
                     1
                   )
                 : _vm._e(),
-              _vm._$g(79, "i")
+              _vm._$g(75, "i")
                 ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(79, "sc"), attrs: { _i: 79 } },
+                    { staticClass: _vm._$g(75, "sc"), attrs: { _i: 75 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(80, "sc"), attrs: { _i: 80 } },
+                        { staticClass: _vm._$g(76, "sc"), attrs: { _i: 76 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(81, "sc"),
-                            attrs: { _i: 81 }
-                          }),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(77, "sc"),
+                              attrs: { _i: 77 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(78, "sc"),
+                                attrs: { _i: 78 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(79, "sc"),
+                                  attrs: { _i: 79 }
+                                },
+                                [_vm._v("显示课程名称")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(80, "sc"),
+                            class: _vm._$g(80, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(80, "a-checked"),
+                              _i: 80
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(81, "sc"), attrs: { _i: 81 } },
+                        [
+                          _c(
+                            "v-uni-view",
                             {
                               staticClass: _vm._$g(82, "sc"),
                               attrs: { _i: 82 }
                             },
-                            [_vm._v("显示课程外框")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c("v-uni-switch", {
-                        staticClass: _vm._$g(83, "sc"),
-                        class: _vm._$g(83, "c"),
-                        attrs: {
-                          color: "#39B54A",
-                          checked: _vm._$g(83, "a-checked"),
-                          _i: 83
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(84, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(84, "sc"), attrs: { _i: 84 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(85, "sc"), attrs: { _i: 85 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(86, "sc"),
-                            attrs: { _i: 86 }
-                          }),
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(83, "sc"),
+                                attrs: { _i: 83 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(84, "sc"),
+                                  attrs: { _i: 84 }
+                                },
+                                [_vm._v("名称颜色/名称背景颜色")]
+                              )
+                            ],
+                            1
+                          ),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
                             {
-                              staticClass: _vm._$g(87, "sc"),
-                              attrs: { _i: 87 }
+                              staticClass: _vm._$g(85, "sc"),
+                              staticStyle: {
+                                "--dir": "var(--dir-row)",
+                                "--wrap": "var(--wrap-yes)"
+                              },
+                              attrs: { _i: 85 }
                             },
-                            [_vm._v("外框颜色")]
+                            [
+                              _c("color-picker", {
+                                attrs: { _i: 86 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              }),
+                              _c("color-picker", {
+                                attrs: { _i: 87 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              })
+                            ],
+                            1
                           )
                         ],
                         1
@@ -1087,12 +1023,163 @@ var render = function() {
                         "v-uni-view",
                         { staticClass: _vm._$g(88, "sc"), attrs: { _i: 88 } },
                         [
-                          _c("v-uni-view", {
-                            staticClass: _vm._$g(89, "sc"),
-                            style: _vm._$g(89, "s"),
-                            attrs: { _i: 89 },
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(89, "sc"),
+                              attrs: { _i: 89 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(90, "sc"),
+                                attrs: { _i: 90 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(91, "sc"),
+                                  attrs: { _i: 91 }
+                                },
+                                [_vm._v("名称大小")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-slider", {
+                            staticStyle: { flex: "1" },
+                            attrs: {
+                              value: _vm._$g(92, "a-value"),
+                              min: "0",
+                              max: "30",
+                              "show-value": true,
+                              _i: 92
+                            },
                             on: {
-                              click: function($event) {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(93, "sc"), attrs: { _i: 93 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(94, "sc"),
+                              attrs: { _i: 94 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(95, "sc"),
+                                attrs: { _i: 95 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(96, "sc"),
+                                  attrs: { _i: 96 }
+                                },
+                                [_vm._v("显示文字边框")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(97, "sc"),
+                            class: _vm._$g(97, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(97, "a-checked"),
+                              _i: 97
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(98, "sc"), attrs: { _i: 98 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(99, "sc"),
+                              attrs: { _i: 99 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(100, "sc"),
+                                attrs: { _i: 100 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(101, "sc"),
+                                  attrs: { _i: 101 }
+                                },
+                                [_vm._v("文字边框颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("color-picker", {
+                            attrs: { _i: 102 },
+                            on: {
+                              loadColorPicker: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(103, "sc"), attrs: { _i: 103 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(104, "sc"),
+                              attrs: { _i: 104 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(105, "sc"),
+                                attrs: { _i: 105 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(106, "sc"),
+                                  attrs: { _i: 106 }
+                                },
+                                [_vm._v("文字边框弧度")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-slider", {
+                            staticStyle: { flex: "1" },
+                            attrs: {
+                              value: _vm._$g(107, "a-value"),
+                              min: "0",
+                              max: "10",
+                              "show-value": true,
+                              _i: 107
+                            },
+                            on: {
+                              change: function($event) {
                                 return _vm.$handleViewEvent($event)
                               }
                             }
@@ -1104,159 +1191,140 @@ var render = function() {
                     1
                   )
                 : _vm._e(),
-              _vm._$g(90, "i")
+              _vm._$g(108, "i")
                 ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(90, "sc"), attrs: { _i: 90 } },
+                    { staticClass: _vm._$g(108, "sc"), attrs: { _i: 108 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(91, "sc"), attrs: { _i: 91 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(92, "sc"),
-                            attrs: { _i: 92 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(93, "sc"),
-                              attrs: { _i: 93 }
-                            },
-                            [_vm._v("外框弧度")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c("v-uni-slider", {
-                        staticStyle: { flex: "1" },
-                        attrs: {
-                          value: _vm._$g(94, "a-value"),
-                          min: "0",
-                          max: "20",
-                          "show-value": true,
-                          _i: 94
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(95, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(95, "sc"), attrs: { _i: 95 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(96, "sc"), attrs: { _i: 96 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(97, "sc"),
-                            attrs: { _i: 97 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(98, "sc"),
-                              attrs: { _i: 98 }
-                            },
-                            [_vm._v("显示课程名称")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c("v-uni-switch", {
-                        staticClass: _vm._$g(99, "sc"),
-                        class: _vm._$g(99, "c"),
-                        attrs: {
-                          color: "#39B54A",
-                          checked: _vm._$g(99, "a-checked"),
-                          _i: 99
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(100, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(100, "sc"), attrs: { _i: 100 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(101, "sc"), attrs: { _i: 101 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(102, "sc"),
-                            attrs: { _i: 102 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(103, "sc"),
-                              attrs: { _i: 103 }
-                            },
-                            [_vm._v("名称颜色/名称背景颜色")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-view",
-                        {
-                          staticClass: _vm._$g(104, "sc"),
-                          staticStyle: {
-                            "--dir": "var(--dir-row)",
-                            "--wrap": "var(--wrap-yes)"
-                          },
-                          attrs: { _i: 104 }
-                        },
+                        { staticClass: _vm._$g(109, "sc"), attrs: { _i: 109 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(105, "sc"),
-                              attrs: { _i: 105 }
+                              staticClass: _vm._$g(110, "sc"),
+                              attrs: { _i: 110 }
                             },
                             [
-                              _c("v-uni-view", {
-                                staticClass: _vm._$g(106, "sc"),
-                                style: _vm._$g(106, "s"),
-                                attrs: { _i: 106 },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.$handleViewEvent($event)
-                                  }
-                                }
-                              })
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(111, "sc"),
+                                attrs: { _i: 111 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(112, "sc"),
+                                  attrs: { _i: 112 }
+                                },
+                                [_vm._v("显示图标")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(113, "sc"),
+                            class: _vm._$g(113, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(113, "a-checked"),
+                              _i: 113
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(114, "sc"), attrs: { _i: 114 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(115, "sc"),
+                              attrs: { _i: 115 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(116, "sc"),
+                                attrs: { _i: 116 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(117, "sc"),
+                                  attrs: { _i: 117 }
+                                },
+                                [_vm._v("选择图标")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("icon-picker", {
+                            attrs: { _i: 118 },
+                            on: {
+                              loadIconPicker: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(119, "sc"), attrs: { _i: 119 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(120, "sc"),
+                              attrs: { _i: 120 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(121, "sc"),
+                                attrs: { _i: 121 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(122, "sc"),
+                                  attrs: { _i: 122 }
+                                },
+                                [_vm._v("图标颜色/图标背景颜色")]
+                              )
                             ],
                             1
                           ),
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(107, "sc"),
-                              attrs: { _i: 107 }
+                              staticClass: _vm._$g(123, "sc"),
+                              staticStyle: {
+                                "--dir": "var(--dir-row)",
+                                "--wrap": "var(--wrap-yes)"
+                              },
+                              attrs: { _i: 123 }
                             },
                             [
-                              _c("v-uni-view", {
-                                staticClass: _vm._$g(108, "sc"),
-                                style: _vm._$g(108, "s"),
-                                attrs: { _i: 108 },
+                              _c("color-picker", {
+                                attrs: { _i: 124 },
                                 on: {
-                                  click: function($event) {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              }),
+                              _c("color-picker", {
+                                attrs: { _i: 125 },
+                                on: {
+                                  loadColorPicker: function($event) {
                                     return _vm.$handleViewEvent($event)
                                   }
                                 }
@@ -1266,465 +1334,168 @@ var render = function() {
                           )
                         ],
                         1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(109, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(109, "sc"), attrs: { _i: 109 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(110, "sc"), attrs: { _i: 110 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(111, "sc"),
-                            attrs: { _i: 111 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(112, "sc"),
-                              attrs: { _i: 112 }
-                            },
-                            [_vm._v("名称大小")]
-                          )
-                        ],
-                        1
                       ),
-                      _c("v-uni-slider", {
-                        staticStyle: { flex: "1" },
-                        attrs: {
-                          value: _vm._$g(113, "a-value"),
-                          min: "0",
-                          max: "30",
-                          "show-value": true,
-                          _i: 113
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(114, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(114, "sc"), attrs: { _i: 114 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(115, "sc"), attrs: { _i: 115 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(116, "sc"),
-                            attrs: { _i: 116 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(117, "sc"),
-                              attrs: { _i: 117 }
-                            },
-                            [_vm._v("显示文字边框")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c("v-uni-switch", {
-                        staticClass: _vm._$g(118, "sc"),
-                        class: _vm._$g(118, "c"),
-                        attrs: {
-                          color: "#39B54A",
-                          checked: _vm._$g(118, "a-checked"),
-                          _i: 118
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(119, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(119, "sc"), attrs: { _i: 119 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(120, "sc"), attrs: { _i: 120 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(121, "sc"),
-                            attrs: { _i: 121 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(122, "sc"),
-                              attrs: { _i: 122 }
-                            },
-                            [_vm._v("文字边框颜色")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(123, "sc"), attrs: { _i: 123 } },
-                        [
-                          _c("v-uni-view", {
-                            staticClass: _vm._$g(124, "sc"),
-                            style: _vm._$g(124, "s"),
-                            attrs: { _i: 124 },
-                            on: {
-                              click: function($event) {
-                                return _vm.$handleViewEvent($event)
-                              }
-                            }
-                          })
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(125, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(125, "sc"), attrs: { _i: 125 } },
-                    [
                       _c(
                         "v-uni-view",
                         { staticClass: _vm._$g(126, "sc"), attrs: { _i: 126 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(127, "sc"),
-                            attrs: { _i: 127 }
-                          }),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
                             {
-                              staticClass: _vm._$g(128, "sc"),
-                              attrs: { _i: 128 }
+                              staticClass: _vm._$g(127, "sc"),
+                              attrs: { _i: 127 }
                             },
-                            [_vm._v("文字边框弧度")]
-                          )
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(128, "sc"),
+                                attrs: { _i: 128 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(129, "sc"),
+                                  attrs: { _i: 129 }
+                                },
+                                [_vm._v("图标大小")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-slider", {
+                            staticStyle: { flex: "1" },
+                            attrs: {
+                              value: _vm._$g(130, "a-value"),
+                              min: "0",
+                              max: "50",
+                              "show-value": true,
+                              _i: 130
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
                         ],
                         1
                       ),
-                      _c("v-uni-slider", {
-                        staticStyle: { flex: "1" },
-                        attrs: {
-                          value: _vm._$g(129, "a-value"),
-                          min: "0",
-                          max: "10",
-                          "show-value": true,
-                          _i: 129
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(130, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(130, "sc"), attrs: { _i: 130 } },
-                    [
                       _c(
                         "v-uni-view",
                         { staticClass: _vm._$g(131, "sc"), attrs: { _i: 131 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(132, "sc"),
-                            attrs: { _i: 132 }
-                          }),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
                             {
-                              staticClass: _vm._$g(133, "sc"),
-                              attrs: { _i: 133 }
+                              staticClass: _vm._$g(132, "sc"),
+                              attrs: { _i: 132 }
                             },
-                            [_vm._v("显示图标")]
-                          )
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(133, "sc"),
+                                attrs: { _i: 133 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(134, "sc"),
+                                  attrs: { _i: 134 }
+                                },
+                                [_vm._v("显示图标边框")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(135, "sc"),
+                            class: _vm._$g(135, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(135, "a-checked"),
+                              _i: 135
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
                         ],
                         1
                       ),
-                      _c("v-uni-switch", {
-                        staticClass: _vm._$g(134, "sc"),
-                        class: _vm._$g(134, "c"),
-                        attrs: {
-                          color: "#39B54A",
-                          checked: _vm._$g(134, "a-checked"),
-                          _i: 134
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(135, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(135, "sc"), attrs: { _i: 135 } },
-                    [
                       _c(
                         "v-uni-view",
                         { staticClass: _vm._$g(136, "sc"), attrs: { _i: 136 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(137, "sc"),
-                            attrs: { _i: 137 }
-                          }),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
                             {
-                              staticClass: _vm._$g(138, "sc"),
-                              attrs: { _i: 138 }
+                              staticClass: _vm._$g(137, "sc"),
+                              attrs: { _i: 137 }
                             },
-                            [_vm._v("选择图标")]
-                          )
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(138, "sc"),
+                                attrs: { _i: 138 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(139, "sc"),
+                                  attrs: { _i: 139 }
+                                },
+                                [_vm._v("图标边框颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("color-picker", {
+                            attrs: { _i: 140 },
+                            on: {
+                              loadColorPicker: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
                         ],
                         1
                       ),
-                      _c("v-uni-view", {
-                        staticClass: _vm._$g(139, "sc"),
-                        class: _vm._$g(139, "c"),
-                        attrs: { _i: 139 },
-                        on: {
-                          click: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(140, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(140, "sc"), attrs: { _i: 140 } },
-                    [
                       _c(
                         "v-uni-view",
                         { staticClass: _vm._$g(141, "sc"), attrs: { _i: 141 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(142, "sc"),
-                            attrs: { _i: 142 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(143, "sc"),
-                              attrs: { _i: 143 }
-                            },
-                            [_vm._v("图标颜色/图标背景颜色")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-view",
-                        {
-                          staticClass: _vm._$g(144, "sc"),
-                          staticStyle: {
-                            "--dir": "var(--dir-row)",
-                            "--wrap": "var(--wrap-yes)"
-                          },
-                          attrs: { _i: 144 }
-                        },
-                        [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(145, "sc"),
-                              attrs: { _i: 145 }
+                              staticClass: _vm._$g(142, "sc"),
+                              attrs: { _i: 142 }
                             },
                             [
-                              _c("v-uni-view", {
-                                staticClass: _vm._$g(146, "sc"),
-                                style: _vm._$g(146, "s"),
-                                attrs: { _i: 146 },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.$handleViewEvent($event)
-                                  }
-                                }
-                              })
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(143, "sc"),
+                                attrs: { _i: 143 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(144, "sc"),
+                                  attrs: { _i: 144 }
+                                },
+                                [_vm._v("图标边框弧度")]
+                              )
                             ],
                             1
                           ),
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(147, "sc"),
-                              attrs: { _i: 147 }
+                          _c("v-uni-slider", {
+                            staticStyle: { flex: "1" },
+                            attrs: {
+                              value: _vm._$g(145, "a-value"),
+                              min: "0",
+                              max: "10",
+                              "show-value": true,
+                              _i: 145
                             },
-                            [
-                              _c("v-uni-view", {
-                                staticClass: _vm._$g(148, "sc"),
-                                style: _vm._$g(148, "s"),
-                                attrs: { _i: 148 },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.$handleViewEvent($event)
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(149, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(149, "sc"), attrs: { _i: 149 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(150, "sc"), attrs: { _i: 150 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(151, "sc"),
-                            attrs: { _i: 151 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(152, "sc"),
-                              attrs: { _i: 152 }
-                            },
-                            [_vm._v("图标大小")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c("v-uni-slider", {
-                        staticStyle: { flex: "1" },
-                        attrs: {
-                          value: _vm._$g(153, "a-value"),
-                          min: "0",
-                          max: "50",
-                          "show-value": true,
-                          _i: 153
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(154, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(154, "sc"), attrs: { _i: 154 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(155, "sc"), attrs: { _i: 155 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(156, "sc"),
-                            attrs: { _i: 156 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(157, "sc"),
-                              attrs: { _i: 157 }
-                            },
-                            [_vm._v("显示图标边框")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c("v-uni-switch", {
-                        staticClass: _vm._$g(158, "sc"),
-                        class: _vm._$g(158, "c"),
-                        attrs: {
-                          color: "#39B54A",
-                          checked: _vm._$g(158, "a-checked"),
-                          _i: 158
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(159, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(159, "sc"), attrs: { _i: 159 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(160, "sc"), attrs: { _i: 160 } },
-                        [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(161, "sc"),
-                            attrs: { _i: 161 }
-                          }),
-                          _c(
-                            "v-uni-text",
-                            {
-                              staticClass: _vm._$g(162, "sc"),
-                              attrs: { _i: 162 }
-                            },
-                            [_vm._v("图标边框颜色")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(163, "sc"), attrs: { _i: 163 } },
-                        [
-                          _c("v-uni-view", {
-                            staticClass: _vm._$g(164, "sc"),
-                            style: _vm._$g(164, "s"),
-                            attrs: { _i: 164 },
                             on: {
-                              click: function($event) {
+                              change: function($event) {
                                 return _vm.$handleViewEvent($event)
                               }
                             }
@@ -1736,94 +1507,462 @@ var render = function() {
                     1
                   )
                 : _vm._e(),
-              _vm._$g(165, "i")
+              _vm._$g(146, "i")
                 ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(165, "sc"), attrs: { _i: 165 } },
+                    { staticClass: _vm._$g(146, "sc"), attrs: { _i: 146 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(166, "sc"), attrs: { _i: 166 } },
+                        { staticClass: _vm._$g(147, "sc"), attrs: { _i: 147 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(167, "sc"),
-                            attrs: { _i: 167 }
-                          }),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
                             {
-                              staticClass: _vm._$g(168, "sc"),
-                              attrs: { _i: 168 }
+                              staticClass: _vm._$g(148, "sc"),
+                              attrs: { _i: 148 }
                             },
-                            [_vm._v("图标边框弧度")]
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(149, "sc"),
+                                attrs: { _i: 149 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(150, "sc"),
+                                  attrs: { _i: 150 }
+                                },
+                                [_vm._v("显示开始时间")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(151, "sc"),
+                            class: _vm._$g(151, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(151, "a-checked"),
+                              _i: 151
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(152, "sc"), attrs: { _i: 152 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(153, "sc"),
+                              attrs: { _i: 153 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(154, "sc"),
+                                attrs: { _i: 154 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(155, "sc"),
+                                  attrs: { _i: 155 }
+                                },
+                                [_vm._v("颜色/背景颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(156, "sc"),
+                              attrs: { _i: 156 }
+                            },
+                            [
+                              _c("color-picker", {
+                                attrs: { _i: 157 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              }),
+                              _c("color-picker", {
+                                attrs: { _i: 158 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              })
+                            ],
+                            1
                           )
                         ],
                         1
                       ),
-                      _c("v-uni-slider", {
-                        staticStyle: { flex: "1" },
-                        attrs: {
-                          value: _vm._$g(169, "a-value"),
-                          min: "0",
-                          max: "10",
-                          "show-value": true,
-                          _i: 169
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(170, "i")
-                ? _c(
-                    "v-uni-view",
-                    { staticClass: _vm._$g(170, "sc"), attrs: { _i: 170 } },
-                    [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(171, "sc"), attrs: { _i: 171 } },
+                        { staticClass: _vm._$g(159, "sc"), attrs: { _i: 159 } },
                         [
-                          _c("v-uni-text", {
-                            staticClass: _vm._$g(172, "sc"),
-                            attrs: { _i: 172 }
-                          }),
                           _c(
-                            "v-uni-text",
+                            "v-uni-view",
                             {
-                              staticClass: _vm._$g(173, "sc"),
-                              attrs: { _i: 173 }
+                              staticClass: _vm._$g(160, "sc"),
+                              attrs: { _i: 160 }
                             },
-                            [_vm._v("显示开始时间")]
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(161, "sc"),
+                                attrs: { _i: 161 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(162, "sc"),
+                                  attrs: { _i: 162 }
+                                },
+                                [_vm._v("字体大小")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-slider", {
+                            staticStyle: { flex: "1" },
+                            attrs: {
+                              value: _vm._$g(163, "a-value"),
+                              min: "0",
+                              max: "50",
+                              "show-value": true,
+                              _i: 163
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(164, "sc"), attrs: { _i: 164 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(165, "sc"),
+                              attrs: { _i: 165 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(166, "sc"),
+                                attrs: { _i: 166 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(167, "sc"),
+                                  attrs: { _i: 167 }
+                                },
+                                [_vm._v("显示边框")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(168, "sc"),
+                            class: _vm._$g(168, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(168, "a-checked"),
+                              _i: 168
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(169, "sc"), attrs: { _i: 169 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(170, "sc"),
+                              attrs: { _i: 170 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(171, "sc"),
+                                attrs: { _i: 171 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(172, "sc"),
+                                  attrs: { _i: 172 }
+                                },
+                                [_vm._v("边框颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("color-picker", {
+                            attrs: { _i: 173 },
+                            on: {
+                              loadColorPicker: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(174, "sc"), attrs: { _i: 174 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(175, "sc"),
+                              attrs: { _i: 175 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(176, "sc"),
+                                attrs: { _i: 176 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(177, "sc"),
+                                  attrs: { _i: 177 }
+                                },
+                                [_vm._v("显示课程时长")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(178, "sc"),
+                            class: _vm._$g(178, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(178, "a-checked"),
+                              _i: 178
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(179, "sc"), attrs: { _i: 179 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(180, "sc"),
+                              attrs: { _i: 180 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(181, "sc"),
+                                attrs: { _i: 181 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(182, "sc"),
+                                  attrs: { _i: 182 }
+                                },
+                                [_vm._v("颜色/背景颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(183, "sc"),
+                              attrs: { _i: 183 }
+                            },
+                            [
+                              _c("color-picker", {
+                                attrs: { _i: 184 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              }),
+                              _c("color-picker", {
+                                attrs: { _i: 185 },
+                                on: {
+                                  loadColorPicker: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
+                              })
+                            ],
+                            1
                           )
                         ],
                         1
                       ),
-                      _c("v-uni-switch", {
-                        staticClass: _vm._$g(174, "sc"),
-                        class: _vm._$g(174, "c"),
-                        attrs: {
-                          color: "#39B54A",
-                          checked: _vm._$g(174, "a-checked"),
-                          _i: 174
-                        },
-                        on: {
-                          change: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(186, "sc"), attrs: { _i: 186 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(187, "sc"),
+                              attrs: { _i: 187 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(188, "sc"),
+                                attrs: { _i: 188 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(189, "sc"),
+                                  attrs: { _i: 189 }
+                                },
+                                [_vm._v("字体大小")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-slider", {
+                            staticStyle: { flex: "1" },
+                            attrs: {
+                              value: _vm._$g(190, "a-value"),
+                              min: "0",
+                              max: "50",
+                              "show-value": true,
+                              _i: 190
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(191, "sc"), attrs: { _i: 191 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(192, "sc"),
+                              attrs: { _i: 192 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(193, "sc"),
+                                attrs: { _i: 193 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(194, "sc"),
+                                  attrs: { _i: 194 }
+                                },
+                                [_vm._v("显示边框")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("v-uni-switch", {
+                            staticClass: _vm._$g(195, "sc"),
+                            class: _vm._$g(195, "c"),
+                            attrs: {
+                              color: "#39B54A",
+                              checked: _vm._$g(195, "a-checked"),
+                              _i: 195
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(196, "sc"), attrs: { _i: 196 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(197, "sc"),
+                              attrs: { _i: 197 }
+                            },
+                            [
+                              _c("v-uni-text", {
+                                staticClass: _vm._$g(198, "sc"),
+                                attrs: { _i: 198 }
+                              }),
+                              _c(
+                                "v-uni-text",
+                                {
+                                  staticClass: _vm._$g(199, "sc"),
+                                  attrs: { _i: 199 }
+                                },
+                                [_vm._v("边框颜色")]
+                              )
+                            ],
+                            1
+                          ),
+                          _c("color-picker", {
+                            attrs: { _i: 200 },
+                            on: {
+                              loadColorPicker: function($event) {
+                                return _vm.$handleViewEvent($event)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
                 : _vm._e(),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(175, "sc"), attrs: { _i: 175 } },
+                { staticClass: _vm._$g(201, "sc"), attrs: { _i: 201 } },
                 [
                   _c(
                     "v-uni-button",
@@ -1832,11 +1971,11 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm._$g(176, "v-show"),
-                          expression: "_$g(176,'v-show')"
+                          value: _vm._$g(202, "v-show"),
+                          expression: "_$g(202,'v-show')"
                         }
                       ],
-                      attrs: { type: "primary", _i: 176 },
+                      attrs: { type: "primary", _i: 202 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -1852,11 +1991,11 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm._$g(177, "v-show"),
-                          expression: "_$g(177,'v-show')"
+                          value: _vm._$g(203, "v-show"),
+                          expression: "_$g(203,'v-show')"
                         }
                       ],
-                      attrs: { type: "primary", _i: 177 },
+                      attrs: { type: "primary", _i: 203 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -1868,7 +2007,7 @@ var render = function() {
                   _c(
                     "v-uni-button",
                     {
-                      attrs: { type: "default", _i: 178 },
+                      attrs: { type: "default", _i: 204 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -1880,7 +2019,15 @@ var render = function() {
                   _c(
                     "v-uni-button",
                     {
-                      attrs: { type: "warn", _i: 179 },
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm._$g(205, "v-show"),
+                          expression: "_$g(205,'v-show')"
+                        }
+                      ],
+                      attrs: { type: "warn", _i: 205 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -1894,217 +2041,6 @@ var render = function() {
               )
             ],
             1
-          )
-        ],
-        1
-      ),
-      _c(
-        "uni-transition",
-        {
-          attrs: { _i: 180 },
-          on: {
-            change: function($event) {
-              return _vm.$handleViewEvent($event)
-            }
-          }
-        },
-        [
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(181, "sc"), attrs: { _i: 181 } },
-            [
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(182, "sc"), attrs: { _i: 182 } },
-                [
-                  _c("uni-segmented-control", {
-                    attrs: { _i: 183 },
-                    on: {
-                      clickItem: function($event) {
-                        return _vm.$handleViewEvent($event)
-                      }
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._$g(184, "i")
-                ? _c(
-                    "v-uni-view",
-                    {
-                      staticClass: _vm._$g(184, "sc"),
-                      staticStyle: { "flex-flow": "row wrap" },
-                      attrs: { _i: 184 }
-                    },
-                    _vm._l(_vm._$g(185, "f"), function(item, i, $23, $33) {
-                      return _c("v-uni-view", {
-                        key: item,
-                        staticClass: _vm._$g("185-" + $33, "sc"),
-                        class: _vm._$g("185-" + $33, "c"),
-                        style: _vm._$g("185-" + $33, "s"),
-                        attrs: {
-                          "data-color": _vm._$g("185-" + $33, "a-data-color"),
-                          "data-index": _vm._$g("185-" + $33, "a-data-index"),
-                          _i: "185-" + $33
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    }),
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(186, "i")
-                ? _c(
-                    "v-uni-view",
-                    {
-                      staticClass: _vm._$g(186, "sc"),
-                      staticStyle: { "flex-flow": "row wrap" },
-                      attrs: { _i: 186 }
-                    },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(187, "sc"), attrs: { _i: 187 } },
-                        [_vm._v("颜色")]
-                      ),
-                      _vm._l(_vm._$g(188, "f"), function(item, i, $24, $34) {
-                        return _c("v-uni-view", {
-                          key: item,
-                          staticClass: _vm._$g("188-" + $34, "sc"),
-                          class: _vm._$g("188-" + $34, "c"),
-                          style: _vm._$g("188-" + $34, "s"),
-                          attrs: {
-                            "data-color": _vm._$g("188-" + $34, "a-data-color"),
-                            "data-index": _vm._$g("188-" + $34, "a-data-index"),
-                            _i: "188-" + $34
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        })
-                      })
-                    ],
-                    2
-                  )
-                : _vm._e(),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(189, "sc"),
-                  staticStyle: {
-                    "flex-flow": "row wrap",
-                    "justify-content": "center"
-                  },
-                  attrs: { _i: 189 }
-                },
-                [
-                  _c(
-                    "v-uni-view",
-                    {
-                      staticClass: _vm._$g(190, "sc"),
-                      attrs: { _i: 190 },
-                      on: {
-                        click: function($event) {
-                          return _vm.$handleViewEvent($event)
-                        }
-                      }
-                    },
-                    [_vm._v("确定")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _c(
-        "uni-transition",
-        {
-          attrs: { _i: 191 },
-          on: {
-            change: function($event) {
-              return _vm.$handleViewEvent($event)
-            }
-          }
-        },
-        [
-          _c(
-            "v-uni-scroll-view",
-            {
-              staticClass: _vm._$g(192, "sc"),
-              staticStyle: {
-                "--dir": "var(--dir-col)",
-                "--wrap": "var(--wrap-yes)",
-                margin: "0 auto"
-              },
-              style: _vm._$g(192, "s"),
-              attrs: { "scroll-y": "true", "show-scrollbar": "true", _i: 192 }
-            },
-            [
-              _vm._l(_vm._$g(193, "f"), function(item, i, $25, $35) {
-                return _c("v-uni-view", {
-                  key: item,
-                  staticClass: _vm._$g("193-" + $35, "sc"),
-                  class: _vm._$g("193-" + $35, "c"),
-                  staticStyle: {
-                    display: "inline-block",
-                    "font-size": "30px",
-                    "text-align": "center"
-                  },
-                  attrs: {
-                    "data-icon": _vm._$g("193-" + $35, "a-data-icon"),
-                    _i: "193-" + $35
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.$handleViewEvent($event)
-                    }
-                  }
-                })
-              }),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(194, "sc"),
-                  staticStyle: {
-                    "flex-flow": "row wrap",
-                    "justify-content": "center"
-                  },
-                  attrs: { _i: 194 }
-                },
-                [
-                  _c(
-                    "v-uni-view",
-                    {
-                      staticClass: _vm._$g(195, "sc"),
-                      staticStyle: {
-                        width: "100%",
-                        "justify-content": "center",
-                        display: "flex"
-                      },
-                      attrs: { _i: 195 },
-                      on: {
-                        click: function($event) {
-                          return _vm.$handleViewEvent($event)
-                        }
-                      }
-                    },
-                    [_vm._v("确定")]
-                  )
-                ],
-                1
-              )
-            ],
-            2
           )
         ],
         1
@@ -3249,7 +3185,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-var _uniTransition = _interopRequireDefault(__webpack_require__(/*! ../uni-transition/uni-transition.vue */ 32));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+var _uniTransition = _interopRequireDefault(__webpack_require__(/*! ../uni-transition/uni-transition.vue */ 32));
+var _uniPopup = _interopRequireDefault(__webpack_require__(/*! @/components/uni-popup/uni-popup.vue */ 27));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
   name: "UniPopup",
   data: function data() {
@@ -3258,7 +3195,8 @@ var _uniTransition = _interopRequireDefault(__webpack_require__(/*! ../uni-trans
 
   },
   components: {
-    'uniTransition': _uniTransition.default } };exports.default = _default;
+    'uniTransition': _uniTransition.default,
+    'uniPopup': _uniPopup.default } };exports.default = _default;
 
 /***/ }),
 /* 32 */
@@ -3995,7 +3933,7 @@ exports = module.exports = __webpack_require__(/*! ../../../HBuilderX/plugins/un
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n.devide5 {\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  -webkit-flex-grow: 1;\n  flex-shrink: 1;\n  -webkit-flex-shrink: 1;\n  flex-basis: 20%;\n  -webkit-flex-basis: 20%;\n  width: 1px;\n}\n.devide7 {\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  -webkit-flex-grow: 1;\n  flex-shrink: 1;\n  -webkit-flex-shrink: 1;\n  flex-basis: 14%;\n  -webkit-flex-basis: 14%;\n  width: 1px;\n}\n.slide-sub-btn {\n  width: 20px;\n  height: 20px;\n  background-color: #90CAF9;\n  border-radius: 10px;\n  margin: 0 auto;\n  text-align: center;\n}\n.slide-add-btn {\n  width: 20px;\n  height: 20px;\n  background-color: #90CAF9;\n  border-radius: 10px;\n  margin: 0 auto;\n  text-align: center;\n}\n.radio-bg,\n.radio-1 {\n  margin: 10rpx 10rpx;\n  background-color: #90CAF9;\n  border-radius: 10px;\n  display: inline-block;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  line-height: 40rpx;\n  font-size: 40rpx;\n}\n.radio-1:nth-of-type(2n + 1) {\n  background-color: #42A5F5;\n}\n.radio-bg:nth-of-type(2n + 1) {\n  background-color: #42A5F5;\n}\n.foot {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n          flex-direction: row;\n  width: auto;\n  height: 10px;\n  background: #ffffff;\n  -webkit-align-content: flex-end;\n          align-content: flex-end;\n}\n.col-frame {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  margin: 0 2px;\n  border-radius: 5px;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);\n  color: #757575;\n  font-size: 13px;\n  text-align: center;\n  background-clip: border-box;\n  -webkit-flex-flow: column wrap;\n          flex-flow: column wrap;\n  width: 100%;\n  overflow: hidden;\n}\n.item-frame {\n  box-shadow: -5px -5px 10px #666666, 5px 5px 10px #ffffff;\n  color: #757575;\n  font-size: 13px;\n}\n.item-name {\n  font-size: 13px;\n  color: #ffffff;\n  border-radius: 5rpx;\n}\n.item-start-time {\n  font-size: 10px;\n  color: #ffffff;\n  background: #b73a67;\n  border-radius: 5rpx;\n}\n.item-end-time {\n  font-size: 10px;\n  color: #ffffff;\n  background: #ff7e53;\n  border-radius: 5rpx;\n}\n.emphasis {\n  box-shadow: 2px 2px 5px 4px #0080ff;\n}\n.nodisplay {\n  display: none;\n}\n.tag {\n  --font-size-18: 18rpx;\n  --font-size-36: 36rpx;\n  font-size: var(--font-size);\n  vertical-align: left;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  box-sizing: border-box;\n  padding: 0rpx 12rpx;\n  height: 36rpx;\n  font-family: Helvetica Neue, Helvetica, sans-serif;\n  white-space: nowrap;\n}\n.badge {\n  border-radius: 20rpx;\n  font-size: 2rupx;\n  padding: 10rpx 10rpx;\n  height: 20rpx;\n  width: 20rpx;\n  background-color: red;\n  margin: 20rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n}\n.test {\n  width: 50rpx;\n  height: 50rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  margin: 10rpx;\n  border: 1px solid black;\n}\n.body {\n  /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../../static/purple_bg.png) no-repeat center center/cover; */\n  font-family: Arial, Helvetica, sans-serif;\n  width: 100%;\n  height: 100%;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  z-index: -99;\n}\n.ruler-dummy {\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-align-content: center;\n          align-content: center;\n  width: 4%;\n  height: 100%;\n}\n.ruler {\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-align-content: center;\n          align-content: center;\n  border-radius: 10rpx;\n  width: 2%;\n  height: 100%;\n}\n.main {\n  width: 100%;\n  height: 90%;\n}\n.head {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  height: 10%;\n  -webkit-align-content: flex-start;\n          align-content: flex-start;\n}\n.table {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n          flex-direction: row;\n  width: 90%;\n  height: 100%;\n}\n.atom {\n  text-decoration: none;\n  position: relative;\n  overflow: hidden;\n}\n.atom:hover {\n  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);\n}\n.atom:before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background: -webkit-linear-gradient(330deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  background: linear-gradient(120deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  -webkit-transition: all 650ms;\n  transition: all 650ms;\n}\n.atom:hover:before {\n  left: 100%;\n}\n.classText {\n  font-size: 50px;\n}\n.icon-block {\n  width: 40px;\n  height: 40px;\n}\n/*纵向时间轴*/\n.time-vertical {\n  list-style-type: none;\n  padding: 0px;\n  height: 400px;\n  position: relative;\n}\n.time-vertical .dot {\n  position: absolute;\n  top: -10px;\n  right: -10px;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #2196F3;\n  border-radius: 50%;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n.devide5 {\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  -webkit-flex-grow: 1;\n  flex-shrink: 1;\n  -webkit-flex-shrink: 1;\n  flex-basis: 20%;\n  -webkit-flex-basis: 20%;\n  width: 1px;\n}\n.devide7 {\n  -webkit-box-flex: 1;\n          flex-grow: 1;\n  -webkit-flex-grow: 1;\n  flex-shrink: 1;\n  -webkit-flex-shrink: 1;\n  flex-basis: 14%;\n  -webkit-flex-basis: 14%;\n  width: 1px;\n}\n.slide-sub-btn {\n  width: 20px;\n  height: 20px;\n  background-color: #90CAF9;\n  border-radius: 10px;\n  margin: 0 auto;\n  text-align: center;\n}\n.slide-add-btn {\n  width: 20px;\n  height: 20px;\n  background-color: #90CAF9;\n  border-radius: 10px;\n  margin: 0 auto;\n  text-align: center;\n}\n.radio-bg,\n.radio-1 {\n  margin: 10rpx 10rpx;\n  background-color: #90CAF9;\n  border-radius: 10px;\n  display: inline-block;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  line-height: 40rpx;\n  font-size: 40rpx;\n}\n.radio-1:nth-of-type(2n + 1) {\n  background-color: #42A5F5;\n}\n.radio-bg:nth-of-type(2n + 1) {\n  background-color: #42A5F5;\n}\n.foot {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n          flex-direction: row;\n  width: auto;\n  height: 10px;\n  background: #ffffff;\n  -webkit-align-content: flex-end;\n          align-content: flex-end;\n}\n.col-frame {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n          flex: 1;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  margin: 0 2px;\n  border-radius: 5px;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);\n  color: #757575;\n  font-size: 13px;\n  text-align: center;\n  background-clip: border-box;\n  -webkit-flex-flow: column wrap;\n          flex-flow: column wrap;\n  width: 100%;\n  overflow: hidden;\n}\n.item-frame {\n  box-shadow: -5px -5px 10px #666666, 5px 5px 10px #ffffff;\n  color: #757575;\n  font-size: 13px;\n}\n.item-name {\n  font-size: 13px;\n  color: #ffffff;\n  border-radius: 5rpx;\n}\n.item-start-time {\n  font-size: 10px;\n  color: #ffffff;\n  background: #b73a67;\n  border-radius: 5rpx;\n}\n.item-end-time {\n  font-size: 10px;\n  color: #ffffff;\n  background: #ff7e53;\n  border-radius: 5rpx;\n}\n.emphasis {\n  box-shadow: 2px 2px 5px 4px #0080ff;\n}\n.nodisplay {\n  display: none;\n}\n.tag {\n  --font-size-18: 18rpx;\n  --font-size-36: 36rpx;\n  font-size: var(--font-size);\n  vertical-align: left;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  box-sizing: border-box;\n  padding: 0rpx 12rpx;\n  height: 36rpx;\n  font-family: Helvetica Neue, Helvetica, sans-serif;\n  white-space: nowrap;\n}\n.badge {\n  border-radius: 20rpx;\n  font-size: 2rupx;\n  padding: 10rpx 10rpx;\n  height: 20rpx;\n  width: 20rpx;\n  background-color: red;\n  margin: 20rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n}\n.test {\n  width: 50rpx;\n  height: 50rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  margin: 10rpx;\n  border: 1px solid black;\n}\n.body {\n  /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../../static/purple_bg.png) no-repeat center center/cover; */\n  font-family: Arial, Helvetica, sans-serif;\n  width: 100%;\n  height: 100%;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  z-index: -99;\n}\n.ruler-dummy {\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-align-content: center;\n          align-content: center;\n  width: 4%;\n  height: 100%;\n}\n.ruler {\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  -webkit-align-content: center;\n          align-content: center;\n  border-radius: 10rpx;\n  width: 2%;\n  height: 100%;\n}\n.main {\n  width: 100%;\n  height: 90%;\n}\n.head {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n          flex-direction: row;\n  width: 100%;\n  height: 10%;\n  -webkit-align-content: flex-start;\n          align-content: flex-start;\n}\n.table {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: row;\n          flex-direction: row;\n  width: 90%;\n  height: 100%;\n}\n.atom {\n  text-decoration: none;\n  position: relative;\n  overflow: hidden;\n}\n.atom:hover {\n  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);\n}\n.atom:before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background: -webkit-linear-gradient(330deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  background: linear-gradient(120deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  -webkit-transition: all 650ms;\n  transition: all 650ms;\n}\n.atom:hover:before {\n  left: 100%;\n}\n.classText {\n  font-size: 50px;\n}\n.icon-block {\n  width: 40px;\n  height: 40px;\n}\n/*纵向时间轴*/\n.time-vertical {\n  list-style-type: none;\n  padding: 0px;\n  height: 400px;\n  position: relative;\n}\n.time-vertical .dot {\n  position: absolute;\n  top: -10px;\n  width: 20px;\n  height: 20px;\n  border: 1px solid #2196F3;\n  border-radius: 50%;\n}\n.switch-outline::after {\n  content: '\\E611';\n  color: #0066cc;\n}\n.switch-outline::before {\n  content: '\\E611';\n}\n.switch-class::after {\n  content: '\\E637';\n  color: #0066cc;\n}\n.switch-class::before {\n  content: '\\E637';\n}\n.switch-icon::after {\n  content: '\\E60D';\n  color: #0066cc;\n}\n.switch-icon::before {\n  content: '\\E60A';\n}\n.switch-time::after {\n  content: '\\E606';\n  color: #0066cc;\n}\n.switch-time::before {\n  content: '\\E606';\n}\n.switch-timeLen::after {\n  content: '\\E747';\n  color: #0066cc;\n}\n.switch-timeLen::before {\n  content: '\\E747';\n}\n", ""]);
 
 // exports
 
@@ -4013,7 +3951,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cfg_vue_vue_type_template_id_3bfd3db5___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./cfg.vue?vue&type=template&id=3bfd3db5& */ 63);
 /* harmony import */ var _cfg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./cfg.vue?vue&type=script&lang=js& */ 65);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _cfg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _cfg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cfg.vue?vue&type=style&index=0&lang=scss& */ 83);
+/* harmony import */ var _cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cfg.vue?vue&type=style&index=0&lang=scss& */ 91);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
 var renderjs
@@ -4084,11 +4022,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-uni-view",
-    {
-      staticClass: _vm._$g(0, "sc"),
-      staticStyle: { "--dir": "var(--dir-col)", "--wrap": "var(--wrap-no)" },
-      attrs: { _i: 0 }
-    },
+    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
       _c(
         "v-uni-view",
@@ -4105,212 +4039,36 @@ var render = function() {
               _c(
                 "v-uni-text",
                 { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
-                [_vm._v("背景颜色")]
-              )
-            ],
-            1
-          ),
-          _c(
-            "v-uni-view",
-            {
-              staticClass: _vm._$g(5, "sc"),
-              staticStyle: {
-                "--dir": "var(--dir-row)",
-                "--wrap": "var(--wrap-no)"
-              },
-              attrs: { _i: 5 }
-            },
-            [
-              _c("v-uni-view", {
-                staticClass: _vm._$g(6, "sc"),
-                style: _vm._$g(6, "s"),
-                attrs: { _i: 6 },
-                on: {
-                  click: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  }
-                }
-              }),
-              _c("v-uni-view", {
-                staticClass: _vm._$g(7, "sc"),
-                style: _vm._$g(7, "s"),
-                attrs: { _i: 7 },
-                on: {
-                  click: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  }
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-        [
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
-            [
-              _c("v-uni-text", {
-                staticClass: _vm._$g(10, "sc"),
-                attrs: { _i: 10 }
-              }),
-              _c(
-                "v-uni-text",
-                { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
-                [_vm._v("列显示设置")]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
-        [
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
-            [
-              _c("v-uni-text", {
-                staticClass: _vm._$g(14, "sc"),
-                attrs: { _i: 14 }
-              }),
-              _c(
-                "v-uni-text",
-                { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
-                [_vm._v("背景颜色")]
-              )
-            ],
-            1
-          ),
-          _c(
-            "v-uni-view",
-            {
-              staticClass: _vm._$g(16, "sc"),
-              staticStyle: {
-                "--dir": "var(--dir-row)",
-                "--wrap": "var(--wrap-no)"
-              },
-              attrs: { _i: 16 }
-            },
-            [
-              _c("v-uni-view", {
-                staticClass: _vm._$g(17, "sc"),
-                style: _vm._$g(17, "s"),
-                attrs: { _i: 17 },
-                on: {
-                  click: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  }
-                }
-              }),
-              _c("v-uni-view", {
-                staticClass: _vm._$g(18, "sc"),
-                style: _vm._$g(18, "s"),
-                attrs: { _i: 18 },
-                on: {
-                  click: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  }
-                }
-              })
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
-        [
-          _c(
-            "v-uni-radio-group",
-            {
-              attrs: { _i: 20 },
-              on: {
-                change: function($event) {
-                  return _vm.$handleViewEvent($event)
-                }
-              }
-            },
-            [
-              _c(
-                "v-uni-label",
-                { staticClass: _vm._$g(21, "sc"), attrs: { _i: 21 } },
-                [
-                  _c("v-uni-radio", {
-                    staticClass: _vm._$g(22, "sc"),
-                    attrs: { value: "false", checked: true, _i: 22 }
-                  }),
-                  _c(
+                [_vm._v("显示模式:")]
+              ),
+              _vm._$g(5, "i")
+                ? _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
+                    { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
                     [_vm._v("5天模式")]
                   )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-label",
-                { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
-                [
-                  _c("v-uni-radio", {
-                    staticClass: _vm._$g(25, "sc"),
-                    attrs: { value: "true", _i: 25 }
-                  }),
-                  _c(
+                : _vm._e(),
+              _vm._$g(6, "i")
+                ? _c(
                     "v-uni-text",
-                    { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+                    { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
                     [_vm._v("7天模式")]
                   )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
-        [
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
-            [
-              _c("v-uni-text", {
-                staticClass: _vm._$g(29, "sc"),
-                attrs: { _i: 29 }
-              }),
-              _c(
-                "v-uni-text",
-                { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
-                [_vm._v("高亮当前日期")]
-              )
+                : _vm._e()
             ],
             1
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(31, "sc"), attrs: { _i: 31 } },
+            { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
             [
               _c("v-uni-switch", {
-                staticClass: _vm._$g(32, "sc"),
-                class: _vm._$g(32, "c"),
+                staticClass: _vm._$g(8, "sc"),
+                class: _vm._$g(8, "c"),
                 attrs: {
                   color: "#39B54A",
-                  checked: _vm._$g(32, "a-checked"),
-                  _i: 32
+                  checked: _vm._$g(8, "a-checked"),
+                  _i: 8
                 },
                 on: {
                   change: function($event) {
@@ -4326,51 +4084,38 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(33, "sc"), attrs: { _i: 33 } },
+        { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
+            { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
             [
               _c("v-uni-text", {
-                staticClass: _vm._$g(35, "sc"),
-                attrs: { _i: 35 }
+                staticClass: _vm._$g(11, "sc"),
+                attrs: { _i: 11 }
               }),
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
-                [_vm._v("时间轴颜色")]
+                { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
+                [_vm._v("高亮当前日期")]
               )
             ],
             1
           ),
           _c(
             "v-uni-view",
-            {
-              staticClass: _vm._$g(37, "sc"),
-              staticStyle: {
-                "--dir": "var(--dir-row)",
-                "--wrap": "var(--wrap-no)"
-              },
-              attrs: { _i: 37 }
-            },
+            { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
             [
-              _c("v-uni-view", {
-                staticClass: _vm._$g(38, "sc"),
-                style: _vm._$g(38, "s"),
-                attrs: { _i: 38 },
+              _c("v-uni-switch", {
+                staticClass: _vm._$g(14, "sc"),
+                class: _vm._$g(14, "c"),
+                attrs: {
+                  color: "#39B54A",
+                  checked: _vm._$g(14, "a-checked"),
+                  _i: 14
+                },
                 on: {
-                  click: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  }
-                }
-              }),
-              _c("v-uni-view", {
-                staticClass: _vm._$g(39, "sc"),
-                style: _vm._$g(39, "s"),
-                attrs: { _i: 39 },
-                on: {
-                  click: function($event) {
+                  change: function($event) {
                     return _vm.$handleViewEvent($event)
                   }
                 }
@@ -4383,20 +4128,20 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
+        { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
+            { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
             [
               _c("v-uni-text", {
-                staticClass: _vm._$g(42, "sc"),
-                attrs: { _i: 42 }
+                staticClass: _vm._$g(17, "sc"),
+                attrs: { _i: 17 }
               }),
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
-                [_vm._v("时间轴文字颜色/背景颜色")]
+                { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
+                [_vm._v("表背景颜色")]
               )
             ],
             1
@@ -4404,30 +4149,26 @@ var render = function() {
           _c(
             "v-uni-view",
             {
-              staticClass: _vm._$g(44, "sc"),
+              staticClass: _vm._$g(19, "sc"),
               staticStyle: {
                 "--dir": "var(--dir-row)",
                 "--wrap": "var(--wrap-no)"
               },
-              attrs: { _i: 44 }
+              attrs: { _i: 19 }
             },
             [
-              _c("v-uni-view", {
-                staticClass: _vm._$g(45, "sc"),
-                style: _vm._$g(45, "s"),
-                attrs: { _i: 45 },
+              _c("color-picker", {
+                attrs: { _i: 20 },
                 on: {
-                  click: function($event) {
+                  loadColorPicker: function($event) {
                     return _vm.$handleViewEvent($event)
                   }
                 }
               }),
-              _c("v-uni-view", {
-                staticClass: _vm._$g(46, "sc"),
-                style: _vm._$g(46, "s"),
-                attrs: { _i: 46 },
+              _c("color-picker", {
+                attrs: { _i: 21 },
                 on: {
-                  click: function($event) {
+                  loadColorPicker: function($event) {
                     return _vm.$handleViewEvent($event)
                   }
                 }
@@ -4439,127 +4180,203 @@ var render = function() {
         1
       ),
       _c(
-        "uni-transition",
-        {
-          attrs: { _i: 47 },
-          on: {
-            change: function($event) {
-              return _vm.$handleViewEvent($event)
-            }
-          }
-        },
+        "v-uni-view",
+        { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(48, "sc"), attrs: { _i: 48 } },
+            { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
             [
+              _c("v-uni-text", {
+                staticClass: _vm._$g(24, "sc"),
+                attrs: { _i: 24 }
+              }),
               _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
-                [
-                  _c("uni-segmented-control", {
-                    attrs: { _i: 50 },
-                    on: {
-                      clickItem: function($event) {
-                        return _vm.$handleViewEvent($event)
-                      }
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._$g(51, "i")
-                ? _c(
-                    "v-uni-view",
-                    {
-                      staticClass: _vm._$g(51, "sc"),
-                      staticStyle: { "flex-flow": "row wrap" },
-                      attrs: { _i: 51 }
-                    },
-                    _vm._l(_vm._$g(52, "f"), function(item, i, $20, $30) {
-                      return _c("v-uni-view", {
-                        key: item,
-                        staticClass: _vm._$g("52-" + $30, "sc"),
-                        class: _vm._$g("52-" + $30, "c"),
-                        style: _vm._$g("52-" + $30, "s"),
-                        attrs: {
-                          "data-color": _vm._$g("52-" + $30, "a-data-color"),
-                          "data-index": _vm._$g("52-" + $30, "a-data-index"),
-                          _i: "52-" + $30
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.$handleViewEvent($event)
-                          }
-                        }
-                      })
-                    }),
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(53, "i")
-                ? _c(
-                    "v-uni-view",
-                    {
-                      staticClass: _vm._$g(53, "sc"),
-                      staticStyle: { "flex-flow": "row wrap" },
-                      attrs: { _i: 53 }
-                    },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
-                        [_vm._v("颜色")]
-                      ),
-                      _vm._l(_vm._$g(55, "f"), function(item, i, $21, $31) {
-                        return _c("v-uni-view", {
-                          key: item,
-                          staticClass: _vm._$g("55-" + $31, "sc"),
-                          class: _vm._$g("55-" + $31, "c"),
-                          style: _vm._$g("55-" + $31, "s"),
-                          attrs: {
-                            "data-color": _vm._$g("55-" + $31, "a-data-color"),
-                            "data-index": _vm._$g("55-" + $31, "a-data-index"),
-                            _i: "55-" + $31
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.$handleViewEvent($event)
-                            }
-                          }
-                        })
-                      })
-                    ],
-                    2
-                  )
-                : _vm._e(),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(56, "sc"),
-                  staticStyle: {
-                    "flex-flow": "row wrap",
-                    "justify-content": "center"
-                  },
-                  attrs: { _i: 56 }
-                },
-                [
-                  _c(
-                    "v-uni-view",
-                    {
-                      staticClass: _vm._$g(57, "sc"),
-                      attrs: { _i: 57 },
-                      on: {
-                        click: function($event) {
-                          return _vm.$handleViewEvent($event)
-                        }
-                      }
-                    },
-                    [_vm._v("确定")]
-                  )
-                ],
-                1
+                "v-uni-text",
+                { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
+                [_vm._v("列背景颜色")]
               )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(26, "sc"),
+              staticStyle: {
+                "--dir": "var(--dir-row)",
+                "--wrap": "var(--wrap-no)"
+              },
+              attrs: { _i: 26 }
+            },
+            [
+              _c("color-picker", {
+                attrs: { _i: 27 },
+                on: {
+                  loadColorPicker: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              }),
+              _c("color-picker", {
+                attrs: { _i: 28 },
+                on: {
+                  loadColorPicker: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
+        [
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
+            [
+              _c("v-uni-text", {
+                staticClass: _vm._$g(31, "sc"),
+                attrs: { _i: 31 }
+              }),
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
+                [_vm._v("时间轴颜色")]
+              )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(33, "sc"),
+              staticStyle: {
+                "--dir": "var(--dir-row)",
+                "--wrap": "var(--wrap-no)"
+              },
+              attrs: { _i: 33 }
+            },
+            [
+              _c("color-picker", {
+                attrs: { _i: 34 },
+                on: {
+                  loadColorPicker: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              }),
+              _c("color-picker", {
+                attrs: { _i: 35 },
+                on: {
+                  loadColorPicker: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
+        [
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
+            [
+              _c("v-uni-text", {
+                staticClass: _vm._$g(38, "sc"),
+                attrs: { _i: 38 }
+              }),
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+                [_vm._v("时间轴文字颜色/背景颜色")]
+              )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(40, "sc"),
+              staticStyle: {
+                "--dir": "var(--dir-row)",
+                "--wrap": "var(--wrap-no)"
+              },
+              attrs: { _i: 40 }
+            },
+            [
+              _c("color-picker", {
+                attrs: { _i: 41 },
+                on: {
+                  loadColorPicker: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              }),
+              _c("color-picker", {
+                attrs: { _i: 42 },
+                on: {
+                  loadColorPicker: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              })
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
+        [
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
+            [
+              _c("v-uni-text", {
+                staticClass: _vm._$g(45, "sc"),
+                attrs: { _i: 45 }
+              }),
+              _c(
+                "v-uni-text",
+                { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
+                [_vm._v("高亮框颜色")]
+              )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(47, "sc"),
+              staticStyle: {
+                "--dir": "var(--dir-row)",
+                "--wrap": "var(--wrap-no)"
+              },
+              attrs: { _i: 47 }
+            },
+            [
+              _c("color-picker", {
+                attrs: { _i: 48 },
+                on: {
+                  loadColorPicker: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              })
             ],
             1
           )
@@ -4602,9 +4419,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _uniTransition = _interopRequireDefault(__webpack_require__(/*! @/components/uni-transition/uni-transition.vue */ 32));
-var _viewHilight = _interopRequireDefault(__webpack_require__(/*! @/components/view-hilight.vue */ 67));
+var _viewHighlight = _interopRequireDefault(__webpack_require__(/*! @/components/view-highlight.vue */ 67));
 var _uniBadge = _interopRequireDefault(__webpack_require__(/*! @/components/uni-badge/uni-badge.vue */ 75));
-var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/components/uni-segmented-control/uni-segmented-control.vue */ 43));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/components/uni-segmented-control/uni-segmented-control.vue */ 43));
+var _colorPicker = _interopRequireDefault(__webpack_require__(/*! @/components/color-picker.vue */ 83));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
 
   data: function data() {
@@ -4614,24 +4432,25 @@ var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/comp
   },
   components: {
     'uniTransition': _uniTransition.default,
-    'viewHilight': _viewHilight.default,
+    'viewHighlight': _viewHighlight.default,
     'uniBadge': _uniBadge.default,
-    'uniSegmentedControl': _uniSegmentedControl.default } };exports.default = _default;
+    'uniSegmentedControl': _uniSegmentedControl.default,
+    'colorPicker': _colorPicker.default } };exports.default = _default;
 
 /***/ }),
 /* 67 */
-/*!***********************************************************!*\
-  !*** C:/proj/jellyClassTable/components/view-hilight.vue ***!
-  \***********************************************************/
+/*!*************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/view-highlight.vue ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view-hilight.vue?vue&type=template&id=742aec26&name=view-hilight& */ 68);
-/* harmony import */ var _view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view-hilight.vue?vue&type=script&lang=js& */ 70);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _view_hilight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view-hilight.vue?vue&type=style&index=0&lang=css& */ 72);
+/* harmony import */ var _view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./view-highlight.vue?vue&type=template&id=18f2166c&name=view-highlight& */ 68);
+/* harmony import */ var _view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./view-highlight.vue?vue&type=script&lang=js& */ 70);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _view_highlight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./view-highlight.vue?vue&type=style&index=0&lang=css& */ 72);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
 var renderjs
@@ -4643,49 +4462,49 @@ var renderjs
 /* normalize component */
 
 var component = Object(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
   null,
   false,
-  _view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__["components"],
+  _view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__["components"],
   renderjs
 )
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "jellyClassTable/components/view-hilight.vue"
+component.options.__file = "jellyClassTable/components/view-highlight.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 /* 68 */
-/*!************************************************************************************************************!*\
-  !*** C:/proj/jellyClassTable/components/view-hilight.vue?vue&type=template&id=742aec26&name=view-hilight& ***!
-  \************************************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/view-highlight.vue?vue&type=template&id=18f2166c&name=view-highlight& ***!
+  \****************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-hilight.vue?vue&type=template&id=742aec26&name=view-hilight& */ 69);
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-highlight.vue?vue&type=template&id=18f2166c&name=view-highlight& */ 69);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_template_id_742aec26_name_view_hilight___WEBPACK_IMPORTED_MODULE_0__["components"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_template_id_18f2166c_name_view_highlight___WEBPACK_IMPORTED_MODULE_0__["components"]; });
 
 
 
 /***/ }),
 /* 69 */
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-hilight.vue?vue&type=template&id=742aec26&name=view-hilight& ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-highlight.vue?vue&type=template&id=18f2166c&name=view-highlight& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns, recyclableRender, components */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4700,9 +4519,27 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-uni-text", { class: _vm._$g(0, "c"), attrs: { _i: 0 } }, [
-    _vm._v(_vm._$g(0, "t0"))
-  ])
+  return _c(
+    "v-uni-view",
+    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
+    [
+      _c("v-uni-view", {
+        staticClass: _vm._$g(1, "sc"),
+        class: _vm._$g(1, "c"),
+        style: _vm._$g(1, "s"),
+        attrs: { _i: 1 },
+        on: {
+          click: function($event) {
+            return _vm.$handleViewEvent($event)
+          }
+        }
+      }),
+      _c("v-uni-text", { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } }, [
+        _vm._v(_vm._$g(2, "t0"))
+      ])
+    ],
+    1
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -4712,24 +4549,24 @@ render._withStripped = true
 
 /***/ }),
 /* 70 */
-/*!************************************************************************************!*\
-  !*** C:/proj/jellyClassTable/components/view-hilight.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/view-highlight.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-hilight.vue?vue&type=script&lang=js& */ 71);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-highlight.vue?vue&type=script&lang=js& */ 71);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 /* 71 */
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-hilight.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-highlight.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4737,7 +4574,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 
 {
-  name: "view-hilight",
+  name: "view-highlight",
   data: function data() {
     return {
       wxsProps: {} };
@@ -4747,44 +4584,44 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 /* 72 */
-/*!********************************************************************************************!*\
-  !*** C:/proj/jellyClassTable/components/view-hilight.vue?vue&type=style&index=0&lang=css& ***!
-  \********************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/view-highlight.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-hilight.vue?vue&type=style&index=0&lang=css& */ 73);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_hilight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-highlight.vue?vue&type=style&index=0&lang=css& */ 73);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_view_highlight_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 /* 73 */
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-hilight.vue?vue&type=style&index=0&lang=css& ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-highlight.vue?vue&type=style&index=0&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(/*! !../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-hilight.vue?vue&type=style&index=0&lang=css& */ 74);
+var content = __webpack_require__(/*! !../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./view-highlight.vue?vue&type=style&index=0&lang=css& */ 74);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader/lib/addStylesClient.js */ 16).default
-var update = add("e620412e", content, false, {"sourceMap":false,"shadowMode":false});
+var update = add("2ef82449", content, false, {"sourceMap":false,"shadowMode":false});
 // Hot Module Replacement
 if(false) {}
 
 /***/ }),
 /* 74 */
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-hilight.vue?vue&type=style&index=0&lang=css& ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/view-highlight.vue?vue&type=style&index=0&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4793,7 +4630,7 @@ exports = module.exports = __webpack_require__(/*! ../../HBuilderX/plugins/uniap
 
 
 // module
-exports.push([module.i, "\n.hilight {\r\n\tbackground-color: #0081FF;\n}\r\n", ""]);
+exports.push([module.i, "\n.m-10 {\r\n\tmargin: 10rpx;\n}\r\n", ""]);
 
 // exports
 
@@ -4994,6 +4831,279 @@ exports.push([module.i, "\n.uni-badge[data-v-c4f7b5e6] {\n\t\n\t-webkit-box-pack
 
 /***/ }),
 /* 83 */
+/*!***********************************************************!*\
+  !*** C:/proj/jellyClassTable/components/color-picker.vue ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./color-picker.vue?vue&type=template&id=22a79dd0&name=color-picker& */ 84);
+/* harmony import */ var _color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./color-picker.vue?vue&type=script&lang=js& */ 86);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _color_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./color-picker.vue?vue&type=style&index=0&lang=css& */ 88);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
+
+var renderjs
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null,
+  false,
+  _color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__["components"],
+  renderjs
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "jellyClassTable/components/color-picker.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+/* 84 */
+/*!************************************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/color-picker.vue?vue&type=template&id=22a79dd0&name=color-picker& ***!
+  \************************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./color-picker.vue?vue&type=template&id=22a79dd0&name=color-picker& */ 85);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_template_id_22a79dd0_name_color_picker___WEBPACK_IMPORTED_MODULE_0__["components"]; });
+
+
+
+/***/ }),
+/* 85 */
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/color-picker.vue?vue&type=template&id=22a79dd0&name=color-picker& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
+var components
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-uni-view",
+    { staticClass: _vm._$g(0, "sc"), style: _vm._$g(0, "s"), attrs: { _i: 0 } },
+    [
+      _c("v-uni-view", {
+        staticClass: _vm._$g(1, "sc"),
+        style: _vm._$g(1, "s"),
+        attrs: { _i: 1 },
+        on: {
+          click: function($event) {
+            return _vm.$handleViewEvent($event)
+          }
+        }
+      }),
+      _c(
+        "uni-transition",
+        {
+          attrs: { _i: 2 },
+          on: {
+            change: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(3, "sc"),
+              staticStyle: { "z-index": "9999" },
+              attrs: { _i: 3 }
+            },
+            [
+              _c("uni-segmented-control", {
+                attrs: { _i: 4 },
+                on: {
+                  clickItem: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              }),
+              _c(
+                "v-uni-view",
+                {
+                  staticClass: _vm._$g(5, "sc"),
+                  staticStyle: { "flex-flow": "row wrap" },
+                  attrs: { _i: 5 }
+                },
+                _vm._l(_vm._$g(6, "f"), function(item, i, $20, $30) {
+                  return _c("view-highlight", {
+                    key: item,
+                    attrs: { _i: "6-" + $30 },
+                    on: {
+                      click: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      }
+                    }
+                  })
+                }),
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    {
+                      staticClass: _vm._$g(8, "sc"),
+                      style: _vm._$g(8, "s"),
+                      attrs: { _i: 8 },
+                      on: {
+                        click: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
+                    [_vm._v("确定")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var recyclableRender = false
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+/* 86 */
+/*!************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/color-picker.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./color-picker.vue?vue&type=script&lang=js& */ 87);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+/* 87 */
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/color-picker.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+var _uniTransition = _interopRequireDefault(__webpack_require__(/*! @/components/uni-transition/uni-transition.vue */ 32));
+var _viewHighlight = _interopRequireDefault(__webpack_require__(/*! @/components/view-highlight.vue */ 67));
+var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/components/uni-segmented-control/uni-segmented-control.vue */ 43));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+{
+  name: "color-picker",
+  data: function data() {
+    return {
+      wxsProps: {} };
+
+  },
+  components: {
+    'uniTransition': _uniTransition.default,
+    'viewHighlight': _viewHighlight.default,
+    'uniSegmentedControl': _uniSegmentedControl.default } };exports.default = _default;
+
+/***/ }),
+/* 88 */
+/*!********************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/color-picker.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./color-picker.vue?vue&type=style&index=0&lang=css& */ 89);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_color_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+/* 89 */
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/color-picker.vue?vue&type=style&index=0&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./color-picker.vue?vue&type=style&index=0&lang=css& */ 90);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader/lib/addStylesClient.js */ 16).default
+var update = add("3b446649", content, false, {"sourceMap":false,"shadowMode":false});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+/* 90 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/color-picker.vue?vue&type=style&index=0&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/lib/css-base.js */ 15)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.cp1{\n\tborder: 1px solid #000;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 91 */
 /*!***********************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/cfg/cfg.vue?vue&type=style&index=0&lang=scss& ***!
   \***********************************************************************************/
@@ -5002,13 +5112,13 @@ exports.push([module.i, "\n.uni-badge[data-v-c4f7b5e6] {\n\t\n\t-webkit-box-pack
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./cfg.vue?vue&type=style&index=0&lang=scss& */ 84);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./cfg.vue?vue&type=style&index=0&lang=scss& */ 92);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_cfg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 84 */
+/* 92 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/cfg/cfg.vue?vue&type=style&index=0&lang=scss& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -5018,7 +5128,7 @@ __webpack_require__.r(__webpack_exports__);
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./cfg.vue?vue&type=style&index=0&lang=scss& */ 85);
+var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./cfg.vue?vue&type=style&index=0&lang=scss& */ 93);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -5028,7 +5138,7 @@ var update = add("134688ab", content, false, {"sourceMap":false,"shadowMode":fal
 if(false) {}
 
 /***/ }),
-/* 85 */
+/* 93 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/cfg/cfg.vue?vue&type=style&index=0&lang=scss& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -5040,13 +5150,13 @@ exports = module.exports = __webpack_require__(/*! ../../../HBuilderX/plugins/un
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n/* parameter\r\n--dir: flex方向 */\n.form-row {\n  margin: 10rpx;\n  padding: 10rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  width: auto;\n  height: auto;\n  min-height: 100rpx;\n  border: 1px solid #00aed1;\n  border-radius: 20rpx;\n}\n.switch-sex::after {\n  content: '\\E716';\n}\n.switch-sex::before {\n  content: '\\E7A9';\n}\n.switch-music::after {\n  content: '\\E66A';\n}\n.switch-music::before {\n  content: '\\E6DB';\n}\n.indent {\n  margin-left: 20rpx;\n}\n.pop-text-warning {\n  margin: 0 15rpx;\n  background-color: #EF5350;\n  border-radius: 10px;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  line-height: 40rpx;\n  font-size: 40rpx;\n}\n.body {\n  background: -webkit-linear-gradient(#5635f8, #5e50f6);\n  background: linear-gradient(#5635f8, #5e50f6);\n  /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../../static/purple_bg.png) no-repeat center center/cover; */\n  font-family: Arial, Helvetica, sans-serif;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  width: 100%;\n  height: auto;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-flow: column nowrap;\n          flex-flow: column nowrap;\n  -webkit-box-pack: start;\n  -webkit-justify-content: flex-start;\n          justify-content: flex-start;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  z-index: -99;\n}\n.test {\n  width: 50rpx;\n  height: 50rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  margin: 10rpx;\n  border: 1px solid #9294f8;\n}\n.btn {\n  text-decoration: none;\n  border: 1px solid #9294f8;\n  position: relative;\n  overflow: hidden;\n  border-radius: 100px;\n  color: #ffffff;\n  padding: 0 15rpx;\n}\n.btn:hover {\n  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);\n}\n.btn:before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background: -webkit-linear-gradient(330deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  background: linear-gradient(120deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  -webkit-transition: all 650ms;\n  transition: all 650ms;\n}\n.btn:hover:before {\n  left: 100%;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n.icon-c1:before {\n  content: \"\\E621\";\n}\n/* parameter\r\n--dir: flex方向 */\n.form-row {\n  margin: 10rpx;\n  padding: 10rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n  -webkit-flex-flow: row nowrap;\n          flex-flow: row nowrap;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  width: auto;\n  height: auto;\n  min-height: 100rpx;\n  border: 1px solid #00aed1;\n  border-radius: 20rpx;\n}\n.switch-sex::after {\n  content: '\\E610';\n}\n.switch-sex::before {\n  content: '\\E601';\n}\n.switch-57::after {\n  content: '\\E670';\n}\n.switch-57::before {\n  content: '\\E658';\n}\n.switch-hilight:before {\n  content: '\\E612';\n}\n.switch-hilight:after {\n  content: '\\E612';\n  color: #0066CC;\n}\n.indent {\n  margin-left: 20rpx;\n}\n.pop-text-warning {\n  margin: 0 15rpx;\n  background-color: #EF5350;\n  border-radius: 10px;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  line-height: 40rpx;\n  font-size: 40rpx;\n}\n.body {\n  background: -webkit-linear-gradient(#5635f8, #5e50f6);\n  background: linear-gradient(#5635f8, #5e50f6);\n  /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../../static/purple_bg.png) no-repeat center center/cover; */\n  font-family: Arial, Helvetica, sans-serif;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  width: 100%;\n  height: auto;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-flow: column nowrap;\n          flex-flow: column nowrap;\n  -webkit-box-pack: start;\n  -webkit-justify-content: flex-start;\n          justify-content: flex-start;\n  -webkit-box-align: stretch;\n  -webkit-align-items: stretch;\n          align-items: stretch;\n  z-index: -99;\n}\n.test {\n  width: 50rpx;\n  height: 50rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  margin: 10rpx;\n  border: 1px solid #9294f8;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 86 */
+/* 94 */
 /*!*************************************************!*\
   !*** C:/proj/jellyClassTable/pages/dbg/dbg.vue ***!
   \*************************************************/
@@ -5055,10 +5165,10 @@ exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置�
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _dbg_vue_vue_type_template_id_2dcf04bf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dbg.vue?vue&type=template&id=2dcf04bf& */ 87);
-/* harmony import */ var _dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dbg.vue?vue&type=script&lang=js& */ 89);
+/* harmony import */ var _dbg_vue_vue_type_template_id_2dcf04bf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dbg.vue?vue&type=template&id=2dcf04bf& */ 95);
+/* harmony import */ var _dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dbg.vue?vue&type=script&lang=js& */ 97);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dbg.vue?vue&type=style&index=0&lang=scss& */ 91);
+/* harmony import */ var _dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dbg.vue?vue&type=style&index=0&lang=scss& */ 99);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
 var renderjs
@@ -5088,7 +5198,7 @@ component.options.__file = "jellyClassTable/pages/dbg/dbg.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 87 */
+/* 95 */
 /*!********************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/dbg/dbg.vue?vue&type=template&id=2dcf04bf& ***!
   \********************************************************************************/
@@ -5097,7 +5207,7 @@ component.options.__file = "jellyClassTable/pages/dbg/dbg.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_template_id_2dcf04bf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=template&id=2dcf04bf& */ 88);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_template_id_2dcf04bf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=template&id=2dcf04bf& */ 96);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_template_id_2dcf04bf___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_template_id_2dcf04bf___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -5109,7 +5219,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 88 */
+/* 96 */
 /*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/dbg/dbg.vue?vue&type=template&id=2dcf04bf& ***!
   \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -6404,7 +6514,7 @@ render._withStripped = true
 
 
 /***/ }),
-/* 89 */
+/* 97 */
 /*!**************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/dbg/dbg.vue?vue&type=script&lang=js& ***!
   \**************************************************************************/
@@ -6413,13 +6523,13 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=script&lang=js& */ 90);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=script&lang=js& */ 98);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 90 */
+/* 98 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/dbg/dbg.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -6450,7 +6560,7 @@ var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/comp
     'uniSegmentedControl': _uniSegmentedControl.default } };exports.default = _default;
 
 /***/ }),
-/* 91 */
+/* 99 */
 /*!***********************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/dbg/dbg.vue?vue&type=style&index=0&lang=scss& ***!
   \***********************************************************************************/
@@ -6459,13 +6569,13 @@ var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/comp
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=style&index=0&lang=scss& */ 92);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=style&index=0&lang=scss& */ 100);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_dbg_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 92 */
+/* 100 */
 /*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/dbg/dbg.vue?vue&type=style&index=0&lang=scss& ***!
   \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -6475,7 +6585,7 @@ __webpack_require__.r(__webpack_exports__);
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=style&index=0&lang=scss& */ 93);
+var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./dbg.vue?vue&type=style&index=0&lang=scss& */ 101);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -6485,7 +6595,7 @@ var update = add("071556fa", content, false, {"sourceMap":false,"shadowMode":fal
 if(false) {}
 
 /***/ }),
-/* 93 */
+/* 101 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/dbg/dbg.vue?vue&type=style&index=0&lang=scss& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -6503,7 +6613,7 @@ exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置�
 
 
 /***/ }),
-/* 94 */
+/* 102 */
 /*!***************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test/test.vue ***!
   \***************************************************/
@@ -6512,10 +6622,10 @@ exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置�
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _test_vue_vue_type_template_id_6f49f96b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test.vue?vue&type=template&id=6f49f96b& */ 95);
-/* harmony import */ var _test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test.vue?vue&type=script&lang=js& */ 97);
+/* harmony import */ var _test_vue_vue_type_template_id_6f49f96b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test.vue?vue&type=template&id=6f49f96b& */ 103);
+/* harmony import */ var _test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test.vue?vue&type=script&lang=js& */ 105);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./test.vue?vue&type=style&index=0&lang=scss& */ 99);
+/* harmony import */ var _test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./test.vue?vue&type=style&index=0&lang=scss& */ 107);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
 var renderjs
@@ -6545,7 +6655,7 @@ component.options.__file = "jellyClassTable/pages/test/test.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 95 */
+/* 103 */
 /*!**********************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test/test.vue?vue&type=template&id=6f49f96b& ***!
   \**********************************************************************************/
@@ -6554,7 +6664,7 @@ component.options.__file = "jellyClassTable/pages/test/test.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_template_id_6f49f96b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=template&id=6f49f96b& */ 96);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_template_id_6f49f96b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=template&id=6f49f96b& */ 104);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_template_id_6f49f96b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_template_id_6f49f96b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -6566,7 +6676,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 96 */
+/* 104 */
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test/test.vue?vue&type=template&id=6f49f96b& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7296,7 +7406,7 @@ render._withStripped = true
 
 
 /***/ }),
-/* 97 */
+/* 105 */
 /*!****************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test/test.vue?vue&type=script&lang=js& ***!
   \****************************************************************************/
@@ -7305,13 +7415,13 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=script&lang=js& */ 98);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=script&lang=js& */ 106);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 98 */
+/* 106 */
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test/test.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7338,7 +7448,7 @@ var _uniTransition = _interopRequireDefault(__webpack_require__(/*! @/components
     'uniTransition': _uniTransition.default } };exports.default = _default;
 
 /***/ }),
-/* 99 */
+/* 107 */
 /*!*************************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test/test.vue?vue&type=style&index=0&lang=scss& ***!
   \*************************************************************************************/
@@ -7347,13 +7457,13 @@ var _uniTransition = _interopRequireDefault(__webpack_require__(/*! @/components
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=style&index=0&lang=scss& */ 100);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=style&index=0&lang=scss& */ 108);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 100 */
+/* 108 */
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test/test.vue?vue&type=style&index=0&lang=scss& ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7363,7 +7473,7 @@ __webpack_require__.r(__webpack_exports__);
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=style&index=0&lang=scss& */ 101);
+var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test.vue?vue&type=style&index=0&lang=scss& */ 109);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7373,7 +7483,7 @@ var update = add("01cea865", content, false, {"sourceMap":false,"shadowMode":fal
 if(false) {}
 
 /***/ }),
-/* 101 */
+/* 109 */
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test/test.vue?vue&type=style&index=0&lang=scss& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7391,7 +7501,7 @@ exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置�
 
 
 /***/ }),
-/* 102 */
+/* 110 */
 /*!*****************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test1/test1.vue ***!
   \*****************************************************/
@@ -7400,10 +7510,10 @@ exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置�
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _test1_vue_vue_type_template_id_5701f22b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test1.vue?vue&type=template&id=5701f22b& */ 103);
-/* harmony import */ var _test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test1.vue?vue&type=script&lang=js& */ 105);
+/* harmony import */ var _test1_vue_vue_type_template_id_5701f22b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./test1.vue?vue&type=template&id=5701f22b& */ 111);
+/* harmony import */ var _test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./test1.vue?vue&type=script&lang=js& */ 113);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./test1.vue?vue&type=style&index=0&lang=css& */ 107);
+/* harmony import */ var _test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./test1.vue?vue&type=style&index=0&lang=css& */ 115);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
 var renderjs
@@ -7433,7 +7543,7 @@ component.options.__file = "jellyClassTable/pages/test1/test1.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 103 */
+/* 111 */
 /*!************************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test1/test1.vue?vue&type=template&id=5701f22b& ***!
   \************************************************************************************/
@@ -7442,7 +7552,7 @@ component.options.__file = "jellyClassTable/pages/test1/test1.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_template_id_5701f22b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=template&id=5701f22b& */ 104);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_template_id_5701f22b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=template&id=5701f22b& */ 112);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_template_id_5701f22b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_template_id_5701f22b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -7454,7 +7564,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 104 */
+/* 112 */
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test1/test1.vue?vue&type=template&id=5701f22b& ***!
   \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7474,7 +7584,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-uni-view",
-    { staticStyle: { height: "100%" }, attrs: { id: "topview", _i: 0 } },
+    { attrs: { id: "topview", _i: 0 } },
     [
       _c(
         "v-uni-button",
@@ -7486,18 +7596,9 @@ var render = function() {
             }
           }
         },
-        [_vm._v("计算view size")]
+        [_vm._v("add item")]
       ),
-      _c(
-        "v-uni-scroll-view",
-        { staticStyle: { height: "100%" }, attrs: { _i: 2 } },
-        [
-          _vm._v(
-            _vm._$g(2, "t0") +
-              "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!！！！！！！！！！！！！！！！！！！！！"
-          )
-        ]
-      )
+      _vm._v(_vm._$g(0, "t0"))
     ],
     1
   )
@@ -7509,7 +7610,7 @@ render._withStripped = true
 
 
 /***/ }),
-/* 105 */
+/* 113 */
 /*!******************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test1/test1.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
@@ -7518,13 +7619,13 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=script&lang=js& */ 106);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=script&lang=js& */ 114);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 106 */
+/* 114 */
 /*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test1/test1.vue?vue&type=script&lang=js& ***!
   \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7534,7 +7635,10 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _uniTransition = _interopRequireDefault(__webpack_require__(/*! @/components/uni-transition/uni-transition.vue */ 32));
-var _uniDrawer = _interopRequireDefault(__webpack_require__(/*! @/components/uni-drawer/uni-drawer.vue */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+var _uniDrawer = _interopRequireDefault(__webpack_require__(/*! @/components/uni-drawer/uni-drawer.vue */ 19));
+var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/components/uni-segmented-control/uni-segmented-control.vue */ 43));
+var _viewHighlight = _interopRequireDefault(__webpack_require__(/*! @/components/view-highlight.vue */ 67));
+var _colorPicker = _interopRequireDefault(__webpack_require__(/*! @/components/color-picker.vue */ 83));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
 
   data: function data() {
@@ -7544,10 +7648,13 @@ var _uniDrawer = _interopRequireDefault(__webpack_require__(/*! @/components/uni
   },
   components: {
     'uniTransition': _uniTransition.default,
-    'uniDrawer': _uniDrawer.default } };exports.default = _default;
+    'uniDrawer': _uniDrawer.default,
+    'uniSegmentedControl': _uniSegmentedControl.default,
+    'viewHighlight': _viewHighlight.default,
+    'colorPicker': _colorPicker.default } };exports.default = _default;
 
 /***/ }),
-/* 107 */
+/* 115 */
 /*!**************************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/test1/test1.vue?vue&type=style&index=0&lang=css& ***!
   \**************************************************************************************/
@@ -7556,13 +7663,13 @@ var _uniDrawer = _interopRequireDefault(__webpack_require__(/*! @/components/uni
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=style&index=0&lang=css& */ 108);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=style&index=0&lang=css& */ 116);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_test1_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 108 */
+/* 116 */
 /*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test1/test1.vue?vue&type=style&index=0&lang=css& ***!
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7572,7 +7679,7 @@ __webpack_require__.r(__webpack_exports__);
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=style&index=0&lang=css& */ 109);
+var content = __webpack_require__(/*! !../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./test1.vue?vue&type=style&index=0&lang=css& */ 117);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7582,7 +7689,7 @@ var update = add("df721d30", content, false, {"sourceMap":false,"shadowMode":fal
 if(false) {}
 
 /***/ }),
-/* 109 */
+/* 117 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/pages/test1/test1.vue?vue&type=style&index=0&lang=css& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7600,7 +7707,7 @@ exports.push([module.i, "\n.clear_float {\r\n\tmargin-bottom: 20px;\n}\n.goods_c
 
 
 /***/ }),
-/* 110 */
+/* 118 */
 /*!*************************************************************************!*\
   !*** C:/proj/jellyClassTable/App.vue?vue&type=style&index=0&lang=scss& ***!
   \*************************************************************************/
@@ -7609,13 +7716,13 @@ exports.push([module.i, "\n.clear_float {\r\n\tmargin-bottom: 20px;\n}\n.goods_c
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./App.vue?vue&type=style&index=0&lang=scss& */ 111);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./App.vue?vue&type=style&index=0&lang=scss& */ 119);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_App_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 111 */
+/* 119 */
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--8-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/App.vue?vue&type=style&index=0&lang=scss& ***!
   \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7625,7 +7732,7 @@ __webpack_require__.r(__webpack_exports__);
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(/*! !../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./App.vue?vue&type=style&index=0&lang=scss& */ 112);
+var content = __webpack_require__(/*! !../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./App.vue?vue&type=style&index=0&lang=scss& */ 120);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7635,25 +7742,62 @@ var update = add("843af68a", content, false, {"sourceMap":false,"shadowMode":fal
 if(false) {}
 
 /***/ }),
-/* 112 */
+/* 120 */
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/App.vue?vue&type=style&index=0&lang=scss& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+var escape = __webpack_require__(/*! ../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/lib/url/escape.js */ 121);
 exports = module.exports = __webpack_require__(/*! ../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/lib/css-base.js */ 15)(false);
 // imports
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */\n/* @font-face {\r\n\tfont-family: uniicons;\r\n\tfont-weight: normal;\r\n\tfont-style: normal;\r\n\tsrc: url('~@/static/uni.ttf') format('truetype');\r\n} */\n/*通用 */\nuni-view{\r\n\tfont-size:28upx;\r\n\tline-height:1.8;\n}\nuni-progress, uni-checkbox-group{\r\n\twidth: 100%;\n}\nuni-form {\r\n\twidth: 100%;\n}\n.uni-flex {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\n}\n.uni-flex-item {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\n}\n.uni-row {\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\n}\n.uni-column {\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-link{\r\n\tcolor:#576B95;\r\n\tfont-size:26upx;\n}\n.uni-center{\r\n\ttext-align:center;\n}\n.uni-inline-item{\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-align:center;\r\n\t-webkit-align-items:center;\r\n\t        align-items:center;\n}\n.uni-inline-item uni-text{\r\n\tmargin-right: 20upx;\n}\n.uni-inline-item uni-text:last-child{\r\n\tmargin-right: 0upx;\r\n\tmargin-left: 20upx;\n}\n/* page */\n.uni-page-head{\r\n\tpadding:35upx;\r\n\ttext-align: center;\n}\n.uni-page-head-title {\r\n\tdisplay: inline-block;\r\n\tpadding: 0 40upx;\r\n\tfont-size: 30upx;\r\n\theight: 88upx;\r\n\tline-height: 88upx;\r\n\tcolor: #BEBEBE;\r\n\tbox-sizing: border-box;\r\n\tborder-bottom: 2upx solid #D8D8D8;\n}\n.uni-page-body {\r\n\twidth: 100%;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex-grow: 1;\r\n\t        flex-grow: 1;\r\n\toverflow-x: hidden;\n}\n.uni-padding-wrap{\r\n\twidth:690upx;\r\n\tpadding:0 30upx;\n}\n.uni-word {\r\n\ttext-align: center;\r\n\tpadding:200upx 100upx;\n}\n.uni-title {\r\n\tfont-size:30upx;\r\n\tfont-weight:500;\r\n\tpadding:20upx 0;\r\n\tline-height:1.5;\n}\n.uni-text{\r\n\tfont-size:28upx;\n}\n.uni-title uni-text{\r\n\tfont-size:24upx;\r\n\tcolor:#888;\n}\n.uni-text-gray{\r\n\tcolor: #ccc;\n}\n.uni-text-small {\r\n\tfont-size:24upx;\n}\n.uni-common-mb{\r\n\tmargin-bottom:30upx;\n}\n.uni-common-pb{\r\n\tpadding-bottom:30upx;\n}\n.uni-common-pl{\r\n\tpadding-left:30upx;\n}\n.uni-common-mt{\r\n\tmargin-top:30upx;\n}\n/* 背景色 */\n.uni-bg-red{\r\n\tbackground:#F76260; color:#FFF;\n}\n.uni-bg-green{\r\n\tbackground:#09BB07; color:#FFF;\n}\n.uni-bg-blue{\r\n\tbackground:#007AFF; color:#FFF;\n}\n/* 标题 */\n.uni-h1 {font-size: 80upx; font-weight:700;}\n.uni-h2 {font-size: 60upx; font-weight:700;}\n.uni-h3 {font-size: 48upx; font-weight:700;}\n.uni-h4 {font-size: 36upx; font-weight:700;}\n.uni-h5 {font-size: 28upx; color: #8f8f94;}\n.uni-h6 {font-size: 24upx; color: #8f8f94;}\n.uni-bold{font-weight:bold;}\n/* 文本溢出隐藏 */\n.uni-ellipsis {overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}\n/* 竖向百分百按钮 */\n.uni-btn-v{\r\n\tpadding:10upx 0;\n}\n.uni-btn-v uni-button{margin:20upx 0;}\n/* 表单 */\n.uni-form-item{\r\n\tdisplay:-webkit-box;\r\n\tdisplay:-webkit-flex;\r\n\tdisplay:flex;\r\n\twidth:100%;\r\n\tpadding:10upx 0;\n}\n.uni-form-item .title{\r\n\tpadding:10upx 25upx;\n}\n.uni-label {\r\n\twidth: 210upx;\r\n\tword-wrap: break-word;\r\n\tword-break: break-all;\r\n\ttext-indent:20upx;\n}\n.uni-input {\r\n\theight: 50upx;\r\n\tpadding: 15upx 25upx;\r\n\tline-height:50upx;\r\n\tfont-size:28upx;\r\n\tbackground:#FFF;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\n}\nuni-radio-group, uni-checkbox-group{\r\n\twidth:100%;\n}\nuni-radio-group uni-label, uni-checkbox-group uni-label{\r\n\tpadding-right:20upx;\n}\n.uni-form-item .with-fun{\r\n\tdisplay:-webkit-box;\r\n\tdisplay:-webkit-flex;\r\n\tdisplay:flex;\r\n\t-webkit-flex-wrap:nowrap;\r\n\t        flex-wrap:nowrap;\r\n\tbackground:#FFFFFF;\n}\n.uni-form-item .with-fun .uni-icon{\r\n\twidth:40px;\r\n\theight:80upx;\r\n\tline-height:80upx;\r\n\t-webkit-flex-shrink:0;\r\n\t        flex-shrink:0;\n}\n/* loadmore */\n.uni-loadmore{\r\n\theight:80upx;\r\n\tline-height:80upx;\r\n\ttext-align:center;\r\n\tpadding-bottom:30upx;\n}\n/*数字角标*/\n.uni-badge,\r\n.uni-badge-default {\r\n\tfont-family: 'Helvetica Neue', Helvetica, sans-serif;\r\n\tfont-size: 12px;\r\n\tline-height: 1;\r\n\tdisplay: inline-block;\r\n\tpadding: 3px 6px;\r\n\tcolor: #333;\r\n\tborder-radius: 100px;\r\n\tbackground-color: rgba(0, 0, 0, .15);\n}\n.uni-badge.uni-badge-inverted {\r\n\tpadding: 0 5px 0 0;\r\n\tcolor: #929292;\r\n\tbackground-color: transparent\n}\n.uni-badge-primary {\r\n\tcolor: #fff;\r\n\tbackground-color: #007aff\n}\n.uni-badge-blue.uni-badge-inverted,\r\n.uni-badge-primary.uni-badge-inverted {\r\n\tcolor: #007aff;\r\n\tbackground-color: transparent\n}\n.uni-badge-green,\r\n.uni-badge-success {\r\n\tcolor: #fff;\r\n\tbackground-color: #4cd964;\n}\n.uni-badge-green.uni-badge-inverted,\r\n.uni-badge-success.uni-badge-inverted {\r\n\tcolor: #4cd964;\r\n\tbackground-color: transparent\n}\n.uni-badge-warning,\r\n.uni-badge-yellow {\r\n\tcolor: #fff;\r\n\tbackground-color: #f0ad4e\n}\n.uni-badge-warning.uni-badge-inverted,\r\n.uni-badge-yellow.uni-badge-inverted {\r\n\tcolor: #f0ad4e;\r\n\tbackground-color: transparent\n}\n.uni-badge-danger,\r\n.uni-badge-red {\r\n\tcolor: #fff;\r\n\tbackground-color: #dd524d\n}\n.uni-badge-danger.uni-badge-inverted,\r\n.uni-badge-red.uni-badge-inverted {\r\n\tcolor: #dd524d;\r\n\tbackground-color: transparent\n}\n.uni-badge-purple,\r\n.uni-badge-royal {\r\n\tcolor: #fff;\r\n\tbackground-color: #8a6de9\n}\n.uni-badge-purple.uni-badge-inverted,\r\n.uni-badge-royal.uni-badge-inverted {\r\n\tcolor: #8a6de9;\r\n\tbackground-color: transparent\n}\n/*折叠面板 */\n.uni-collapse-content {\r\n\theight: 0;\r\n\twidth: 100%;\r\n\toverflow: hidden;\n}\n.uni-collapse-content.uni-active {\r\n\theight: auto;\n}\n/*卡片视图 */\n.uni-card {\r\n\tbackground: #fff;\r\n\tborder-radius: 8upx;\r\n\tmargin:20upx 0;\r\n\tposition: relative;\r\n\tbox-shadow: 0 2upx 4upx rgba(0, 0, 0, .3);\n}\n.uni-card-content {\r\n\tfont-size: 30upx;\n}\n.uni-card-content.image-view{\r\n    width: 100%;\r\n    margin: 0;\n}\n.uni-card-content-inner {\r\n\tposition: relative;\r\n\tpadding: 30upx;\n}\n.uni-card-footer,\r\n.uni-card-header {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\tmin-height: 50upx;\r\n\tpadding: 20upx 30upx;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\n}\n.uni-card-header {\r\n\tfont-size: 36upx;\n}\n.uni-card-footer {\r\n\tcolor: #6d6d72;\n}\n.uni-card-footer:before,\r\n.uni-card-header:after {\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tleft: 0;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-card-header:after {\r\n\ttop: auto;\r\n\tbottom: 0;\n}\n.uni-card-media {\r\n\t-webkit-box-pack: start;\r\n\t-webkit-justify-content: flex-start;\r\n\t        justify-content: flex-start;\n}\n.uni-card-media-logo {\r\n\theight: 84upx;\r\n\twidth: 84upx;\r\n\tmargin-right: 20upx;\n}\n.uni-card-media-body {\r\n\theight: 84upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: start;\r\n\t-webkit-align-items: flex-start;\r\n\t        align-items: flex-start;\n}\n.uni-card-media-text-top {\r\n\tline-height: 36upx;\r\n\tfont-size: 34upx;\n}\n.uni-card-media-text-bottom {\r\n\tline-height: 30upx;\r\n\tfont-size: 28upx;\r\n\tcolor: #8f8f94;\n}\n.uni-card-link {\r\n\tcolor: #007AFF;\n}\n/* 列表 */\n.uni-list {\r\n\tbackground-color: #FFFFFF;\r\n\tposition: relative;\r\n\twidth: 100%;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-list:after {\r\n\tposition: absolute;\r\n\tz-index: 10;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list::before {\r\n\tposition: absolute;\r\n\tz-index: 10;\r\n\tright: 0;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list-cell {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\n}\n.uni-list-cell-hover {\r\n\tbackground-color: #eee;\n}\n.uni-list-cell-pd {\r\n\tpadding: 22upx 30upx;\n}\n.uni-list-cell-left {\r\n    white-space: nowrap;\r\n\tfont-size:28upx;\r\n\tpadding: 0 30upx;\n}\n.uni-list-cell-db,\r\n.uni-list-cell-right {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\n}\n.uni-list-cell::after {\r\n\tposition: absolute;\r\n\tz-index: 3;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 30upx;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list .uni-list-cell:last-child::after {\r\n\theight: 0upx;\n}\n.uni-list-cell-last.uni-list-cell::after {\r\n\theight: 0upx;\n}\n.uni-list-cell-divider {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\tcolor: #999;\r\n\tbackground-color: #f7f7f7;\r\n\tpadding:15upx 20upx;\n}\n.uni-list-cell-divider::before {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list-cell-divider::after {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0upx;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list-cell-navigate {\r\n\tfont-size:30upx;\r\n\tpadding: 22upx 30upx;\r\n\tline-height: 48upx;\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\tbox-sizing: border-box;\r\n\twidth: 100%;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\n}\n.uni-list-cell-navigate {\r\n\tpadding-right: 36upx;\n}\n.uni-navigate-badge {\r\n\tpadding-right: 50upx;\n}\n.uni-list-cell-navigate.uni-navigate-right:after {\r\n\tfont-family: uniicons;\r\n\tcontent: '\\E583';\r\n\tposition: absolute;\r\n\tright: 24upx;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.uni-list-cell-navigate.uni-navigate-bottom:after {\r\n\tfont-family: uniicons;\r\n\tcontent: '\\E581';\r\n\tposition: absolute;\r\n\tright: 24upx;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.uni-list-cell-navigate.uni-navigate-bottom.uni-active::after {\r\n\tfont-family: uniicons;\r\n\tcontent: '\\E580';\r\n\tposition: absolute;\r\n\tright: 24upx;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.uni-collapse.uni-list-cell {\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-list-cell-navigate.uni-active {\r\n\tbackground: #eee;\n}\n.uni-list.uni-collapse {\r\n\tbox-sizing: border-box;\r\n\theight: 0;\r\n\toverflow: hidden;\n}\n.uni-collapse .uni-list-cell {\r\n\tpadding-left: 20upx;\n}\n.uni-collapse .uni-list-cell::after {\r\n\tleft: 52upx;\n}\n.uni-list.uni-active {\r\n\theight: auto;\n}\n/* 三行列表 */\n.uni-triplex-row {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\twidth: 100%;\r\n\tbox-sizing: border-box;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\tpadding: 22upx 30upx;\n}\n.uni-triplex-right,\r\n.uni-triplex-left {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-triplex-left {\r\n\twidth: 84%;\n}\n.uni-triplex-left .uni-title{\r\n\tpadding:8upx 0;\n}\n.uni-triplex-left .uni-text, .uni-triplex-left .uni-text-small{color:#999999;}\n.uni-triplex-right {\r\n\twidth: 16%;\r\n\ttext-align: right;\n}\n/* 图文列表 */\n.uni-media-list {\r\n\tpadding: 22upx 30upx;\r\n\tbox-sizing: border-box;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\twidth: 100%;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\n}\n.uni-navigate-right.uni-media-list {\r\n\tpadding-right: 74upx;\n}\n.uni-pull-right {\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: reverse;\r\n\t-webkit-flex-direction: row-reverse;\r\n\t        flex-direction: row-reverse;\n}\n.uni-pull-right>.uni-media-list-logo {\r\n\tmargin-right: 0upx;\r\n\tmargin-left: 20upx;\n}\n.uni-media-list-logo {\r\n\theight: 84upx;\r\n\twidth: 84upx;\r\n\tmargin-right: 20upx;\n}\n.uni-media-list-logo uni-image {\r\n\theight: 100%;\r\n\twidth: 100%;\n}\n.uni-media-list-body {\r\n\theight: 84upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: start;\r\n\t-webkit-align-items: flex-start;\r\n\t        align-items: flex-start;\r\n\toverflow: hidden;\n}\n.uni-media-list-text-top {\r\n\twidth: 100%;\r\n\tline-height: 36upx;\r\n\tfont-size: 30upx;\n}\n.uni-media-list-text-bottom {\r\n\twidth: 100%;\r\n\tline-height: 30upx;\r\n\tfont-size: 26upx;\r\n\tcolor: #8f8f94;\n}\n/* 九宫格 */\n.uni-grid-9 {\r\n\tbackground: #f2f2f2;\r\n\twidth: 750upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-flex-wrap: wrap;\r\n\t        flex-wrap: wrap;\r\n\tborder-top: 2upx solid #eee;\n}\n.uni-grid-9-item {\r\n\twidth: 250upx;\r\n\theight: 200upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\r\n\t-webkit-box-pack: center;\r\n\t-webkit-justify-content: center;\r\n\t        justify-content: center;\r\n\tborder-bottom: 2upx solid;\r\n\tborder-right: 2upx solid;\r\n\tborder-color: #eee;\r\n\tbox-sizing: border-box;\n}\n.no-border-right {\r\n\tborder-right: none;\n}\n.uni-grid-9-image {\r\n\twidth: 100upx;\r\n\theight: 100upx;\n}\n.uni-grid-9-text {\r\n\twidth: 250upx;\r\n\tline-height: 4upx;\r\n\theight: 40upx;\r\n\ttext-align: center;\r\n\tfont-size: 30upx;\n}\n.uni-grid-9-item-hover {\r\n\tbackground: rgba(0, 0, 0, 0.1);\n}\n/* 上传 */\n.uni-uploader {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-uploader-head {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\n}\n.uni-uploader-info {\r\n\tcolor: #B2B2B2;\n}\n.uni-uploader-body {\r\n\tmargin-top: 16upx;\n}\n.uni-uploader__files {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-flex-wrap: wrap;\r\n\t        flex-wrap: wrap;\n}\n.uni-uploader__file {\r\n\tmargin: 10upx;\r\n\twidth: 210upx;\r\n\theight: 210upx;\n}\n.uni-uploader__img {\r\n\tdisplay: block;\r\n\twidth: 210upx;\r\n\theight: 210upx;\n}\n.uni-uploader__input-box {\r\n\tposition: relative;\r\n\tmargin:10upx;\r\n\twidth: 208upx;\r\n\theight: 208upx;\r\n\tborder: 2upx solid #D9D9D9;\n}\n.uni-uploader__input-box:before,\r\n.uni-uploader__input-box:after {\r\n\tcontent: \" \";\r\n\tposition: absolute;\r\n\ttop: 50%;\r\n\tleft: 50%;\r\n\t-webkit-transform: translate(-50%, -50%);\r\n\ttransform: translate(-50%, -50%);\r\n\tbackground-color: #D9D9D9;\n}\n.uni-uploader__input-box:before {\r\n\twidth: 4upx;\r\n\theight: 79upx;\n}\n.uni-uploader__input-box:after {\r\n\twidth: 79upx;\r\n\theight: 4upx;\n}\n.uni-uploader__input-box:active {\r\n\tborder-color: #999999;\n}\n.uni-uploader__input-box:active:before,\r\n.uni-uploader__input-box:active:after {\r\n\tbackground-color: #999999;\n}\n.uni-uploader__input {\r\n\tposition: absolute;\r\n\tz-index: 1;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\topacity: 0;\n}\n/*问题反馈*/\n.feedback-title {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\r\n\tpadding: 20upx;\r\n\tcolor: #8f8f94;\r\n\tfont-size: 28upx;\n}\n.feedback-star-view.feedback-title {\r\n\t-webkit-box-pack: start;\r\n\t-webkit-justify-content: flex-start;\r\n\t        justify-content: flex-start;\r\n\tmargin: 0;\n}\n.feedback-quick {\r\n\tposition: relative;\r\n\tpadding-right: 40upx;\n}\n.feedback-quick:after {\r\n\tfont-family: uniicons;\r\n\tfont-size: 40upx;\r\n\tcontent: '\\E581';\r\n\tposition: absolute;\r\n\tright: 0;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.feedback-body {\r\n\tbackground: #fff;\n}\n.feedback-textare {\r\n\theight: 200upx;\r\n\tfont-size: 34upx;\r\n\tline-height: 50upx;\r\n\twidth: 100%;\r\n\tbox-sizing: border-box;\r\n\tpadding: 20upx 30upx 0;\n}\n.feedback-input {\r\n\tfont-size: 34upx;\r\n\theight: 50upx;\r\n\tmin-height: 50upx;\r\n\tpadding: 15upx 20upx;\r\n\tline-height: 50upx;\n}\n.feedback-uploader {\r\n\tpadding: 22upx 20upx;\n}\n.feedback-star {\r\n\tfont-family: uniicons;\r\n\tfont-size: 40upx;\r\n\tmargin-left: 6upx;\n}\n.feedback-star-view {\r\n\tmargin-left: 20upx;\n}\n.feedback-star:after {\r\n\tcontent: '\\E408';\n}\n.feedback-star.active {\r\n\tcolor: #FFB400;\n}\n.feedback-star.active:after {\r\n\tcontent: '\\E438';\n}\n.feedback-submit {\r\n\tbackground: #007AFF;\r\n\tcolor: #FFFFFF;\r\n\tmargin: 20upx;\n}\n/* input group */\n.uni-input-group {\r\n\tposition: relative;\r\n\tpadding: 0;\r\n\tborder: 0;\r\n\tbackground-color: #fff;\n}\n.uni-input-group:before {\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tleft: 0;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\t        transform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-input-group:after {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\t        transform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-input-row {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\tfont-size:28upx;\r\n\tpadding: 22upx 30upx;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\n}\n.uni-input-group .uni-input-row:after {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 30upx;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\t        transform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-input-row uni-label {\r\n\tline-height: 70upx;\n}\n/* textarea */\n.uni-textarea{\r\n\twidth:100%;\r\n\tbackground:#FFF;\n}\n.uni-textarea uni-textarea{\r\n\twidth:96%;\r\n\tpadding:18upx 2%;\r\n\tline-height:1.6;\r\n\tfont-size:28upx;\r\n\theight:150upx;\n}\n/* tab bar */\n.uni-tab-bar {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\toverflow: hidden;\r\n\theight: 100%;\n}\n.uni-tab-bar .list {\r\n\twidth: 750upx;\r\n\theight: 100%;\n}\n.uni-swiper-tab {\r\n\twidth: 100%;\r\n\twhite-space: nowrap;\r\n\tline-height: 100upx;\r\n\theight: 100upx;\r\n\tborder-bottom: 1px solid #c8c7cc;\n}\n.swiper-tab-list {\r\n\tfont-size: 30upx;\r\n\twidth: 150upx;\r\n\tdisplay: inline-block;\r\n\ttext-align: center;\r\n\tcolor: #555;\n}\n.uni-tab-bar .active {\r\n\tcolor: #007AFF;\n}\n.uni-tab-bar .swiper-box {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\twidth: 100%;\r\n\theight: calc(100% - 100upx);\n}\n.uni-tab-bar-loading{\r\n\tpadding:20upx 0;\n}\n/* comment */\n.uni-comment{padding:5rpx 0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-flex:1; -webkit-flex-grow:1; flex-grow:1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; flex-direction: column;}\n.uni-comment-list{-webkit-flex-wrap:nowrap;flex-wrap:nowrap; padding:10rpx 0; margin:10rpx 0; width:100%; display: -webkit-box; display: -webkit-flex; display: flex;}\n.uni-comment-face{width:70upx; height:70upx; border-radius:100%; margin-right:20upx; -webkit-flex-shrink:0; flex-shrink:0; overflow:hidden;}\n.uni-comment-face uni-image{width:100%; border-radius:100%;}\n.uni-comment-body{width:100%;}\n.uni-comment-top{line-height:1.5em; -webkit-box-pack:justify; -webkit-justify-content:space-between; justify-content:space-between;}\n.uni-comment-top uni-text{color:#0A98D5; font-size:24upx;}\n.uni-comment-date{line-height:38upx; -webkit-box-orient:horizontal; -webkit-box-direction:normal; -webkit-flex-direction:row; flex-direction:row; -webkit-box-pack:justify; -webkit-justify-content:space-between; justify-content:space-between; display:-webkit-box !important; display:-webkit-flex !important; display:flex !important; -webkit-box-flex:1; -webkit-flex-grow:1; flex-grow:1;}\n.uni-comment-date uni-view{color:#666666; font-size:24upx; line-height:38upx;}\n.uni-comment-content{line-height:1.6em; font-size:28upx; padding:8rpx 0;}\n.uni-comment-replay-btn{background:#FFF; font-size:24upx; line-height:28upx; padding:5rpx 20upx; border-radius:30upx; color:#333 !important; margin:0 10upx;}\n/* swiper msg */\n.uni-swiper-msg{width:100%; padding:12rpx 0; -webkit-flex-wrap:nowrap; flex-wrap:nowrap; display:-webkit-box; display:-webkit-flex; display:flex;}\n.uni-swiper-msg-icon{width:50upx; margin-right:20upx;}\n.uni-swiper-msg-icon uni-image{width:100%; -webkit-flex-shrink:0; flex-shrink:0;}\n.uni-swiper-msg uni-swiper{width:100%; height:50upx;}\n.uni-swiper-msg uni-swiper-item{line-height:50upx;}\n/* product */\n.uni-product-list {\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    width: 100%;\r\n    -webkit-flex-wrap: wrap;\r\n            flex-wrap: wrap;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n    -webkit-flex-direction: row;\r\n            flex-direction: row;\n}\n.uni-product {\r\n    padding: 20upx;\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n    -webkit-flex-direction: column;\r\n            flex-direction: column;\n}\n.image-view {\r\n    height: 330upx;\r\n    width: 330upx;\r\n\tmargin:12upx 0;\n}\n.uni-product-image {\r\n    height: 330upx;\r\n    width: 330upx;\n}\n.uni-product-title {\r\n    width: 300upx;\r\n    word-break: break-all;\r\n    display: -webkit-box;\r\n    overflow: hidden;\r\n\tline-height:1.5;\r\n    text-overflow: ellipsis;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-line-clamp: 2;\n}\n.uni-product-price {\r\n\tmargin-top:10upx;\r\n    font-size: 28upx;\r\n\tline-height:1.5;\r\n    position: relative;\n}\n.uni-product-price-original {\r\n    color: #e80080;\n}\n.uni-product-price-favour {\r\n    color: #888888;\r\n    text-decoration: line-through;\r\n    margin-left: 10upx;\n}\n.uni-product-tip {\r\n    position: absolute;\r\n    right: 10upx;\r\n    background-color: #ff3333;\r\n    color: #ffffff;\r\n    padding: 0 10upx;\r\n    border-radius: 5upx;\n}\n/* timeline */\n.uni-timeline {\r\n\t\tmargin: 35upx 0;\r\n\t\tdisplay: -webkit-box;\r\n\t\tdisplay: -webkit-flex;\r\n\t\tdisplay: flex;\r\n\t\t-webkit-box-orient: vertical;\r\n\t\t-webkit-box-direction: normal;\r\n\t\t-webkit-flex-direction: column;\r\n\t\t        flex-direction: column;\r\n\t\tposition: relative;\n}\n.uni-timeline-item {\r\n\t\tdisplay: -webkit-box;\r\n\t\tdisplay: -webkit-flex;\r\n\t\tdisplay: flex;\r\n\t\t-webkit-box-orient: horizontal;\r\n\t\t-webkit-box-direction: normal;\r\n\t\t-webkit-flex-direction: row;\r\n\t\t        flex-direction: row;\r\n\t\tposition: relative;\r\n\t\tpadding-bottom: 20upx;\r\n\t\tbox-sizing: border-box;\r\n\t\toverflow: hidden;\n}\n.uni-timeline-item .uni-timeline-item-keynode {\r\n\t\twidth: 160upx;\r\n\t\t-webkit-flex-shrink: 0;\r\n\t\t        flex-shrink: 0;\r\n\t\tbox-sizing: border-box;\r\n\t\tpadding-right: 20upx;\r\n\t\ttext-align: right;\r\n\t\tline-height: 65upx;\n}\n.uni-timeline-item .uni-timeline-item-divider {\r\n\t\t-webkit-flex-shrink: 0;\r\n\t\t        flex-shrink: 0;\r\n\t\tposition: relative;\r\n\t\twidth: 30upx;\r\n\t\theight: 30upx;\r\n\t\ttop: 15upx;\r\n\t\tborder-radius: 50%;\r\n\t\tbackground-color: #bbb;\n}\n.uni-timeline-item-divider::before,\r\n\t.uni-timeline-item-divider::after {\r\n\t\tposition: absolute;\r\n\t\tleft: 15upx;\r\n\t\twidth: 1upx;\r\n\t\theight: 100vh;\r\n\t\tcontent: '';\r\n\t\tbackground: inherit;\n}\n.uni-timeline-item-divider::before {\r\n\t\tbottom: 100%;\n}\n.uni-timeline-item-divider::after {\r\n\t\ttop: 100%;\n}\n.uni-timeline-last-item .uni-timeline-item-divider:after {\r\n\t\tdisplay: none;\n}\n.uni-timeline-first-item .uni-timeline-item-divider:before {\r\n\t\tdisplay: none;\n}\n.uni-timeline-item .uni-timeline-item-content {\r\n\t\tpadding-left: 20upx;\n}\n.uni-timeline-last-item .bottom-border::after{\r\n\t\tdisplay: none;\n}\n.uni-timeline-item-content .datetime{\r\n\t\tcolor: #CCCCCC;\n}\n/* 自定义节点颜色 */\n.uni-timeline-last-item .uni-timeline-item-divider{\r\n\t\tbackground-color: #1AAD19;\n}\n/* uni-icon */\n.uni-icon {\r\n\tfont-family: uniicons;\r\n\tfont-size: 24px;\r\n\tfont-weight: normal;\r\n\tfont-style: normal;\r\n\tline-height: 1;\r\n\tdisplay: inline-block;\r\n\ttext-decoration: none;\r\n\t-webkit-font-smoothing: antialiased;\n}\n.uni-icon.uni-active {\r\n\tcolor: #007aff;\n}\n.uni-icon-contact:before {\r\n\tcontent: '\\E100';\n}\n.uni-icon-person:before {\r\n\tcontent: '\\E101';\n}\n.uni-icon-personadd:before {\r\n\tcontent: '\\E102';\n}\n.uni-icon-contact-filled:before {\r\n\tcontent: '\\E130';\n}\n.uni-icon-person-filled:before {\r\n\tcontent: '\\E131';\n}\n.uni-icon-personadd-filled:before {\r\n\tcontent: '\\E132';\n}\n.uni-icon-phone:before {\r\n\tcontent: '\\E200';\n}\n.uni-icon-email:before {\r\n\tcontent: '\\E201';\n}\n.uni-icon-chatbubble:before {\r\n\tcontent: '\\E202';\n}\n.uni-icon-chatboxes:before {\r\n\tcontent: '\\E203';\n}\n.uni-icon-phone-filled:before {\r\n\tcontent: '\\E230';\n}\n.uni-icon-email-filled:before {\r\n\tcontent: '\\E231';\n}\n.uni-icon-chatbubble-filled:before {\r\n\tcontent: '\\E232';\n}\n.uni-icon-chatboxes-filled:before {\r\n\tcontent: '\\E233';\n}\n.uni-icon-weibo:before {\r\n\tcontent: '\\E260';\n}\n.uni-icon-weixin:before {\r\n\tcontent: '\\E261';\n}\n.uni-icon-pengyouquan:before {\r\n\tcontent: '\\E262';\n}\n.uni-icon-chat:before {\r\n\tcontent: '\\E263';\n}\n.uni-icon-qq:before {\r\n\tcontent: '\\E264';\n}\n.uni-icon-videocam:before {\r\n\tcontent: '\\E300';\n}\n.uni-icon-camera:before {\r\n\tcontent: '\\E301';\n}\n.uni-icon-mic:before {\r\n\tcontent: '\\E302';\n}\n.uni-icon-location:before {\r\n\tcontent: '\\E303';\n}\n.uni-icon-mic-filled:before,\r\n.uni-icon-speech:before {\r\n\tcontent: '\\E332';\n}\n.uni-icon-location-filled:before {\r\n\tcontent: '\\E333';\n}\n.uni-icon-micoff:before {\r\n\tcontent: '\\E360';\n}\n.uni-icon-image:before {\r\n\tcontent: '\\E363';\n}\n.uni-icon-map:before {\r\n\tcontent: '\\E364';\n}\n.uni-icon-compose:before {\r\n\tcontent: '\\E400';\n}\n.uni-icon-trash:before {\r\n\tcontent: '\\E401';\n}\n.uni-icon-upload:before {\r\n\tcontent: '\\E402';\n}\n.uni-icon-download:before {\r\n\tcontent: '\\E403';\n}\n.uni-icon-close:before {\r\n\tcontent: '\\E404';\n}\n.uni-icon-redo:before {\r\n\tcontent: '\\E405';\n}\n.uni-icon-undo:before {\r\n\tcontent: '\\E406';\n}\n.uni-icon-refresh:before {\r\n\tcontent: '\\E407';\n}\n.uni-icon-star:before {\r\n\tcontent: '\\E408';\n}\n.uni-icon-plus:before {\r\n\tcontent: '\\E409';\n}\n.uni-icon-minus:before {\r\n\tcontent: '\\E410';\n}\n.uni-icon-circle:before,\r\n.uni-icon-checkbox:before {\r\n\tcontent: '\\E411';\n}\n.uni-icon-close-filled:before,\r\n.uni-icon-clear:before {\r\n\tcontent: '\\E434';\n}\n.uni-icon-refresh-filled:before {\r\n\tcontent: '\\E437';\n}\n.uni-icon-star-filled:before {\r\n\tcontent: '\\E438';\n}\n.uni-icon-plus-filled:before {\r\n\tcontent: '\\E439';\n}\n.uni-icon-minus-filled:before {\r\n\tcontent: '\\E440';\n}\n.uni-icon-circle-filled:before {\r\n\tcontent: '\\E441';\n}\n.uni-icon-checkbox-filled:before {\r\n\tcontent: '\\E442';\n}\n.uni-icon-closeempty:before {\r\n\tcontent: '\\E460';\n}\n.uni-icon-refreshempty:before {\r\n\tcontent: '\\E461';\n}\n.uni-icon-reload:before {\r\n\tcontent: '\\E462';\n}\n.uni-icon-starhalf:before {\r\n\tcontent: '\\E463';\n}\n.uni-icon-spinner:before {\r\n\tcontent: '\\E464';\n}\n.uni-icon-spinner-cycle:before {\r\n\tcontent: '\\E465';\n}\n.uni-icon-search:before {\r\n\tcontent: '\\E466';\n}\n.uni-icon-plusempty:before {\r\n\tcontent: '\\E468';\n}\n.uni-icon-forward:before {\r\n\tcontent: '\\E470';\n}\n.uni-icon-back:before,\r\n.uni-icon-left-nav:before {\r\n\tcontent: '\\E471';\n}\n.uni-icon-checkmarkempty:before {\r\n\tcontent: '\\E472';\n}\n.uni-icon-home:before {\r\n\tcontent: '\\E500';\n}\n.uni-icon-navigate:before {\r\n\tcontent: '\\E501';\n}\n.uni-icon-gear:before {\r\n\tcontent: '\\E502';\n}\n.uni-icon-paperplane:before {\r\n\tcontent: '\\E503';\n}\n.uni-icon-info:before {\r\n\tcontent: '\\E504';\n}\n.uni-icon-help:before {\r\n\tcontent: '\\E505';\n}\n.uni-icon-locked:before {\r\n\tcontent: '\\E506';\n}\n.uni-icon-more:before {\r\n\tcontent: '\\E507';\n}\n.uni-icon-flag:before {\r\n\tcontent: '\\E508';\n}\n.uni-icon-home-filled:before {\r\n\tcontent: '\\E530';\n}\n.uni-icon-gear-filled:before {\r\n\tcontent: '\\E532';\n}\n.uni-icon-info-filled:before {\r\n\tcontent: '\\E534';\n}\n.uni-icon-help-filled:before {\r\n\tcontent: '\\E535';\n}\n.uni-icon-more-filled:before {\r\n\tcontent: '\\E537';\n}\n.uni-icon-settings:before {\r\n\tcontent: '\\E560';\n}\n.uni-icon-list:before {\r\n\tcontent: '\\E562';\n}\n.uni-icon-bars:before {\r\n\tcontent: '\\E563';\n}\n.uni-icon-loop:before {\r\n\tcontent: '\\E565';\n}\n.uni-icon-paperclip:before {\r\n\tcontent: '\\E567';\n}\n.uni-icon-eye:before {\r\n\tcontent: '\\E568';\n}\n.uni-icon-arrowup:before {\r\n\tcontent: '\\E580';\n}\n.uni-icon-arrowdown:before {\r\n\tcontent: '\\E581';\n}\n.uni-icon-arrowleft:before {\r\n\tcontent: '\\E582';\n}\n.uni-icon-arrowright:before {\r\n\tcontent: '\\E583';\n}\n.uni-icon-arrowthinup:before {\r\n\tcontent: '\\E584';\n}\n.uni-icon-arrowthindown:before {\r\n\tcontent: '\\E585';\n}\n.uni-icon-arrowthinleft:before {\r\n\tcontent: '\\E586';\n}\n.uni-icon-arrowthinright:before {\r\n\tcontent: '\\E587';\n}\n.uni-icon-pulldown:before {\r\n\tcontent: '\\E588';\n}\n.uni-icon-scan:before {\r\n    content: \"\\E612\";\n}\n/* 分界线 */\n.uni-divider{\r\n    height: 110upx;\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    -webkit-box-align:center;\r\n    -webkit-align-items:center;\r\n            align-items:center;\r\n    -webkit-box-pack: center;\r\n    -webkit-justify-content: center;\r\n            justify-content: center;\r\n    position: relative;\n}\n.uni-divider__content{\r\n    font-size: 28upx;\r\n    color: #999;\r\n    padding: 0 20upx;\r\n    position: relative;\r\n    z-index: 101;\r\n    background: #F4F5F6;\n}\n.uni-divider__line{\r\n    background-color: #CCCCCC;\r\n    height: 1px;\r\n    width: 100%;\r\n    position: absolute;\r\n    z-index: 100;\r\n    top: 50%;\r\n    left: 0;\r\n    -webkit-transform: translateY(50%);\r\n            transform: translateY(50%);\n}\n/*\n  ColorUi for uniApp  v2.1.6 | by 文晓港 2019-05-31 10:44:24\n  仅供学习交流，如作它用所承受的法律责任一概与作者无关  \n  \n  *使用ColorUi开发扩展与插件时，请注明基于ColorUi开发 \n  \n  （QQ交流群：240787041）\n*/\n/* ==================\n        初始化\n ==================== */\nbody {\n\tbackground-color: #f1f1f1;\n\tfont-size: 28upx;\n\tcolor: #333333;\n\tfont-family: Helvetica Neue, Helvetica, sans-serif;\n}\nuni-view,\nuni-scroll-view,\nuni-swiper,\nuni-button,\nuni-input,\nuni-textarea,\nuni-label,\nuni-navigator,\nuni-image {\n\tbox-sizing: border-box;\n}\n.round {\n\tborder-radius: 5000upx;\n}\n.radius {\n\tborder-radius: 6upx;\n}\n/* ==================\n          图片\n ==================== */\nuni-image {\n\tmax-width: 100%;\n\tdisplay: inline-block;\n\tposition: relative;\n\tz-index: 0;\n}\nuni-image.loading::before {\n\tcontent: \"\";\n\tbackground-color: #f5f5f5;\n\tdisplay: block;\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: -2;\n}\nuni-image.loading::after {\n\tcontent: \"\\E7F1\";\n\tfont-family: \"cuIcon\";\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\twidth: 32upx;\n\theight: 32upx;\n\tline-height: 32upx;\n\tright: 0;\n\tbottom: 0;\n\tz-index: -1;\n\tfont-size: 32upx;\n\tmargin: auto;\n\tcolor: #ccc;\n\t-webkit-animation: cuIcon-spin 2s infinite linear;\n\tanimation: cuIcon-spin 2s infinite linear;\n\tdisplay: block;\n}\n.response {\n\twidth: 100%;\n}\n/* ==================\n         开关\n ==================== */\nuni-switch,\nuni-checkbox,\nuni-radio {\n\tposition: relative;\n}\nuni-switch::after,\nuni-switch::before {\n\tfont-family: \"cuIcon\";\n\tcontent: \"\\E645\";\n\tposition: absolute;\n\tcolor: #ffffff !important;\n\ttop: 0%;\n\tleft: 0upx;\n\tfont-size: 26upx;\n\tline-height: 26px;\n\twidth: 50%;\n\ttext-align: center;\n\tpointer-events: none;\n\t-webkit-transform: scale(0, 0);\n\t        transform: scale(0, 0);\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\tz-index: 9;\n\tbottom: 0;\n\theight: 26px;\n\tmargin: auto;\n}\nuni-switch::before {\n\tcontent: \"\\E646\";\n\tright: 0;\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n\tleft: auto;\n}\nuni-switch[checked]::after,\nuni-switch.checked::after {\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n}\nuni-switch[checked]::before,\nuni-switch.checked::before {\n\t-webkit-transform: scale(0, 0);\n\t        transform: scale(0, 0);\n}\n\nuni-radio::before,\nuni-checkbox::before {\n\tfont-family: \"cuIcon\";\n\tcontent: \"\\E645\";\n\tposition: absolute;\n\tcolor: #ffffff !important;\n\ttop: 50%;\n\tmargin-top: -8px;\n\tright: 5px;\n\tfont-size: 32upx;\n\tline-height: 16px;\n\tpointer-events: none;\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\tz-index: 9;\n}\nuni-radio .wx-radio-input,\nuni-checkbox .wx-checkbox-input,\nuni-radio .uni-radio-input,\nuni-checkbox .uni-checkbox-input {\n\tmargin: 0;\n\twidth: 24px;\n\theight: 24px;\n}\nuni-checkbox.round .wx-checkbox-input,\nuni-checkbox.round .uni-checkbox-input {\n\tborder-radius: 100upx;\n}\n\nuni-switch[checked]::before {\n\t-webkit-transform: scale(0, 0);\n\t        transform: scale(0, 0);\n}\nuni-switch .wx-switch-input,\nuni-switch .uni-switch-input {\n\tborder: none;\n\tpadding: 0 24px;\n\twidth: 48px;\n\theight: 26px;\n\tmargin: 0;\n\tborder-radius: 100upx;\n}\nuni-switch .wx-switch-input:not([class*=\"bg-\"]),\nuni-switch .uni-switch-input:not([class*=\"bg-\"]) {\n\tbackground: #8799a3 !important;\n}\nuni-switch .wx-switch-input::after,\nuni-switch .uni-switch-input::after {\n\tmargin: auto;\n\twidth: 26px;\n\theight: 26px;\n\tborder-radius: 100upx;\n\tleft: 0upx;\n\ttop: 0upx;\n\tbottom: 0upx;\n\tposition: absolute;\n\t-webkit-transform: scale(0.9, 0.9);\n\t        transform: scale(0.9, 0.9);\n\t-webkit-transition: all 0.1s ease-in-out 0s;\n\ttransition: all 0.1s ease-in-out 0s;\n}\nuni-switch .wx-switch-input.wx-switch-input-checked::after,\nuni-switch .uni-switch-input.uni-switch-input-checked::after {\n\tmargin: auto;\n\tleft: 22px;\n\tbox-shadow: none;\n\t-webkit-transform: scale(0.9, 0.9);\n\t        transform: scale(0.9, 0.9);\n}\nuni-radio-group {\n\tdisplay: inline-block;\n}\nuni-switch.radius .wx-switch-input::after,\nuni-switch.radius .wx-switch-input,\nuni-switch.radius .wx-switch-input::before,\nuni-switch.radius .uni-switch-input::after,\nuni-switch.radius .uni-switch-input,\nuni-switch.radius .uni-switch-input::before {\n\tborder-radius: 10upx;\n}\nuni-switch .wx-switch-input::before,\nuni-radio.radio::before,\nuni-checkbox .wx-checkbox-input::before,\nuni-radio .wx-radio-input::before,\nuni-switch .uni-switch-input::before,\nuni-radio.radio::before,\nuni-checkbox .uni-checkbox-input::before,\nuni-radio .uni-radio-input::before {\n\tdisplay: none;\n}\nuni-radio.radio[checked]::after,\nuni-radio.radio .uni-radio-input-checked::after {\n\tcontent: \"\";\n\tbackground-color: transparent;\n\tdisplay: block;\n\tposition: absolute;\n\twidth: 8px;\n\theight: 8px;\n\tz-index: 999;\n\ttop: 0upx;\n\tleft: 0upx;\n\tright: 0;\n\tbottom: 0;\n\tmargin: auto;\n\tborder-radius: 200upx;\n\t\n\tborder: 7px solid #ffffff !important;\n\t\n\n\t\n}\n.switch-sex::after {\n\tcontent: \"\\E71C\";\n}\n.switch-sex::before {\n\tcontent: \"\\E71A\";\n}\n.switch-sex .wx-switch-input,\n.switch-sex .uni-switch-input {\n\tbackground: #e54d42 !important;\n\tborder-color: #e54d42 !important;\n}\n.switch-sex[checked] .wx-switch-input,\n.switch-sex.checked .uni-switch-input {\n\tbackground: #0081ff !important;\n\tborder-color: #0081ff !important;\n}\nuni-switch.red[checked] .wx-switch-input.wx-switch-input-checked,\nuni-checkbox.red[checked] .wx-checkbox-input,\nuni-radio.red[checked] .wx-radio-input,\nuni-switch.red.checked .uni-switch-input.uni-switch-input-checked,\nuni-checkbox.red.checked .uni-checkbox-input,\nuni-radio.red.checked .uni-radio-input {\n\tbackground-color: #e54d42 !important;\n\tborder-color: #e54d42 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.orange[checked] .wx-switch-input,\nuni-checkbox.orange[checked] .wx-checkbox-input,\nuni-radio.orange[checked] .wx-radio-input,\nuni-switch.orange.checked .uni-switch-input,\nuni-checkbox.orange.checked .uni-checkbox-input,\nuni-radio.orange.checked .uni-radio-input {\n\tbackground-color: #f37b1d !important;\n\tborder-color: #f37b1d !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.yellow[checked] .wx-switch-input,\nuni-checkbox.yellow[checked] .wx-checkbox-input,\nuni-radio.yellow[checked] .wx-radio-input,\nuni-switch.yellow.checked .uni-switch-input,\nuni-checkbox.yellow.checked .uni-checkbox-input,\nuni-radio.yellow.checked .uni-radio-input {\n\tbackground-color: #fbbd08 !important;\n\tborder-color: #fbbd08 !important;\n\tcolor: #333333 !important;\n}\nuni-switch.olive[checked] .wx-switch-input,\nuni-checkbox.olive[checked] .wx-checkbox-input,\nuni-radio.olive[checked] .wx-radio-input,\nuni-switch.olive.checked .uni-switch-input,\nuni-checkbox.olive.checked .uni-checkbox-input,\nuni-radio.olive.checked .uni-radio-input {\n\tbackground-color: #8dc63f !important;\n\tborder-color: #8dc63f !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.green[checked] .wx-switch-input,\nuni-switch[checked] .wx-switch-input,\nuni-checkbox.green[checked] .wx-checkbox-input,\nuni-checkbox[checked] .wx-checkbox-input,\nuni-radio.green[checked] .wx-radio-input,\nuni-radio[checked] .wx-radio-input,\nuni-switch.green.checked .uni-switch-input,\nuni-switch.checked .uni-switch-input,\nuni-checkbox.green.checked .uni-checkbox-input,\nuni-checkbox.checked .uni-checkbox-input,\nuni-radio.green.checked .uni-radio-input,\nuni-radio.checked .uni-radio-input {\n\tbackground-color: #39b54a !important;\n\tborder-color: #39b54a !important;\n\tcolor: #ffffff !important;\n\tborder-color: #39B54A !important;\n}\nuni-switch.cyan[checked] .wx-switch-input,\nuni-checkbox.cyan[checked] .wx-checkbox-input,\nuni-radio.cyan[checked] .wx-radio-input,\nuni-switch.cyan.checked .uni-switch-input,\nuni-checkbox.cyan.checked .uni-checkbox-input,\nuni-radio.cyan.checked .uni-radio-input {\n\tbackground-color: #1cbbb4 !important;\n\tborder-color: #1cbbb4 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.blue[checked] .wx-switch-input,\nuni-checkbox.blue[checked] .wx-checkbox-input,\nuni-radio.blue[checked] .wx-radio-input,\nuni-switch.blue.checked .uni-switch-input,\nuni-checkbox.blue.checked .uni-checkbox-input,\nuni-radio.blue.checked .uni-radio-input {\n\tbackground-color: #0081ff !important;\n\tborder-color: #0081ff !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.purple[checked] .wx-switch-input,\nuni-checkbox.purple[checked] .wx-checkbox-input,\nuni-radio.purple[checked] .wx-radio-input,\nuni-switch.purple.checked .uni-switch-input,\nuni-checkbox.purple.checked .uni-checkbox-input,\nuni-radio.purple.checked .uni-radio-input {\n\tbackground-color: #6739b6 !important;\n\tborder-color: #6739b6 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.mauve[checked] .wx-switch-input,\nuni-checkbox.mauve[checked] .wx-checkbox-input,\nuni-radio.mauve[checked] .wx-radio-input,\nuni-switch.mauve.checked .uni-switch-input,\nuni-checkbox.mauve.checked .uni-checkbox-input,\nuni-radio.mauve.checked .uni-radio-input {\n\tbackground-color: #9c26b0 !important;\n\tborder-color: #9c26b0 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.pink[checked] .wx-switch-input,\nuni-checkbox.pink[checked] .wx-checkbox-input,\nuni-radio.pink[checked] .wx-radio-input,\nuni-switch.pink.checked .uni-switch-input,\nuni-checkbox.pink.checked .uni-checkbox-input,\nuni-radio.pink.checked .uni-radio-input {\n\tbackground-color: #e03997 !important;\n\tborder-color: #e03997 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.brown[checked] .wx-switch-input,\nuni-checkbox.brown[checked] .wx-checkbox-input,\nuni-radio.brown[checked] .wx-radio-input,\nuni-switch.brown.checked .uni-switch-input,\nuni-checkbox.brown.checked .uni-checkbox-input,\nuni-radio.brown.checked .uni-radio-input {\n\tbackground-color: #a5673f !important;\n\tborder-color: #a5673f !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.grey[checked] .wx-switch-input,\nuni-checkbox.grey[checked] .wx-checkbox-input,\nuni-radio.grey[checked] .wx-radio-input,\nuni-switch.grey.checked .uni-switch-input,\nuni-checkbox.grey.checked .uni-checkbox-input,\nuni-radio.grey.checked .uni-radio-input {\n\tbackground-color: #8799a3 !important;\n\tborder-color: #8799a3 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.gray[checked] .wx-switch-input,\nuni-checkbox.gray[checked] .wx-checkbox-input,\nuni-radio.gray[checked] .wx-radio-input,\nuni-switch.gray.checked .uni-switch-input,\nuni-checkbox.gray.checked .uni-checkbox-input,\nuni-radio.gray.checked .uni-radio-input {\n\tbackground-color: #f0f0f0 !important;\n\tborder-color: #f0f0f0 !important;\n\tcolor: #333333 !important;\n}\nuni-switch.black[checked] .wx-switch-input,\nuni-checkbox.black[checked] .wx-checkbox-input,\nuni-radio.black[checked] .wx-radio-input,\nuni-switch.black.checked .uni-switch-input,\nuni-checkbox.black.checked .uni-checkbox-input,\nuni-radio.black.checked .uni-radio-input {\n\tbackground-color: #333333 !important;\n\tborder-color: #333333 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.white[checked] .wx-switch-input,\nuni-checkbox.white[checked] .wx-checkbox-input,\nuni-radio.white[checked] .wx-radio-input,\nuni-switch.white.checked .uni-switch-input,\nuni-checkbox.white.checked .uni-checkbox-input,\nuni-radio.white.checked .uni-radio-input {\n\tbackground-color: #ffffff !important;\n\tborder-color: #ffffff !important;\n\tcolor: #333333 !important;\n}\n/* ==================\n          边框\n ==================== */\n/* -- 实线 -- */\n.solid,\n.solid-top,\n.solid-right,\n.solid-bottom,\n.solid-left,\n.solids,\n.solids-top,\n.solids-right,\n.solids-bottom,\n.solids-left,\n.dashed,\n.dashed-top,\n.dashed-right,\n.dashed-bottom,\n.dashed-left {\n\tposition: relative;\n}\n.solid::after,\n.solid-top::after,\n.solid-right::after,\n.solid-bottom::after,\n.solid-left::after,\n.solids::after,\n.solids-top::after,\n.solids-right::after,\n.solids-bottom::after,\n.solids-left::after,\n.dashed::after,\n.dashed-top::after,\n.dashed-right::after,\n.dashed-bottom::after,\n.dashed-left::after {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder-radius: inherit;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none;\n\tbox-sizing: border-box;\n}\n.solid::after {\n\tborder: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-top::after {\n\tborder-top: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-right::after {\n\tborder-right: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-bottom::after {\n\tborder-bottom: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-left::after {\n\tborder-left: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solids::after {\n\tborder: 8upx solid #eee;\n}\n.solids-top::after {\n\tborder-top: 8upx solid #eee;\n}\n.solids-right::after {\n\tborder-right: 8upx solid #eee;\n}\n.solids-bottom::after {\n\tborder-bottom: 8upx solid #eee;\n}\n.solids-left::after {\n\tborder-left: 8upx solid #eee;\n}\n/* -- 虚线 -- */\n.dashed::after {\n\tborder: 1upx dashed #ddd;\n}\n.dashed-top::after {\n\tborder-top: 1upx dashed #ddd;\n}\n.dashed-right::after {\n\tborder-right: 1upx dashed #ddd;\n}\n.dashed-bottom::after {\n\tborder-bottom: 1upx dashed #ddd;\n}\n.dashed-left::after {\n\tborder-left: 1upx dashed #ddd;\n}\n/* -- 阴影 -- */\n.shadow[class*='white'] {\n\t--ShadowSize: 0 1upx 6upx;\n}\n.shadow-lg {\n\t--ShadowSize: 0upx 40upx 100upx 0upx;\n}\n.shadow-warp {\n\tposition: relative;\n\tbox-shadow: 0 0 10upx rgba(0, 0, 0, 0.1);\n}\n.shadow-warp:before,\n.shadow-warp:after {\n\tposition: absolute;\n\tcontent: \"\";\n\ttop: 20upx;\n\tbottom: 30upx;\n\tleft: 20upx;\n\twidth: 50%;\n\tbox-shadow: 0 30upx 20upx rgba(0, 0, 0, 0.2);\n\t-webkit-transform: rotate(-3deg);\n\t        transform: rotate(-3deg);\n\tz-index: -1;\n}\n.shadow-warp:after {\n\tright: 20upx;\n\tleft: auto;\n\t-webkit-transform: rotate(3deg);\n\t        transform: rotate(3deg);\n}\n.shadow-blur {\n\tposition: relative;\n}\n.shadow-blur::before {\n\tcontent: \"\";\n\tdisplay: block;\n\tbackground: inherit;\n\t-webkit-filter: blur(10upx);\n\t        filter: blur(10upx);\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\ttop: 10upx;\n\tleft: 10upx;\n\tz-index: -1;\n\topacity: 0.4;\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tborder-radius: inherit;\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n}\n/* ==================\n          按钮\n ==================== */\n.cu-btn {\n\tposition: relative;\n\tborder: 0upx;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tbox-sizing: border-box;\n\tpadding: 0 30upx;\n\tfont-size: 28upx;\n\theight: 64upx;\n\tline-height: 1;\n\ttext-align: center;\n\ttext-decoration: none;\n\toverflow: visible;\n\tmargin-left: initial;\n\t-webkit-transform: translate(0upx, 0upx);\n\t        transform: translate(0upx, 0upx);\n\tmargin-right: initial;\n}\n.cu-btn::after {\n\tdisplay: none;\n}\n.cu-btn:not([class*=\"bg-\"]) {\n\tbackground-color: #f0f0f0;\n}\n.cu-btn[class*=\"line\"] {\n\tbackground-color: transparent;\n}\n.cu-btn[class*=\"line\"]::after {\n\tcontent: \" \";\n\tdisplay: block;\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder: 1upx solid currentColor;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tbox-sizing: border-box;\n\tborder-radius: 12upx;\n\tz-index: 1;\n\tpointer-events: none;\n}\n.cu-btn.round[class*=\"line\"]::after {\n\tborder-radius: 1000upx;\n}\n.cu-btn[class*=\"lines\"]::after {\n\tborder: 6upx solid currentColor;\n}\n.cu-btn[class*=\"bg-\"]::after {\n\tdisplay: none;\n}\n.cu-btn.sm {\n\tpadding: 0 20upx;\n\tfont-size: 20upx;\n\theight: 48upx;\n}\n.cu-btn.lg {\n\tpadding: 0 40upx;\n\tfont-size: 32upx;\n\theight: 80upx;\n}\n.cu-btn.cuIcon.sm {\n\twidth: 48upx;\n\theight: 48upx;\n}\n.cu-btn.cuIcon {\n\twidth: 64upx;\n\theight: 64upx;\n\tborder-radius: 500upx;\n\tpadding: 0;\n}\nuni-button.cuIcon.lg {\n\twidth: 80upx;\n\theight: 80upx;\n}\n.cu-btn.shadow-blur::before {\n\ttop: 4upx;\n\tleft: 4upx;\n\t-webkit-filter: blur(6upx);\n\t        filter: blur(6upx);\n\topacity: 0.6;\n}\n.cu-btn.button-hover {\n\t-webkit-transform: translate(1upx, 1upx);\n\t        transform: translate(1upx, 1upx);\n}\n.block {\n\tdisplay: block;\n}\n.cu-btn.block {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\n.cu-btn[disabled] {\n\topacity: 0.6;\n\tcolor: #ffffff;\n}\n/* ==================\n          徽章\n ==================== */\n.cu-tag {\n\tfont-size: 24upx;\n\tvertical-align: middle;\n\tposition: relative;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tbox-sizing: border-box;\n\tpadding: 0upx 16upx;\n\theight: 48upx;\n\tfont-family: Helvetica Neue, Helvetica, sans-serif;\n\twhite-space: nowrap;\n}\n.cu-tag:not([class*=\"bg\"]):not([class*=\"line\"]) {\n\tbackground-color: #f1f1f1;\n}\n.cu-tag[class*=\"line-\"]::after {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder: 1upx solid currentColor;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tbox-sizing: border-box;\n\tborder-radius: inherit;\n\tz-index: 1;\n\tpointer-events: none;\n}\n.cu-tag.radius[class*=\"line\"]::after {\n\tborder-radius: 12upx;\n}\n.cu-tag.round[class*=\"line\"]::after {\n\tborder-radius: 1000upx;\n}\n.cu-tag[class*=\"line-\"]::after {\n\tborder-radius: 0;\n}\n.cu-tag+.cu-tag {\n\tmargin-left: 10upx;\n}\n.cu-tag.sm {\n\tfont-size: 20upx;\n\tpadding: 0upx 12upx;\n\theight: 32upx;\n}\n.cu-capsule {\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\tvertical-align: middle;\n}\n/* .cu-capsule+.cu-capsule {\n\tmargin-left: 10upx;\n} */\n.cu-capsule .cu-tag {\n\tmargin: 0;\n}\n.cu-capsule .cu-tag[class*=\"line-\"]:last-child::after {\n\tborder-left: 0upx solid transparent;\n}\n.cu-capsule .cu-tag[class*=\"line-\"]:first-child::after {\n\tborder-right: 0upx solid transparent;\n}\n.cu-capsule.radius .cu-tag:first-child {\n\tborder-top-left-radius: 6upx;\n\tborder-bottom-left-radius: 6upx;\n}\n.cu-capsule.radius .cu-tag:last-child::after,\n.cu-capsule.radius .cu-tag[class*=\"line-\"] {\n\tborder-top-right-radius: 12upx;\n\tborder-bottom-right-radius: 12upx;\n}\n.cu-capsule.round .cu-tag:first-child {\n\tborder-top-left-radius: 200upx;\n\tborder-bottom-left-radius: 200upx;\n\ttext-indent: 4upx;\n}\n.cu-capsule.round .cu-tag:last-child::after,\n.cu-capsule.round .cu-tag:last-child {\n\tborder-top-right-radius: 200upx;\n\tborder-bottom-right-radius: 200upx;\n\ttext-indent: -4upx;\n}\n.cu-tag.badge {\n\tborder-radius: 200upx;\n\tposition: absolute;\n\ttop: -10upx;\n\tright: -10upx;\n\tfont-size: 20upx;\n\tpadding: 0upx 10upx;\n\theight: 28upx;\n\tcolor: #ffffff;\n}\n.cu-tag.badge:not([class*=\"bg-\"]) {\n\tbackground-color: #dd514c;\n}\n.cu-tag:empty:not([class*=\"cuIcon-\"]) {\n\tpadding: 0upx;\n\twidth: 16upx;\n\theight: 16upx;\n\ttop: -4upx;\n\tright: -4upx;\n}\n.cu-tag[class*=\"cuIcon-\"] {\n\twidth: 32upx;\n\theight: 32upx;\n\ttop: -4upx;\n\tright: -4upx;\n}\n/* ==================\n          头像\n ==================== */\n.cu-avatar {\n\tfont-variant: small-caps;\n\tmargin: 0;\n\tpadding: 0;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\ttext-align: center;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tbackground-color: #ccc;\n\tcolor: #ffffff;\n\twhite-space: nowrap;\n\tposition: relative;\n\twidth: 64upx;\n\theight: 64upx;\n\tbackground-size: cover;\n\tbackground-position: center;\n\tvertical-align: middle;\n\tfont-size: 1.5em;\n}\n.cu-avatar.sm {\n\twidth: 48upx;\n\theight: 48upx;\n\tfont-size: 1em;\n}\n.cu-avatar.lg {\n\twidth: 96upx;\n\theight: 96upx;\n\tfont-size: 2em;\n}\n.cu-avatar.xl {\n\twidth: 128upx;\n\theight: 128upx;\n\tfont-size: 2.5em;\n}\n.cu-avatar .avatar-text {\n\tfont-size: 0.4em;\n}\n.cu-avatar-group {\n\tdirection: rtl;\n\tunicode-bidi: bidi-override;\n\tpadding: 0 10upx 0 40upx;\n\tdisplay: inline-block;\n}\n.cu-avatar-group .cu-avatar {\n\tmargin-left: -30upx;\n\tborder: 4upx solid #f1f1f1;\n\tvertical-align: middle;\n}\n.cu-avatar-group .cu-avatar.sm {\n\tmargin-left: -20upx;\n\tborder: 1upx solid #f1f1f1;\n}\n/* ==================\n         进度条\n ==================== */\n.cu-progress {\n\toverflow: hidden;\n\theight: 28upx;\n\tbackground-color: #ebeef5;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\twidth: 100%;\n}\n.cu-progress+uni-view,\n.cu-progress+uni-text {\n\tline-height: 1;\n}\n.cu-progress.xs {\n\theight: 10upx;\n}\n.cu-progress.sm {\n\theight: 20upx;\n}\n.cu-progress uni-view {\n\twidth: 0;\n\theight: 100%;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tjustify-items: flex-end;\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n\tfont-size: 20upx;\n\tcolor: #ffffff;\n\t-webkit-transition: width 0.6s ease;\n\ttransition: width 0.6s ease;\n}\n.cu-progress uni-text {\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tfont-size: 20upx;\n\tcolor: #333333;\n\ttext-indent: 10upx;\n}\n.cu-progress.text-progress {\n\tpadding-right: 60upx;\n}\n.cu-progress.striped uni-view {\n\tbackground-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n\tbackground-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n\tbackground-size: 72upx 72upx;\n}\n.cu-progress.active uni-view {\n\t-webkit-animation: progress-stripes 2s linear infinite;\n\t        animation: progress-stripes 2s linear infinite;\n}\n@-webkit-keyframes progress-stripes {\nfrom {\n\t\tbackground-position: 72upx 0;\n}\nto {\n\t\tbackground-position: 0 0;\n}\n}\n@keyframes progress-stripes {\nfrom {\n\t\tbackground-position: 72upx 0;\n}\nto {\n\t\tbackground-position: 0 0;\n}\n}\n/* ==================\n          加载\n ==================== */\n.cu-load {\n\tdisplay: block;\n\tline-height: 3em;\n\ttext-align: center;\n}\n.cu-load::before {\n\tfont-family: \"cuIcon\";\n\tdisplay: inline-block;\n\tmargin-right: 6upx;\n}\n.cu-load.loading::before {\n\tcontent: \"\\E67A\";\n\t-webkit-animation: cuIcon-spin 2s infinite linear;\n\t        animation: cuIcon-spin 2s infinite linear;\n}\n.cu-load.loading::after {\n\tcontent: \"\\52A0\\8F7D\\4E2D...\";\n}\n.cu-load.over::before {\n\tcontent: \"\\E64A\";\n}\n.cu-load.over::after {\n\tcontent: \"\\6CA1\\6709\\66F4\\591A\\4E86\";\n}\n.cu-load.erro::before {\n\tcontent: \"\\E658\";\n}\n.cu-load.erro::after {\n\tcontent: \"\\52A0\\8F7D\\5931\\8D25\";\n}\n.cu-load.load-cuIcon::before {\n\tfont-size: 32upx;\n}\n.cu-load.load-cuIcon::after {\n\tdisplay: none;\n}\n.cu-load.load-cuIcon.over {\n\tdisplay: none;\n}\n.cu-load.load-modal {\n\tposition: fixed;\n\ttop: 0;\n\tright: 0;\n\tbottom: 140upx;\n\tleft: 0;\n\tmargin: auto;\n\twidth: 260upx;\n\theight: 260upx;\n\tbackground-color: #ffffff;\n\tborder-radius: 10upx;\n\tbox-shadow: 0 0 0upx 2000upx rgba(0, 0, 0, 0.5);\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tfont-size: 28upx;\n\tz-index: 9999;\n\tline-height: 2.4em;\n}\n.cu-load.load-modal [class*=\"cuIcon-\"] {\n\tfont-size: 60upx;\n}\n.cu-load.load-modal uni-image {\n\twidth: 70upx;\n\theight: 70upx;\n}\n.cu-load.load-modal::after {\n\tcontent: \"\";\n\tposition: absolute;\n\tbackground-color: #ffffff;\n\tborder-radius: 50%;\n\twidth: 200upx;\n\theight: 200upx;\n\tfont-size: 10px;\n\tborder-top: 6upx solid rgba(0, 0, 0, 0.05);\n\tborder-right: 6upx solid rgba(0, 0, 0, 0.05);\n\tborder-bottom: 6upx solid rgba(0, 0, 0, 0.05);\n\tborder-left: 6upx solid #f37b1d;\n\t-webkit-animation: cuIcon-spin 1s infinite linear;\n\t        animation: cuIcon-spin 1s infinite linear;\n\tz-index: -1;\n}\n.load-progress {\n\tpointer-events: none;\n\ttop: 0;\n\tposition: fixed;\n\twidth: 100%;\n\tleft: 0;\n\tz-index: 2000;\n}\n.load-progress.hide {\n\tdisplay: none;\n}\n.load-progress .load-progress-bar {\n\tposition: relative;\n\twidth: 100%;\n\theight: 4upx;\n\toverflow: hidden;\n\t-webkit-transition: all 200ms ease 0s;\n\ttransition: all 200ms ease 0s;\n}\n.load-progress .load-progress-spinner {\n\tposition: absolute;\n\ttop: 10upx;\n\tright: 10upx;\n\tz-index: 2000;\n\tdisplay: block;\n}\n.load-progress .load-progress-spinner::after {\n\tcontent: \"\";\n\tdisplay: block;\n\twidth: 24upx;\n\theight: 24upx;\n\tbox-sizing: border-box;\n\tborder: solid 4upx transparent;\n\tborder-top-color: inherit;\n\tborder-left-color: inherit;\n\tborder-radius: 50%;\n\t-webkit-animation: load-progress-spinner 0.4s linear infinite;\n\tanimation: load-progress-spinner 0.4s linear infinite;\n}\n@-webkit-keyframes load-progress-spinner {\n0% {\n\t\t-webkit-transform: rotate(0);\n\t\ttransform: rotate(0);\n}\n100% {\n\t\t-webkit-transform: rotate(360deg);\n\t\ttransform: rotate(360deg);\n}\n}\n@keyframes load-progress-spinner {\n0% {\n\t\t-webkit-transform: rotate(0);\n\t\ttransform: rotate(0);\n}\n100% {\n\t\t-webkit-transform: rotate(360deg);\n\t\ttransform: rotate(360deg);\n}\n}\n/* ==================\n          列表\n ==================== */\n.grayscale {\n\t-webkit-filter: grayscale(1);\n\t        filter: grayscale(1);\n}\n.cu-list+.cu-list {\n\tmargin-top: 30upx\n}\n.cu-list>.cu-item {\n\t-webkit-transition: all .6s ease-in-out 0s;\n\ttransition: all .6s ease-in-out 0s;\n\t-webkit-transform: translateX(0upx);\n\t        transform: translateX(0upx)\n}\n.cu-list>.cu-item.move-cur {\n\t-webkit-transform: translateX(-260upx);\n\t        transform: translateX(-260upx)\n}\n.cu-list>.cu-item .move {\n\tposition: absolute;\n\tright: 0;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\twidth: 260upx;\n\theight: 100%;\n\t-webkit-transform: translateX(100%);\n\t        transform: translateX(100%)\n}\n.cu-list>.cu-item .move uni-view {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu-avatar {\n\toverflow: hidden;\n}\n.cu-list.menu-avatar>.cu-item {\n\tposition: relative;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding-right: 10upx;\n\theight: 140upx;\n\tbackground-color: #ffffff;\n\t-webkit-box-pack: end;\n\t-webkit-justify-content: flex-end;\n\t        justify-content: flex-end;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu-avatar>.cu-item>.cu-avatar {\n\tposition: absolute;\n\tleft: 30upx\n}\n.cu-list.menu-avatar>.cu-item .flex .text-cut {\n\tmax-width: 510upx\n}\n.cu-list.menu-avatar>.cu-item .content {\n\tposition: absolute;\n\tleft: 146upx;\n\twidth: calc(100% - 96upx - 60upx - 120upx - 20upx);\n\tline-height: 1.6em;\n}\n.cu-list.menu-avatar>.cu-item .content.flex-sub {\n\twidth: calc(100% - 96upx - 60upx - 20upx);\n}\n.cu-list.menu-avatar>.cu-item .content>uni-view:first-child {\n\tfont-size: 30upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu-avatar>.cu-item .content .cu-tag.sm {\n\tdisplay: inline-block;\n\tmargin-left: 10upx;\n\theight: 28upx;\n\tfont-size: 16upx;\n\tline-height: 32upx\n}\n.cu-list.menu-avatar>.cu-item .action {\n\twidth: 100upx;\n\ttext-align: center\n}\n.cu-list.menu-avatar>.cu-item .action uni-view+uni-view {\n\tmargin-top: 10upx\n}\n.cu-list.menu-avatar.comment>.cu-item .content {\n\tposition: relative;\n\tleft: 0;\n\twidth: auto;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n}\n.cu-list.menu-avatar.comment>.cu-item {\n\tpadding: 30upx 30upx 30upx 120upx;\n\theight: auto\n}\n.cu-list.menu-avatar.comment .cu-avatar {\n\t-webkit-align-self: flex-start;\n\t        align-self: flex-start\n}\n.cu-list.menu>.cu-item {\n\tposition: relative;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 0 30upx;\n\tmin-height: 100upx;\n\tbackground-color: #ffffff;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu>.cu-item:last-child:after {\n\tborder: none\n}\n.cu-list.menu-avatar>.cu-item:after,\n.cu-list.menu>.cu-item:after {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tbox-sizing: border-box;\n\twidth: 200%;\n\theight: 200%;\n\tborder-bottom: 1upx solid #ddd;\n\tborder-radius: inherit;\n\tcontent: \" \";\n\t-webkit-transform: scale(.5);\n\t        transform: scale(.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none\n}\n.cu-list.menu>.cu-item.grayscale {\n\tbackground-color: #f5f5f5\n}\n.cu-list.menu>.cu-item.cur {\n\tbackground-color: #fcf7e9\n}\n.cu-list.menu>.cu-item.arrow {\n\tpadding-right: 90upx\n}\n.cu-list.menu>.cu-item.arrow:before {\n\tposition: absolute;\n\ttop: 0;\n\tright: 30upx;\n\tbottom: 0;\n\tdisplay: block;\n\tmargin: auto;\n\twidth: 30upx;\n\theight: 30upx;\n\tcolor: #8799a3;\n\tcontent: \"\\E6A3\";\n\ttext-align: center;\n\tfont-size: 34upx;\n\tfont-family: cuIcon;\n\tline-height: 30upx\n}\n.cu-list.menu>.cu-item uni-button.content {\n\tpadding: 0;\n\tbackground-color: transparent;\n\t-webkit-box-pack: start;\n\t-webkit-justify-content: flex-start;\n\t        justify-content: flex-start\n}\n.cu-list.menu>.cu-item uni-button.content:after {\n\tdisplay: none\n}\n.cu-list.menu>.cu-item .cu-avatar-group .cu-avatar {\n\tborder-color: #ffffff\n}\n.cu-list.menu>.cu-item .content>uni-view:first-child {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu>.cu-item .content>uni-text[class*=cuIcon] {\n\tdisplay: inline-block;\n\tmargin-right: 10upx;\n\twidth: 1.6em;\n\ttext-align: center\n}\n.cu-list.menu>.cu-item .content>uni-image {\n\tdisplay: inline-block;\n\tmargin-right: 10upx;\n\twidth: 1.6em;\n\theight: 1.6em;\n\tvertical-align: middle\n}\n.cu-list.menu>.cu-item .content {\n\tfont-size: 30upx;\n\tline-height: 1.6em;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1\n}\n.cu-list.menu>.cu-item .content .cu-tag.sm {\n\tdisplay: inline-block;\n\tmargin-left: 10upx;\n\theight: 28upx;\n\tfont-size: 16upx;\n\tline-height: 32upx\n}\n.cu-list.menu>.cu-item .action .cu-tag:empty {\n\tright: 10upx\n}\n.cu-list.menu {\n\tdisplay: block;\n\toverflow: hidden\n}\n.cu-list.menu.sm-border>.cu-item:after {\n\tleft: 30upx;\n\twidth: calc(200% - 120upx)\n}\n.cu-list.grid>.cu-item {\n\tposition: relative;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 20upx 0 30upx;\n\t-webkit-transition-duration: 0s;\n\t        transition-duration: 0s;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column\n}\n.cu-list.grid>.cu-item:after {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tbox-sizing: border-box;\n\twidth: 200%;\n\theight: 200%;\n\tborder-right: 1px solid rgba(0, 0, 0, .1);\n\tborder-bottom: 1px solid rgba(0, 0, 0, .1);\n\tborder-radius: inherit;\n\tcontent: \" \";\n\t-webkit-transform: scale(.5);\n\t        transform: scale(.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none\n}\n.cu-list.grid>.cu-item uni-text {\n\tdisplay: block;\n\tmargin-top: 10upx;\n\tcolor: #888;\n\tfont-size: 26upx;\n\tline-height: 40upx\n}\n.cu-list.grid>.cu-item [class*=cuIcon] {\n\tposition: relative;\n\tdisplay: block;\n\tmargin-top: 20upx;\n\twidth: 100%;\n\tfont-size: 48upx\n}\n.cu-list.grid>.cu-item .cu-tag {\n\tright: auto;\n\tleft: 50%;\n\tmargin-left: 20upx\n}\n.cu-list.grid {\n\tbackground-color: #ffffff;\n\ttext-align: center\n}\n.cu-list.grid.no-border>.cu-item {\n\tpadding-top: 10upx;\n\tpadding-bottom: 20upx\n}\n.cu-list.grid.no-border>.cu-item:after {\n\tborder: none\n}\n.cu-list.grid.no-border {\n\tpadding: 20upx 10upx\n}\n.cu-list.grid.col-3>.cu-item:nth-child(3n):after,\n.cu-list.grid.col-4>.cu-item:nth-child(4n):after,\n.cu-list.grid.col-5>.cu-item:nth-child(5n):after {\n\tborder-right-width: 0\n}\n.cu-list.card-menu {\n\toverflow: hidden;\n\tmargin-right: 30upx;\n\tmargin-left: 30upx;\n\tborder-radius: 20upx\n}\n/* ==================\n          操作条\n ==================== */\n.cu-bar {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tposition: relative;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tmin-height: 80upx;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.cu-bar .action {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\theight: 100%;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tmax-width: 100%;\n}\n.cu-bar .action.border-title {\n\tposition: relative;\n\ttop: -10upx;\n}\n.cu-bar .action.border-title uni-text[class*=\"bg-\"]:last-child {\n\tposition: absolute;\n\tbottom: -0.5rem;\n\tmin-width: 2rem;\n\theight: 6upx;\n\tleft: 0;\n}\n.cu-bar .action.sub-title {\n\tposition: relative;\n\ttop: -0.2rem;\n}\n.cu-bar .action.sub-title uni-text {\n\tposition: relative;\n\tz-index: 1;\n}\n.cu-bar .action.sub-title uni-text[class*=\"bg-\"]:last-child {\n\tposition: absolute;\n\tdisplay: inline-block;\n\tbottom: -0.2rem;\n\tborder-radius: 6upx;\n\twidth: 100%;\n\theight: 0.6rem;\n\tleft: 0.6rem;\n\topacity: 0.3;\n\tz-index: 0;\n}\n.cu-bar .action.sub-title uni-text[class*=\"text-\"]:last-child {\n\tposition: absolute;\n\tdisplay: inline-block;\n\tbottom: -0.7rem;\n\tleft: 0.5rem;\n\topacity: 0.2;\n\tz-index: 0;\n\ttext-align: right;\n\tfont-weight: 900;\n\tfont-size: 36upx;\n}\n.cu-bar.justify-center .action.border-title uni-text:last-child,\n.cu-bar.justify-center .action.sub-title uni-text:last-child {\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\ttext-align: center;\n}\n.cu-bar .action:first-child {\n\tmargin-left: 30upx;\n\tfont-size: 30upx;\n}\n.cu-bar .action uni-text.text-cut {\n\ttext-align: left;\n\twidth: 100%;\n}\n.cu-bar .cu-avatar:first-child {\n\tmargin-left: 20upx;\n}\n.cu-bar .action:first-child>uni-text[class*=\"cuIcon-\"] {\n\tmargin-left: -0.3em;\n\tmargin-right: 0.3em;\n}\n.cu-bar .action:last-child {\n\tmargin-right: 30upx;\n}\n.cu-bar .action>uni-text[class*=\"cuIcon-\"],\n.cu-bar .action>uni-view[class*=\"cuIcon-\"] {\n\tfont-size: 36upx;\n}\n.cu-bar .action>uni-text[class*=\"cuIcon-\"]+uni-text[class*=\"cuIcon-\"] {\n\tmargin-left: 0.5em;\n}\n.cu-bar .content {\n\tposition: absolute;\n\ttext-align: center;\n\twidth: calc(100% - 340upx);\n\tleft: 0;\n\tright: 0;\n\tbottom: 0;\n\ttop: 0;\n\tmargin: auto;\n\theight: 60upx;\n\tfont-size: 32upx;\n\tline-height: 60upx;\n\tcursor: none;\n\tpointer-events: none;\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n\toverflow: hidden;\n}\n.cu-bar.ios .content {\n\tbottom: 7px;\n\theight: 30px;\n\tfont-size: 32upx;\n\tline-height: 30px;\n}\n.cu-bar.btn-group {\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n}\n.cu-bar.btn-group uni-button {\n\tpadding: 20upx 32upx;\n}\n.cu-bar.btn-group uni-button {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tmargin: 0 20upx;\n\tmax-width: 50%;\n}\n.cu-bar .search-form {\n\tbackground-color: #f5f5f5;\n\tline-height: 64upx;\n\theight: 64upx;\n\tfont-size: 24upx;\n\tcolor: #333333;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tmargin: 0 30upx;\n}\n.cu-bar .search-form+.action {\n\tmargin-right: 30upx;\n}\n.cu-bar .search-form uni-input {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tpadding-right: 30upx;\n\theight: 64upx;\n\tline-height: 64upx;\n\tfont-size: 26upx;\n\tbackground-color: transparent;\n}\n.cu-bar .search-form [class*=\"cuIcon-\"] {\n\tmargin: 0 0.5em 0 0.8em;\n}\n.cu-bar .search-form [class*=\"cuIcon-\"]::before {\n\ttop: 0upx;\n}\n.cu-bar.fixed,\n.nav.fixed {\n\tposition: fixed;\n\twidth: 100%;\n\ttop: 0;\n\tz-index: 1024;\n\tbox-shadow: 0 1upx 6upx rgba(0, 0, 0, 0.1);\n}\n.cu-bar.foot {\n\tposition: fixed;\n\twidth: 100%;\n\tbottom: 0;\n\tz-index: 1024;\n\tbox-shadow: 0 -1upx 6upx rgba(0, 0, 0, 0.1);\n}\n.cu-bar.tabbar {\n\tpadding: 0;\n\theight: calc(100upx + env(safe-area-inset-bottom) / 2);\n\tpadding-bottom: calc(env(safe-area-inset-bottom) / 2);\n}\n.cu-tabbar-height {\n\tmin-height: 100upx;\n\theight: calc(100upx + env(safe-area-inset-bottom) / 2);\n}\n.cu-bar.tabbar.shadow {\n\tbox-shadow: 0 -1upx 6upx rgba(0, 0, 0, 0.1);\n}\n.cu-bar.tabbar .action {\n\tfont-size: 22upx;\n\tposition: relative;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\ttext-align: center;\n\tpadding: 0;\n\tdisplay: block;\n\theight: auto;\n\tline-height: 1;\n\tmargin: 0;\n\tbackground-color: inherit;\n\toverflow: initial;\n}\n.cu-bar.tabbar.shop .action {\n\twidth: 140upx;\n\t-webkit-box-flex: initial;\n\t-webkit-flex: initial;\n\t        flex: initial;\n}\n.cu-bar.tabbar .action.add-action {\n\tposition: relative;\n\tz-index: 2;\n\tpadding-top: 50upx;\n}\n.cu-bar.tabbar .action.add-action [class*=\"cuIcon-\"] {\n\tposition: absolute;\n\twidth: 70upx;\n\tz-index: 2;\n\theight: 70upx;\n\tborder-radius: 50%;\n\tline-height: 70upx;\n\tfont-size: 50upx;\n\ttop: -35upx;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\tpadding: 0;\n}\n.cu-bar.tabbar .action.add-action::after {\n\tcontent: \"\";\n\tposition: absolute;\n\twidth: 100upx;\n\theight: 100upx;\n\ttop: -50upx;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\tbox-shadow: 0 -3upx 8upx rgba(0, 0, 0, 0.08);\n\tborder-radius: 50upx;\n\tbackground-color: inherit;\n\tz-index: 0;\n}\n.cu-bar.tabbar .action.add-action::before {\n\tcontent: \"\";\n\tposition: absolute;\n\twidth: 100upx;\n\theight: 30upx;\n\tbottom: 30upx;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\tbackground-color: inherit;\n\tz-index: 1;\n}\n.cu-bar.tabbar .btn-group {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tpadding: 0 10upx;\n}\n.cu-bar.tabbar uni-button.action::after {\n\tborder: 0;\n}\n.cu-bar.tabbar .action [class*=\"cuIcon-\"] {\n\twidth: 100upx;\n\tposition: relative;\n\tdisplay: block;\n\theight: auto;\n\tmargin: 0 auto 10upx;\n\ttext-align: center;\n\tfont-size: 40upx;\n}\n.cu-bar.tabbar .action .cuIcon-cu-image {\n\tmargin: 0 auto;\n}\n.cu-bar.tabbar .action .cuIcon-cu-image uni-image {\n\twidth: 50upx;\n\theight: 50upx;\n\tdisplay: inline-block;\n}\n.cu-bar.tabbar .submit {\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\ttext-align: center;\n\tposition: relative;\n\t-webkit-box-flex: 2;\n\t-webkit-flex: 2;\n\t        flex: 2;\n\t-webkit-align-self: stretch;\n\t        align-self: stretch;\n}\n.cu-bar.tabbar .submit:last-child {\n\t-webkit-box-flex: 2.6;\n\t-webkit-flex: 2.6;\n\t        flex: 2.6;\n}\n.cu-bar.tabbar .submit+.submit {\n\t-webkit-box-flex: 2;\n\t-webkit-flex: 2;\n\t        flex: 2;\n}\n.cu-bar.tabbar.border .action::before {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tborder-right: 1upx solid rgba(0, 0, 0, 0.1);\n\tz-index: 3;\n}\n.cu-bar.tabbar.border .action:last-child:before {\n\tdisplay: none;\n}\n.cu-bar.input {\n\tpadding-right: 20upx;\n\tbackground-color: #ffffff;\n}\n.cu-bar.input uni-input {\n\toverflow: initial;\n\tline-height: 64upx;\n\theight: 64upx;\n\tmin-height: 64upx;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tfont-size: 30upx;\n\tmargin: 0 20upx;\n}\n.cu-bar.input .action {\n\tmargin-left: 20upx;\n}\n.cu-bar.input .action [class*=\"cuIcon-\"] {\n\tfont-size: 48upx;\n}\n.cu-bar.input uni-input+.action {\n\tmargin-right: 20upx;\n\tmargin-left: 0upx;\n}\n.cu-bar.input .action:first-child [class*=\"cuIcon-\"] {\n\tmargin-left: 0upx;\n}\n.cu-custom {\n\tdisplay: block;\n\tposition: relative;\n}\n.cu-custom .cu-bar .content {\n\twidth: calc(100% - 440upx);\n}\n\n.cu-custom .cu-bar .content uni-image {\n\theight: 60upx;\n\twidth: 240upx;\n}\n.cu-custom .cu-bar {\n\tmin-height: 0px;\n\t\n\t\n\tbox-shadow: 0upx 0upx 0upx;\n\tz-index: 9999;\n}\n.cu-custom .cu-bar .border-custom {\n\tposition: relative;\n\tbackground: rgba(0, 0, 0, 0.15);\n\tborder-radius: 1000upx;\n\theight: 30px;\n}\n.cu-custom .cu-bar .border-custom::after {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder-radius: inherit;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none;\n\tbox-sizing: border-box;\n\tborder: 1upx solid #ffffff;\n\topacity: 0.5;\n}\n.cu-custom .cu-bar .border-custom::before {\n\tcontent: \" \";\n\twidth: 1upx;\n\theight: 110%;\n\tposition: absolute;\n\ttop: 22.5%;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none;\n\tbox-sizing: border-box;\n\topacity: 0.6;\n\tbackground-color: #ffffff;\n}\n.cu-custom .cu-bar .border-custom uni-text {\n\tdisplay: block;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tmargin: auto !important;\n\ttext-align: center;\n\tfont-size: 34upx;\n}\n/* ==================\n         导航栏\n ==================== */\n.nav {\n\twhite-space: nowrap;\n}\n::-webkit-scrollbar {\n\tdisplay: none;\n}\n.nav .cu-item {\n\theight: 90upx;\n\tdisplay: inline-block;\n\tline-height: 90upx;\n\tmargin: 0 10upx;\n\tpadding: 0 20upx;\n}\n.nav .cu-item.cur {\n\tborder-bottom: 4upx solid;\n}\n/* ==================\n         时间轴\n ==================== */\n.cu-timeline {\n\tdisplay: block;\n\tbackground-color: #ffffff;\n}\n.cu-timeline .cu-time {\n\twidth: 120upx;\n\ttext-align: center;\n\tpadding: 20upx 0;\n\tfont-size: 26upx;\n\tcolor: #888;\n\tdisplay: block;\n}\n.cu-timeline>.cu-item {\n\tpadding: 30upx 30upx 30upx 120upx;\n\tposition: relative;\n\tdisplay: block;\n\tz-index: 0;\n}\n.cu-timeline>.cu-item:not([class*=\"text-\"]) {\n\tcolor: #ccc;\n}\n.cu-timeline>.cu-item::after {\n\tcontent: \"\";\n\tdisplay: block;\n\tposition: absolute;\n\twidth: 1upx;\n\tbackground-color: #ddd;\n\tleft: 60upx;\n\theight: 100%;\n\ttop: 0;\n\tz-index: 8;\n}\n.cu-timeline>.cu-item::before {\n\tfont-family: \"cuIcon\";\n\tdisplay: block;\n\tposition: absolute;\n\ttop: 36upx;\n\tz-index: 9;\n\tbackground-color: #ffffff;\n\twidth: 50upx;\n\theight: 50upx;\n\ttext-align: center;\n\tborder: none;\n\tline-height: 50upx;\n\tleft: 36upx;\n}\n.cu-timeline>.cu-item:not([class*=\"cuIcon-\"])::before {\n\tcontent: \"\\E763\";\n}\n.cu-timeline>.cu-item[class*=\"cuIcon-\"]::before {\n\tbackground-color: #ffffff;\n\twidth: 50upx;\n\theight: 50upx;\n\ttext-align: center;\n\tborder: none;\n\tline-height: 50upx;\n\tleft: 36upx;\n}\n.cu-timeline>.cu-item>.content {\n\tpadding: 30upx;\n\tborder-radius: 6upx;\n\tdisplay: block;\n\tline-height: 1.6;\n}\n.cu-timeline>.cu-item>.content:not([class*=\"bg-\"]) {\n\tbackground-color: #f1f1f1;\n\tcolor: #333333;\n}\n.cu-timeline>.cu-item>.content+.content {\n\tmargin-top: 20upx;\n}\n/* ==================\n         聊天\n ==================== */\n.cu-chat {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n}\n.cu-chat .cu-item {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 30upx 30upx 70upx;\n\tposition: relative;\n}\n.cu-chat .cu-item>.cu-avatar {\n\twidth: 80upx;\n\theight: 80upx;\n}\n.cu-chat .cu-item>.main {\n\tmax-width: calc(100% - 260upx);\n\tmargin: 0 40upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n}\n.cu-chat .cu-item>uni-image {\n\theight: 320upx;\n}\n.cu-chat .cu-item>.main .content {\n\tpadding: 20upx;\n\tborder-radius: 6upx;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\tmax-width: 100%;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tfont-size: 30upx;\n\tposition: relative;\n\tmin-height: 80upx;\n\tline-height: 40upx;\n\ttext-align: left;\n}\n.cu-chat .cu-item>.main .content:not([class*=\"bg-\"]) {\n\tbackground-color: #ffffff;\n\tcolor: #333333;\n}\n.cu-chat .cu-item .date {\n\tposition: absolute;\n\tfont-size: 24upx;\n\tcolor: #8799a3;\n\twidth: calc(100% - 320upx);\n\tbottom: 20upx;\n\tleft: 160upx;\n}\n.cu-chat .cu-item .action {\n\tpadding: 0 30upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n}\n.cu-chat .cu-item>.main .content::after {\n\tcontent: \"\";\n\ttop: 27upx;\n\t-webkit-transform: rotate(45deg);\n\t        transform: rotate(45deg);\n\tposition: absolute;\n\tz-index: 100;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 24upx;\n\theight: 24upx;\n\tleft: -12upx;\n\tright: initial;\n\tbackground-color: inherit;\n}\n.cu-chat .cu-item.self>.main .content::after {\n\tleft: auto;\n\tright: -12upx;\n}\n.cu-chat .cu-item>.main .content::before {\n\tcontent: \"\";\n\ttop: 30upx;\n\t-webkit-transform: rotate(45deg);\n\t        transform: rotate(45deg);\n\tposition: absolute;\n\tz-index: -1;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 24upx;\n\theight: 24upx;\n\tleft: -12upx;\n\tright: initial;\n\tbackground-color: inherit;\n\t-webkit-filter: blur(5upx);\n\t        filter: blur(5upx);\n\topacity: 0.3;\n}\n.cu-chat .cu-item>.main .content:not([class*=\"bg-\"])::before {\n\tbackground-color: #333333;\n\topacity: 0.1;\n}\n.cu-chat .cu-item.self>.main .content::before {\n\tleft: auto;\n\tright: -12upx;\n}\n.cu-chat .cu-item.self {\n\t-webkit-box-pack: end;\n\t-webkit-justify-content: flex-end;\n\t        justify-content: flex-end;\n\ttext-align: right;\n}\n.cu-chat .cu-info {\n\tdisplay: inline-block;\n\tmargin: 20upx auto;\n\tfont-size: 24upx;\n\tpadding: 8upx 12upx;\n\tbackground-color: rgba(0, 0, 0, 0.2);\n\tborder-radius: 6upx;\n\tcolor: #ffffff;\n\tmax-width: 400upx;\n\tline-height: 1.4;\n}\n/* ==================\n         卡片\n ==================== */\n.cu-card {\n\tdisplay: block;\n\toverflow: hidden;\n}\n.cu-card>.cu-item {\n\tdisplay: block;\n\tbackground-color: #ffffff;\n\toverflow: hidden;\n\tborder-radius: 10upx;\n\tmargin: 30upx;\n}\n.cu-card>.cu-item.shadow-blur {\n\toverflow: initial;\n}\n.cu-card.no-card>.cu-item {\n\tmargin: 0upx;\n\tborder-radius: 0upx;\n}\n.cu-card .grid.grid-square {\n\tmargin-bottom: -20upx;\n}\n.cu-card.case .image {\n\tposition: relative;\n}\n.cu-card.case .image uni-image {\n\twidth: 100%;\n}\n.cu-card.case .image .cu-tag {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n}\n.cu-card.case .image .cu-bar {\n\tposition: absolute;\n\tbottom: 0;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tpadding: 0upx 30upx;\n}\n.cu-card.case.no-card .image {\n\tmargin: 30upx 30upx 0;\n\toverflow: hidden;\n\tborder-radius: 10upx;\n}\n.cu-card.dynamic {\n\tdisplay: block;\n}\n.cu-card.dynamic>.cu-item {\n\tdisplay: block;\n\tbackground-color: #ffffff;\n\toverflow: hidden;\n}\n.cu-card.dynamic>.cu-item>.text-content {\n\tpadding: 0 30upx 0;\n\tmax-height: 6.4em;\n\toverflow: hidden;\n\tfont-size: 30upx;\n\tmargin-bottom: 20upx;\n}\n.cu-card.dynamic>.cu-item .square-img {\n\twidth: 100%;\n\theight: 200upx;\n\tborder-radius: 6upx;\n}\n.cu-card.dynamic>.cu-item .only-img {\n\twidth: 100%;\n\theight: 320upx;\n\tborder-radius: 6upx;\n}\n/* card.dynamic>.cu-item .comment {\n  padding: 20upx;\n  background-color: #f1f1f1;\n  margin: 0 30upx 30upx;\n  border-radius: 6upx;\n} */\n.cu-card.article {\n\tdisplay: block;\n}\n.cu-card.article>.cu-item {\n\tpadding-bottom: 30upx;\n}\n.cu-card.article>.cu-item .title {\n\tfont-size: 30upx;\n\tfont-weight: 900;\n\tcolor: #333333;\n\tline-height: 100upx;\n\tpadding: 0 30upx;\n}\n.cu-card.article>.cu-item .content {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 0 30upx;\n}\n.cu-card.article>.cu-item .content>uni-image {\n\twidth: 240upx;\n\theight: 6.4em;\n\tmargin-right: 20upx;\n\tborder-radius: 6upx;\n}\n.cu-card.article>.cu-item .content .desc {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.cu-card.article>.cu-item .content .text-content {\n\tfont-size: 28upx;\n\tcolor: #888;\n\theight: 4.8em;\n\toverflow: hidden;\n}\n/* ==================\n         表单\n ==================== */\n.cu-form-group {\n\tbackground-color: #ffffff;\n\tpadding: 1upx 30upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tmin-height: 100upx;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.cu-form-group+.cu-form-group {\n\tborder-top: 1upx solid #eee;\n}\n.cu-form-group .title {\n\ttext-align: justify;\n\tpadding-right: 30upx;\n\tfont-size: 30upx;\n\tposition: relative;\n\theight: 60upx;\n\tline-height: 60upx;\n}\n.cu-form-group uni-input {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tfont-size: 30upx;\n\tcolor: #555;\n\tpadding-right: 20upx;\n}\n.cu-form-group>uni-text[class*=\"cuIcon-\"] {\n\tfont-size: 36upx;\n\tpadding: 0;\n\tbox-sizing: border-box;\n}\n.cu-form-group uni-textarea {\n\tmargin: 32upx 0 30upx;\n\theight: 4.6em;\n\twidth: 100%;\n\tline-height: 1.2em;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tfont-size: 28upx;\n\tpadding: 0;\n}\n.cu-form-group.align-start .title {\n\theight: 1em;\n\tmargin-top: 32upx;\n\tline-height: 1em;\n}\n.cu-form-group uni-picker {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tpadding-right: 40upx;\n\toverflow: hidden;\n\tposition: relative;\n}\n.cu-form-group uni-picker .picker {\n\tline-height: 100upx;\n\tfont-size: 28upx;\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n\toverflow: hidden;\n\twidth: 100%;\n\ttext-align: right;\n}\n.cu-form-group uni-picker::after {\n\tfont-family: cuIcon;\n\tdisplay: block;\n\tcontent: \"\\E6A3\";\n\tposition: absolute;\n\tfont-size: 34upx;\n\tcolor: #8799a3;\n\tline-height: 100upx;\n\twidth: 60upx;\n\ttext-align: center;\n\ttop: 0;\n\tbottom: 0;\n\tright: -20upx;\n\tmargin: auto;\n}\n.cu-form-group uni-textarea[disabled],\n.cu-form-group uni-textarea[disabled] .placeholder {\n\tcolor: transparent;\n}\n/* ==================\n         模态窗口\n ==================== */\n.cu-modal {\n\tposition: fixed;\n\ttop: 0;\n\tright: 0;\n\tbottom: 0;\n\tleft: 0;\n\tz-index: 1110;\n\topacity: 0;\n\toutline: 0;\n\ttext-align: center;\n\t-webkit-transform: scale(1.185);\n\t        transform: scale(1.185);\n\t-webkit-backface-visibility: hidden;\n\t        backface-visibility: hidden;\n\t-webkit-perspective: 2000upx;\n\t        perspective: 2000upx;\n\tbackground: rgba(0, 0, 0, 0.6);\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\tpointer-events: none;\n}\n.cu-modal::before {\n\tcontent: \"\\200B\";\n\tdisplay: inline-block;\n\theight: 100%;\n\tvertical-align: middle;\n}\n.cu-modal.show {\n\topacity: 1;\n\t-webkit-transition-duration: 0.3s;\n\t        transition-duration: 0.3s;\n\t-webkit-transform: scale(1);\n\t        transform: scale(1);\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n.cu-dialog {\n\tposition: relative;\n\tdisplay: inline-block;\n\tvertical-align: middle;\n\tmargin-left: auto;\n\tmargin-right: auto;\n\twidth: 680upx;\n\tmax-width: 100%;\n\tbackground-color: #f8f8f8;\n\tborder-radius: 10upx;\n\toverflow: hidden;\n}\n.cu-modal.bottom-modal::before {\n\tvertical-align: bottom;\n}\n.cu-modal.bottom-modal .cu-dialog {\n\twidth: 100%;\n\tborder-radius: 0;\n}\n.cu-modal.bottom-modal {\n\tmargin-bottom: -1000upx;\n}\n.cu-modal.bottom-modal.show {\n\tmargin-bottom: 0;\n}\n.cu-modal.drawer-modal {\n\t-webkit-transform: scale(1);\n\t        transform: scale(1);\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\n.cu-modal.drawer-modal .cu-dialog {\n\theight: 100%;\n\tmin-width: 200upx;\n\tborder-radius: 0;\n\tmargin: initial;\n\t-webkit-transition-duration: 0.3s;\n\t        transition-duration: 0.3s;\n}\n.cu-modal.drawer-modal.justify-start .cu-dialog {\n\t-webkit-transform: translateX(-100%);\n\t        transform: translateX(-100%);\n}\n.cu-modal.drawer-modal.justify-end .cu-dialog {\n\t-webkit-transform: translateX(100%);\n\t        transform: translateX(100%);\n}\n.cu-modal.drawer-modal.show .cu-dialog {\n\t-webkit-transform: translateX(0%);\n\t        transform: translateX(0%);\n}\n.cu-modal .cu-dialog>.cu-bar:first-child .action{\n  min-width: 100rpx;\n  margin-right: 0;\n  min-height: 100rpx;\n}\n/* ==================\n         轮播\n ==================== */\nuni-swiper .a-swiper-dot {\n\tdisplay: inline-block;\n\twidth: 16upx;\n\theight: 16upx;\n\tbackground: rgba(0, 0, 0, .3);\n\tborder-radius: 50%;\n\tvertical-align: middle;\n}\nuni-swiper[class*=\"-dot\"] .wx-swiper-dots,\nuni-swiper[class*=\"-dot\"] .a-swiper-dots,\nuni-swiper[class*=\"-dot\"] .uni-swiper-dots {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\twidth: 100%;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n}\nuni-swiper.square-dot .wx-swiper-dot,\nuni-swiper.square-dot .a-swiper-dot,\nuni-swiper.square-dot .uni-swiper-dot {\n\tbackground-color: #ffffff;\n\topacity: 0.4;\n\twidth: 10upx;\n\theight: 10upx;\n\tborder-radius: 20upx;\n\tmargin: 0 8upx !important;\n}\nuni-swiper.square-dot .wx-swiper-dot.wx-swiper-dot-active,\nuni-swiper.square-dot .a-swiper-dot.a-swiper-dot-active,\nuni-swiper.square-dot .uni-swiper-dot.uni-swiper-dot-active {\n\topacity: 1;\n\twidth: 30upx;\n}\nuni-swiper.round-dot .wx-swiper-dot,\nuni-swiper.round-dot .a-swiper-dot,\nuni-swiper.round-dot .uni-swiper-dot {\n\twidth: 10upx;\n\theight: 10upx;\n\tposition: relative;\n\tmargin: 4upx 8upx !important;\n}\nuni-swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active::after,\nuni-swiper.round-dot .a-swiper-dot.a-swiper-dot-active::after,\nuni-swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active::after {\n\tcontent: \"\";\n\tposition: absolute;\n\twidth: 10upx;\n\theight: 10upx;\n\ttop: 0upx;\n\tleft: 0upx;\n\tright: 0;\n\tbottom: 0;\n\tmargin: auto;\n\tbackground-color: #ffffff;\n\tborder-radius: 20upx;\n}\nuni-swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active,\nuni-swiper.round-dot .a-swiper-dot.a-swiper-dot-active,\nuni-swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {\n\twidth: 18upx;\n\theight: 18upx;\n}\n.screen-swiper {\n\tmin-height: 375upx;\n}\n.screen-swiper uni-image,\n.screen-swiper uni-video,\n.swiper-item uni-image,\n.swiper-item uni-video {\n\twidth: 100%;\n\tdisplay: block;\n\theight: 100%;\n\tmargin: 0;\n\tpointer-events: none;\n}\n.card-swiper {\n\theight: 420upx !important;\n}\n.card-swiper uni-swiper-item {\n\twidth: 610upx !important;\n\tleft: 70upx;\n\tbox-sizing: border-box;\n\tpadding: 40upx 0upx 70upx;\n\toverflow: initial;\n}\n.card-swiper uni-swiper-item .swiper-item {\n\twidth: 100%;\n\tdisplay: block;\n\theight: 100%;\n\tborder-radius: 10upx;\n\t-webkit-transform: scale(0.9);\n\t        transform: scale(0.9);\n\t-webkit-transition: all 0.2s ease-in 0s;\n\ttransition: all 0.2s ease-in 0s;\n\toverflow: hidden;\n}\n.card-swiper uni-swiper-item.cur .swiper-item {\n\t-webkit-transform: none;\n\t        transform: none;\n\t-webkit-transition: all 0.2s ease-in 0s;\n\ttransition: all 0.2s ease-in 0s;\n}\n.tower-swiper {\n\theight: 420upx;\n\tposition: relative;\n\tmax-width: 750upx;\n\toverflow: hidden;\n}\n.tower-swiper .tower-item {\n\tposition: absolute;\n\twidth: 300upx;\n\theight: 380upx;\n\ttop: 0;\n\tbottom: 0;\n\tleft: 50%;\n\tmargin: auto;\n\t-webkit-transition: all 0.2s ease-in 0s;\n\ttransition: all 0.2s ease-in 0s;\n\topacity: 1;\n}\n.tower-swiper .tower-item.none {\n\topacity: 0;\n}\n.tower-swiper .tower-item .swiper-item {\n\twidth: 100%;\n\theight: 100%;\n\tborder-radius: 6upx;\n\toverflow: hidden;\n}\n/* ==================\n          步骤条\n ==================== */\n.cu-steps {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\nuni-scroll-view.cu-steps {\n\tdisplay: block;\n\twhite-space: nowrap;\n}\nuni-scroll-view.cu-steps .cu-item {\n\tdisplay: inline-block;\n}\n.cu-steps .cu-item {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\ttext-align: center;\n\tposition: relative;\n\tmin-width: 100upx;\n}\n.cu-steps .cu-item:not([class*=\"text-\"]) {\n\tcolor: #8799a3;\n}\n.cu-steps .cu-item [class*=\"cuIcon-\"],\n.cu-steps .cu-item .num {\n\tdisplay: block;\n\tfont-size: 40upx;\n\tline-height: 80upx;\n}\n.cu-steps .cu-item::before,\n.cu-steps .cu-item::after,\n.cu-steps.steps-arrow .cu-item::before,\n.cu-steps.steps-arrow .cu-item::after {\n\tcontent: \"\";\n\tdisplay: block;\n\tposition: absolute;\n\theight: 0px;\n\twidth: calc(100% - 80upx);\n\tborder-bottom: 1px solid #ccc;\n\tleft: calc(0px - (100% - 80upx) / 2);\n\ttop: 40upx;\n\tz-index: 0;\n}\n.cu-steps.steps-arrow .cu-item::before,\n.cu-steps.steps-arrow .cu-item::after {\n\tcontent: \"\\E6A3\";\n\tfont-family: 'cuIcon';\n\theight: 30upx;\n\tborder-bottom-width: 0px;\n\tline-height: 30upx;\n\ttop: 0;\n\tbottom: 0;\n\tmargin: auto;\n\tcolor: #ccc;\n}\n.cu-steps.steps-bottom .cu-item::before,\n.cu-steps.steps-bottom .cu-item::after {\n\tbottom: 40upx;\n\ttop: initial;\n}\n.cu-steps .cu-item::after {\n\tborder-bottom: 1px solid currentColor;\n\twidth: 0px;\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n}\n.cu-steps .cu-item[class*=\"text-\"]::after {\n\twidth: calc(100% - 80upx);\n\tcolor: currentColor;\n}\n.cu-steps .cu-item:first-child::before,\n.cu-steps .cu-item:first-child::after {\n\tdisplay: none;\n}\n.cu-steps .cu-item .num {\n\twidth: 40upx;\n\theight: 40upx;\n\tborder-radius: 50%;\n\tline-height: 40upx;\n\tmargin: 20upx auto;\n\tfont-size: 24upx;\n\tborder: 1px solid currentColor;\n\tposition: relative;\n\toverflow: hidden;\n}\n.cu-steps .cu-item[class*=\"text-\"] .num {\n\tbackground-color: currentColor;\n}\n.cu-steps .cu-item .num::before,\n.cu-steps .cu-item .num::after {\n\tcontent: attr(data-index);\n\tposition: absolute;\n\tleft: 0;\n\tright: 0;\n\ttop: 0;\n\tbottom: 0;\n\tmargin: auto;\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\t-webkit-transform: translateY(0upx);\n\t        transform: translateY(0upx);\n}\n.cu-steps .cu-item[class*=\"text-\"] .num::before {\n\t-webkit-transform: translateY(-40upx);\n\t        transform: translateY(-40upx);\n\tcolor: #ffffff;\n}\n.cu-steps .cu-item .num::after {\n\t-webkit-transform: translateY(40upx);\n\t        transform: translateY(40upx);\n\tcolor: #ffffff;\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n}\n.cu-steps .cu-item[class*=\"text-\"] .num::after {\n\tcontent: \"\\E645\";\n\tfont-family: 'cuIcon';\n\tcolor: #ffffff;\n\t-webkit-transform: translateY(0upx);\n\t        transform: translateY(0upx);\n}\n.cu-steps .cu-item[class*=\"text-\"] .num.err::after {\n\tcontent: \"\\E646\";\n}\n/* ==================\n          布局\n ==================== */\n/*  -- flex弹性布局 -- */\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\n.basis-xs {\n\t-webkit-flex-basis: 20%;\n\t        flex-basis: 20%;\n}\n.basis-sm {\n\t-webkit-flex-basis: 40%;\n\t        flex-basis: 40%;\n}\n.basis-df {\n\t-webkit-flex-basis: 50%;\n\t        flex-basis: 50%;\n}\n.basis-lg {\n\t-webkit-flex-basis: 60%;\n\t        flex-basis: 60%;\n}\n.basis-xl {\n\t-webkit-flex-basis: 80%;\n\t        flex-basis: 80%;\n}\n.flex-sub {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n}\n.flex-twice {\n\t-webkit-box-flex: 2;\n\t-webkit-flex: 2;\n\t        flex: 2;\n}\n.flex-treble {\n\t-webkit-box-flex: 3;\n\t-webkit-flex: 3;\n\t        flex: 3;\n}\n.flex-direction {\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n}\n.flex-wrap {\n\t-webkit-flex-wrap: wrap;\n\t        flex-wrap: wrap;\n}\n.align-start {\n\t-webkit-box-align: start;\n\t-webkit-align-items: flex-start;\n\t        align-items: flex-start;\n}\n.align-end {\n\t-webkit-box-align: end;\n\t-webkit-align-items: flex-end;\n\t        align-items: flex-end;\n}\n.align-center {\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n}\n.align-stretch {\n\t-webkit-box-align: stretch;\n\t-webkit-align-items: stretch;\n\t        align-items: stretch;\n}\n.self-start {\n\t-webkit-align-self: flex-start;\n\t        align-self: flex-start;\n}\n.self-center {\n\t-webkit-align-self: flex-center;\n\t        align-self: flex-center;\n}\n.self-end {\n\t-webkit-align-self: flex-end;\n\t        align-self: flex-end;\n}\n.self-stretch {\n\t-webkit-align-self: stretch;\n\t        align-self: stretch;\n}\n.align-stretch {\n\t-webkit-box-align: stretch;\n\t-webkit-align-items: stretch;\n\t        align-items: stretch;\n}\n.justify-start {\n\t-webkit-box-pack: start;\n\t-webkit-justify-content: flex-start;\n\t        justify-content: flex-start;\n}\n.justify-end {\n\t-webkit-box-pack: end;\n\t-webkit-justify-content: flex-end;\n\t        justify-content: flex-end;\n}\n.justify-center {\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n}\n.justify-between {\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.justify-around {\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n}\n/* grid布局 */\n.grid {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-flex-wrap: wrap;\n\t        flex-wrap: wrap;\n}\n.grid.grid-square {\n\toverflow: hidden;\n}\n.grid.grid-square .cu-tag {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n\tborder-bottom-left-radius: 6upx;\n\tpadding: 6upx 12upx;\n\theight: auto;\n\tbackground-color: rgba(0, 0, 0, 0.5);\n}\n.grid.grid-square>uni-view>uni-text[class*=\"cuIcon-\"] {\n\tfont-size: 52upx;\n\tposition: absolute;\n\tcolor: #8799a3;\n\tmargin: auto;\n\ttop: 0;\n\tbottom: 0;\n\tleft: 0;\n\tright: 0;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n}\n.grid.grid-square>uni-view {\n\tmargin-right: 20upx;\n\tmargin-bottom: 20upx;\n\tborder-radius: 6upx;\n\tposition: relative;\n\toverflow: hidden;\n}\n.grid.grid-square>uni-view.bg-img uni-image {\n\twidth: 100%;\n\theight: 100%;\n\tposition: absolute;\n}\n.grid.col-1.grid-square>uni-view {\n\tpadding-bottom: 100%;\n\theight: 0;\n\tmargin-right: 0;\n}\n.grid.col-2.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 20upx)/2);\n\theight: 0;\n\twidth: calc((100% - 20upx)/2);\n}\n.grid.col-3.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 40upx)/3);\n\theight: 0;\n\twidth: calc((100% - 40upx)/3);\n}\n.grid.col-4.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 60upx)/4);\n\theight: 0;\n\twidth: calc((100% - 60upx)/4);\n}\n.grid.col-5.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 80upx)/5);\n\theight: 0;\n\twidth: calc((100% - 80upx)/5);\n}\n.grid.col-2.grid-square>uni-view:nth-child(2n),\n.grid.col-3.grid-square>uni-view:nth-child(3n),\n.grid.col-4.grid-square>uni-view:nth-child(4n),\n.grid.col-5.grid-square>uni-view:nth-child(5n) {\n\tmargin-right: 0;\n}\n.grid.col-1>uni-view {\n\twidth: 100%;\n}\n.grid.col-2>uni-view {\n\twidth: 50%;\n}\n.grid.col-3>uni-view {\n\twidth: 33.33%;\n}\n.grid.col-4>uni-view {\n\twidth: 25%;\n}\n.grid.col-5>uni-view {\n\twidth: 20%;\n}\n/*  -- 内外边距 -- */\n.margin-0 {\n\tmargin: 0;\n}\n.margin-xs {\n\tmargin: 10upx;\n}\n.margin-sm {\n\tmargin: 20upx;\n}\n.margin {\n\tmargin: 30upx;\n}\n.margin-lg {\n\tmargin: 40upx;\n}\n.margin-xl {\n\tmargin: 50upx;\n}\n.margin-top-xs {\n\tmargin-top: 10upx;\n}\n.margin-top-sm {\n\tmargin-top: 20upx;\n}\n.margin-top {\n\tmargin-top: 30upx;\n}\n.margin-top-lg {\n\tmargin-top: 40upx;\n}\n.margin-top-xl {\n\tmargin-top: 50upx;\n}\n.margin-right-xs {\n\tmargin-right: 10upx;\n}\n.margin-right-sm {\n\tmargin-right: 20upx;\n}\n.margin-right {\n\tmargin-right: 30upx;\n}\n.margin-right-lg {\n\tmargin-right: 40upx;\n}\n.margin-right-xl {\n\tmargin-right: 50upx;\n}\n.margin-bottom-xs {\n\tmargin-bottom: 10upx;\n}\n.margin-bottom-sm {\n\tmargin-bottom: 20upx;\n}\n.margin-bottom {\n\tmargin-bottom: 30upx;\n}\n.margin-bottom-lg {\n\tmargin-bottom: 40upx;\n}\n.margin-bottom-xl {\n\tmargin-bottom: 50upx;\n}\n.margin-left-xs {\n\tmargin-left: 10upx;\n}\n.margin-left-sm {\n\tmargin-left: 20upx;\n}\n.margin-left {\n\tmargin-left: 30upx;\n}\n.margin-left-lg {\n\tmargin-left: 40upx;\n}\n.margin-left-xl {\n\tmargin-left: 50upx;\n}\n.margin-lr-xs {\n\tmargin-left: 10upx;\n\tmargin-right: 10upx;\n}\n.margin-lr-sm {\n\tmargin-left: 20upx;\n\tmargin-right: 20upx;\n}\n.margin-lr {\n\tmargin-left: 30upx;\n\tmargin-right: 30upx;\n}\n.margin-lr-lg {\n\tmargin-left: 40upx;\n\tmargin-right: 40upx;\n}\n.margin-lr-xl {\n\tmargin-left: 50upx;\n\tmargin-right: 50upx;\n}\n.margin-tb-xs {\n\tmargin-top: 10upx;\n\tmargin-bottom: 10upx;\n}\n.margin-tb-sm {\n\tmargin-top: 20upx;\n\tmargin-bottom: 20upx;\n}\n.margin-tb {\n\tmargin-top: 30upx;\n\tmargin-bottom: 30upx;\n}\n.margin-tb-lg {\n\tmargin-top: 40upx;\n\tmargin-bottom: 40upx;\n}\n.margin-tb-xl {\n\tmargin-top: 50upx;\n\tmargin-bottom: 50upx;\n}\n.padding-0 {\n\tpadding: 0;\n}\n.padding-xs {\n\tpadding: 10upx;\n}\n.padding-sm {\n\tpadding: 20upx;\n}\n.padding {\n\tpadding: 30upx;\n}\n.padding-lg {\n\tpadding: 40upx;\n}\n.padding-xl {\n\tpadding: 50upx;\n}\n.padding-top-xs {\n\tpadding-top: 10upx;\n}\n.padding-top-sm {\n\tpadding-top: 20upx;\n}\n.padding-top {\n\tpadding-top: 30upx;\n}\n.padding-top-lg {\n\tpadding-top: 40upx;\n}\n.padding-top-xl {\n\tpadding-top: 50upx;\n}\n.padding-right-xs {\n\tpadding-right: 10upx;\n}\n.padding-right-sm {\n\tpadding-right: 20upx;\n}\n.padding-right {\n\tpadding-right: 30upx;\n}\n.padding-right-lg {\n\tpadding-right: 40upx;\n}\n.padding-right-xl {\n\tpadding-right: 50upx;\n}\n.padding-bottom-xs {\n\tpadding-bottom: 10upx;\n}\n.padding-bottom-sm {\n\tpadding-bottom: 20upx;\n}\n.padding-bottom {\n\tpadding-bottom: 30upx;\n}\n.padding-bottom-lg {\n\tpadding-bottom: 40upx;\n}\n.padding-bottom-xl {\n\tpadding-bottom: 50upx;\n}\n.padding-left-xs {\n\tpadding-left: 10upx;\n}\n.padding-left-sm {\n\tpadding-left: 20upx;\n}\n.padding-left {\n\tpadding-left: 30upx;\n}\n.padding-left-lg {\n\tpadding-left: 40upx;\n}\n.padding-left-xl {\n\tpadding-left: 50upx;\n}\n.padding-lr-xs {\n\tpadding-left: 10upx;\n\tpadding-right: 10upx;\n}\n.padding-lr-sm {\n\tpadding-left: 20upx;\n\tpadding-right: 20upx;\n}\n.padding-lr {\n\tpadding-left: 30upx;\n\tpadding-right: 30upx;\n}\n.padding-lr-lg {\n\tpadding-left: 40upx;\n\tpadding-right: 40upx;\n}\n.padding-lr-xl {\n\tpadding-left: 50upx;\n\tpadding-right: 50upx;\n}\n.padding-tb-xs {\n\tpadding-top: 10upx;\n\tpadding-bottom: 10upx;\n}\n.padding-tb-sm {\n\tpadding-top: 20upx;\n\tpadding-bottom: 20upx;\n}\n.padding-tb {\n\tpadding-top: 30upx;\n\tpadding-bottom: 30upx;\n}\n.padding-tb-lg {\n\tpadding-top: 40upx;\n\tpadding-bottom: 40upx;\n}\n.padding-tb-xl {\n\tpadding-top: 50upx;\n\tpadding-bottom: 50upx;\n}\n/* -- 浮动 --  */\n.cf::after,\n.cf::before {\n\tcontent: \" \";\n\tdisplay: table;\n}\n.cf::after {\n\tclear: both;\n}\n.fl {\n\tfloat: left;\n}\n.fr {\n\tfloat: right;\n}\n/* ==================\n          背景\n ==================== */\n.line-red::after,\n.lines-red::after {\n\tborder-color: #e54d42;\n}\n.line-orange::after,\n.lines-orange::after {\n\tborder-color: #f37b1d;\n}\n.line-yellow::after,\n.lines-yellow::after {\n\tborder-color: #fbbd08;\n}\n.line-olive::after,\n.lines-olive::after {\n\tborder-color: #8dc63f;\n}\n.line-green::after,\n.lines-green::after {\n\tborder-color: #39b54a;\n}\n.line-cyan::after,\n.lines-cyan::after {\n\tborder-color: #1cbbb4;\n}\n.line-blue::after,\n.lines-blue::after {\n\tborder-color: #0081ff;\n}\n.line-purple::after,\n.lines-purple::after {\n\tborder-color: #6739b6;\n}\n.line-mauve::after,\n.lines-mauve::after {\n\tborder-color: #9c26b0;\n}\n.line-pink::after,\n.lines-pink::after {\n\tborder-color: #e03997;\n}\n.line-brown::after,\n.lines-brown::after {\n\tborder-color: #a5673f;\n}\n.line-grey::after,\n.lines-grey::after {\n\tborder-color: #8799a3;\n}\n.line-gray::after,\n.lines-gray::after {\n\tborder-color: #aaaaaa;\n}\n.line-black::after,\n.lines-black::after {\n\tborder-color: #333333;\n}\n.line-white::after,\n.lines-white::after {\n\tborder-color: #ffffff;\n}\n.bg-red {\n\tbackground-color: #e54d42;\n\tcolor: #ffffff;\n}\n.bg-orange {\n\tbackground-color: #f37b1d;\n\tcolor: #ffffff;\n}\n.bg-yellow {\n\tbackground-color: #fbbd08;\n\tcolor: #333333;\n}\n.bg-olive {\n\tbackground-color: #8dc63f;\n\tcolor: #ffffff;\n}\n.bg-green {\n\tbackground-color: #39b54a;\n\tcolor: #ffffff;\n}\n.bg-cyan {\n\tbackground-color: #1cbbb4;\n\tcolor: #ffffff;\n}\n.bg-blue {\n\tbackground-color: #0081ff;\n\tcolor: #ffffff;\n}\n.bg-purple {\n\tbackground-color: #6739b6;\n\tcolor: #ffffff;\n}\n.bg-mauve {\n\tbackground-color: #9c26b0;\n\tcolor: #ffffff;\n}\n.bg-pink {\n\tbackground-color: #e03997;\n\tcolor: #ffffff;\n}\n.bg-brown {\n\tbackground-color: #a5673f;\n\tcolor: #ffffff;\n}\n.bg-grey {\n\tbackground-color: #8799a3;\n\tcolor: #ffffff;\n}\n.bg-gray {\n\tbackground-color: #f0f0f0;\n\tcolor: #333333;\n}\n.bg-black {\n\tbackground-color: #333333;\n\tcolor: #ffffff;\n}\n.bg-white {\n\tbackground-color: #ffffff;\n\tcolor: #666666;\n}\n.bg-shadeTop {\n\tbackground-image: -webkit-linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01));\n\tbackground-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01));\n\tcolor: #ffffff;\n}\n.bg-shadeBottom {\n\tbackground-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));\n\tbackground-image: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));\n\tcolor: #ffffff;\n}\n.bg-red.light {\n\tcolor: #e54d42;\n\tbackground-color: #fadbd9;\n}\n.bg-orange.light {\n\tcolor: #f37b1d;\n\tbackground-color: #fde6d2;\n}\n.bg-yellow.light {\n\tcolor: #fbbd08;\n\tbackground-color: #fef2ced2;\n}\n.bg-olive.light {\n\tcolor: #8dc63f;\n\tbackground-color: #e8f4d9;\n}\n.bg-green.light {\n\tcolor: #39b54a;\n\tbackground-color: #d7f0dbff;\n}\n.bg-cyan.light {\n\tcolor: #1cbbb4;\n\tbackground-color: #d2f1f0;\n}\n.bg-blue.light {\n\tcolor: #0081ff;\n\tbackground-color: #cce6ff;\n}\n.bg-purple.light {\n\tcolor: #6739b6;\n\tbackground-color: #e1d7f0;\n}\n.bg-mauve.light {\n\tcolor: #9c26b0;\n\tbackground-color: #ebd4ef;\n}\n.bg-pink.light {\n\tcolor: #e03997;\n\tbackground-color: #f9d7ea;\n}\n.bg-brown.light {\n\tcolor: #a5673f;\n\tbackground-color: #ede1d9;\n}\n.bg-grey.light {\n\tcolor: #8799a3;\n\tbackground-color: #e7ebed;\n}\n.bg-gradual-red {\n\tbackground-image: -webkit-linear-gradient(45deg, #f43f3b, #ec008c);\n\tbackground-image: linear-gradient(45deg, #f43f3b, #ec008c);\n\tcolor: #ffffff;\n}\n.bg-gradual-orange {\n\tbackground-image: -webkit-linear-gradient(45deg, #ff9700, #ed1c24);\n\tbackground-image: linear-gradient(45deg, #ff9700, #ed1c24);\n\tcolor: #ffffff;\n}\n.bg-gradual-green {\n\tbackground-image: -webkit-linear-gradient(45deg, #39b54a, #8dc63f);\n\tbackground-image: linear-gradient(45deg, #39b54a, #8dc63f);\n\tcolor: #ffffff;\n}\n.bg-gradual-purple {\n\tbackground-image: -webkit-linear-gradient(45deg, #9000ff, #5e00ff);\n\tbackground-image: linear-gradient(45deg, #9000ff, #5e00ff);\n\tcolor: #ffffff;\n}\n.bg-gradual-pink {\n\tbackground-image: -webkit-linear-gradient(45deg, #ec008c, #6739b6);\n\tbackground-image: linear-gradient(45deg, #ec008c, #6739b6);\n\tcolor: #ffffff;\n}\n.bg-gradual-blue {\n\tbackground-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);\n\tbackground-image: linear-gradient(45deg, #0081ff, #1cbbb4);\n\tcolor: #ffffff;\n}\n.shadow[class*=\"-red\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(204, 69, 59, 0.2);\n}\n.shadow[class*=\"-orange\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(217, 109, 26, 0.2);\n}\n.shadow[class*=\"-yellow\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(224, 170, 7, 0.2);\n}\n.shadow[class*=\"-olive\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(124, 173, 55, 0.2);\n}\n.shadow[class*=\"-green\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(48, 156, 63, 0.2);\n}\n.shadow[class*=\"-cyan\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(28, 187, 180, 0.2);\n}\n.shadow[class*=\"-blue\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(0, 102, 204, 0.2);\n}\n.shadow[class*=\"-purple\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(88, 48, 156, 0.2);\n}\n.shadow[class*=\"-mauve\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(133, 33, 150, 0.2);\n}\n.shadow[class*=\"-pink\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(199, 50, 134, 0.2);\n}\n.shadow[class*=\"-brown\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(140, 88, 53, 0.2);\n}\n.shadow[class*=\"-grey\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.shadow[class*=\"-gray\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.shadow[class*=\"-black\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(26, 26, 26, 0.2);\n}\n.shadow[class*=\"-white\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(26, 26, 26, 0.2);\n}\n.text-shadow[class*=\"-red\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(204, 69, 59, 0.2);\n}\n.text-shadow[class*=\"-orange\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(217, 109, 26, 0.2);\n}\n.text-shadow[class*=\"-yellow\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(224, 170, 7, 0.2);\n}\n.text-shadow[class*=\"-olive\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(124, 173, 55, 0.2);\n}\n.text-shadow[class*=\"-green\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(48, 156, 63, 0.2);\n}\n.text-shadow[class*=\"-cyan\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(28, 187, 180, 0.2);\n}\n.text-shadow[class*=\"-blue\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(0, 102, 204, 0.2);\n}\n.text-shadow[class*=\"-purple\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(88, 48, 156, 0.2);\n}\n.text-shadow[class*=\"-mauve\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(133, 33, 150, 0.2);\n}\n.text-shadow[class*=\"-pink\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(199, 50, 134, 0.2);\n}\n.text-shadow[class*=\"-brown\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(140, 88, 53, 0.2);\n}\n.text-shadow[class*=\"-grey\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.text-shadow[class*=\"-gray\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.text-shadow[class*=\"-black\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(26, 26, 26, 0.2);\n}\n.bg-img {\n\tbackground-size: cover;\n\tbackground-position: center;\n\tbackground-repeat: no-repeat;\n}\n.bg-mask {\n\tbackground-color: #333333;\n\tposition: relative;\n}\n.bg-mask::after {\n\tcontent: \"\";\n\tborder-radius: inherit;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: block;\n\tbackground-color: rgba(0, 0, 0, 0.4);\n\tposition: absolute;\n\tleft: 0;\n\tright: 0;\n\tbottom: 0;\n\ttop: 0;\n}\n.bg-mask uni-view,\n.bg-mask uni-cover-view {\n\tz-index: 5;\n\tposition: relative;\n}\n.bg-video {\n\tposition: relative;\n}\n.bg-video uni-video {\n\tdisplay: block;\n\theight: 100%;\n\twidth: 100%;\n\tobject-fit: cover;\n\tposition: absolute;\n\ttop: 0;\n\tz-index: 0;\n\tpointer-events: none;\n}\n/* ==================\n          文本\n ==================== */\n.text-xs {\n\tfont-size: 20upx;\n}\n.text-sm {\n\tfont-size: 24upx;\n}\n.text-df {\n\tfont-size: 28upx;\n}\n.text-lg {\n\tfont-size: 32upx;\n}\n.text-xl {\n\tfont-size: 36upx;\n}\n.text-xxl {\n\tfont-size: 44upx;\n}\n.text-sl {\n\tfont-size: 80upx;\n}\n.text-xsl {\n\tfont-size: 120upx;\n}\n.text-Abc {\n\ttext-transform: Capitalize;\n}\n.text-ABC {\n\ttext-transform: Uppercase;\n}\n.text-abc {\n\ttext-transform: Lowercase;\n}\n.text-price::before {\n\tcontent: \"\\A5\";\n\tfont-size: 80%;\n\tmargin-right: 4upx;\n}\n.text-cut {\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n\toverflow: hidden;\n}\n.text-bold {\n\tfont-weight: bold;\n}\n.text-center {\n\ttext-align: center;\n}\n.text-content {\n\tline-height: 1.6;\n}\n.text-left {\n\ttext-align: left;\n}\n.text-right {\n\ttext-align: right;\n}\n.text-red,\n.line-red,\n.lines-red {\n\tcolor: #e54d42;\n}\n.text-orange,\n.line-orange,\n.lines-orange {\n\tcolor: #f37b1d;\n}\n.text-yellow,\n.line-yellow,\n.lines-yellow {\n\tcolor: #fbbd08;\n}\n.text-olive,\n.line-olive,\n.lines-olive {\n\tcolor: #8dc63f;\n}\n.text-green,\n.line-green,\n.lines-green {\n\tcolor: #39b54a;\n}\n.text-cyan,\n.line-cyan,\n.lines-cyan {\n\tcolor: #1cbbb4;\n}\n.text-blue,\n.line-blue,\n.lines-blue {\n\tcolor: #0081ff;\n}\n.text-purple,\n.line-purple,\n.lines-purple {\n\tcolor: #6739b6;\n}\n.text-mauve,\n.line-mauve,\n.lines-mauve {\n\tcolor: #9c26b0;\n}\n.text-pink,\n.line-pink,\n.lines-pink {\n\tcolor: #e03997;\n}\n.text-brown,\n.line-brown,\n.lines-brown {\n\tcolor: #a5673f;\n}\n.text-grey,\n.line-grey,\n.lines-grey {\n\tcolor: #8799a3;\n}\n.text-gray,\n.line-gray,\n.lines-gray {\n\tcolor: #aaaaaa;\n}\n.text-black,\n.line-black,\n.lines-black {\n\tcolor: #333333;\n}\n.text-white,\n.line-white,\n.lines-white {\n\tcolor: #ffffff;\n}\n@font-face {\r\n\tfont-family: \"iconfont\";\r\n\tsrc: url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2');\n}\n.iconfont {\n  font-family: \"iconfont\" !important;\r\n  font-size: 16px;\n  font-style: normal;\r\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n.icon-youyong4:before {\n  content: \"\\E627\";\n}\n.icon-zhuazhualiugou:before {\n  content: \"\\E621\";\n}\n.icon-shuijue:before {\n  content: \"\\E635\";\n}\n.icon-38464:before {\n  content: \"\\E652\";\n}\n.icon-kafeicoffee61:before {\n  content: \"\\E630\";\n}\n.icon-yuehuiqipao:before {\n  content: \"\\E61D\";\n}\n.icon-guangjie:before {\n  content: \"\\E716\";\n}\n.icon-zhengzhi:before {\n  content: \"\\E677\";\n}\n.icon-2:before {\n  content: \"\\E602\";\n}\n.icon-fendoumubiao:before {\n  content: \"\\E648\";\n}\n.icon-kezuofan:before {\n  content: \"\\E610\";\n}\n.icon-pashan:before {\n  content: \"\\E601\";\n}\n.icon-xuexi:before {\n  content: \"\\E613\";\n}\n.icon-weibiaoti--:before {\n  content: \"\\E7F3\";\n}\n.icon-kezuofan1:before {\n  content: \"\\E65F\";\n}\n.icon-yinle:before {\n  content: \"\\E62B\";\n}\n.icon-xizao:before {\n  content: \"\\E643\";\n}\n.icon-youxi:before {\n  content: \"\\E603\";\n}\n.icon-yingyushuiping:before {\n  content: \"\\E623\";\n}\n.icon-sanbu:before {\n  content: \"\\E60E\";\n}\n.icon-xiyifuwu:before {\n  content: \"\\E787\";\n}\n.icon-xinaixin:before {\n  content: \"\\E600\";\n}\n.icon-shijian:before {\n  content: \"\\E606\";\n}\n.icon-xiuli:before {\n  content: \"\\E615\";\n}\n.icon-xiuxi:before {\n  content: \"\\E7BA\";\n}\n.icon-paobu:before {\n  content: \"\\E622\";\n}\n.icon-wuli:before {\n  content: \"\\E631\";\n}\n.icon-xizaomuyu:before {\n  content: \"\\E61E\";\n}\n.icon-beer:before {\n  content: \"\\E666\";\n}\n.icon-baijiu_:before {\n  content: \"\\E636\";\n}\n.icon-shaokao:before {\n  content: \"\\EAB5\";\n}\n.icon-weibiaoti:before {\n  content: \"\\E607\";\n}\n.icon-icon-test:before {\n  content: \"\\E60C\";\n}\n.icon-icon-test1:before {\n  content: \"\\E619\";\n}\n.icon-kandianying-weijihuo:before {\n  content: \"\\E72D\";\n}\n.icon--huihua:before {\n  content: \"\\E680\";\n}\n.icon-yuwen:before {\n  content: \"\\E63D\";\n}\n.icon-shuxue:before {\n  content: \"\\E63E\";\n}\n.icon-huaxue:before {\n  content: \"\\E641\";\n}\n.icon-shaokao1:before {\n  content: \"\\E624\";\n}\n.icon-youyong:before {\n  content: \"\\E605\";\n}\n.icon-paobu1:before {\n  content: \"\\E61C\";\n}\n.icon-rest:before {\n  content: \"\\E62C\";\n}\n.icon-ziyuan:before {\n  content: \"\\E64B\";\n}\n.icon-guzhang:before {\n  content: \"\\E614\";\n}\n.icon-wanfatubiao-daochu-:before {\n  content: \"\\E625\";\n}\n.icon-yule:before {\n  content: \"\\E61B\";\n}\n.icon-fendou:before {\n  content: \"\\E604\";\n}\n.icon-jisuanji:before {\n  content: \"\\E654\";\n}\n.icon-pinpaishangou:before {\n  content: \"\\E62D\";\n}\n.icon-yuehui:before {\n  content: \"\\E708\";\n}\n.icon-quntidajia:before {\n  content: \"\\E816\";\n}\n.icon-getidajia:before {\n  content: \"\\E817\";\n}\n.icon-chifancopy-:before {\n  content: \"\\E608\";\n}\n.icon-shengwu:before {\n  content: \"\\E6B3\";\n}\n.icon-xiyifuwu1:before {\n  content: \"\\E61A\";\n}\n.icon-gongzuo:before {\n  content: \"\\E709\";\n}\n/* 对齐方式 */\n.ta-l {\r\n\ttext-align: left;\n}\n.ta-r {\r\n\ttext-align: right;\n}\n.ta-c {\r\n\ttext-align: center;\n}\n/* 粗体 */\n.fw-b {\r\n\tfont-weight: bold;\n}\n.fw-l {\r\n\tfont-weight: lighter;\n}\n.fw-n {\r\n\tfont-weight: normal;\n}\n.t-s{\r\n\ttext-shadow: #999 2rpx 2rpx 5rpx;\n}\n/* 特殊处理 */\n.td-lt{\r\n  text-decoration:line-through;/* 加删除线 */\n}\n.t-oh{\n    white-space: nowrap;\n    overflow: hidden;/* 单行超出 */\n    text-overflow: ellipsis;\n}\n.t-ohs{\n    overflow: hidden;\n    text-overflow: ellipsis;\n    display: -webkit-box;\n    -webkit-line-clamp: 2;/* 多行超出 */\n    -webkit-box-orient: vertical;\n}\n/* 多少行（3~15） */\n.t-lc3 {-webkit-line-clamp:3;\n}\n.t-lc4 {-webkit-line-clamp:4;\n}\n.t-lc5 {-webkit-line-clamp:5;\n}\n.t-lc6 {-webkit-line-clamp:6;\n}\n.t-lc7 {-webkit-line-clamp:7;\n}\n.t-lc8 {-webkit-line-clamp:8;\n}\n.t-lc9 {-webkit-line-clamp:9;\n}\n.t-lc10 {-webkit-line-clamp:10;\n}\n.t-lc11 {-webkit-line-clamp:11;\n}\n.t-lc12 {-webkit-line-clamp:12;\n}\n.t-lc13 {-webkit-line-clamp:13;\n}\n.t-lc14 {-webkit-line-clamp:14;\n}\n.t-lc15 {-webkit-line-clamp:15;\n}\n/* 字号(8~100) */\n.fs-8 {font-size:8rpx;\n}\n.fs-9 {font-size:9rpx;\n}\n.fs-10 {font-size:10rpx;\n}\n.fs-11 {font-size:11rpx;\n}\n.fs-12 {font-size:12rpx;\n}\n.fs-13 {font-size:13rpx;\n}\n.fs-14 {font-size:14rpx;\n}\n.fs-15 {font-size:15rpx;\n}\n.fs-16 {font-size:16rpx;\n}\n.fs-17 {font-size:17rpx;\n}\n.fs-18 {font-size:18rpx;\n}\n.fs-19 {font-size:19rpx;\n}\n.fs-20 {font-size:20rpx;\n}\n.fs-21 {font-size:21rpx;\n}\n.fs-22 {font-size:22rpx;\n}\n.fs-23 {font-size:23rpx;\n}\n.fs-24 {font-size:24rpx;\n}\n.fs-25 {font-size:25rpx;\n}\n.fs-26 {font-size:26rpx;\n}\n.fs-27 {font-size:27rpx;\n}\n.fs-28 {font-size:28rpx;\n}\n.fs-29 {font-size:29rpx;\n}\n.fs-30 {font-size:30rpx;\n}\n.fs-31 {font-size:31rpx;\n}\n.fs-32 {font-size:32rpx;\n}\n.fs-33 {font-size:33rpx;\n}\n.fs-34 {font-size:34rpx;\n}\n.fs-35 {font-size:35rpx;\n}\n.fs-36 {font-size:36rpx;\n}\n.fs-37 {font-size:37rpx;\n}\n.fs-38 {font-size:38rpx;\n}\n.fs-39 {font-size:39rpx;\n}\n.fs-40 {font-size:40rpx;\n}\n.fs-41 {font-size:41rpx;\n}\n.fs-42 {font-size:42rpx;\n}\n.fs-43 {font-size:43rpx;\n}\n.fs-44 {font-size:44rpx;\n}\n.fs-45 {font-size:45rpx;\n}\n.fs-46 {font-size:46rpx;\n}\n.fs-47 {font-size:47rpx;\n}\n.fs-48 {font-size:48rpx;\n}\n.fs-49 {font-size:49rpx;\n}\n.fs-50 {font-size:50rpx;\n}\n.fs-51 {font-size:51rpx;\n}\n.fs-52 {font-size:52rpx;\n}\n.fs-53 {font-size:53rpx;\n}\n.fs-54 {font-size:54rpx;\n}\n.fs-55 {font-size:55rpx;\n}\n.fs-56 {font-size:56rpx;\n}\n.fs-57 {font-size:57rpx;\n}\n.fs-58 {font-size:58rpx;\n}\n.fs-59 {font-size:59rpx;\n}\n.fs-60 {font-size:60rpx;\n}\n.fs-61 {font-size:61rpx;\n}\n.fs-62 {font-size:62rpx;\n}\n.fs-63 {font-size:63rpx;\n}\n.fs-64 {font-size:64rpx;\n}\n.fs-65 {font-size:65rpx;\n}\n.fs-66 {font-size:66rpx;\n}\n.fs-67 {font-size:67rpx;\n}\n.fs-68 {font-size:68rpx;\n}\n.fs-69 {font-size:69rpx;\n}\n.fs-70 {font-size:70rpx;\n}\n.fs-71 {font-size:71rpx;\n}\n.fs-72 {font-size:72rpx;\n}\n.fs-73 {font-size:73rpx;\n}\n.fs-74 {font-size:74rpx;\n}\n.fs-75 {font-size:75rpx;\n}\n.fs-76 {font-size:76rpx;\n}\n.fs-77 {font-size:77rpx;\n}\n.fs-78 {font-size:78rpx;\n}\n.fs-79 {font-size:79rpx;\n}\n.fs-80 {font-size:80rpx;\n}\n.fs-81 {font-size:81rpx;\n}\n.fs-82 {font-size:82rpx;\n}\n.fs-83 {font-size:83rpx;\n}\n.fs-84 {font-size:84rpx;\n}\n.fs-85 {font-size:85rpx;\n}\n.fs-86 {font-size:86rpx;\n}\n.fs-87 {font-size:87rpx;\n}\n.fs-88 {font-size:88rpx;\n}\n.fs-89 {font-size:89rpx;\n}\n.fs-90 {font-size:90rpx;\n}\n.fs-91 {font-size:91rpx;\n}\n.fs-92 {font-size:92rpx;\n}\n.fs-93 {font-size:93rpx;\n}\n.fs-94 {font-size:94rpx;\n}\n.fs-95 {font-size:95rpx;\n}\n.fs-96 {font-size:96rpx;\n}\n.fs-97 {font-size:97rpx;\n}\n.fs-98 {font-size:98rpx;\n}\n.fs-99 {font-size:99rpx;\n}\n.fs-100 {font-size:100rpx;\n}\n/* 行高(8~100) */\n.lh-8 {line-height:8rpx;\n}\n.lh-9 {line-height:9rpx;\n}\n.lh-10 {line-height:10rpx;\n}\n.lh-11 {line-height:11rpx;\n}\n.lh-12 {line-height:12rpx;\n}\n.lh-13 {line-height:13rpx;\n}\n.lh-14 {line-height:14rpx;\n}\n.lh-15 {line-height:15rpx;\n}\n.lh-16 {line-height:16rpx;\n}\n.lh-17 {line-height:17rpx;\n}\n.lh-18 {line-height:18rpx;\n}\n.lh-19 {line-height:19rpx;\n}\n.lh-20 {line-height:20rpx;\n}\n.lh-21 {line-height:21rpx;\n}\n.lh-22 {line-height:22rpx;\n}\n.lh-23 {line-height:23rpx;\n}\n.lh-24 {line-height:24rpx;\n}\n.lh-25 {line-height:25rpx;\n}\n.lh-26 {line-height:26rpx;\n}\n.lh-27 {line-height:27rpx;\n}\n.lh-28 {line-height:28rpx;\n}\n.lh-29 {line-height:29rpx;\n}\n.lh-30 {line-height:30rpx;\n}\n.lh-31 {line-height:31rpx;\n}\n.lh-32 {line-height:32rpx;\n}\n.lh-33 {line-height:33rpx;\n}\n.lh-34 {line-height:34rpx;\n}\n.lh-35 {line-height:35rpx;\n}\n.lh-36 {line-height:36rpx;\n}\n.lh-37 {line-height:37rpx;\n}\n.lh-38 {line-height:38rpx;\n}\n.lh-39 {line-height:39rpx;\n}\n.lh-40 {line-height:40rpx;\n}\n.lh-41 {line-height:41rpx;\n}\n.lh-42 {line-height:42rpx;\n}\n.lh-43 {line-height:43rpx;\n}\n.lh-44 {line-height:44rpx;\n}\n.lh-45 {line-height:45rpx;\n}\n.lh-46 {line-height:46rpx;\n}\n.lh-47 {line-height:47rpx;\n}\n.lh-48 {line-height:48rpx;\n}\n.lh-49 {line-height:49rpx;\n}\n.lh-50 {line-height:50rpx;\n}\n.lh-51 {line-height:51rpx;\n}\n.lh-52 {line-height:52rpx;\n}\n.lh-53 {line-height:53rpx;\n}\n.lh-54 {line-height:54rpx;\n}\n.lh-55 {line-height:55rpx;\n}\n.lh-56 {line-height:56rpx;\n}\n.lh-57 {line-height:57rpx;\n}\n.lh-58 {line-height:58rpx;\n}\n.lh-59 {line-height:59rpx;\n}\n.lh-60 {line-height:60rpx;\n}\n.lh-61 {line-height:61rpx;\n}\n.lh-62 {line-height:62rpx;\n}\n.lh-63 {line-height:63rpx;\n}\n.lh-64 {line-height:64rpx;\n}\n.lh-65 {line-height:65rpx;\n}\n.lh-66 {line-height:66rpx;\n}\n.lh-67 {line-height:67rpx;\n}\n.lh-68 {line-height:68rpx;\n}\n.lh-69 {line-height:69rpx;\n}\n.lh-70 {line-height:70rpx;\n}\n.lh-71 {line-height:71rpx;\n}\n.lh-72 {line-height:72rpx;\n}\n.lh-73 {line-height:73rpx;\n}\n.lh-74 {line-height:74rpx;\n}\n.lh-75 {line-height:75rpx;\n}\n.lh-76 {line-height:76rpx;\n}\n.lh-77 {line-height:77rpx;\n}\n.lh-78 {line-height:78rpx;\n}\n.lh-79 {line-height:79rpx;\n}\n.lh-80 {line-height:80rpx;\n}\n.lh-81 {line-height:81rpx;\n}\n.lh-82 {line-height:82rpx;\n}\n.lh-83 {line-height:83rpx;\n}\n.lh-84 {line-height:84rpx;\n}\n.lh-85 {line-height:85rpx;\n}\n.lh-86 {line-height:86rpx;\n}\n.lh-87 {line-height:87rpx;\n}\n.lh-88 {line-height:88rpx;\n}\n.lh-89 {line-height:89rpx;\n}\n.lh-90 {line-height:90rpx;\n}\n.lh-91 {line-height:91rpx;\n}\n.lh-92 {line-height:92rpx;\n}\n.lh-93 {line-height:93rpx;\n}\n.lh-94 {line-height:94rpx;\n}\n.lh-95 {line-height:95rpx;\n}\n.lh-96 {line-height:96rpx;\n}\n.lh-97 {line-height:97rpx;\n}\n.lh-98 {line-height:98rpx;\n}\n.lh-99 {line-height:99rpx;\n}\n.lh-100 {line-height:100rpx;\n}\n/*========== flex布局相关 ==========*/\n.dp-f {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;/*在webkit内核的浏览器上使用要加前缀*/\n}\n/*快捷水平垂直居中*/\n.dp-fc {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\n}\n/*行内块元素*/\n.dp-ib {\r\n  display: inline-block;\n}\n/* 主轴方向 */\n.fd-rr {\r\n\t-webkit-box-orient:horizontal;\r\n\t-webkit-box-direction:reverse;\r\n\t-webkit-flex-direction:row-reverse;\r\n\t        flex-direction:row-reverse;/* 主轴方向从右到左,默认从左到右 */\n}\n.fd-c {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;/* 主轴方向从上到下,默认从左到右 */\n}\n.fd-cr {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: reverse;\r\n  -webkit-flex-direction: column-reverse;\r\n          flex-direction: column-reverse;/* 主轴方向从下到上,默认从左到右 */\n}\n/* flex-wrap属性 */\n.fw-w {\r\n  -webkit-flex-wrap: wrap;\r\n          flex-wrap: wrap;/* 换行，第一行在上方。 */\n}\n.fw-wr{\r\n\t-webkit-flex-wrap: wrap-reverse;\r\n\t        flex-wrap: wrap-reverse;/* 换行，第一行在下方。 */\n}\n/* justify-content属性 */\n.jc-fs {\r\n  -webkit-box-pack: start;\r\n  -webkit-justify-content: flex-start;\r\n          justify-content: flex-start;/* 在主轴左对齐-默认 */\n}\n.jc-fe {\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;/* 在主轴右对齐 */\n}\n.jc-c {\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center; /* 在主轴居中对齐 */\n}\n.jc-sb {\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;/* 两端对齐（两边不留空） */\n}\n.jc-sa {\r\n  -webkit-justify-content: space-around;\r\n          justify-content: space-around;/* 等距对齐*/\n}\n/* align-items属性 */\n.ai-fs {\r\n  -webkit-box-align: start;\r\n  -webkit-align-items: flex-start;\r\n          align-items: flex-start;\n}\n.ai-fe {\r\n  -webkit-box-align: end;\r\n  -webkit-align-items: flex-end;\r\n          align-items: flex-end;/* 底对齐 */\n}\n.ai-c {\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;/* 水平居中 */\n}\n.ai-bl {\r\n  -webkit-box-align: baseline;\r\n  -webkit-align-items: baseline;\r\n          align-items: baseline;/* 水平居中 */\n}\n/* align-content属性(多列对齐) */\n.ac-fs{\r\n  -webkit-align-content:flex-start;\r\n          align-content:flex-start;/* 与交叉轴的起点对齐 */\n}\n.ac-fe{\r\n  -webkit-align-content:flex-end;\r\n          align-content:flex-end;/* 与交叉轴的终点对齐 */\n}\n.ac-c {\r\n  -webkit-align-content: center;\r\n          align-content: center; /* 与交叉轴的中点对齐。 */\n}\n.ac-sb{\r\n  -webkit-align-content:space-between;\r\n          align-content:space-between;/* 与交叉轴两端对齐，轴线之间的间隔平均分布。 */\n}\n.ac-sa{\r\n  -webkit-align-content:space-around;\r\n          align-content:space-around;/* 每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。 */\n}\n/* align-self属性(默认auto),该属性用于子元素特殊处理 */\n.as-fs {\r\n  -webkit-align-self: flex-start;\r\n          align-self: flex-start;/* 自身在交叉左对齐 */\n}\n.as-fe {\r\n  -webkit-align-self: flex-end;\r\n          align-self: flex-end;/* 自身在交叉右对齐 */\n}\n.as-c {\r\n  -webkit-align-self: center;\r\n          align-self: center;/* 自身在交叉居中对齐 */\n}\n.as-bl {\r\n  -webkit-align-self: baseline;\r\n          align-self: baseline;/* 自身根据文字对齐 */\n}\n/* 子项占用空间比例 (1~10)*/\n.f-1 {-webkit-box-flex:1;-webkit-flex:1;flex:1;\n}\n.f-2 {-webkit-box-flex:2;-webkit-flex:2;flex:2;\n}\n.f-3 {-webkit-box-flex:3;-webkit-flex:3;flex:3;\n}\n.f-4 {-webkit-box-flex:4;-webkit-flex:4;flex:4;\n}\n.f-5 {-webkit-box-flex:5;-webkit-flex:5;flex:5;\n}\n.f-6 {-webkit-box-flex:6;-webkit-flex:6;flex:6;\n}\n.f-7 {-webkit-box-flex:7;-webkit-flex:7;flex:7;\n}\n.f-8 {-webkit-box-flex:8;-webkit-flex:8;flex:8;\n}\n.f-9 {-webkit-box-flex:9;-webkit-flex:9;flex:9;\n}\n.f-10 {-webkit-box-flex:10;-webkit-flex:10;flex:10;\n}\n/* 定位相关 */\n.pt-f {\r\n  position: fixed;\n}\n.pt-r {\r\n  position: relative;\n}\n.pt-a {\r\n  position: absolute;\n}\n.top-0 {\n  top: 0;\n}\n.lef-0 {\n  left: 0;\n}\n.rig-0 {\n  right: 0;\n}\n.bot-0 {\n  bottom: 0;\n}\n.all-0 {\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\n}\n/* 百分比 */\n.w100 {\r\n  width: 100%;\n}\n.h100{\r\n  height: 100%;\n}\n/* 宽 */\n.w-0 {width:0rpx;\n}\n.w-1 {width:1rpx;\n}\n.w-2 {width:2rpx;\n}\n.w-3 {width:3rpx;\n}\n.w-4 {width:4rpx;\n}\n.w-5 {width:5rpx;\n}\n.w-6 {width:6rpx;\n}\n.w-7 {width:7rpx;\n}\n.w-8 {width:8rpx;\n}\n.w-9 {width:9rpx;\n}\n.w-10 {width:10rpx;\n}\n.w-11 {width:11rpx;\n}\n.w-12 {width:12rpx;\n}\n.w-13 {width:13rpx;\n}\n.w-14 {width:14rpx;\n}\n.w-15 {width:15rpx;\n}\n.w-16 {width:16rpx;\n}\n.w-17 {width:17rpx;\n}\n.w-18 {width:18rpx;\n}\n.w-19 {width:19rpx;\n}\n.w-20 {width:20rpx;\n}\n.w-21 {width:21rpx;\n}\n.w-22 {width:22rpx;\n}\n.w-23 {width:23rpx;\n}\n.w-24 {width:24rpx;\n}\n.w-25 {width:25rpx;\n}\n.w-26 {width:26rpx;\n}\n.w-27 {width:27rpx;\n}\n.w-28 {width:28rpx;\n}\n.w-29 {width:29rpx;\n}\n.w-30 {width:30rpx;\n}\n.w-31 {width:31rpx;\n}\n.w-32 {width:32rpx;\n}\n.w-33 {width:33rpx;\n}\n.w-34 {width:34rpx;\n}\n.w-35 {width:35rpx;\n}\n.w-36 {width:36rpx;\n}\n.w-37 {width:37rpx;\n}\n.w-38 {width:38rpx;\n}\n.w-39 {width:39rpx;\n}\n.w-40 {width:40rpx;\n}\n.w-41 {width:41rpx;\n}\n.w-42 {width:42rpx;\n}\n.w-43 {width:43rpx;\n}\n.w-44 {width:44rpx;\n}\n.w-45 {width:45rpx;\n}\n.w-46 {width:46rpx;\n}\n.w-47 {width:47rpx;\n}\n.w-48 {width:48rpx;\n}\n.w-49 {width:49rpx;\n}\n.w-50 {width:50rpx;\n}\n.w-51 {width:51rpx;\n}\n.w-52 {width:52rpx;\n}\n.w-53 {width:53rpx;\n}\n.w-54 {width:54rpx;\n}\n.w-55 {width:55rpx;\n}\n.w-56 {width:56rpx;\n}\n.w-57 {width:57rpx;\n}\n.w-58 {width:58rpx;\n}\n.w-59 {width:59rpx;\n}\n.w-60 {width:60rpx;\n}\n.w-61 {width:61rpx;\n}\n.w-62 {width:62rpx;\n}\n.w-63 {width:63rpx;\n}\n.w-64 {width:64rpx;\n}\n.w-65 {width:65rpx;\n}\n.w-66 {width:66rpx;\n}\n.w-67 {width:67rpx;\n}\n.w-68 {width:68rpx;\n}\n.w-69 {width:69rpx;\n}\n.w-70 {width:70rpx;\n}\n.w-71 {width:71rpx;\n}\n.w-72 {width:72rpx;\n}\n.w-73 {width:73rpx;\n}\n.w-74 {width:74rpx;\n}\n.w-75 {width:75rpx;\n}\n.w-76 {width:76rpx;\n}\n.w-77 {width:77rpx;\n}\n.w-78 {width:78rpx;\n}\n.w-79 {width:79rpx;\n}\n.w-80 {width:80rpx;\n}\n.w-81 {width:81rpx;\n}\n.w-82 {width:82rpx;\n}\n.w-83 {width:83rpx;\n}\n.w-84 {width:84rpx;\n}\n.w-85 {width:85rpx;\n}\n.w-86 {width:86rpx;\n}\n.w-87 {width:87rpx;\n}\n.w-88 {width:88rpx;\n}\n.w-89 {width:89rpx;\n}\n.w-90 {width:90rpx;\n}\n.w-91 {width:91rpx;\n}\n.w-92 {width:92rpx;\n}\n.w-93 {width:93rpx;\n}\n.w-94 {width:94rpx;\n}\n.w-95 {width:95rpx;\n}\n.w-96 {width:96rpx;\n}\n.w-97 {width:97rpx;\n}\n.w-98 {width:98rpx;\n}\n.w-99 {width:99rpx;\n}\n.w-100 {width:100rpx;\n}\n.w-101 {width:101rpx;\n}\n.w-102 {width:102rpx;\n}\n.w-103 {width:103rpx;\n}\n.w-104 {width:104rpx;\n}\n.w-105 {width:105rpx;\n}\n.w-106 {width:106rpx;\n}\n.w-107 {width:107rpx;\n}\n.w-108 {width:108rpx;\n}\n.w-109 {width:109rpx;\n}\n.w-110 {width:110rpx;\n}\n.w-111 {width:111rpx;\n}\n.w-112 {width:112rpx;\n}\n.w-113 {width:113rpx;\n}\n.w-114 {width:114rpx;\n}\n.w-115 {width:115rpx;\n}\n.w-116 {width:116rpx;\n}\n.w-117 {width:117rpx;\n}\n.w-118 {width:118rpx;\n}\n.w-119 {width:119rpx;\n}\n.w-120 {width:120rpx;\n}\n.w-121 {width:121rpx;\n}\n.w-122 {width:122rpx;\n}\n.w-123 {width:123rpx;\n}\n.w-124 {width:124rpx;\n}\n.w-125 {width:125rpx;\n}\n.w-126 {width:126rpx;\n}\n.w-127 {width:127rpx;\n}\n.w-128 {width:128rpx;\n}\n.w-129 {width:129rpx;\n}\n.w-130 {width:130rpx;\n}\n.w-131 {width:131rpx;\n}\n.w-132 {width:132rpx;\n}\n.w-133 {width:133rpx;\n}\n.w-134 {width:134rpx;\n}\n.w-135 {width:135rpx;\n}\n.w-136 {width:136rpx;\n}\n.w-137 {width:137rpx;\n}\n.w-138 {width:138rpx;\n}\n.w-139 {width:139rpx;\n}\n.w-140 {width:140rpx;\n}\n.w-141 {width:141rpx;\n}\n.w-142 {width:142rpx;\n}\n.w-143 {width:143rpx;\n}\n.w-144 {width:144rpx;\n}\n.w-145 {width:145rpx;\n}\n.w-146 {width:146rpx;\n}\n.w-147 {width:147rpx;\n}\n.w-148 {width:148rpx;\n}\n.w-149 {width:149rpx;\n}\n.w-150 {width:150rpx;\n}\n.w-151 {width:151rpx;\n}\n.w-152 {width:152rpx;\n}\n.w-153 {width:153rpx;\n}\n.w-154 {width:154rpx;\n}\n.w-155 {width:155rpx;\n}\n.w-156 {width:156rpx;\n}\n.w-157 {width:157rpx;\n}\n.w-158 {width:158rpx;\n}\n.w-159 {width:159rpx;\n}\n.w-160 {width:160rpx;\n}\n.w-161 {width:161rpx;\n}\n.w-162 {width:162rpx;\n}\n.w-163 {width:163rpx;\n}\n.w-164 {width:164rpx;\n}\n.w-165 {width:165rpx;\n}\n.w-166 {width:166rpx;\n}\n.w-167 {width:167rpx;\n}\n.w-168 {width:168rpx;\n}\n.w-169 {width:169rpx;\n}\n.w-170 {width:170rpx;\n}\n.w-171 {width:171rpx;\n}\n.w-172 {width:172rpx;\n}\n.w-173 {width:173rpx;\n}\n.w-174 {width:174rpx;\n}\n.w-175 {width:175rpx;\n}\n.w-176 {width:176rpx;\n}\n.w-177 {width:177rpx;\n}\n.w-178 {width:178rpx;\n}\n.w-179 {width:179rpx;\n}\n.w-180 {width:180rpx;\n}\n.w-181 {width:181rpx;\n}\n.w-182 {width:182rpx;\n}\n.w-183 {width:183rpx;\n}\n.w-184 {width:184rpx;\n}\n.w-185 {width:185rpx;\n}\n.w-186 {width:186rpx;\n}\n.w-187 {width:187rpx;\n}\n.w-188 {width:188rpx;\n}\n.w-189 {width:189rpx;\n}\n.w-190 {width:190rpx;\n}\n.w-191 {width:191rpx;\n}\n.w-192 {width:192rpx;\n}\n.w-193 {width:193rpx;\n}\n.w-194 {width:194rpx;\n}\n.w-195 {width:195rpx;\n}\n.w-196 {width:196rpx;\n}\n.w-197 {width:197rpx;\n}\n.w-198 {width:198rpx;\n}\n.w-199 {width:199rpx;\n}\n.w-200 {width:200rpx;\n}\n.w-201 {width:201rpx;\n}\n.w-202 {width:202rpx;\n}\n.w-203 {width:203rpx;\n}\n.w-204 {width:204rpx;\n}\n.w-205 {width:205rpx;\n}\n.w-206 {width:206rpx;\n}\n.w-207 {width:207rpx;\n}\n.w-208 {width:208rpx;\n}\n.w-209 {width:209rpx;\n}\n.w-210 {width:210rpx;\n}\n.w-211 {width:211rpx;\n}\n.w-212 {width:212rpx;\n}\n.w-213 {width:213rpx;\n}\n.w-214 {width:214rpx;\n}\n.w-215 {width:215rpx;\n}\n.w-216 {width:216rpx;\n}\n.w-217 {width:217rpx;\n}\n.w-218 {width:218rpx;\n}\n.w-219 {width:219rpx;\n}\n.w-220 {width:220rpx;\n}\n.w-221 {width:221rpx;\n}\n.w-222 {width:222rpx;\n}\n.w-223 {width:223rpx;\n}\n.w-224 {width:224rpx;\n}\n.w-225 {width:225rpx;\n}\n.w-226 {width:226rpx;\n}\n.w-227 {width:227rpx;\n}\n.w-228 {width:228rpx;\n}\n.w-229 {width:229rpx;\n}\n.w-230 {width:230rpx;\n}\n.w-231 {width:231rpx;\n}\n.w-232 {width:232rpx;\n}\n.w-233 {width:233rpx;\n}\n.w-234 {width:234rpx;\n}\n.w-235 {width:235rpx;\n}\n.w-236 {width:236rpx;\n}\n.w-237 {width:237rpx;\n}\n.w-238 {width:238rpx;\n}\n.w-239 {width:239rpx;\n}\n.w-240 {width:240rpx;\n}\n.w-241 {width:241rpx;\n}\n.w-242 {width:242rpx;\n}\n.w-243 {width:243rpx;\n}\n.w-244 {width:244rpx;\n}\n.w-245 {width:245rpx;\n}\n.w-246 {width:246rpx;\n}\n.w-247 {width:247rpx;\n}\n.w-248 {width:248rpx;\n}\n.w-249 {width:249rpx;\n}\n.w-250 {width:250rpx;\n}\n.w-251 {width:251rpx;\n}\n.w-252 {width:252rpx;\n}\n.w-253 {width:253rpx;\n}\n.w-254 {width:254rpx;\n}\n.w-255 {width:255rpx;\n}\n.w-256 {width:256rpx;\n}\n.w-257 {width:257rpx;\n}\n.w-258 {width:258rpx;\n}\n.w-259 {width:259rpx;\n}\n.w-260 {width:260rpx;\n}\n.w-261 {width:261rpx;\n}\n.w-262 {width:262rpx;\n}\n.w-263 {width:263rpx;\n}\n.w-264 {width:264rpx;\n}\n.w-265 {width:265rpx;\n}\n.w-266 {width:266rpx;\n}\n.w-267 {width:267rpx;\n}\n.w-268 {width:268rpx;\n}\n.w-269 {width:269rpx;\n}\n.w-270 {width:270rpx;\n}\n.w-271 {width:271rpx;\n}\n.w-272 {width:272rpx;\n}\n.w-273 {width:273rpx;\n}\n.w-274 {width:274rpx;\n}\n.w-275 {width:275rpx;\n}\n.w-276 {width:276rpx;\n}\n.w-277 {width:277rpx;\n}\n.w-278 {width:278rpx;\n}\n.w-279 {width:279rpx;\n}\n.w-280 {width:280rpx;\n}\n.w-281 {width:281rpx;\n}\n.w-282 {width:282rpx;\n}\n.w-283 {width:283rpx;\n}\n.w-284 {width:284rpx;\n}\n.w-285 {width:285rpx;\n}\n.w-286 {width:286rpx;\n}\n.w-287 {width:287rpx;\n}\n.w-288 {width:288rpx;\n}\n.w-289 {width:289rpx;\n}\n.w-290 {width:290rpx;\n}\n.w-291 {width:291rpx;\n}\n.w-292 {width:292rpx;\n}\n.w-293 {width:293rpx;\n}\n.w-294 {width:294rpx;\n}\n.w-295 {width:295rpx;\n}\n.w-296 {width:296rpx;\n}\n.w-297 {width:297rpx;\n}\n.w-298 {width:298rpx;\n}\n.w-299 {width:299rpx;\n}\n.w-300 {width:300rpx;\n}\n.w-301 {width:301rpx;\n}\n.w-302 {width:302rpx;\n}\n.w-303 {width:303rpx;\n}\n.w-304 {width:304rpx;\n}\n.w-305 {width:305rpx;\n}\n.w-306 {width:306rpx;\n}\n.w-307 {width:307rpx;\n}\n.w-308 {width:308rpx;\n}\n.w-309 {width:309rpx;\n}\n.w-310 {width:310rpx;\n}\n.w-311 {width:311rpx;\n}\n.w-312 {width:312rpx;\n}\n.w-313 {width:313rpx;\n}\n.w-314 {width:314rpx;\n}\n.w-315 {width:315rpx;\n}\n.w-316 {width:316rpx;\n}\n.w-317 {width:317rpx;\n}\n.w-318 {width:318rpx;\n}\n.w-319 {width:319rpx;\n}\n.w-320 {width:320rpx;\n}\n.w-321 {width:321rpx;\n}\n.w-322 {width:322rpx;\n}\n.w-323 {width:323rpx;\n}\n.w-324 {width:324rpx;\n}\n.w-325 {width:325rpx;\n}\n.w-326 {width:326rpx;\n}\n.w-327 {width:327rpx;\n}\n.w-328 {width:328rpx;\n}\n.w-329 {width:329rpx;\n}\n.w-330 {width:330rpx;\n}\n.w-331 {width:331rpx;\n}\n.w-332 {width:332rpx;\n}\n.w-333 {width:333rpx;\n}\n.w-334 {width:334rpx;\n}\n.w-335 {width:335rpx;\n}\n.w-336 {width:336rpx;\n}\n.w-337 {width:337rpx;\n}\n.w-338 {width:338rpx;\n}\n.w-339 {width:339rpx;\n}\n.w-340 {width:340rpx;\n}\n.w-341 {width:341rpx;\n}\n.w-342 {width:342rpx;\n}\n.w-343 {width:343rpx;\n}\n.w-344 {width:344rpx;\n}\n.w-345 {width:345rpx;\n}\n.w-346 {width:346rpx;\n}\n.w-347 {width:347rpx;\n}\n.w-348 {width:348rpx;\n}\n.w-349 {width:349rpx;\n}\n.w-350 {width:350rpx;\n}\n.w-351 {width:351rpx;\n}\n.w-352 {width:352rpx;\n}\n.w-353 {width:353rpx;\n}\n.w-354 {width:354rpx;\n}\n.w-355 {width:355rpx;\n}\n.w-356 {width:356rpx;\n}\n.w-357 {width:357rpx;\n}\n.w-358 {width:358rpx;\n}\n.w-359 {width:359rpx;\n}\n.w-360 {width:360rpx;\n}\n.w-361 {width:361rpx;\n}\n.w-362 {width:362rpx;\n}\n.w-363 {width:363rpx;\n}\n.w-364 {width:364rpx;\n}\n.w-365 {width:365rpx;\n}\n.w-366 {width:366rpx;\n}\n.w-367 {width:367rpx;\n}\n.w-368 {width:368rpx;\n}\n.w-369 {width:369rpx;\n}\n.w-370 {width:370rpx;\n}\n.w-371 {width:371rpx;\n}\n.w-372 {width:372rpx;\n}\n.w-373 {width:373rpx;\n}\n.w-374 {width:374rpx;\n}\n.w-375 {width:375rpx;\n}\n.w-376 {width:376rpx;\n}\n.w-377 {width:377rpx;\n}\n.w-378 {width:378rpx;\n}\n.w-379 {width:379rpx;\n}\n.w-380 {width:380rpx;\n}\n.w-381 {width:381rpx;\n}\n.w-382 {width:382rpx;\n}\n.w-383 {width:383rpx;\n}\n.w-384 {width:384rpx;\n}\n.w-385 {width:385rpx;\n}\n.w-386 {width:386rpx;\n}\n.w-387 {width:387rpx;\n}\n.w-388 {width:388rpx;\n}\n.w-389 {width:389rpx;\n}\n.w-390 {width:390rpx;\n}\n.w-391 {width:391rpx;\n}\n.w-392 {width:392rpx;\n}\n.w-393 {width:393rpx;\n}\n.w-394 {width:394rpx;\n}\n.w-395 {width:395rpx;\n}\n.w-396 {width:396rpx;\n}\n.w-397 {width:397rpx;\n}\n.w-398 {width:398rpx;\n}\n.w-399 {width:399rpx;\n}\n.w-400 {width:400rpx;\n}\n.w-401 {width:401rpx;\n}\n.w-402 {width:402rpx;\n}\n.w-403 {width:403rpx;\n}\n.w-404 {width:404rpx;\n}\n.w-405 {width:405rpx;\n}\n.w-406 {width:406rpx;\n}\n.w-407 {width:407rpx;\n}\n.w-408 {width:408rpx;\n}\n.w-409 {width:409rpx;\n}\n.w-410 {width:410rpx;\n}\n.w-411 {width:411rpx;\n}\n.w-412 {width:412rpx;\n}\n.w-413 {width:413rpx;\n}\n.w-414 {width:414rpx;\n}\n.w-415 {width:415rpx;\n}\n.w-416 {width:416rpx;\n}\n.w-417 {width:417rpx;\n}\n.w-418 {width:418rpx;\n}\n.w-419 {width:419rpx;\n}\n.w-420 {width:420rpx;\n}\n.w-421 {width:421rpx;\n}\n.w-422 {width:422rpx;\n}\n.w-423 {width:423rpx;\n}\n.w-424 {width:424rpx;\n}\n.w-425 {width:425rpx;\n}\n.w-426 {width:426rpx;\n}\n.w-427 {width:427rpx;\n}\n.w-428 {width:428rpx;\n}\n.w-429 {width:429rpx;\n}\n.w-430 {width:430rpx;\n}\n.w-431 {width:431rpx;\n}\n.w-432 {width:432rpx;\n}\n.w-433 {width:433rpx;\n}\n.w-434 {width:434rpx;\n}\n.w-435 {width:435rpx;\n}\n.w-436 {width:436rpx;\n}\n.w-437 {width:437rpx;\n}\n.w-438 {width:438rpx;\n}\n.w-439 {width:439rpx;\n}\n.w-440 {width:440rpx;\n}\n.w-441 {width:441rpx;\n}\n.w-442 {width:442rpx;\n}\n.w-443 {width:443rpx;\n}\n.w-444 {width:444rpx;\n}\n.w-445 {width:445rpx;\n}\n.w-446 {width:446rpx;\n}\n.w-447 {width:447rpx;\n}\n.w-448 {width:448rpx;\n}\n.w-449 {width:449rpx;\n}\n.w-450 {width:450rpx;\n}\n.w-451 {width:451rpx;\n}\n.w-452 {width:452rpx;\n}\n.w-453 {width:453rpx;\n}\n.w-454 {width:454rpx;\n}\n.w-455 {width:455rpx;\n}\n.w-456 {width:456rpx;\n}\n.w-457 {width:457rpx;\n}\n.w-458 {width:458rpx;\n}\n.w-459 {width:459rpx;\n}\n.w-460 {width:460rpx;\n}\n.w-461 {width:461rpx;\n}\n.w-462 {width:462rpx;\n}\n.w-463 {width:463rpx;\n}\n.w-464 {width:464rpx;\n}\n.w-465 {width:465rpx;\n}\n.w-466 {width:466rpx;\n}\n.w-467 {width:467rpx;\n}\n.w-468 {width:468rpx;\n}\n.w-469 {width:469rpx;\n}\n.w-470 {width:470rpx;\n}\n.w-471 {width:471rpx;\n}\n.w-472 {width:472rpx;\n}\n.w-473 {width:473rpx;\n}\n.w-474 {width:474rpx;\n}\n.w-475 {width:475rpx;\n}\n.w-476 {width:476rpx;\n}\n.w-477 {width:477rpx;\n}\n.w-478 {width:478rpx;\n}\n.w-479 {width:479rpx;\n}\n.w-480 {width:480rpx;\n}\n.w-481 {width:481rpx;\n}\n.w-482 {width:482rpx;\n}\n.w-483 {width:483rpx;\n}\n.w-484 {width:484rpx;\n}\n.w-485 {width:485rpx;\n}\n.w-486 {width:486rpx;\n}\n.w-487 {width:487rpx;\n}\n.w-488 {width:488rpx;\n}\n.w-489 {width:489rpx;\n}\n.w-490 {width:490rpx;\n}\n.w-491 {width:491rpx;\n}\n.w-492 {width:492rpx;\n}\n.w-493 {width:493rpx;\n}\n.w-494 {width:494rpx;\n}\n.w-495 {width:495rpx;\n}\n.w-496 {width:496rpx;\n}\n.w-497 {width:497rpx;\n}\n.w-498 {width:498rpx;\n}\n.w-499 {width:499rpx;\n}\n.w-500 {width:500rpx;\n}\n.w-501 {width:501rpx;\n}\n.w-502 {width:502rpx;\n}\n.w-503 {width:503rpx;\n}\n.w-504 {width:504rpx;\n}\n.w-505 {width:505rpx;\n}\n.w-506 {width:506rpx;\n}\n.w-507 {width:507rpx;\n}\n.w-508 {width:508rpx;\n}\n.w-509 {width:509rpx;\n}\n.w-510 {width:510rpx;\n}\n.w-511 {width:511rpx;\n}\n.w-512 {width:512rpx;\n}\n.w-513 {width:513rpx;\n}\n.w-514 {width:514rpx;\n}\n.w-515 {width:515rpx;\n}\n.w-516 {width:516rpx;\n}\n.w-517 {width:517rpx;\n}\n.w-518 {width:518rpx;\n}\n.w-519 {width:519rpx;\n}\n.w-520 {width:520rpx;\n}\n.w-521 {width:521rpx;\n}\n.w-522 {width:522rpx;\n}\n.w-523 {width:523rpx;\n}\n.w-524 {width:524rpx;\n}\n.w-525 {width:525rpx;\n}\n.w-526 {width:526rpx;\n}\n.w-527 {width:527rpx;\n}\n.w-528 {width:528rpx;\n}\n.w-529 {width:529rpx;\n}\n.w-530 {width:530rpx;\n}\n.w-531 {width:531rpx;\n}\n.w-532 {width:532rpx;\n}\n.w-533 {width:533rpx;\n}\n.w-534 {width:534rpx;\n}\n.w-535 {width:535rpx;\n}\n.w-536 {width:536rpx;\n}\n.w-537 {width:537rpx;\n}\n.w-538 {width:538rpx;\n}\n.w-539 {width:539rpx;\n}\n.w-540 {width:540rpx;\n}\n.w-541 {width:541rpx;\n}\n.w-542 {width:542rpx;\n}\n.w-543 {width:543rpx;\n}\n.w-544 {width:544rpx;\n}\n.w-545 {width:545rpx;\n}\n.w-546 {width:546rpx;\n}\n.w-547 {width:547rpx;\n}\n.w-548 {width:548rpx;\n}\n.w-549 {width:549rpx;\n}\n.w-550 {width:550rpx;\n}\n.w-551 {width:551rpx;\n}\n.w-552 {width:552rpx;\n}\n.w-553 {width:553rpx;\n}\n.w-554 {width:554rpx;\n}\n.w-555 {width:555rpx;\n}\n.w-556 {width:556rpx;\n}\n.w-557 {width:557rpx;\n}\n.w-558 {width:558rpx;\n}\n.w-559 {width:559rpx;\n}\n.w-560 {width:560rpx;\n}\n.w-561 {width:561rpx;\n}\n.w-562 {width:562rpx;\n}\n.w-563 {width:563rpx;\n}\n.w-564 {width:564rpx;\n}\n.w-565 {width:565rpx;\n}\n.w-566 {width:566rpx;\n}\n.w-567 {width:567rpx;\n}\n.w-568 {width:568rpx;\n}\n.w-569 {width:569rpx;\n}\n.w-570 {width:570rpx;\n}\n.w-571 {width:571rpx;\n}\n.w-572 {width:572rpx;\n}\n.w-573 {width:573rpx;\n}\n.w-574 {width:574rpx;\n}\n.w-575 {width:575rpx;\n}\n.w-576 {width:576rpx;\n}\n.w-577 {width:577rpx;\n}\n.w-578 {width:578rpx;\n}\n.w-579 {width:579rpx;\n}\n.w-580 {width:580rpx;\n}\n.w-581 {width:581rpx;\n}\n.w-582 {width:582rpx;\n}\n.w-583 {width:583rpx;\n}\n.w-584 {width:584rpx;\n}\n.w-585 {width:585rpx;\n}\n.w-586 {width:586rpx;\n}\n.w-587 {width:587rpx;\n}\n.w-588 {width:588rpx;\n}\n.w-589 {width:589rpx;\n}\n.w-590 {width:590rpx;\n}\n.w-591 {width:591rpx;\n}\n.w-592 {width:592rpx;\n}\n.w-593 {width:593rpx;\n}\n.w-594 {width:594rpx;\n}\n.w-595 {width:595rpx;\n}\n.w-596 {width:596rpx;\n}\n.w-597 {width:597rpx;\n}\n.w-598 {width:598rpx;\n}\n.w-599 {width:599rpx;\n}\n.w-600 {width:600rpx;\n}\n.w-601 {width:601rpx;\n}\n.w-602 {width:602rpx;\n}\n.w-603 {width:603rpx;\n}\n.w-604 {width:604rpx;\n}\n.w-605 {width:605rpx;\n}\n.w-606 {width:606rpx;\n}\n.w-607 {width:607rpx;\n}\n.w-608 {width:608rpx;\n}\n.w-609 {width:609rpx;\n}\n.w-610 {width:610rpx;\n}\n.w-611 {width:611rpx;\n}\n.w-612 {width:612rpx;\n}\n.w-613 {width:613rpx;\n}\n.w-614 {width:614rpx;\n}\n.w-615 {width:615rpx;\n}\n.w-616 {width:616rpx;\n}\n.w-617 {width:617rpx;\n}\n.w-618 {width:618rpx;\n}\n.w-619 {width:619rpx;\n}\n.w-620 {width:620rpx;\n}\n.w-621 {width:621rpx;\n}\n.w-622 {width:622rpx;\n}\n.w-623 {width:623rpx;\n}\n.w-624 {width:624rpx;\n}\n.w-625 {width:625rpx;\n}\n.w-626 {width:626rpx;\n}\n.w-627 {width:627rpx;\n}\n.w-628 {width:628rpx;\n}\n.w-629 {width:629rpx;\n}\n.w-630 {width:630rpx;\n}\n.w-631 {width:631rpx;\n}\n.w-632 {width:632rpx;\n}\n.w-633 {width:633rpx;\n}\n.w-634 {width:634rpx;\n}\n.w-635 {width:635rpx;\n}\n.w-636 {width:636rpx;\n}\n.w-637 {width:637rpx;\n}\n.w-638 {width:638rpx;\n}\n.w-639 {width:639rpx;\n}\n.w-640 {width:640rpx;\n}\n.w-641 {width:641rpx;\n}\n.w-642 {width:642rpx;\n}\n.w-643 {width:643rpx;\n}\n.w-644 {width:644rpx;\n}\n.w-645 {width:645rpx;\n}\n.w-646 {width:646rpx;\n}\n.w-647 {width:647rpx;\n}\n.w-648 {width:648rpx;\n}\n.w-649 {width:649rpx;\n}\n.w-650 {width:650rpx;\n}\n.w-651 {width:651rpx;\n}\n.w-652 {width:652rpx;\n}\n.w-653 {width:653rpx;\n}\n.w-654 {width:654rpx;\n}\n.w-655 {width:655rpx;\n}\n.w-656 {width:656rpx;\n}\n.w-657 {width:657rpx;\n}\n.w-658 {width:658rpx;\n}\n.w-659 {width:659rpx;\n}\n.w-660 {width:660rpx;\n}\n.w-661 {width:661rpx;\n}\n.w-662 {width:662rpx;\n}\n.w-663 {width:663rpx;\n}\n.w-664 {width:664rpx;\n}\n.w-665 {width:665rpx;\n}\n.w-666 {width:666rpx;\n}\n.w-667 {width:667rpx;\n}\n.w-668 {width:668rpx;\n}\n.w-669 {width:669rpx;\n}\n.w-670 {width:670rpx;\n}\n.w-671 {width:671rpx;\n}\n.w-672 {width:672rpx;\n}\n.w-673 {width:673rpx;\n}\n.w-674 {width:674rpx;\n}\n.w-675 {width:675rpx;\n}\n.w-676 {width:676rpx;\n}\n.w-677 {width:677rpx;\n}\n.w-678 {width:678rpx;\n}\n.w-679 {width:679rpx;\n}\n.w-680 {width:680rpx;\n}\n.w-681 {width:681rpx;\n}\n.w-682 {width:682rpx;\n}\n.w-683 {width:683rpx;\n}\n.w-684 {width:684rpx;\n}\n.w-685 {width:685rpx;\n}\n.w-686 {width:686rpx;\n}\n.w-687 {width:687rpx;\n}\n.w-688 {width:688rpx;\n}\n.w-689 {width:689rpx;\n}\n.w-690 {width:690rpx;\n}\n.w-691 {width:691rpx;\n}\n.w-692 {width:692rpx;\n}\n.w-693 {width:693rpx;\n}\n.w-694 {width:694rpx;\n}\n.w-695 {width:695rpx;\n}\n.w-696 {width:696rpx;\n}\n.w-697 {width:697rpx;\n}\n.w-698 {width:698rpx;\n}\n.w-699 {width:699rpx;\n}\n.w-700 {width:700rpx;\n}\n.w-701 {width:701rpx;\n}\n.w-702 {width:702rpx;\n}\n.w-703 {width:703rpx;\n}\n.w-704 {width:704rpx;\n}\n.w-705 {width:705rpx;\n}\n.w-706 {width:706rpx;\n}\n.w-707 {width:707rpx;\n}\n.w-708 {width:708rpx;\n}\n.w-709 {width:709rpx;\n}\n.w-710 {width:710rpx;\n}\n.w-711 {width:711rpx;\n}\n.w-712 {width:712rpx;\n}\n.w-713 {width:713rpx;\n}\n.w-714 {width:714rpx;\n}\n.w-715 {width:715rpx;\n}\n.w-716 {width:716rpx;\n}\n.w-717 {width:717rpx;\n}\n.w-718 {width:718rpx;\n}\n.w-719 {width:719rpx;\n}\n.w-720 {width:720rpx;\n}\n.w-721 {width:721rpx;\n}\n.w-722 {width:722rpx;\n}\n.w-723 {width:723rpx;\n}\n.w-724 {width:724rpx;\n}\n.w-725 {width:725rpx;\n}\n.w-726 {width:726rpx;\n}\n.w-727 {width:727rpx;\n}\n.w-728 {width:728rpx;\n}\n.w-729 {width:729rpx;\n}\n.w-730 {width:730rpx;\n}\n.w-731 {width:731rpx;\n}\n.w-732 {width:732rpx;\n}\n.w-733 {width:733rpx;\n}\n.w-734 {width:734rpx;\n}\n.w-735 {width:735rpx;\n}\n.w-736 {width:736rpx;\n}\n.w-737 {width:737rpx;\n}\n.w-738 {width:738rpx;\n}\n.w-739 {width:739rpx;\n}\n.w-740 {width:740rpx;\n}\n.w-741 {width:741rpx;\n}\n.w-742 {width:742rpx;\n}\n.w-743 {width:743rpx;\n}\n.w-744 {width:744rpx;\n}\n.w-745 {width:745rpx;\n}\n.w-746 {width:746rpx;\n}\n.w-747 {width:747rpx;\n}\n.w-748 {width:748rpx;\n}\n.w-749 {width:749rpx;\n}\n.w-750 {width:750rpx;\n}\n/* 高 */\n.h-0 {height:0rpx;\n}\n.h-1 {height:1rpx;\n}\n.h-2 {height:2rpx;\n}\n.h-3 {height:3rpx;\n}\n.h-4 {height:4rpx;\n}\n.h-5 {height:5rpx;\n}\n.h-6 {height:6rpx;\n}\n.h-7 {height:7rpx;\n}\n.h-8 {height:8rpx;\n}\n.h-9 {height:9rpx;\n}\n.h-10 {height:10rpx;\n}\n.h-11 {height:11rpx;\n}\n.h-12 {height:12rpx;\n}\n.h-13 {height:13rpx;\n}\n.h-14 {height:14rpx;\n}\n.h-15 {height:15rpx;\n}\n.h-16 {height:16rpx;\n}\n.h-17 {height:17rpx;\n}\n.h-18 {height:18rpx;\n}\n.h-19 {height:19rpx;\n}\n.h-20 {height:20rpx;\n}\n.h-21 {height:21rpx;\n}\n.h-22 {height:22rpx;\n}\n.h-23 {height:23rpx;\n}\n.h-24 {height:24rpx;\n}\n.h-25 {height:25rpx;\n}\n.h-26 {height:26rpx;\n}\n.h-27 {height:27rpx;\n}\n.h-28 {height:28rpx;\n}\n.h-29 {height:29rpx;\n}\n.h-30 {height:30rpx;\n}\n.h-31 {height:31rpx;\n}\n.h-32 {height:32rpx;\n}\n.h-33 {height:33rpx;\n}\n.h-34 {height:34rpx;\n}\n.h-35 {height:35rpx;\n}\n.h-36 {height:36rpx;\n}\n.h-37 {height:37rpx;\n}\n.h-38 {height:38rpx;\n}\n.h-39 {height:39rpx;\n}\n.h-40 {height:40rpx;\n}\n.h-41 {height:41rpx;\n}\n.h-42 {height:42rpx;\n}\n.h-43 {height:43rpx;\n}\n.h-44 {height:44rpx;\n}\n.h-45 {height:45rpx;\n}\n.h-46 {height:46rpx;\n}\n.h-47 {height:47rpx;\n}\n.h-48 {height:48rpx;\n}\n.h-49 {height:49rpx;\n}\n.h-50 {height:50rpx;\n}\n.h-51 {height:51rpx;\n}\n.h-52 {height:52rpx;\n}\n.h-53 {height:53rpx;\n}\n.h-54 {height:54rpx;\n}\n.h-55 {height:55rpx;\n}\n.h-56 {height:56rpx;\n}\n.h-57 {height:57rpx;\n}\n.h-58 {height:58rpx;\n}\n.h-59 {height:59rpx;\n}\n.h-60 {height:60rpx;\n}\n.h-61 {height:61rpx;\n}\n.h-62 {height:62rpx;\n}\n.h-63 {height:63rpx;\n}\n.h-64 {height:64rpx;\n}\n.h-65 {height:65rpx;\n}\n.h-66 {height:66rpx;\n}\n.h-67 {height:67rpx;\n}\n.h-68 {height:68rpx;\n}\n.h-69 {height:69rpx;\n}\n.h-70 {height:70rpx;\n}\n.h-71 {height:71rpx;\n}\n.h-72 {height:72rpx;\n}\n.h-73 {height:73rpx;\n}\n.h-74 {height:74rpx;\n}\n.h-75 {height:75rpx;\n}\n.h-76 {height:76rpx;\n}\n.h-77 {height:77rpx;\n}\n.h-78 {height:78rpx;\n}\n.h-79 {height:79rpx;\n}\n.h-80 {height:80rpx;\n}\n.h-81 {height:81rpx;\n}\n.h-82 {height:82rpx;\n}\n.h-83 {height:83rpx;\n}\n.h-84 {height:84rpx;\n}\n.h-85 {height:85rpx;\n}\n.h-86 {height:86rpx;\n}\n.h-87 {height:87rpx;\n}\n.h-88 {height:88rpx;\n}\n.h-89 {height:89rpx;\n}\n.h-90 {height:90rpx;\n}\n.h-91 {height:91rpx;\n}\n.h-92 {height:92rpx;\n}\n.h-93 {height:93rpx;\n}\n.h-94 {height:94rpx;\n}\n.h-95 {height:95rpx;\n}\n.h-96 {height:96rpx;\n}\n.h-97 {height:97rpx;\n}\n.h-98 {height:98rpx;\n}\n.h-99 {height:99rpx;\n}\n.h-100 {height:100rpx;\n}\n.h-101 {height:101rpx;\n}\n.h-102 {height:102rpx;\n}\n.h-103 {height:103rpx;\n}\n.h-104 {height:104rpx;\n}\n.h-105 {height:105rpx;\n}\n.h-106 {height:106rpx;\n}\n.h-107 {height:107rpx;\n}\n.h-108 {height:108rpx;\n}\n.h-109 {height:109rpx;\n}\n.h-110 {height:110rpx;\n}\n.h-111 {height:111rpx;\n}\n.h-112 {height:112rpx;\n}\n.h-113 {height:113rpx;\n}\n.h-114 {height:114rpx;\n}\n.h-115 {height:115rpx;\n}\n.h-116 {height:116rpx;\n}\n.h-117 {height:117rpx;\n}\n.h-118 {height:118rpx;\n}\n.h-119 {height:119rpx;\n}\n.h-120 {height:120rpx;\n}\n.h-121 {height:121rpx;\n}\n.h-122 {height:122rpx;\n}\n.h-123 {height:123rpx;\n}\n.h-124 {height:124rpx;\n}\n.h-125 {height:125rpx;\n}\n.h-126 {height:126rpx;\n}\n.h-127 {height:127rpx;\n}\n.h-128 {height:128rpx;\n}\n.h-129 {height:129rpx;\n}\n.h-130 {height:130rpx;\n}\n.h-131 {height:131rpx;\n}\n.h-132 {height:132rpx;\n}\n.h-133 {height:133rpx;\n}\n.h-134 {height:134rpx;\n}\n.h-135 {height:135rpx;\n}\n.h-136 {height:136rpx;\n}\n.h-137 {height:137rpx;\n}\n.h-138 {height:138rpx;\n}\n.h-139 {height:139rpx;\n}\n.h-140 {height:140rpx;\n}\n.h-141 {height:141rpx;\n}\n.h-142 {height:142rpx;\n}\n.h-143 {height:143rpx;\n}\n.h-144 {height:144rpx;\n}\n.h-145 {height:145rpx;\n}\n.h-146 {height:146rpx;\n}\n.h-147 {height:147rpx;\n}\n.h-148 {height:148rpx;\n}\n.h-149 {height:149rpx;\n}\n.h-150 {height:150rpx;\n}\n.h-151 {height:151rpx;\n}\n.h-152 {height:152rpx;\n}\n.h-153 {height:153rpx;\n}\n.h-154 {height:154rpx;\n}\n.h-155 {height:155rpx;\n}\n.h-156 {height:156rpx;\n}\n.h-157 {height:157rpx;\n}\n.h-158 {height:158rpx;\n}\n.h-159 {height:159rpx;\n}\n.h-160 {height:160rpx;\n}\n.h-161 {height:161rpx;\n}\n.h-162 {height:162rpx;\n}\n.h-163 {height:163rpx;\n}\n.h-164 {height:164rpx;\n}\n.h-165 {height:165rpx;\n}\n.h-166 {height:166rpx;\n}\n.h-167 {height:167rpx;\n}\n.h-168 {height:168rpx;\n}\n.h-169 {height:169rpx;\n}\n.h-170 {height:170rpx;\n}\n.h-171 {height:171rpx;\n}\n.h-172 {height:172rpx;\n}\n.h-173 {height:173rpx;\n}\n.h-174 {height:174rpx;\n}\n.h-175 {height:175rpx;\n}\n.h-176 {height:176rpx;\n}\n.h-177 {height:177rpx;\n}\n.h-178 {height:178rpx;\n}\n.h-179 {height:179rpx;\n}\n.h-180 {height:180rpx;\n}\n.h-181 {height:181rpx;\n}\n.h-182 {height:182rpx;\n}\n.h-183 {height:183rpx;\n}\n.h-184 {height:184rpx;\n}\n.h-185 {height:185rpx;\n}\n.h-186 {height:186rpx;\n}\n.h-187 {height:187rpx;\n}\n.h-188 {height:188rpx;\n}\n.h-189 {height:189rpx;\n}\n.h-190 {height:190rpx;\n}\n.h-191 {height:191rpx;\n}\n.h-192 {height:192rpx;\n}\n.h-193 {height:193rpx;\n}\n.h-194 {height:194rpx;\n}\n.h-195 {height:195rpx;\n}\n.h-196 {height:196rpx;\n}\n.h-197 {height:197rpx;\n}\n.h-198 {height:198rpx;\n}\n.h-199 {height:199rpx;\n}\n.h-200 {height:200rpx;\n}\n.h-201 {height:201rpx;\n}\n.h-202 {height:202rpx;\n}\n.h-203 {height:203rpx;\n}\n.h-204 {height:204rpx;\n}\n.h-205 {height:205rpx;\n}\n.h-206 {height:206rpx;\n}\n.h-207 {height:207rpx;\n}\n.h-208 {height:208rpx;\n}\n.h-209 {height:209rpx;\n}\n.h-210 {height:210rpx;\n}\n.h-211 {height:211rpx;\n}\n.h-212 {height:212rpx;\n}\n.h-213 {height:213rpx;\n}\n.h-214 {height:214rpx;\n}\n.h-215 {height:215rpx;\n}\n.h-216 {height:216rpx;\n}\n.h-217 {height:217rpx;\n}\n.h-218 {height:218rpx;\n}\n.h-219 {height:219rpx;\n}\n.h-220 {height:220rpx;\n}\n.h-221 {height:221rpx;\n}\n.h-222 {height:222rpx;\n}\n.h-223 {height:223rpx;\n}\n.h-224 {height:224rpx;\n}\n.h-225 {height:225rpx;\n}\n.h-226 {height:226rpx;\n}\n.h-227 {height:227rpx;\n}\n.h-228 {height:228rpx;\n}\n.h-229 {height:229rpx;\n}\n.h-230 {height:230rpx;\n}\n.h-231 {height:231rpx;\n}\n.h-232 {height:232rpx;\n}\n.h-233 {height:233rpx;\n}\n.h-234 {height:234rpx;\n}\n.h-235 {height:235rpx;\n}\n.h-236 {height:236rpx;\n}\n.h-237 {height:237rpx;\n}\n.h-238 {height:238rpx;\n}\n.h-239 {height:239rpx;\n}\n.h-240 {height:240rpx;\n}\n.h-241 {height:241rpx;\n}\n.h-242 {height:242rpx;\n}\n.h-243 {height:243rpx;\n}\n.h-244 {height:244rpx;\n}\n.h-245 {height:245rpx;\n}\n.h-246 {height:246rpx;\n}\n.h-247 {height:247rpx;\n}\n.h-248 {height:248rpx;\n}\n.h-249 {height:249rpx;\n}\n.h-250 {height:250rpx;\n}\n.h-251 {height:251rpx;\n}\n.h-252 {height:252rpx;\n}\n.h-253 {height:253rpx;\n}\n.h-254 {height:254rpx;\n}\n.h-255 {height:255rpx;\n}\n.h-256 {height:256rpx;\n}\n.h-257 {height:257rpx;\n}\n.h-258 {height:258rpx;\n}\n.h-259 {height:259rpx;\n}\n.h-260 {height:260rpx;\n}\n.h-261 {height:261rpx;\n}\n.h-262 {height:262rpx;\n}\n.h-263 {height:263rpx;\n}\n.h-264 {height:264rpx;\n}\n.h-265 {height:265rpx;\n}\n.h-266 {height:266rpx;\n}\n.h-267 {height:267rpx;\n}\n.h-268 {height:268rpx;\n}\n.h-269 {height:269rpx;\n}\n.h-270 {height:270rpx;\n}\n.h-271 {height:271rpx;\n}\n.h-272 {height:272rpx;\n}\n.h-273 {height:273rpx;\n}\n.h-274 {height:274rpx;\n}\n.h-275 {height:275rpx;\n}\n.h-276 {height:276rpx;\n}\n.h-277 {height:277rpx;\n}\n.h-278 {height:278rpx;\n}\n.h-279 {height:279rpx;\n}\n.h-280 {height:280rpx;\n}\n.h-281 {height:281rpx;\n}\n.h-282 {height:282rpx;\n}\n.h-283 {height:283rpx;\n}\n.h-284 {height:284rpx;\n}\n.h-285 {height:285rpx;\n}\n.h-286 {height:286rpx;\n}\n.h-287 {height:287rpx;\n}\n.h-288 {height:288rpx;\n}\n.h-289 {height:289rpx;\n}\n.h-290 {height:290rpx;\n}\n.h-291 {height:291rpx;\n}\n.h-292 {height:292rpx;\n}\n.h-293 {height:293rpx;\n}\n.h-294 {height:294rpx;\n}\n.h-295 {height:295rpx;\n}\n.h-296 {height:296rpx;\n}\n.h-297 {height:297rpx;\n}\n.h-298 {height:298rpx;\n}\n.h-299 {height:299rpx;\n}\n.h-300 {height:300rpx;\n}\n.h-301 {height:301rpx;\n}\n.h-302 {height:302rpx;\n}\n.h-303 {height:303rpx;\n}\n.h-304 {height:304rpx;\n}\n.h-305 {height:305rpx;\n}\n.h-306 {height:306rpx;\n}\n.h-307 {height:307rpx;\n}\n.h-308 {height:308rpx;\n}\n.h-309 {height:309rpx;\n}\n.h-310 {height:310rpx;\n}\n.h-311 {height:311rpx;\n}\n.h-312 {height:312rpx;\n}\n.h-313 {height:313rpx;\n}\n.h-314 {height:314rpx;\n}\n.h-315 {height:315rpx;\n}\n.h-316 {height:316rpx;\n}\n.h-317 {height:317rpx;\n}\n.h-318 {height:318rpx;\n}\n.h-319 {height:319rpx;\n}\n.h-320 {height:320rpx;\n}\n.h-321 {height:321rpx;\n}\n.h-322 {height:322rpx;\n}\n.h-323 {height:323rpx;\n}\n.h-324 {height:324rpx;\n}\n.h-325 {height:325rpx;\n}\n.h-326 {height:326rpx;\n}\n.h-327 {height:327rpx;\n}\n.h-328 {height:328rpx;\n}\n.h-329 {height:329rpx;\n}\n.h-330 {height:330rpx;\n}\n.h-331 {height:331rpx;\n}\n.h-332 {height:332rpx;\n}\n.h-333 {height:333rpx;\n}\n.h-334 {height:334rpx;\n}\n.h-335 {height:335rpx;\n}\n.h-336 {height:336rpx;\n}\n.h-337 {height:337rpx;\n}\n.h-338 {height:338rpx;\n}\n.h-339 {height:339rpx;\n}\n.h-340 {height:340rpx;\n}\n.h-341 {height:341rpx;\n}\n.h-342 {height:342rpx;\n}\n.h-343 {height:343rpx;\n}\n.h-344 {height:344rpx;\n}\n.h-345 {height:345rpx;\n}\n.h-346 {height:346rpx;\n}\n.h-347 {height:347rpx;\n}\n.h-348 {height:348rpx;\n}\n.h-349 {height:349rpx;\n}\n.h-350 {height:350rpx;\n}\n.h-351 {height:351rpx;\n}\n.h-352 {height:352rpx;\n}\n.h-353 {height:353rpx;\n}\n.h-354 {height:354rpx;\n}\n.h-355 {height:355rpx;\n}\n.h-356 {height:356rpx;\n}\n.h-357 {height:357rpx;\n}\n.h-358 {height:358rpx;\n}\n.h-359 {height:359rpx;\n}\n.h-360 {height:360rpx;\n}\n.h-361 {height:361rpx;\n}\n.h-362 {height:362rpx;\n}\n.h-363 {height:363rpx;\n}\n.h-364 {height:364rpx;\n}\n.h-365 {height:365rpx;\n}\n.h-366 {height:366rpx;\n}\n.h-367 {height:367rpx;\n}\n.h-368 {height:368rpx;\n}\n.h-369 {height:369rpx;\n}\n.h-370 {height:370rpx;\n}\n.h-371 {height:371rpx;\n}\n.h-372 {height:372rpx;\n}\n.h-373 {height:373rpx;\n}\n.h-374 {height:374rpx;\n}\n.h-375 {height:375rpx;\n}\n.h-376 {height:376rpx;\n}\n.h-377 {height:377rpx;\n}\n.h-378 {height:378rpx;\n}\n.h-379 {height:379rpx;\n}\n.h-380 {height:380rpx;\n}\n.h-381 {height:381rpx;\n}\n.h-382 {height:382rpx;\n}\n.h-383 {height:383rpx;\n}\n.h-384 {height:384rpx;\n}\n.h-385 {height:385rpx;\n}\n.h-386 {height:386rpx;\n}\n.h-387 {height:387rpx;\n}\n.h-388 {height:388rpx;\n}\n.h-389 {height:389rpx;\n}\n.h-390 {height:390rpx;\n}\n.h-391 {height:391rpx;\n}\n.h-392 {height:392rpx;\n}\n.h-393 {height:393rpx;\n}\n.h-394 {height:394rpx;\n}\n.h-395 {height:395rpx;\n}\n.h-396 {height:396rpx;\n}\n.h-397 {height:397rpx;\n}\n.h-398 {height:398rpx;\n}\n.h-399 {height:399rpx;\n}\n.h-400 {height:400rpx;\n}\n.h-401 {height:401rpx;\n}\n.h-402 {height:402rpx;\n}\n.h-403 {height:403rpx;\n}\n.h-404 {height:404rpx;\n}\n.h-405 {height:405rpx;\n}\n.h-406 {height:406rpx;\n}\n.h-407 {height:407rpx;\n}\n.h-408 {height:408rpx;\n}\n.h-409 {height:409rpx;\n}\n.h-410 {height:410rpx;\n}\n.h-411 {height:411rpx;\n}\n.h-412 {height:412rpx;\n}\n.h-413 {height:413rpx;\n}\n.h-414 {height:414rpx;\n}\n.h-415 {height:415rpx;\n}\n.h-416 {height:416rpx;\n}\n.h-417 {height:417rpx;\n}\n.h-418 {height:418rpx;\n}\n.h-419 {height:419rpx;\n}\n.h-420 {height:420rpx;\n}\n.h-421 {height:421rpx;\n}\n.h-422 {height:422rpx;\n}\n.h-423 {height:423rpx;\n}\n.h-424 {height:424rpx;\n}\n.h-425 {height:425rpx;\n}\n.h-426 {height:426rpx;\n}\n.h-427 {height:427rpx;\n}\n.h-428 {height:428rpx;\n}\n.h-429 {height:429rpx;\n}\n.h-430 {height:430rpx;\n}\n.h-431 {height:431rpx;\n}\n.h-432 {height:432rpx;\n}\n.h-433 {height:433rpx;\n}\n.h-434 {height:434rpx;\n}\n.h-435 {height:435rpx;\n}\n.h-436 {height:436rpx;\n}\n.h-437 {height:437rpx;\n}\n.h-438 {height:438rpx;\n}\n.h-439 {height:439rpx;\n}\n.h-440 {height:440rpx;\n}\n.h-441 {height:441rpx;\n}\n.h-442 {height:442rpx;\n}\n.h-443 {height:443rpx;\n}\n.h-444 {height:444rpx;\n}\n.h-445 {height:445rpx;\n}\n.h-446 {height:446rpx;\n}\n.h-447 {height:447rpx;\n}\n.h-448 {height:448rpx;\n}\n.h-449 {height:449rpx;\n}\n.h-450 {height:450rpx;\n}\n.h-451 {height:451rpx;\n}\n.h-452 {height:452rpx;\n}\n.h-453 {height:453rpx;\n}\n.h-454 {height:454rpx;\n}\n.h-455 {height:455rpx;\n}\n.h-456 {height:456rpx;\n}\n.h-457 {height:457rpx;\n}\n.h-458 {height:458rpx;\n}\n.h-459 {height:459rpx;\n}\n.h-460 {height:460rpx;\n}\n.h-461 {height:461rpx;\n}\n.h-462 {height:462rpx;\n}\n.h-463 {height:463rpx;\n}\n.h-464 {height:464rpx;\n}\n.h-465 {height:465rpx;\n}\n.h-466 {height:466rpx;\n}\n.h-467 {height:467rpx;\n}\n.h-468 {height:468rpx;\n}\n.h-469 {height:469rpx;\n}\n.h-470 {height:470rpx;\n}\n.h-471 {height:471rpx;\n}\n.h-472 {height:472rpx;\n}\n.h-473 {height:473rpx;\n}\n.h-474 {height:474rpx;\n}\n.h-475 {height:475rpx;\n}\n.h-476 {height:476rpx;\n}\n.h-477 {height:477rpx;\n}\n.h-478 {height:478rpx;\n}\n.h-479 {height:479rpx;\n}\n.h-480 {height:480rpx;\n}\n.h-481 {height:481rpx;\n}\n.h-482 {height:482rpx;\n}\n.h-483 {height:483rpx;\n}\n.h-484 {height:484rpx;\n}\n.h-485 {height:485rpx;\n}\n.h-486 {height:486rpx;\n}\n.h-487 {height:487rpx;\n}\n.h-488 {height:488rpx;\n}\n.h-489 {height:489rpx;\n}\n.h-490 {height:490rpx;\n}\n.h-491 {height:491rpx;\n}\n.h-492 {height:492rpx;\n}\n.h-493 {height:493rpx;\n}\n.h-494 {height:494rpx;\n}\n.h-495 {height:495rpx;\n}\n.h-496 {height:496rpx;\n}\n.h-497 {height:497rpx;\n}\n.h-498 {height:498rpx;\n}\n.h-499 {height:499rpx;\n}\n.h-500 {height:500rpx;\n}\n.h-501 {height:501rpx;\n}\n.h-502 {height:502rpx;\n}\n.h-503 {height:503rpx;\n}\n.h-504 {height:504rpx;\n}\n.h-505 {height:505rpx;\n}\n.h-506 {height:506rpx;\n}\n.h-507 {height:507rpx;\n}\n.h-508 {height:508rpx;\n}\n.h-509 {height:509rpx;\n}\n.h-510 {height:510rpx;\n}\n.h-511 {height:511rpx;\n}\n.h-512 {height:512rpx;\n}\n.h-513 {height:513rpx;\n}\n.h-514 {height:514rpx;\n}\n.h-515 {height:515rpx;\n}\n.h-516 {height:516rpx;\n}\n.h-517 {height:517rpx;\n}\n.h-518 {height:518rpx;\n}\n.h-519 {height:519rpx;\n}\n.h-520 {height:520rpx;\n}\n.h-521 {height:521rpx;\n}\n.h-522 {height:522rpx;\n}\n.h-523 {height:523rpx;\n}\n.h-524 {height:524rpx;\n}\n.h-525 {height:525rpx;\n}\n.h-526 {height:526rpx;\n}\n.h-527 {height:527rpx;\n}\n.h-528 {height:528rpx;\n}\n.h-529 {height:529rpx;\n}\n.h-530 {height:530rpx;\n}\n.h-531 {height:531rpx;\n}\n.h-532 {height:532rpx;\n}\n.h-533 {height:533rpx;\n}\n.h-534 {height:534rpx;\n}\n.h-535 {height:535rpx;\n}\n.h-536 {height:536rpx;\n}\n.h-537 {height:537rpx;\n}\n.h-538 {height:538rpx;\n}\n.h-539 {height:539rpx;\n}\n.h-540 {height:540rpx;\n}\n.h-541 {height:541rpx;\n}\n.h-542 {height:542rpx;\n}\n.h-543 {height:543rpx;\n}\n.h-544 {height:544rpx;\n}\n.h-545 {height:545rpx;\n}\n.h-546 {height:546rpx;\n}\n.h-547 {height:547rpx;\n}\n.h-548 {height:548rpx;\n}\n.h-549 {height:549rpx;\n}\n.h-550 {height:550rpx;\n}\n.h-551 {height:551rpx;\n}\n.h-552 {height:552rpx;\n}\n.h-553 {height:553rpx;\n}\n.h-554 {height:554rpx;\n}\n.h-555 {height:555rpx;\n}\n.h-556 {height:556rpx;\n}\n.h-557 {height:557rpx;\n}\n.h-558 {height:558rpx;\n}\n.h-559 {height:559rpx;\n}\n.h-560 {height:560rpx;\n}\n.h-561 {height:561rpx;\n}\n.h-562 {height:562rpx;\n}\n.h-563 {height:563rpx;\n}\n.h-564 {height:564rpx;\n}\n.h-565 {height:565rpx;\n}\n.h-566 {height:566rpx;\n}\n.h-567 {height:567rpx;\n}\n.h-568 {height:568rpx;\n}\n.h-569 {height:569rpx;\n}\n.h-570 {height:570rpx;\n}\n.h-571 {height:571rpx;\n}\n.h-572 {height:572rpx;\n}\n.h-573 {height:573rpx;\n}\n.h-574 {height:574rpx;\n}\n.h-575 {height:575rpx;\n}\n.h-576 {height:576rpx;\n}\n.h-577 {height:577rpx;\n}\n.h-578 {height:578rpx;\n}\n.h-579 {height:579rpx;\n}\n.h-580 {height:580rpx;\n}\n.h-581 {height:581rpx;\n}\n.h-582 {height:582rpx;\n}\n.h-583 {height:583rpx;\n}\n.h-584 {height:584rpx;\n}\n.h-585 {height:585rpx;\n}\n.h-586 {height:586rpx;\n}\n.h-587 {height:587rpx;\n}\n.h-588 {height:588rpx;\n}\n.h-589 {height:589rpx;\n}\n.h-590 {height:590rpx;\n}\n.h-591 {height:591rpx;\n}\n.h-592 {height:592rpx;\n}\n.h-593 {height:593rpx;\n}\n.h-594 {height:594rpx;\n}\n.h-595 {height:595rpx;\n}\n.h-596 {height:596rpx;\n}\n.h-597 {height:597rpx;\n}\n.h-598 {height:598rpx;\n}\n.h-599 {height:599rpx;\n}\n.h-600 {height:600rpx;\n}\n.h-601 {height:601rpx;\n}\n.h-602 {height:602rpx;\n}\n.h-603 {height:603rpx;\n}\n.h-604 {height:604rpx;\n}\n.h-605 {height:605rpx;\n}\n.h-606 {height:606rpx;\n}\n.h-607 {height:607rpx;\n}\n.h-608 {height:608rpx;\n}\n.h-609 {height:609rpx;\n}\n.h-610 {height:610rpx;\n}\n.h-611 {height:611rpx;\n}\n.h-612 {height:612rpx;\n}\n.h-613 {height:613rpx;\n}\n.h-614 {height:614rpx;\n}\n.h-615 {height:615rpx;\n}\n.h-616 {height:616rpx;\n}\n.h-617 {height:617rpx;\n}\n.h-618 {height:618rpx;\n}\n.h-619 {height:619rpx;\n}\n.h-620 {height:620rpx;\n}\n.h-621 {height:621rpx;\n}\n.h-622 {height:622rpx;\n}\n.h-623 {height:623rpx;\n}\n.h-624 {height:624rpx;\n}\n.h-625 {height:625rpx;\n}\n.h-626 {height:626rpx;\n}\n.h-627 {height:627rpx;\n}\n.h-628 {height:628rpx;\n}\n.h-629 {height:629rpx;\n}\n.h-630 {height:630rpx;\n}\n.h-631 {height:631rpx;\n}\n.h-632 {height:632rpx;\n}\n.h-633 {height:633rpx;\n}\n.h-634 {height:634rpx;\n}\n.h-635 {height:635rpx;\n}\n.h-636 {height:636rpx;\n}\n.h-637 {height:637rpx;\n}\n.h-638 {height:638rpx;\n}\n.h-639 {height:639rpx;\n}\n.h-640 {height:640rpx;\n}\n.h-641 {height:641rpx;\n}\n.h-642 {height:642rpx;\n}\n.h-643 {height:643rpx;\n}\n.h-644 {height:644rpx;\n}\n.h-645 {height:645rpx;\n}\n.h-646 {height:646rpx;\n}\n.h-647 {height:647rpx;\n}\n.h-648 {height:648rpx;\n}\n.h-649 {height:649rpx;\n}\n.h-650 {height:650rpx;\n}\n.h-651 {height:651rpx;\n}\n.h-652 {height:652rpx;\n}\n.h-653 {height:653rpx;\n}\n.h-654 {height:654rpx;\n}\n.h-655 {height:655rpx;\n}\n.h-656 {height:656rpx;\n}\n.h-657 {height:657rpx;\n}\n.h-658 {height:658rpx;\n}\n.h-659 {height:659rpx;\n}\n.h-660 {height:660rpx;\n}\n.h-661 {height:661rpx;\n}\n.h-662 {height:662rpx;\n}\n.h-663 {height:663rpx;\n}\n.h-664 {height:664rpx;\n}\n.h-665 {height:665rpx;\n}\n.h-666 {height:666rpx;\n}\n.h-667 {height:667rpx;\n}\n.h-668 {height:668rpx;\n}\n.h-669 {height:669rpx;\n}\n.h-670 {height:670rpx;\n}\n.h-671 {height:671rpx;\n}\n.h-672 {height:672rpx;\n}\n.h-673 {height:673rpx;\n}\n.h-674 {height:674rpx;\n}\n.h-675 {height:675rpx;\n}\n.h-676 {height:676rpx;\n}\n.h-677 {height:677rpx;\n}\n.h-678 {height:678rpx;\n}\n.h-679 {height:679rpx;\n}\n.h-680 {height:680rpx;\n}\n.h-681 {height:681rpx;\n}\n.h-682 {height:682rpx;\n}\n.h-683 {height:683rpx;\n}\n.h-684 {height:684rpx;\n}\n.h-685 {height:685rpx;\n}\n.h-686 {height:686rpx;\n}\n.h-687 {height:687rpx;\n}\n.h-688 {height:688rpx;\n}\n.h-689 {height:689rpx;\n}\n.h-690 {height:690rpx;\n}\n.h-691 {height:691rpx;\n}\n.h-692 {height:692rpx;\n}\n.h-693 {height:693rpx;\n}\n.h-694 {height:694rpx;\n}\n.h-695 {height:695rpx;\n}\n.h-696 {height:696rpx;\n}\n.h-697 {height:697rpx;\n}\n.h-698 {height:698rpx;\n}\n.h-699 {height:699rpx;\n}\n.h-700 {height:700rpx;\n}\n.h-701 {height:701rpx;\n}\n.h-702 {height:702rpx;\n}\n.h-703 {height:703rpx;\n}\n.h-704 {height:704rpx;\n}\n.h-705 {height:705rpx;\n}\n.h-706 {height:706rpx;\n}\n.h-707 {height:707rpx;\n}\n.h-708 {height:708rpx;\n}\n.h-709 {height:709rpx;\n}\n.h-710 {height:710rpx;\n}\n.h-711 {height:711rpx;\n}\n.h-712 {height:712rpx;\n}\n.h-713 {height:713rpx;\n}\n.h-714 {height:714rpx;\n}\n.h-715 {height:715rpx;\n}\n.h-716 {height:716rpx;\n}\n.h-717 {height:717rpx;\n}\n.h-718 {height:718rpx;\n}\n.h-719 {height:719rpx;\n}\n.h-720 {height:720rpx;\n}\n.h-721 {height:721rpx;\n}\n.h-722 {height:722rpx;\n}\n.h-723 {height:723rpx;\n}\n.h-724 {height:724rpx;\n}\n.h-725 {height:725rpx;\n}\n.h-726 {height:726rpx;\n}\n.h-727 {height:727rpx;\n}\n.h-728 {height:728rpx;\n}\n.h-729 {height:729rpx;\n}\n.h-730 {height:730rpx;\n}\n.h-731 {height:731rpx;\n}\n.h-732 {height:732rpx;\n}\n.h-733 {height:733rpx;\n}\n.h-734 {height:734rpx;\n}\n.h-735 {height:735rpx;\n}\n.h-736 {height:736rpx;\n}\n.h-737 {height:737rpx;\n}\n.h-738 {height:738rpx;\n}\n.h-739 {height:739rpx;\n}\n.h-740 {height:740rpx;\n}\n.h-741 {height:741rpx;\n}\n.h-742 {height:742rpx;\n}\n.h-743 {height:743rpx;\n}\n.h-744 {height:744rpx;\n}\n.h-745 {height:745rpx;\n}\n.h-746 {height:746rpx;\n}\n.h-747 {height:747rpx;\n}\n.h-748 {height:748rpx;\n}\n.h-749 {height:749rpx;\n}\n.h-750 {height:750rpx;\n}\n/* 四边边距(0~50rpx) */\n.p-all-0 {padding:0rpx;\n}\n.p-all-1 {padding:1rpx;\n}\n.p-all-2 {padding:2rpx;\n}\n.p-all-3 {padding:3rpx;\n}\n.p-all-4 {padding:4rpx;\n}\n.p-all-5 {padding:5rpx;\n}\n.p-all-6 {padding:6rpx;\n}\n.p-all-7 {padding:7rpx;\n}\n.p-all-8 {padding:8rpx;\n}\n.p-all-9 {padding:9rpx;\n}\n.p-all-10 {padding:10rpx;\n}\n.p-all-11 {padding:11rpx;\n}\n.p-all-12 {padding:12rpx;\n}\n.p-all-13 {padding:13rpx;\n}\n.p-all-14 {padding:14rpx;\n}\n.p-all-15 {padding:15rpx;\n}\n.p-all-16 {padding:16rpx;\n}\n.p-all-17 {padding:17rpx;\n}\n.p-all-18 {padding:18rpx;\n}\n.p-all-19 {padding:19rpx;\n}\n.p-all-20 {padding:20rpx;\n}\n.p-all-21 {padding:21rpx;\n}\n.p-all-22 {padding:22rpx;\n}\n.p-all-23 {padding:23rpx;\n}\n.p-all-24 {padding:24rpx;\n}\n.p-all-25 {padding:25rpx;\n}\n.p-all-26 {padding:26rpx;\n}\n.p-all-27 {padding:27rpx;\n}\n.p-all-28 {padding:28rpx;\n}\n.p-all-29 {padding:29rpx;\n}\n.p-all-30 {padding:30rpx;\n}\n.p-all-31 {padding:31rpx;\n}\n.p-all-32 {padding:32rpx;\n}\n.p-all-33 {padding:33rpx;\n}\n.p-all-34 {padding:34rpx;\n}\n.p-all-35 {padding:35rpx;\n}\n.p-all-36 {padding:36rpx;\n}\n.p-all-37 {padding:37rpx;\n}\n.p-all-38 {padding:38rpx;\n}\n.p-all-39 {padding:39rpx;\n}\n.p-all-40 {padding:40rpx;\n}\n.p-all-41 {padding:41rpx;\n}\n.p-all-42 {padding:42rpx;\n}\n.p-all-43 {padding:43rpx;\n}\n.p-all-44 {padding:44rpx;\n}\n.p-all-45 {padding:45rpx;\n}\n.p-all-46 {padding:46rpx;\n}\n.p-all-47 {padding:47rpx;\n}\n.p-all-48 {padding:48rpx;\n}\n.p-all-49 {padding:49rpx;\n}\n.p-all-50 {padding:50rpx;\n}\n/* 左右边距(0~50rpx) */\n.p-0-0 {padding-left:0rpx;padding-right:0rpx;\n}\n.p-0-1 {padding-left:1rpx;padding-right:1rpx;\n}\n.p-0-2 {padding-left:2rpx;padding-right:2rpx;\n}\n.p-0-3 {padding-left:3rpx;padding-right:3rpx;\n}\n.p-0-4 {padding-left:4rpx;padding-right:4rpx;\n}\n.p-0-5 {padding-left:5rpx;padding-right:5rpx;\n}\n.p-0-6 {padding-left:6rpx;padding-right:6rpx;\n}\n.p-0-7 {padding-left:7rpx;padding-right:7rpx;\n}\n.p-0-8 {padding-left:8rpx;padding-right:8rpx;\n}\n.p-0-9 {padding-left:9rpx;padding-right:9rpx;\n}\n.p-0-10 {padding-left:10rpx;padding-right:10rpx;\n}\n.p-0-11 {padding-left:11rpx;padding-right:11rpx;\n}\n.p-0-12 {padding-left:12rpx;padding-right:12rpx;\n}\n.p-0-13 {padding-left:13rpx;padding-right:13rpx;\n}\n.p-0-14 {padding-left:14rpx;padding-right:14rpx;\n}\n.p-0-15 {padding-left:15rpx;padding-right:15rpx;\n}\n.p-0-16 {padding-left:16rpx;padding-right:16rpx;\n}\n.p-0-17 {padding-left:17rpx;padding-right:17rpx;\n}\n.p-0-18 {padding-left:18rpx;padding-right:18rpx;\n}\n.p-0-19 {padding-left:19rpx;padding-right:19rpx;\n}\n.p-0-20 {padding-left:20rpx;padding-right:20rpx;\n}\n.p-0-21 {padding-left:21rpx;padding-right:21rpx;\n}\n.p-0-22 {padding-left:22rpx;padding-right:22rpx;\n}\n.p-0-23 {padding-left:23rpx;padding-right:23rpx;\n}\n.p-0-24 {padding-left:24rpx;padding-right:24rpx;\n}\n.p-0-25 {padding-left:25rpx;padding-right:25rpx;\n}\n.p-0-26 {padding-left:26rpx;padding-right:26rpx;\n}\n.p-0-27 {padding-left:27rpx;padding-right:27rpx;\n}\n.p-0-28 {padding-left:28rpx;padding-right:28rpx;\n}\n.p-0-29 {padding-left:29rpx;padding-right:29rpx;\n}\n.p-0-30 {padding-left:30rpx;padding-right:30rpx;\n}\n.p-0-31 {padding-left:31rpx;padding-right:31rpx;\n}\n.p-0-32 {padding-left:32rpx;padding-right:32rpx;\n}\n.p-0-33 {padding-left:33rpx;padding-right:33rpx;\n}\n.p-0-34 {padding-left:34rpx;padding-right:34rpx;\n}\n.p-0-35 {padding-left:35rpx;padding-right:35rpx;\n}\n.p-0-36 {padding-left:36rpx;padding-right:36rpx;\n}\n.p-0-37 {padding-left:37rpx;padding-right:37rpx;\n}\n.p-0-38 {padding-left:38rpx;padding-right:38rpx;\n}\n.p-0-39 {padding-left:39rpx;padding-right:39rpx;\n}\n.p-0-40 {padding-left:40rpx;padding-right:40rpx;\n}\n.p-0-41 {padding-left:41rpx;padding-right:41rpx;\n}\n.p-0-42 {padding-left:42rpx;padding-right:42rpx;\n}\n.p-0-43 {padding-left:43rpx;padding-right:43rpx;\n}\n.p-0-44 {padding-left:44rpx;padding-right:44rpx;\n}\n.p-0-45 {padding-left:45rpx;padding-right:45rpx;\n}\n.p-0-46 {padding-left:46rpx;padding-right:46rpx;\n}\n.p-0-47 {padding-left:47rpx;padding-right:47rpx;\n}\n.p-0-48 {padding-left:48rpx;padding-right:48rpx;\n}\n.p-0-49 {padding-left:49rpx;padding-right:49rpx;\n}\n.p-0-50 {padding-left:50rpx;padding-right:50rpx;\n}\n/* 上下边距(0~50rpx) */\n.p-0-0 {padding-top:0rpx;padding-bottom:0rpx;\n}\n.p-1-0 {padding-top:1rpx;padding-bottom:1rpx;\n}\n.p-2-0 {padding-top:2rpx;padding-bottom:2rpx;\n}\n.p-3-0 {padding-top:3rpx;padding-bottom:3rpx;\n}\n.p-4-0 {padding-top:4rpx;padding-bottom:4rpx;\n}\n.p-5-0 {padding-top:5rpx;padding-bottom:5rpx;\n}\n.p-6-0 {padding-top:6rpx;padding-bottom:6rpx;\n}\n.p-7-0 {padding-top:7rpx;padding-bottom:7rpx;\n}\n.p-8-0 {padding-top:8rpx;padding-bottom:8rpx;\n}\n.p-9-0 {padding-top:9rpx;padding-bottom:9rpx;\n}\n.p-10-0 {padding-top:10rpx;padding-bottom:10rpx;\n}\n.p-11-0 {padding-top:11rpx;padding-bottom:11rpx;\n}\n.p-12-0 {padding-top:12rpx;padding-bottom:12rpx;\n}\n.p-13-0 {padding-top:13rpx;padding-bottom:13rpx;\n}\n.p-14-0 {padding-top:14rpx;padding-bottom:14rpx;\n}\n.p-15-0 {padding-top:15rpx;padding-bottom:15rpx;\n}\n.p-16-0 {padding-top:16rpx;padding-bottom:16rpx;\n}\n.p-17-0 {padding-top:17rpx;padding-bottom:17rpx;\n}\n.p-18-0 {padding-top:18rpx;padding-bottom:18rpx;\n}\n.p-19-0 {padding-top:19rpx;padding-bottom:19rpx;\n}\n.p-20-0 {padding-top:20rpx;padding-bottom:20rpx;\n}\n.p-21-0 {padding-top:21rpx;padding-bottom:21rpx;\n}\n.p-22-0 {padding-top:22rpx;padding-bottom:22rpx;\n}\n.p-23-0 {padding-top:23rpx;padding-bottom:23rpx;\n}\n.p-24-0 {padding-top:24rpx;padding-bottom:24rpx;\n}\n.p-25-0 {padding-top:25rpx;padding-bottom:25rpx;\n}\n.p-26-0 {padding-top:26rpx;padding-bottom:26rpx;\n}\n.p-27-0 {padding-top:27rpx;padding-bottom:27rpx;\n}\n.p-28-0 {padding-top:28rpx;padding-bottom:28rpx;\n}\n.p-29-0 {padding-top:29rpx;padding-bottom:29rpx;\n}\n.p-30-0 {padding-top:30rpx;padding-bottom:30rpx;\n}\n.p-31-0 {padding-top:31rpx;padding-bottom:31rpx;\n}\n.p-32-0 {padding-top:32rpx;padding-bottom:32rpx;\n}\n.p-33-0 {padding-top:33rpx;padding-bottom:33rpx;\n}\n.p-34-0 {padding-top:34rpx;padding-bottom:34rpx;\n}\n.p-35-0 {padding-top:35rpx;padding-bottom:35rpx;\n}\n.p-36-0 {padding-top:36rpx;padding-bottom:36rpx;\n}\n.p-37-0 {padding-top:37rpx;padding-bottom:37rpx;\n}\n.p-38-0 {padding-top:38rpx;padding-bottom:38rpx;\n}\n.p-39-0 {padding-top:39rpx;padding-bottom:39rpx;\n}\n.p-40-0 {padding-top:40rpx;padding-bottom:40rpx;\n}\n.p-41-0 {padding-top:41rpx;padding-bottom:41rpx;\n}\n.p-42-0 {padding-top:42rpx;padding-bottom:42rpx;\n}\n.p-43-0 {padding-top:43rpx;padding-bottom:43rpx;\n}\n.p-44-0 {padding-top:44rpx;padding-bottom:44rpx;\n}\n.p-45-0 {padding-top:45rpx;padding-bottom:45rpx;\n}\n.p-46-0 {padding-top:46rpx;padding-bottom:46rpx;\n}\n.p-47-0 {padding-top:47rpx;padding-bottom:47rpx;\n}\n.p-48-0 {padding-top:48rpx;padding-bottom:48rpx;\n}\n.p-49-0 {padding-top:49rpx;padding-bottom:49rpx;\n}\n.p-50-0 {padding-top:50rpx;padding-bottom:50rpx;\n}\n/* 左边距(1~50rpx) */\n.pl-1 {padding-left:1rpx;\n}\n.pl-2 {padding-left:2rpx;\n}\n.pl-3 {padding-left:3rpx;\n}\n.pl-4 {padding-left:4rpx;\n}\n.pl-5 {padding-left:5rpx;\n}\n.pl-6 {padding-left:6rpx;\n}\n.pl-7 {padding-left:7rpx;\n}\n.pl-8 {padding-left:8rpx;\n}\n.pl-9 {padding-left:9rpx;\n}\n.pl-10 {padding-left:10rpx;\n}\n.pl-11 {padding-left:11rpx;\n}\n.pl-12 {padding-left:12rpx;\n}\n.pl-13 {padding-left:13rpx;\n}\n.pl-14 {padding-left:14rpx;\n}\n.pl-15 {padding-left:15rpx;\n}\n.pl-16 {padding-left:16rpx;\n}\n.pl-17 {padding-left:17rpx;\n}\n.pl-18 {padding-left:18rpx;\n}\n.pl-19 {padding-left:19rpx;\n}\n.pl-20 {padding-left:20rpx;\n}\n.pl-21 {padding-left:21rpx;\n}\n.pl-22 {padding-left:22rpx;\n}\n.pl-23 {padding-left:23rpx;\n}\n.pl-24 {padding-left:24rpx;\n}\n.pl-25 {padding-left:25rpx;\n}\n.pl-26 {padding-left:26rpx;\n}\n.pl-27 {padding-left:27rpx;\n}\n.pl-28 {padding-left:28rpx;\n}\n.pl-29 {padding-left:29rpx;\n}\n.pl-30 {padding-left:30rpx;\n}\n.pl-31 {padding-left:31rpx;\n}\n.pl-32 {padding-left:32rpx;\n}\n.pl-33 {padding-left:33rpx;\n}\n.pl-34 {padding-left:34rpx;\n}\n.pl-35 {padding-left:35rpx;\n}\n.pl-36 {padding-left:36rpx;\n}\n.pl-37 {padding-left:37rpx;\n}\n.pl-38 {padding-left:38rpx;\n}\n.pl-39 {padding-left:39rpx;\n}\n.pl-40 {padding-left:40rpx;\n}\n.pl-41 {padding-left:41rpx;\n}\n.pl-42 {padding-left:42rpx;\n}\n.pl-43 {padding-left:43rpx;\n}\n.pl-44 {padding-left:44rpx;\n}\n.pl-45 {padding-left:45rpx;\n}\n.pl-46 {padding-left:46rpx;\n}\n.pl-47 {padding-left:47rpx;\n}\n.pl-48 {padding-left:48rpx;\n}\n.pl-49 {padding-left:49rpx;\n}\n.pl-50 {padding-left:50rpx;\n}\n/* 右边距(1~50rpx) */\n.pr-1 {padding-right:1rpx;\n}\n.pr-2 {padding-right:2rpx;\n}\n.pr-3 {padding-right:3rpx;\n}\n.pr-4 {padding-right:4rpx;\n}\n.pr-5 {padding-right:5rpx;\n}\n.pr-6 {padding-right:6rpx;\n}\n.pr-7 {padding-right:7rpx;\n}\n.pr-8 {padding-right:8rpx;\n}\n.pr-9 {padding-right:9rpx;\n}\n.pr-10 {padding-right:10rpx;\n}\n.pr-11 {padding-right:11rpx;\n}\n.pr-12 {padding-right:12rpx;\n}\n.pr-13 {padding-right:13rpx;\n}\n.pr-14 {padding-right:14rpx;\n}\n.pr-15 {padding-right:15rpx;\n}\n.pr-16 {padding-right:16rpx;\n}\n.pr-17 {padding-right:17rpx;\n}\n.pr-18 {padding-right:18rpx;\n}\n.pr-19 {padding-right:19rpx;\n}\n.pr-20 {padding-right:20rpx;\n}\n.pr-21 {padding-right:21rpx;\n}\n.pr-22 {padding-right:22rpx;\n}\n.pr-23 {padding-right:23rpx;\n}\n.pr-24 {padding-right:24rpx;\n}\n.pr-25 {padding-right:25rpx;\n}\n.pr-26 {padding-right:26rpx;\n}\n.pr-27 {padding-right:27rpx;\n}\n.pr-28 {padding-right:28rpx;\n}\n.pr-29 {padding-right:29rpx;\n}\n.pr-30 {padding-right:30rpx;\n}\n.pr-31 {padding-right:31rpx;\n}\n.pr-32 {padding-right:32rpx;\n}\n.pr-33 {padding-right:33rpx;\n}\n.pr-34 {padding-right:34rpx;\n}\n.pr-35 {padding-right:35rpx;\n}\n.pr-36 {padding-right:36rpx;\n}\n.pr-37 {padding-right:37rpx;\n}\n.pr-38 {padding-right:38rpx;\n}\n.pr-39 {padding-right:39rpx;\n}\n.pr-40 {padding-right:40rpx;\n}\n.pr-41 {padding-right:41rpx;\n}\n.pr-42 {padding-right:42rpx;\n}\n.pr-43 {padding-right:43rpx;\n}\n.pr-44 {padding-right:44rpx;\n}\n.pr-45 {padding-right:45rpx;\n}\n.pr-46 {padding-right:46rpx;\n}\n.pr-47 {padding-right:47rpx;\n}\n.pr-48 {padding-right:48rpx;\n}\n.pr-49 {padding-right:49rpx;\n}\n.pr-50 {padding-right:50rpx;\n}\n/* 上边距(1~50rpx) */\n.pt-1 {padding-top:1rpx;\n}\n.pt-2 {padding-top:2rpx;\n}\n.pt-3 {padding-top:3rpx;\n}\n.pt-4 {padding-top:4rpx;\n}\n.pt-5 {padding-top:5rpx;\n}\n.pt-6 {padding-top:6rpx;\n}\n.pt-7 {padding-top:7rpx;\n}\n.pt-8 {padding-top:8rpx;\n}\n.pt-9 {padding-top:9rpx;\n}\n.pt-10 {padding-top:10rpx;\n}\n.pt-11 {padding-top:11rpx;\n}\n.pt-12 {padding-top:12rpx;\n}\n.pt-13 {padding-top:13rpx;\n}\n.pt-14 {padding-top:14rpx;\n}\n.pt-15 {padding-top:15rpx;\n}\n.pt-16 {padding-top:16rpx;\n}\n.pt-17 {padding-top:17rpx;\n}\n.pt-18 {padding-top:18rpx;\n}\n.pt-19 {padding-top:19rpx;\n}\n.pt-20 {padding-top:20rpx;\n}\n.pt-21 {padding-top:21rpx;\n}\n.pt-22 {padding-top:22rpx;\n}\n.pt-23 {padding-top:23rpx;\n}\n.pt-24 {padding-top:24rpx;\n}\n.pt-25 {padding-top:25rpx;\n}\n.pt-26 {padding-top:26rpx;\n}\n.pt-27 {padding-top:27rpx;\n}\n.pt-28 {padding-top:28rpx;\n}\n.pt-29 {padding-top:29rpx;\n}\n.pt-30 {padding-top:30rpx;\n}\n.pt-31 {padding-top:31rpx;\n}\n.pt-32 {padding-top:32rpx;\n}\n.pt-33 {padding-top:33rpx;\n}\n.pt-34 {padding-top:34rpx;\n}\n.pt-35 {padding-top:35rpx;\n}\n.pt-36 {padding-top:36rpx;\n}\n.pt-37 {padding-top:37rpx;\n}\n.pt-38 {padding-top:38rpx;\n}\n.pt-39 {padding-top:39rpx;\n}\n.pt-40 {padding-top:40rpx;\n}\n.pt-41 {padding-top:41rpx;\n}\n.pt-42 {padding-top:42rpx;\n}\n.pt-43 {padding-top:43rpx;\n}\n.pt-44 {padding-top:44rpx;\n}\n.pt-45 {padding-top:45rpx;\n}\n.pt-46 {padding-top:46rpx;\n}\n.pt-47 {padding-top:47rpx;\n}\n.pt-48 {padding-top:48rpx;\n}\n.pt-49 {padding-top:49rpx;\n}\n.pt-50 {padding-top:50rpx;\n}\n/* 下边距(1~50rpx) */\n.pb-1 {padding-bottom:1rpx;\n}\n.pb-2 {padding-bottom:2rpx;\n}\n.pb-3 {padding-bottom:3rpx;\n}\n.pb-4 {padding-bottom:4rpx;\n}\n.pb-5 {padding-bottom:5rpx;\n}\n.pb-6 {padding-bottom:6rpx;\n}\n.pb-7 {padding-bottom:7rpx;\n}\n.pb-8 {padding-bottom:8rpx;\n}\n.pb-9 {padding-bottom:9rpx;\n}\n.pb-10 {padding-bottom:10rpx;\n}\n.pb-11 {padding-bottom:11rpx;\n}\n.pb-12 {padding-bottom:12rpx;\n}\n.pb-13 {padding-bottom:13rpx;\n}\n.pb-14 {padding-bottom:14rpx;\n}\n.pb-15 {padding-bottom:15rpx;\n}\n.pb-16 {padding-bottom:16rpx;\n}\n.pb-17 {padding-bottom:17rpx;\n}\n.pb-18 {padding-bottom:18rpx;\n}\n.pb-19 {padding-bottom:19rpx;\n}\n.pb-20 {padding-bottom:20rpx;\n}\n.pb-21 {padding-bottom:21rpx;\n}\n.pb-22 {padding-bottom:22rpx;\n}\n.pb-23 {padding-bottom:23rpx;\n}\n.pb-24 {padding-bottom:24rpx;\n}\n.pb-25 {padding-bottom:25rpx;\n}\n.pb-26 {padding-bottom:26rpx;\n}\n.pb-27 {padding-bottom:27rpx;\n}\n.pb-28 {padding-bottom:28rpx;\n}\n.pb-29 {padding-bottom:29rpx;\n}\n.pb-30 {padding-bottom:30rpx;\n}\n.pb-31 {padding-bottom:31rpx;\n}\n.pb-32 {padding-bottom:32rpx;\n}\n.pb-33 {padding-bottom:33rpx;\n}\n.pb-34 {padding-bottom:34rpx;\n}\n.pb-35 {padding-bottom:35rpx;\n}\n.pb-36 {padding-bottom:36rpx;\n}\n.pb-37 {padding-bottom:37rpx;\n}\n.pb-38 {padding-bottom:38rpx;\n}\n.pb-39 {padding-bottom:39rpx;\n}\n.pb-40 {padding-bottom:40rpx;\n}\n.pb-41 {padding-bottom:41rpx;\n}\n.pb-42 {padding-bottom:42rpx;\n}\n.pb-43 {padding-bottom:43rpx;\n}\n.pb-44 {padding-bottom:44rpx;\n}\n.pb-45 {padding-bottom:45rpx;\n}\n.pb-46 {padding-bottom:46rpx;\n}\n.pb-47 {padding-bottom:47rpx;\n}\n.pb-48 {padding-bottom:48rpx;\n}\n.pb-49 {padding-bottom:49rpx;\n}\n.pb-50 {padding-bottom:50rpx;\n}\n/* 上下外边(0~50) */\n.m-0-a {margin:0rpx auto;\n}\n.m-1-a {margin:1rpx auto;\n}\n.m-2-a {margin:2rpx auto;\n}\n.m-3-a {margin:3rpx auto;\n}\n.m-4-a {margin:4rpx auto;\n}\n.m-5-a {margin:5rpx auto;\n}\n.m-6-a {margin:6rpx auto;\n}\n.m-7-a {margin:7rpx auto;\n}\n.m-8-a {margin:8rpx auto;\n}\n.m-9-a {margin:9rpx auto;\n}\n.m-10-a {margin:10rpx auto;\n}\n.m-11-a {margin:11rpx auto;\n}\n.m-12-a {margin:12rpx auto;\n}\n.m-13-a {margin:13rpx auto;\n}\n.m-14-a {margin:14rpx auto;\n}\n.m-15-a {margin:15rpx auto;\n}\n.m-16-a {margin:16rpx auto;\n}\n.m-17-a {margin:17rpx auto;\n}\n.m-18-a {margin:18rpx auto;\n}\n.m-19-a {margin:19rpx auto;\n}\n.m-20-a {margin:20rpx auto;\n}\n.m-21-a {margin:21rpx auto;\n}\n.m-22-a {margin:22rpx auto;\n}\n.m-23-a {margin:23rpx auto;\n}\n.m-24-a {margin:24rpx auto;\n}\n.m-25-a {margin:25rpx auto;\n}\n.m-26-a {margin:26rpx auto;\n}\n.m-27-a {margin:27rpx auto;\n}\n.m-28-a {margin:28rpx auto;\n}\n.m-29-a {margin:29rpx auto;\n}\n.m-30-a {margin:30rpx auto;\n}\n.m-31-a {margin:31rpx auto;\n}\n.m-32-a {margin:32rpx auto;\n}\n.m-33-a {margin:33rpx auto;\n}\n.m-34-a {margin:34rpx auto;\n}\n.m-35-a {margin:35rpx auto;\n}\n.m-36-a {margin:36rpx auto;\n}\n.m-37-a {margin:37rpx auto;\n}\n.m-38-a {margin:38rpx auto;\n}\n.m-39-a {margin:39rpx auto;\n}\n.m-40-a {margin:40rpx auto;\n}\n.m-41-a {margin:41rpx auto;\n}\n.m-42-a {margin:42rpx auto;\n}\n.m-43-a {margin:43rpx auto;\n}\n.m-44-a {margin:44rpx auto;\n}\n.m-45-a {margin:45rpx auto;\n}\n.m-46-a {margin:46rpx auto;\n}\n.m-47-a {margin:47rpx auto;\n}\n.m-48-a {margin:48rpx auto;\n}\n.m-49-a {margin:49rpx auto;\n}\n.m-50-a {margin:50rpx auto;\n}\n/* 左边框(1~50) */\n.ml-1 {margin-left:1rpx;\n}\n.ml-2 {margin-left:2rpx;\n}\n.ml-3 {margin-left:3rpx;\n}\n.ml-4 {margin-left:4rpx;\n}\n.ml-5 {margin-left:5rpx;\n}\n.ml-6 {margin-left:6rpx;\n}\n.ml-7 {margin-left:7rpx;\n}\n.ml-8 {margin-left:8rpx;\n}\n.ml-9 {margin-left:9rpx;\n}\n.ml-10 {margin-left:10rpx;\n}\n.ml-11 {margin-left:11rpx;\n}\n.ml-12 {margin-left:12rpx;\n}\n.ml-13 {margin-left:13rpx;\n}\n.ml-14 {margin-left:14rpx;\n}\n.ml-15 {margin-left:15rpx;\n}\n.ml-16 {margin-left:16rpx;\n}\n.ml-17 {margin-left:17rpx;\n}\n.ml-18 {margin-left:18rpx;\n}\n.ml-19 {margin-left:19rpx;\n}\n.ml-20 {margin-left:20rpx;\n}\n.ml-21 {margin-left:21rpx;\n}\n.ml-22 {margin-left:22rpx;\n}\n.ml-23 {margin-left:23rpx;\n}\n.ml-24 {margin-left:24rpx;\n}\n.ml-25 {margin-left:25rpx;\n}\n.ml-26 {margin-left:26rpx;\n}\n.ml-27 {margin-left:27rpx;\n}\n.ml-28 {margin-left:28rpx;\n}\n.ml-29 {margin-left:29rpx;\n}\n.ml-30 {margin-left:30rpx;\n}\n.ml-31 {margin-left:31rpx;\n}\n.ml-32 {margin-left:32rpx;\n}\n.ml-33 {margin-left:33rpx;\n}\n.ml-34 {margin-left:34rpx;\n}\n.ml-35 {margin-left:35rpx;\n}\n.ml-36 {margin-left:36rpx;\n}\n.ml-37 {margin-left:37rpx;\n}\n.ml-38 {margin-left:38rpx;\n}\n.ml-39 {margin-left:39rpx;\n}\n.ml-40 {margin-left:40rpx;\n}\n.ml-41 {margin-left:41rpx;\n}\n.ml-42 {margin-left:42rpx;\n}\n.ml-43 {margin-left:43rpx;\n}\n.ml-44 {margin-left:44rpx;\n}\n.ml-45 {margin-left:45rpx;\n}\n.ml-46 {margin-left:46rpx;\n}\n.ml-47 {margin-left:47rpx;\n}\n.ml-48 {margin-left:48rpx;\n}\n.ml-49 {margin-left:49rpx;\n}\n.ml-50 {margin-left:50rpx;\n}\n/* 右边框(1~50) */\n.mr-1 {margin-right:1rpx;\n}\n.mr-2 {margin-right:2rpx;\n}\n.mr-3 {margin-right:3rpx;\n}\n.mr-4 {margin-right:4rpx;\n}\n.mr-5 {margin-right:5rpx;\n}\n.mr-6 {margin-right:6rpx;\n}\n.mr-7 {margin-right:7rpx;\n}\n.mr-8 {margin-right:8rpx;\n}\n.mr-9 {margin-right:9rpx;\n}\n.mr-10 {margin-right:10rpx;\n}\n.mr-11 {margin-right:11rpx;\n}\n.mr-12 {margin-right:12rpx;\n}\n.mr-13 {margin-right:13rpx;\n}\n.mr-14 {margin-right:14rpx;\n}\n.mr-15 {margin-right:15rpx;\n}\n.mr-16 {margin-right:16rpx;\n}\n.mr-17 {margin-right:17rpx;\n}\n.mr-18 {margin-right:18rpx;\n}\n.mr-19 {margin-right:19rpx;\n}\n.mr-20 {margin-right:20rpx;\n}\n.mr-21 {margin-right:21rpx;\n}\n.mr-22 {margin-right:22rpx;\n}\n.mr-23 {margin-right:23rpx;\n}\n.mr-24 {margin-right:24rpx;\n}\n.mr-25 {margin-right:25rpx;\n}\n.mr-26 {margin-right:26rpx;\n}\n.mr-27 {margin-right:27rpx;\n}\n.mr-28 {margin-right:28rpx;\n}\n.mr-29 {margin-right:29rpx;\n}\n.mr-30 {margin-right:30rpx;\n}\n.mr-31 {margin-right:31rpx;\n}\n.mr-32 {margin-right:32rpx;\n}\n.mr-33 {margin-right:33rpx;\n}\n.mr-34 {margin-right:34rpx;\n}\n.mr-35 {margin-right:35rpx;\n}\n.mr-36 {margin-right:36rpx;\n}\n.mr-37 {margin-right:37rpx;\n}\n.mr-38 {margin-right:38rpx;\n}\n.mr-39 {margin-right:39rpx;\n}\n.mr-40 {margin-right:40rpx;\n}\n.mr-41 {margin-right:41rpx;\n}\n.mr-42 {margin-right:42rpx;\n}\n.mr-43 {margin-right:43rpx;\n}\n.mr-44 {margin-right:44rpx;\n}\n.mr-45 {margin-right:45rpx;\n}\n.mr-46 {margin-right:46rpx;\n}\n.mr-47 {margin-right:47rpx;\n}\n.mr-48 {margin-right:48rpx;\n}\n.mr-49 {margin-right:49rpx;\n}\n.mr-50 {margin-right:50rpx;\n}\n/* 上边框(1~50) */\n.mt-1 {margin-top:1rpx;\n}\n.mt-2 {margin-top:2rpx;\n}\n.mt-3 {margin-top:3rpx;\n}\n.mt-4 {margin-top:4rpx;\n}\n.mt-5 {margin-top:5rpx;\n}\n.mt-6 {margin-top:6rpx;\n}\n.mt-7 {margin-top:7rpx;\n}\n.mt-8 {margin-top:8rpx;\n}\n.mt-9 {margin-top:9rpx;\n}\n.mt-10 {margin-top:10rpx;\n}\n.mt-11 {margin-top:11rpx;\n}\n.mt-12 {margin-top:12rpx;\n}\n.mt-13 {margin-top:13rpx;\n}\n.mt-14 {margin-top:14rpx;\n}\n.mt-15 {margin-top:15rpx;\n}\n.mt-16 {margin-top:16rpx;\n}\n.mt-17 {margin-top:17rpx;\n}\n.mt-18 {margin-top:18rpx;\n}\n.mt-19 {margin-top:19rpx;\n}\n.mt-20 {margin-top:20rpx;\n}\n.mt-21 {margin-top:21rpx;\n}\n.mt-22 {margin-top:22rpx;\n}\n.mt-23 {margin-top:23rpx;\n}\n.mt-24 {margin-top:24rpx;\n}\n.mt-25 {margin-top:25rpx;\n}\n.mt-26 {margin-top:26rpx;\n}\n.mt-27 {margin-top:27rpx;\n}\n.mt-28 {margin-top:28rpx;\n}\n.mt-29 {margin-top:29rpx;\n}\n.mt-30 {margin-top:30rpx;\n}\n.mt-31 {margin-top:31rpx;\n}\n.mt-32 {margin-top:32rpx;\n}\n.mt-33 {margin-top:33rpx;\n}\n.mt-34 {margin-top:34rpx;\n}\n.mt-35 {margin-top:35rpx;\n}\n.mt-36 {margin-top:36rpx;\n}\n.mt-37 {margin-top:37rpx;\n}\n.mt-38 {margin-top:38rpx;\n}\n.mt-39 {margin-top:39rpx;\n}\n.mt-40 {margin-top:40rpx;\n}\n.mt-41 {margin-top:41rpx;\n}\n.mt-42 {margin-top:42rpx;\n}\n.mt-43 {margin-top:43rpx;\n}\n.mt-44 {margin-top:44rpx;\n}\n.mt-45 {margin-top:45rpx;\n}\n.mt-46 {margin-top:46rpx;\n}\n.mt-47 {margin-top:47rpx;\n}\n.mt-48 {margin-top:48rpx;\n}\n.mt-49 {margin-top:49rpx;\n}\n.mt-50 {margin-top:50rpx;\n}\n/* 下边框(1~50) */\n.mb-1 {margin-bottom:1rpx;\n}\n.mb-2 {margin-bottom:2rpx;\n}\n.mb-3 {margin-bottom:3rpx;\n}\n.mb-4 {margin-bottom:4rpx;\n}\n.mb-5 {margin-bottom:5rpx;\n}\n.mb-6 {margin-bottom:6rpx;\n}\n.mb-7 {margin-bottom:7rpx;\n}\n.mb-8 {margin-bottom:8rpx;\n}\n.mb-9 {margin-bottom:9rpx;\n}\n.mb-10 {margin-bottom:10rpx;\n}\n.mb-11 {margin-bottom:11rpx;\n}\n.mb-12 {margin-bottom:12rpx;\n}\n.mb-13 {margin-bottom:13rpx;\n}\n.mb-14 {margin-bottom:14rpx;\n}\n.mb-15 {margin-bottom:15rpx;\n}\n.mb-16 {margin-bottom:16rpx;\n}\n.mb-17 {margin-bottom:17rpx;\n}\n.mb-18 {margin-bottom:18rpx;\n}\n.mb-19 {margin-bottom:19rpx;\n}\n.mb-20 {margin-bottom:20rpx;\n}\n.mb-21 {margin-bottom:21rpx;\n}\n.mb-22 {margin-bottom:22rpx;\n}\n.mb-23 {margin-bottom:23rpx;\n}\n.mb-24 {margin-bottom:24rpx;\n}\n.mb-25 {margin-bottom:25rpx;\n}\n.mb-26 {margin-bottom:26rpx;\n}\n.mb-27 {margin-bottom:27rpx;\n}\n.mb-28 {margin-bottom:28rpx;\n}\n.mb-29 {margin-bottom:29rpx;\n}\n.mb-30 {margin-bottom:30rpx;\n}\n.mb-31 {margin-bottom:31rpx;\n}\n.mb-32 {margin-bottom:32rpx;\n}\n.mb-33 {margin-bottom:33rpx;\n}\n.mb-34 {margin-bottom:34rpx;\n}\n.mb-35 {margin-bottom:35rpx;\n}\n.mb-36 {margin-bottom:36rpx;\n}\n.mb-37 {margin-bottom:37rpx;\n}\n.mb-38 {margin-bottom:38rpx;\n}\n.mb-39 {margin-bottom:39rpx;\n}\n.mb-40 {margin-bottom:40rpx;\n}\n.mb-41 {margin-bottom:41rpx;\n}\n.mb-42 {margin-bottom:42rpx;\n}\n.mb-43 {margin-bottom:43rpx;\n}\n.mb-44 {margin-bottom:44rpx;\n}\n.mb-45 {margin-bottom:45rpx;\n}\n.mb-46 {margin-bottom:46rpx;\n}\n.mb-47 {margin-bottom:47rpx;\n}\n.mb-48 {margin-bottom:48rpx;\n}\n.mb-49 {margin-bottom:49rpx;\n}\n.mb-50 {margin-bottom:50rpx;\n}\n.cu-p {\n    cursor: pointer;\n}\n.cu-d {\n    cursor: default;\n}\n.o-h {\n    overflow: hidden;\n}\n.oy-s {\n    overflow-y: scroll;\n}\n.ox-s {\n    overflow-x: scroll;\n}\n/* 圆角 */\n.br-1 {border-radius:1rpx;\n}\n.br-2 {border-radius:2rpx;\n}\n.br-3 {border-radius:3rpx;\n}\n.br-4 {border-radius:4rpx;\n}\n.br-5 {border-radius:5rpx;\n}\n.br-6 {border-radius:6rpx;\n}\n.br-7 {border-radius:7rpx;\n}\n.br-8 {border-radius:8rpx;\n}\n.br-9 {border-radius:9rpx;\n}\n.br-10 {border-radius:10rpx;\n}\n.br-11 {border-radius:11rpx;\n}\n.br-12 {border-radius:12rpx;\n}\n.br-13 {border-radius:13rpx;\n}\n.br-14 {border-radius:14rpx;\n}\n.br-15 {border-radius:15rpx;\n}\n.br-16 {border-radius:16rpx;\n}\n.br-17 {border-radius:17rpx;\n}\n.br-18 {border-radius:18rpx;\n}\n.br-19 {border-radius:19rpx;\n}\n.br-20 {border-radius:20rpx;\n}\n.br-21 {border-radius:21rpx;\n}\n.br-22 {border-radius:22rpx;\n}\n.br-23 {border-radius:23rpx;\n}\n.br-24 {border-radius:24rpx;\n}\n.br-25 {border-radius:25rpx;\n}\n.br-26 {border-radius:26rpx;\n}\n.br-27 {border-radius:27rpx;\n}\n.br-28 {border-radius:28rpx;\n}\n.br-29 {border-radius:29rpx;\n}\n.br-30 {border-radius:30rpx;\n}\n.br-31 {border-radius:31rpx;\n}\n.br-32 {border-radius:32rpx;\n}\n.br-33 {border-radius:33rpx;\n}\n.br-34 {border-radius:34rpx;\n}\n.br-35 {border-radius:35rpx;\n}\n.br-36 {border-radius:36rpx;\n}\n.br-37 {border-radius:37rpx;\n}\n.br-38 {border-radius:38rpx;\n}\n.br-39 {border-radius:39rpx;\n}\n.br-40 {border-radius:40rpx;\n}\n.br-41 {border-radius:41rpx;\n}\n.br-42 {border-radius:42rpx;\n}\n.br-43 {border-radius:43rpx;\n}\n.br-44 {border-radius:44rpx;\n}\n.br-45 {border-radius:45rpx;\n}\n.br-46 {border-radius:46rpx;\n}\n.br-47 {border-radius:47rpx;\n}\n.br-48 {border-radius:48rpx;\n}\n.br-49 {border-radius:49rpx;\n}\n.br-50 {border-radius:50rpx;\n}\n.br-51 {border-radius:51rpx;\n}\n.br-52 {border-radius:52rpx;\n}\n.br-53 {border-radius:53rpx;\n}\n.br-54 {border-radius:54rpx;\n}\n.br-55 {border-radius:55rpx;\n}\n.br-56 {border-radius:56rpx;\n}\n.br-57 {border-radius:57rpx;\n}\n.br-58 {border-radius:58rpx;\n}\n.br-59 {border-radius:59rpx;\n}\n.br-60 {border-radius:60rpx;\n}\n.br-61 {border-radius:61rpx;\n}\n.br-62 {border-radius:62rpx;\n}\n.br-63 {border-radius:63rpx;\n}\n.br-64 {border-radius:64rpx;\n}\n.br-65 {border-radius:65rpx;\n}\n.br-66 {border-radius:66rpx;\n}\n.br-67 {border-radius:67rpx;\n}\n.br-68 {border-radius:68rpx;\n}\n.br-69 {border-radius:69rpx;\n}\n.br-70 {border-radius:70rpx;\n}\n.br-71 {border-radius:71rpx;\n}\n.br-72 {border-radius:72rpx;\n}\n.br-73 {border-radius:73rpx;\n}\n.br-74 {border-radius:74rpx;\n}\n.br-75 {border-radius:75rpx;\n}\n.br-76 {border-radius:76rpx;\n}\n.br-77 {border-radius:77rpx;\n}\n.br-78 {border-radius:78rpx;\n}\n.br-79 {border-radius:79rpx;\n}\n.br-80 {border-radius:80rpx;\n}\n.br-81 {border-radius:81rpx;\n}\n.br-82 {border-radius:82rpx;\n}\n.br-83 {border-radius:83rpx;\n}\n.br-84 {border-radius:84rpx;\n}\n.br-85 {border-radius:85rpx;\n}\n.br-86 {border-radius:86rpx;\n}\n.br-87 {border-radius:87rpx;\n}\n.br-88 {border-radius:88rpx;\n}\n.br-89 {border-radius:89rpx;\n}\n.br-90 {border-radius:90rpx;\n}\n.br-91 {border-radius:91rpx;\n}\n.br-92 {border-radius:92rpx;\n}\n.br-93 {border-radius:93rpx;\n}\n.br-94 {border-radius:94rpx;\n}\n.br-95 {border-radius:95rpx;\n}\n.br-96 {border-radius:96rpx;\n}\n.br-97 {border-radius:97rpx;\n}\n.br-98 {border-radius:98rpx;\n}\n.br-99 {border-radius:99rpx;\n}\n.br-100 {border-radius:100rpx;\n}\n/* 全圆角 */\n.br50{\n    border-radius: 50%;\n}\n/* 底边框表现 */\n.b-b1 {border-bottom:1rpx solid #f1f1f1;\n}\n.b-b2 {border-bottom:2rpx solid #f1f1f1;\n}\n.b-b3 {border-bottom:3rpx solid #f1f1f1;\n}\n.b-b4 {border-bottom:4rpx solid #f1f1f1;\n}\n.b-b5 {border-bottom:5rpx solid #f1f1f1;\n}\n.b-b6 {border-bottom:6rpx solid #f1f1f1;\n}\n.b-b7 {border-bottom:7rpx solid #f1f1f1;\n}\n.b-b8 {border-bottom:8rpx solid #f1f1f1;\n}\n.b-b9 {border-bottom:9rpx solid #f1f1f1;\n}\n.b-b10 {border-bottom:10rpx solid #f1f1f1;\n}\n/* 上边框表现 */\n.b-t1 {border-top:1rpx solid #f1f1f1;\n}\n.b-t2 {border-top:2rpx solid #f1f1f1;\n}\n.b-t3 {border-top:3rpx solid #f1f1f1;\n}\n.b-t4 {border-top:4rpx solid #f1f1f1;\n}\n.b-t5 {border-top:5rpx solid #f1f1f1;\n}\n.b-t6 {border-top:6rpx solid #f1f1f1;\n}\n.b-t7 {border-top:7rpx solid #f1f1f1;\n}\n.b-t8 {border-top:8rpx solid #f1f1f1;\n}\n.b-t9 {border-top:9rpx solid #f1f1f1;\n}\n.b-t10 {border-top:10rpx solid #f1f1f1;\n}\n/* 左边框表现 */\n.b-l1 {border-left:1rpx solid #f1f1f1;\n}\n.b-l2 {border-left:2rpx solid #f1f1f1;\n}\n.b-l3 {border-left:3rpx solid #f1f1f1;\n}\n.b-l4 {border-left:4rpx solid #f1f1f1;\n}\n.b-l5 {border-left:5rpx solid #f1f1f1;\n}\n.b-l6 {border-left:6rpx solid #f1f1f1;\n}\n.b-l7 {border-left:7rpx solid #f1f1f1;\n}\n.b-l8 {border-left:8rpx solid #f1f1f1;\n}\n.b-l9 {border-left:9rpx solid #f1f1f1;\n}\n.b-l10 {border-left:10rpx solid #f1f1f1;\n}\n/* 右边框表现 */\n.b-r1 {border-right:1rpx solid #f1f1f1;\n}\n.b-r2 {border-right:2rpx solid #f1f1f1;\n}\n.b-r3 {border-right:3rpx solid #f1f1f1;\n}\n.b-r4 {border-right:4rpx solid #f1f1f1;\n}\n.b-r5 {border-right:5rpx solid #f1f1f1;\n}\n.b-r6 {border-right:6rpx solid #f1f1f1;\n}\n.b-r7 {border-right:7rpx solid #f1f1f1;\n}\n.b-r8 {border-right:8rpx solid #f1f1f1;\n}\n.b-r9 {border-right:9rpx solid #f1f1f1;\n}\n.b-r10 {border-right:10rpx solid #f1f1f1;\n}\n/* 四边边框表现 */\n.b-1 {border:1rpx solid #f1f1f1;\n}\n.b-2 {border:2rpx solid #f1f1f1;\n}\n.b-3 {border:3rpx solid #f1f1f1;\n}\n.b-4 {border:4rpx solid #f1f1f1;\n}\n.b-5 {border:5rpx solid #f1f1f1;\n}\n.b-6 {border:6rpx solid #f1f1f1;\n}\n.b-7 {border:7rpx solid #f1f1f1;\n}\n.b-8 {border:8rpx solid #f1f1f1;\n}\n.b-9 {border:9rpx solid #f1f1f1;\n}\n.b-10 {border:10rpx solid #f1f1f1;\n}\n/* 文字颜色 */\n.c-fff {\r\n\tcolor: #fff;\n}\n.c-e5 {\r\n\tcolor: #e5e5e5;\n}\n.c-f1 {\r\n\tcolor: #f1f1f1;\n}\n.c-000 {\r\n\tcolor: #000;\n}\n.c-333 {\r\n\tcolor: #333;\n}\n.c-666 {\r\n\tcolor: #666;\n}\n.c-999 {\r\n\tcolor: #999;\n}\n.c-red {\r\n\tcolor: #e47470;\n}\n.c-0ff {\r\n\tcolor: #00ffff;\n}\n.c-0f0 {\r\n\tcolor: #00ff00;\n}\n.c-ff0 {\r\n\tcolor: #ffff00;\n}\n.c-f00 {\r\n\tcolor: #ff0000;\n}\n.c-f0f {\r\n\tcolor: #ff00ff;\n}\n.c-00f {\r\n\tcolor: #0000ff;\n}\n/* 背景颜色 */\n.bg-fff {\r\n\tbackground-color: #fff;\n}\n.bg-000 {\r\n\tbackground-color: #000;\n}\n.bg-333 {\r\n\tbackground-color: #333;\n}\n.bg-666 {\r\n\tbackground-color: #666;\n}\n.bg-999 {\r\n\tbackground-color: #999;\n}\n.bg-e5 {\r\n\tbackground-color: #e5e5e5;\n}\n.bg-f1 {\r\n\tbackground-color: #f1f1f1;\n}\n.bg-0ff {\r\n\tbackground-color: #00ffff;\n}\n.bg-0f0 {\r\n\tbackground-color: #00ff00;\n}\n.bg-ff0 {\r\n\tbackground-color: #ffff00;\n}\n.bg-f00 {\r\n\tbackground-color: #ff0000;\n}\n.bg-f0f {\r\n\tbackground-color: #ff00ff;\n}\n.bg-00f {\r\n\tbackground-color: #0000ff;\n}\n/* 边框颜色 */\n.bc-fff {\r\n\tborder-color: #fff;\n}\n.bc-000 {\r\n\tborder-color: #000;\n}\n.bc-333 {\r\n\tborder-color: #333;\n}\n.bc-666 {\r\n\tborder-color: #666;\n}\n.bc-999 {\r\n\tborder-color: #999;\n}\n.bc-e5 {\r\n\tborder-color: #e5e5e5;\n}\n.bc-f1 {\r\n\tborder-color: #f1f1f1;\n}\n.bc-0ff {\r\n\tborder-color: #00ffff;\n}\n.bc-0f0 {\r\n\tborder-color: #00ff00;\n}\n.bc-ff0 {\r\n\tborder-color: #ffff00;\n}\n.bc-f00 {\r\n\tborder-color: #ff0000;\n}\n.bc-f0f {\r\n\tborder-color: #ff00ff;\n}\n.bc-00f {\r\n\tborder-color: #0000ff;\n}\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n.indent-s {\n  margin: 5rpx 0 5rpx 40rpx;\n}\n.indent-m {\n  margin: 5rpx 0 5rpx 60rpx;\n}\n.indent-l {\n  margin: 5rpx 0 5rpx 80rpx;\n}\n.z-flex {\n  --dir-row: row;\n  --dir-col: column;\n  --wrap-no: nowrap;\n  --wrap-yes: wrap;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-flow: var(--dir) var(--wrap);\n          flex-flow: var(--dir) var(--wrap);\n}\n.form-top-view {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  background: #eeeeee;\n  border-radius: 10px;\n  padding: 20rpx 20rpx;\n}\n.form-top-view .form-item {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n            align-items: center;\n    border-radius: 10px;\n}\n.form-top-view .form-item .form-item-name {\n      font-weight: bold;\n      padding: 5rpx 20rpx;\n      margin: 5rpx 5rpx;\n}\n.form-top-view .form-item .form-item-text {\n      padding: 5rpx 20rpx;\n      margin: 5rpx 5rpx;\n}\n.form-top-view .pop-item-base {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: start;\n    -webkit-justify-content: flex-start;\n            justify-content: flex-start;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n            align-items: center;\n    background: #bdbdbd;\n    padding: 5rpx 5rpx;\n    margin: 5rpx 5rpx;\n    border-radius: 10px;\n}\n.form-top-view .pop-title {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n            justify-content: center;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n            align-items: center;\n    line-height: 40rpx;\n    font-size: 40rpx;\n    font-weight: bold;\n    padding: 0 15rpx;\n    text-align: left;\n    color: #00bcd4;\n}\n.form-top-view .pop-title-waring {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n            justify-content: center;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n            align-items: center;\n    line-height: 40rpx;\n    font-size: 40rpx;\n    font-weight: bold;\n    padding: 0 15rpx;\n    text-align: left;\n    color: #D32F2F;\n}\n.form-top-view .pop-text {\n    line-height: 25rpx;\n    font-size: 25rpx;\n    font-weight: bold;\n    padding: 15rpx 0;\n    text-align: center;\n    color: #00838f;\n}\n.form-top-view .pop-text-warning {\n    margin: 0 15rpx;\n    background-color: #EF5350;\n    border-radius: 10px;\n    -webkit-box-align: stretch;\n    -webkit-align-items: stretch;\n            align-items: stretch;\n    line-height: 40rpx;\n    font-size: 40rpx;\n}\n.form-top-view .pop-input {\n    margin: 0 10rpx;\n    height: 40rpx;\n    padding: 5rpx 25rpx;\n    line-height: 40rpx;\n    font-size: 40rpx;\n    background: #eceff1;\n    border-radius: 10rpx;\n}\n.form-top-view .pop-color-block {\n    margin: 10rpx 10rpx;\n    padding: 5rpx;\n    width: 60rpx;\n    height: 60rpx;\n    border-radius: 10rpx;\n    border: 1px solid black;\n}\n.form-top-view .popColorBlockSelected {\n    background-color: #BBDEFB;\n}\n/* @import './common/z-colors.scss'; */\n/* @import \"colorui/icon.css\"; */\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n/* 以下样式用于 hello uni-app 演示所需 */\nbody {\n  background-color: #F4F5F6;\n  height: 100%;\n  font-size: 28upx;\n  line-height: 1.8;\n}\n.uni-header-logo {\n  padding: 30upx;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  margin-top: 10upx;\n}\n.uni-header-image {\n  width: 100px;\n  height: 100px;\n}\n.uni-hello-text {\n  color: #7A7E83;\n}\n.uni-hello-addfile {\n  text-align: center;\n  line-height: 300upx;\n  background: #FFF;\n  padding: 50upx;\n  margin-top: 10px;\n  font-size: 38upx;\n  color: #808080;\n}\n/*\n\t\t全局公共样式和字体图标\n\t*/\n/* \t@font-face {\n\t\tfont-family: yticon;\n\t\tfont-weight: normal;\n\t\tfont-style: normal;\n\t\tsrc: url('https://at.alicdn.com/t/font_985780_km7mi63cihi.ttf?t=1545807318834') format('truetype'),\n\n\t} */\n/* \t.yticon {\n\t\tfont-family: \"yticon\" !important;\n\t\tfont-size: 16px;\n\t\tfont-style: normal;\n\t\t-webkit-font-smoothing: antialiased;\n\t\t-moz-osx-font-smoothing: grayscale;\n\t} */\n.icon-youyong4:before {\n  content: \"\\E627\";\n}\n.icon-zhuazhualiugou:before {\n  content: \"\\E621\";\n}\n.icon-shuijue:before {\n  content: \"\\E635\";\n}\n.iconfont {\n  font-family: \"iconfont\" !important;\n  font-size: 40rpx;\n  font-style: normal;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  margin-right: 14rpx;\n}\n/* button样式改写 */\nuni-button,\nuni-button {\n  height: 80upx;\n  line-height: 80upx;\n  font-size: 34upx;\n  font-weight: normal;\n  /* \t\t&.no-border:before,\n\t\t&.no-border:after {\n\t\t\tborder: 0;\n\t\t} */\n}\n.icon-xiatubiao:before {\n  content: '\\E608';\n}\n.icon-gouwuche:before {\n  content: '\\E609';\n}\n.icon-shoucang:before {\n  content: '\\E645';\n}\nuni-button[type=default],\nuni-button[type=default] {\n  color: #303133;\n}\n.icon {\n  width: 1em;\n  height: 1em;\n  vertical-align: -0.15em;\n  fill: currentColor;\n  overflow: hidden;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */\n@font-face {\r\n\tfont-family: uniicons;\r\n\tfont-weight: normal;\r\n\tfont-style: normal;\r\n\tsrc: url(" + escape(__webpack_require__(/*! @/static/uni.ttf */ 122)) + ") format('truetype');\n}\n/*通用 */\nuni-view{\r\n\tfont-size:28upx;\r\n\tline-height:1.8;\n}\nuni-progress, uni-checkbox-group{\r\n\twidth: 100%;\n}\nuni-form {\r\n\twidth: 100%;\n}\n.uni-flex {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\n}\n.uni-flex-item {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\n}\n.uni-row {\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\n}\n.uni-column {\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-link{\r\n\tcolor:#576B95;\r\n\tfont-size:26upx;\n}\n.uni-center{\r\n\ttext-align:center;\n}\n.uni-inline-item{\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-align:center;\r\n\t-webkit-align-items:center;\r\n\t        align-items:center;\n}\n.uni-inline-item uni-text{\r\n\tmargin-right: 20upx;\n}\n.uni-inline-item uni-text:last-child{\r\n\tmargin-right: 0upx;\r\n\tmargin-left: 20upx;\n}\n/* page */\n.uni-page-head{\r\n\tpadding:35upx;\r\n\ttext-align: center;\n}\n.uni-page-head-title {\r\n\tdisplay: inline-block;\r\n\tpadding: 0 40upx;\r\n\tfont-size: 30upx;\r\n\theight: 88upx;\r\n\tline-height: 88upx;\r\n\tcolor: #BEBEBE;\r\n\tbox-sizing: border-box;\r\n\tborder-bottom: 2upx solid #D8D8D8;\n}\n.uni-page-body {\r\n\twidth: 100%;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex-grow: 1;\r\n\t        flex-grow: 1;\r\n\toverflow-x: hidden;\n}\n.uni-padding-wrap{\r\n\twidth:690upx;\r\n\tpadding:0 30upx;\n}\n.uni-word {\r\n\ttext-align: center;\r\n\tpadding:200upx 100upx;\n}\n.uni-title {\r\n\tfont-size:30upx;\r\n\tfont-weight:500;\r\n\tpadding:20upx 0;\r\n\tline-height:1.5;\n}\n.uni-text{\r\n\tfont-size:28upx;\n}\n.uni-title uni-text{\r\n\tfont-size:24upx;\r\n\tcolor:#888;\n}\n.uni-text-gray{\r\n\tcolor: #ccc;\n}\n.uni-text-small {\r\n\tfont-size:24upx;\n}\n.uni-common-mb{\r\n\tmargin-bottom:30upx;\n}\n.uni-common-pb{\r\n\tpadding-bottom:30upx;\n}\n.uni-common-pl{\r\n\tpadding-left:30upx;\n}\n.uni-common-mt{\r\n\tmargin-top:30upx;\n}\n/* 背景色 */\n.uni-bg-red{\r\n\tbackground:#F76260; color:#FFF;\n}\n.uni-bg-green{\r\n\tbackground:#09BB07; color:#FFF;\n}\n.uni-bg-blue{\r\n\tbackground:#007AFF; color:#FFF;\n}\n/* 标题 */\n.uni-h1 {font-size: 80upx; font-weight:700;}\n.uni-h2 {font-size: 60upx; font-weight:700;}\n.uni-h3 {font-size: 48upx; font-weight:700;}\n.uni-h4 {font-size: 36upx; font-weight:700;}\n.uni-h5 {font-size: 28upx; color: #8f8f94;}\n.uni-h6 {font-size: 24upx; color: #8f8f94;}\n.uni-bold{font-weight:bold;}\n/* 文本溢出隐藏 */\n.uni-ellipsis {overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}\n/* 竖向百分百按钮 */\n.uni-btn-v{\r\n\tpadding:10upx 0;\n}\n.uni-btn-v uni-button{margin:20upx 0;}\n/* 表单 */\n.uni-form-item{\r\n\tdisplay:-webkit-box;\r\n\tdisplay:-webkit-flex;\r\n\tdisplay:flex;\r\n\twidth:100%;\r\n\tpadding:10upx 0;\n}\n.uni-form-item .title{\r\n\tpadding:10upx 25upx;\n}\n.uni-label {\r\n\twidth: 210upx;\r\n\tword-wrap: break-word;\r\n\tword-break: break-all;\r\n\ttext-indent:20upx;\n}\n.uni-input {\r\n\theight: 50upx;\r\n\tpadding: 15upx 25upx;\r\n\tline-height:50upx;\r\n\tfont-size:28upx;\r\n\tbackground:#FFF;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\n}\nuni-radio-group, uni-checkbox-group{\r\n\twidth:100%;\n}\nuni-radio-group uni-label, uni-checkbox-group uni-label{\r\n\tpadding-right:20upx;\n}\n.uni-form-item .with-fun{\r\n\tdisplay:-webkit-box;\r\n\tdisplay:-webkit-flex;\r\n\tdisplay:flex;\r\n\t-webkit-flex-wrap:nowrap;\r\n\t        flex-wrap:nowrap;\r\n\tbackground:#FFFFFF;\n}\n.uni-form-item .with-fun .uni-icon{\r\n\twidth:40px;\r\n\theight:80upx;\r\n\tline-height:80upx;\r\n\t-webkit-flex-shrink:0;\r\n\t        flex-shrink:0;\n}\n/* loadmore */\n.uni-loadmore{\r\n\theight:80upx;\r\n\tline-height:80upx;\r\n\ttext-align:center;\r\n\tpadding-bottom:30upx;\n}\n/*数字角标*/\n.uni-badge,\r\n.uni-badge-default {\r\n\tfont-family: 'Helvetica Neue', Helvetica, sans-serif;\r\n\tfont-size: 12px;\r\n\tline-height: 1;\r\n\tdisplay: inline-block;\r\n\tpadding: 3px 6px;\r\n\tcolor: #333;\r\n\tborder-radius: 100px;\r\n\tbackground-color: rgba(0, 0, 0, .15);\n}\n.uni-badge.uni-badge-inverted {\r\n\tpadding: 0 5px 0 0;\r\n\tcolor: #929292;\r\n\tbackground-color: transparent\n}\n.uni-badge-primary {\r\n\tcolor: #fff;\r\n\tbackground-color: #007aff\n}\n.uni-badge-blue.uni-badge-inverted,\r\n.uni-badge-primary.uni-badge-inverted {\r\n\tcolor: #007aff;\r\n\tbackground-color: transparent\n}\n.uni-badge-green,\r\n.uni-badge-success {\r\n\tcolor: #fff;\r\n\tbackground-color: #4cd964;\n}\n.uni-badge-green.uni-badge-inverted,\r\n.uni-badge-success.uni-badge-inverted {\r\n\tcolor: #4cd964;\r\n\tbackground-color: transparent\n}\n.uni-badge-warning,\r\n.uni-badge-yellow {\r\n\tcolor: #fff;\r\n\tbackground-color: #f0ad4e\n}\n.uni-badge-warning.uni-badge-inverted,\r\n.uni-badge-yellow.uni-badge-inverted {\r\n\tcolor: #f0ad4e;\r\n\tbackground-color: transparent\n}\n.uni-badge-danger,\r\n.uni-badge-red {\r\n\tcolor: #fff;\r\n\tbackground-color: #dd524d\n}\n.uni-badge-danger.uni-badge-inverted,\r\n.uni-badge-red.uni-badge-inverted {\r\n\tcolor: #dd524d;\r\n\tbackground-color: transparent\n}\n.uni-badge-purple,\r\n.uni-badge-royal {\r\n\tcolor: #fff;\r\n\tbackground-color: #8a6de9\n}\n.uni-badge-purple.uni-badge-inverted,\r\n.uni-badge-royal.uni-badge-inverted {\r\n\tcolor: #8a6de9;\r\n\tbackground-color: transparent\n}\n/*折叠面板 */\n.uni-collapse-content {\r\n\theight: 0;\r\n\twidth: 100%;\r\n\toverflow: hidden;\n}\n.uni-collapse-content.uni-active {\r\n\theight: auto;\n}\n/*卡片视图 */\n.uni-card {\r\n\tbackground: #fff;\r\n\tborder-radius: 8upx;\r\n\tmargin:20upx 0;\r\n\tposition: relative;\r\n\tbox-shadow: 0 2upx 4upx rgba(0, 0, 0, .3);\n}\n.uni-card-content {\r\n\tfont-size: 30upx;\n}\n.uni-card-content.image-view{\r\n    width: 100%;\r\n    margin: 0;\n}\n.uni-card-content-inner {\r\n\tposition: relative;\r\n\tpadding: 30upx;\n}\n.uni-card-footer,\r\n.uni-card-header {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\tmin-height: 50upx;\r\n\tpadding: 20upx 30upx;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\n}\n.uni-card-header {\r\n\tfont-size: 36upx;\n}\n.uni-card-footer {\r\n\tcolor: #6d6d72;\n}\n.uni-card-footer:before,\r\n.uni-card-header:after {\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tleft: 0;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-card-header:after {\r\n\ttop: auto;\r\n\tbottom: 0;\n}\n.uni-card-media {\r\n\t-webkit-box-pack: start;\r\n\t-webkit-justify-content: flex-start;\r\n\t        justify-content: flex-start;\n}\n.uni-card-media-logo {\r\n\theight: 84upx;\r\n\twidth: 84upx;\r\n\tmargin-right: 20upx;\n}\n.uni-card-media-body {\r\n\theight: 84upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: start;\r\n\t-webkit-align-items: flex-start;\r\n\t        align-items: flex-start;\n}\n.uni-card-media-text-top {\r\n\tline-height: 36upx;\r\n\tfont-size: 34upx;\n}\n.uni-card-media-text-bottom {\r\n\tline-height: 30upx;\r\n\tfont-size: 28upx;\r\n\tcolor: #8f8f94;\n}\n.uni-card-link {\r\n\tcolor: #007AFF;\n}\n/* 列表 */\n.uni-list {\r\n\tbackground-color: #FFFFFF;\r\n\tposition: relative;\r\n\twidth: 100%;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-list:after {\r\n\tposition: absolute;\r\n\tz-index: 10;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list::before {\r\n\tposition: absolute;\r\n\tz-index: 10;\r\n\tright: 0;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list-cell {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\n}\n.uni-list-cell-hover {\r\n\tbackground-color: #eee;\n}\n.uni-list-cell-pd {\r\n\tpadding: 22upx 30upx;\n}\n.uni-list-cell-left {\r\n    white-space: nowrap;\r\n\tfont-size:28upx;\r\n\tpadding: 0 30upx;\n}\n.uni-list-cell-db,\r\n.uni-list-cell-right {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\n}\n.uni-list-cell::after {\r\n\tposition: absolute;\r\n\tz-index: 3;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 30upx;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list .uni-list-cell:last-child::after {\r\n\theight: 0upx;\n}\n.uni-list-cell-last.uni-list-cell::after {\r\n\theight: 0upx;\n}\n.uni-list-cell-divider {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\tcolor: #999;\r\n\tbackground-color: #f7f7f7;\r\n\tpadding:15upx 20upx;\n}\n.uni-list-cell-divider::before {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list-cell-divider::after {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0upx;\r\n\theight: 1px;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\ttransform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-list-cell-navigate {\r\n\tfont-size:30upx;\r\n\tpadding: 22upx 30upx;\r\n\tline-height: 48upx;\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\tbox-sizing: border-box;\r\n\twidth: 100%;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\n}\n.uni-list-cell-navigate {\r\n\tpadding-right: 36upx;\n}\n.uni-navigate-badge {\r\n\tpadding-right: 50upx;\n}\n.uni-list-cell-navigate.uni-navigate-right:after {\r\n\tfont-family: uniicons;\r\n\tcontent: '\\E583';\r\n\tposition: absolute;\r\n\tright: 24upx;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.uni-list-cell-navigate.uni-navigate-bottom:after {\r\n\tfont-family: uniicons;\r\n\tcontent: '\\E581';\r\n\tposition: absolute;\r\n\tright: 24upx;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.uni-list-cell-navigate.uni-navigate-bottom.uni-active::after {\r\n\tfont-family: uniicons;\r\n\tcontent: '\\E580';\r\n\tposition: absolute;\r\n\tright: 24upx;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.uni-collapse.uni-list-cell {\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-list-cell-navigate.uni-active {\r\n\tbackground: #eee;\n}\n.uni-list.uni-collapse {\r\n\tbox-sizing: border-box;\r\n\theight: 0;\r\n\toverflow: hidden;\n}\n.uni-collapse .uni-list-cell {\r\n\tpadding-left: 20upx;\n}\n.uni-collapse .uni-list-cell::after {\r\n\tleft: 52upx;\n}\n.uni-list.uni-active {\r\n\theight: auto;\n}\n/* 三行列表 */\n.uni-triplex-row {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\twidth: 100%;\r\n\tbox-sizing: border-box;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\tpadding: 22upx 30upx;\n}\n.uni-triplex-right,\r\n.uni-triplex-left {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-triplex-left {\r\n\twidth: 84%;\n}\n.uni-triplex-left .uni-title{\r\n\tpadding:8upx 0;\n}\n.uni-triplex-left .uni-text, .uni-triplex-left .uni-text-small{color:#999999;}\n.uni-triplex-right {\r\n\twidth: 16%;\r\n\ttext-align: right;\n}\n/* 图文列表 */\n.uni-media-list {\r\n\tpadding: 22upx 30upx;\r\n\tbox-sizing: border-box;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\twidth: 100%;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\n}\n.uni-navigate-right.uni-media-list {\r\n\tpadding-right: 74upx;\n}\n.uni-pull-right {\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: reverse;\r\n\t-webkit-flex-direction: row-reverse;\r\n\t        flex-direction: row-reverse;\n}\n.uni-pull-right>.uni-media-list-logo {\r\n\tmargin-right: 0upx;\r\n\tmargin-left: 20upx;\n}\n.uni-media-list-logo {\r\n\theight: 84upx;\r\n\twidth: 84upx;\r\n\tmargin-right: 20upx;\n}\n.uni-media-list-logo uni-image {\r\n\theight: 100%;\r\n\twidth: 100%;\n}\n.uni-media-list-body {\r\n\theight: 84upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: start;\r\n\t-webkit-align-items: flex-start;\r\n\t        align-items: flex-start;\r\n\toverflow: hidden;\n}\n.uni-media-list-text-top {\r\n\twidth: 100%;\r\n\tline-height: 36upx;\r\n\tfont-size: 30upx;\n}\n.uni-media-list-text-bottom {\r\n\twidth: 100%;\r\n\tline-height: 30upx;\r\n\tfont-size: 26upx;\r\n\tcolor: #8f8f94;\n}\n/* 九宫格 */\n.uni-grid-9 {\r\n\tbackground: #f2f2f2;\r\n\twidth: 750upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-flex-wrap: wrap;\r\n\t        flex-wrap: wrap;\r\n\tborder-top: 2upx solid #eee;\n}\n.uni-grid-9-item {\r\n\twidth: 250upx;\r\n\theight: 200upx;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\r\n\t-webkit-box-pack: center;\r\n\t-webkit-justify-content: center;\r\n\t        justify-content: center;\r\n\tborder-bottom: 2upx solid;\r\n\tborder-right: 2upx solid;\r\n\tborder-color: #eee;\r\n\tbox-sizing: border-box;\n}\n.no-border-right {\r\n\tborder-right: none;\n}\n.uni-grid-9-image {\r\n\twidth: 100upx;\r\n\theight: 100upx;\n}\n.uni-grid-9-text {\r\n\twidth: 250upx;\r\n\tline-height: 4upx;\r\n\theight: 40upx;\r\n\ttext-align: center;\r\n\tfont-size: 30upx;\n}\n.uni-grid-9-item-hover {\r\n\tbackground: rgba(0, 0, 0, 0.1);\n}\n/* 上传 */\n.uni-uploader {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\n}\n.uni-uploader-head {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\n}\n.uni-uploader-info {\r\n\tcolor: #B2B2B2;\n}\n.uni-uploader-body {\r\n\tmargin-top: 16upx;\n}\n.uni-uploader__files {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-flex-wrap: wrap;\r\n\t        flex-wrap: wrap;\n}\n.uni-uploader__file {\r\n\tmargin: 10upx;\r\n\twidth: 210upx;\r\n\theight: 210upx;\n}\n.uni-uploader__img {\r\n\tdisplay: block;\r\n\twidth: 210upx;\r\n\theight: 210upx;\n}\n.uni-uploader__input-box {\r\n\tposition: relative;\r\n\tmargin:10upx;\r\n\twidth: 208upx;\r\n\theight: 208upx;\r\n\tborder: 2upx solid #D9D9D9;\n}\n.uni-uploader__input-box:before,\r\n.uni-uploader__input-box:after {\r\n\tcontent: \" \";\r\n\tposition: absolute;\r\n\ttop: 50%;\r\n\tleft: 50%;\r\n\t-webkit-transform: translate(-50%, -50%);\r\n\ttransform: translate(-50%, -50%);\r\n\tbackground-color: #D9D9D9;\n}\n.uni-uploader__input-box:before {\r\n\twidth: 4upx;\r\n\theight: 79upx;\n}\n.uni-uploader__input-box:after {\r\n\twidth: 79upx;\r\n\theight: 4upx;\n}\n.uni-uploader__input-box:active {\r\n\tborder-color: #999999;\n}\n.uni-uploader__input-box:active:before,\r\n.uni-uploader__input-box:active:after {\r\n\tbackground-color: #999999;\n}\n.uni-uploader__input {\r\n\tposition: absolute;\r\n\tz-index: 1;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\topacity: 0;\n}\n/*问题反馈*/\n.feedback-title {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\r\n\t-webkit-box-align: center;\r\n\t-webkit-align-items: center;\r\n\t        align-items: center;\r\n\tpadding: 20upx;\r\n\tcolor: #8f8f94;\r\n\tfont-size: 28upx;\n}\n.feedback-star-view.feedback-title {\r\n\t-webkit-box-pack: start;\r\n\t-webkit-justify-content: flex-start;\r\n\t        justify-content: flex-start;\r\n\tmargin: 0;\n}\n.feedback-quick {\r\n\tposition: relative;\r\n\tpadding-right: 40upx;\n}\n.feedback-quick:after {\r\n\tfont-family: uniicons;\r\n\tfont-size: 40upx;\r\n\tcontent: '\\E581';\r\n\tposition: absolute;\r\n\tright: 0;\r\n\ttop: 50%;\r\n\tcolor: #bbb;\r\n\t-webkit-transform: translateY(-50%);\r\n\ttransform: translateY(-50%);\n}\n.feedback-body {\r\n\tbackground: #fff;\n}\n.feedback-textare {\r\n\theight: 200upx;\r\n\tfont-size: 34upx;\r\n\tline-height: 50upx;\r\n\twidth: 100%;\r\n\tbox-sizing: border-box;\r\n\tpadding: 20upx 30upx 0;\n}\n.feedback-input {\r\n\tfont-size: 34upx;\r\n\theight: 50upx;\r\n\tmin-height: 50upx;\r\n\tpadding: 15upx 20upx;\r\n\tline-height: 50upx;\n}\n.feedback-uploader {\r\n\tpadding: 22upx 20upx;\n}\n.feedback-star {\r\n\tfont-family: uniicons;\r\n\tfont-size: 40upx;\r\n\tmargin-left: 6upx;\n}\n.feedback-star-view {\r\n\tmargin-left: 20upx;\n}\n.feedback-star:after {\r\n\tcontent: '\\E408';\n}\n.feedback-star.active {\r\n\tcolor: #FFB400;\n}\n.feedback-star.active:after {\r\n\tcontent: '\\E438';\n}\n.feedback-submit {\r\n\tbackground: #007AFF;\r\n\tcolor: #FFFFFF;\r\n\tmargin: 20upx;\n}\n/* input group */\n.uni-input-group {\r\n\tposition: relative;\r\n\tpadding: 0;\r\n\tborder: 0;\r\n\tbackground-color: #fff;\n}\n.uni-input-group:before {\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tright: 0;\r\n\tleft: 0;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\t        transform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-input-group:after {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 0;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\t        transform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-input-row {\r\n\tposition: relative;\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: horizontal;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: row;\r\n\t        flex-direction: row;\r\n\tfont-size:28upx;\r\n\tpadding: 22upx 30upx;\r\n\t-webkit-box-pack: justify;\r\n\t-webkit-justify-content: space-between;\r\n\t        justify-content: space-between;\n}\n.uni-input-group .uni-input-row:after {\r\n\tposition: absolute;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tleft: 30upx;\r\n\theight: 2upx;\r\n\tcontent: '';\r\n\t-webkit-transform: scaleY(.5);\r\n\t        transform: scaleY(.5);\r\n\tbackground-color: #c8c7cc;\n}\n.uni-input-row uni-label {\r\n\tline-height: 70upx;\n}\n/* textarea */\n.uni-textarea{\r\n\twidth:100%;\r\n\tbackground:#FFF;\n}\n.uni-textarea uni-textarea{\r\n\twidth:96%;\r\n\tpadding:18upx 2%;\r\n\tline-height:1.6;\r\n\tfont-size:28upx;\r\n\theight:150upx;\n}\n/* tab bar */\n.uni-tab-bar {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -webkit-flex;\r\n\tdisplay: flex;\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t-webkit-flex-direction: column;\r\n\t        flex-direction: column;\r\n\toverflow: hidden;\r\n\theight: 100%;\n}\n.uni-tab-bar .list {\r\n\twidth: 750upx;\r\n\theight: 100%;\n}\n.uni-swiper-tab {\r\n\twidth: 100%;\r\n\twhite-space: nowrap;\r\n\tline-height: 100upx;\r\n\theight: 100upx;\r\n\tborder-bottom: 1px solid #c8c7cc;\n}\n.swiper-tab-list {\r\n\tfont-size: 30upx;\r\n\twidth: 150upx;\r\n\tdisplay: inline-block;\r\n\ttext-align: center;\r\n\tcolor: #555;\n}\n.uni-tab-bar .active {\r\n\tcolor: #007AFF;\n}\n.uni-tab-bar .swiper-box {\r\n\t-webkit-box-flex: 1;\r\n\t-webkit-flex: 1;\r\n\t        flex: 1;\r\n\twidth: 100%;\r\n\theight: calc(100% - 100upx);\n}\n.uni-tab-bar-loading{\r\n\tpadding:20upx 0;\n}\n/* comment */\n.uni-comment{padding:5rpx 0; display: -webkit-box; display: -webkit-flex; display: flex; -webkit-box-flex:1; -webkit-flex-grow:1; flex-grow:1; -webkit-box-orient: vertical; -webkit-box-direction: normal; -webkit-flex-direction: column; flex-direction: column;}\n.uni-comment-list{-webkit-flex-wrap:nowrap;flex-wrap:nowrap; padding:10rpx 0; margin:10rpx 0; width:100%; display: -webkit-box; display: -webkit-flex; display: flex;}\n.uni-comment-face{width:70upx; height:70upx; border-radius:100%; margin-right:20upx; -webkit-flex-shrink:0; flex-shrink:0; overflow:hidden;}\n.uni-comment-face uni-image{width:100%; border-radius:100%;}\n.uni-comment-body{width:100%;}\n.uni-comment-top{line-height:1.5em; -webkit-box-pack:justify; -webkit-justify-content:space-between; justify-content:space-between;}\n.uni-comment-top uni-text{color:#0A98D5; font-size:24upx;}\n.uni-comment-date{line-height:38upx; -webkit-box-orient:horizontal; -webkit-box-direction:normal; -webkit-flex-direction:row; flex-direction:row; -webkit-box-pack:justify; -webkit-justify-content:space-between; justify-content:space-between; display:-webkit-box !important; display:-webkit-flex !important; display:flex !important; -webkit-box-flex:1; -webkit-flex-grow:1; flex-grow:1;}\n.uni-comment-date uni-view{color:#666666; font-size:24upx; line-height:38upx;}\n.uni-comment-content{line-height:1.6em; font-size:28upx; padding:8rpx 0;}\n.uni-comment-replay-btn{background:#FFF; font-size:24upx; line-height:28upx; padding:5rpx 20upx; border-radius:30upx; color:#333 !important; margin:0 10upx;}\n/* swiper msg */\n.uni-swiper-msg{width:100%; padding:12rpx 0; -webkit-flex-wrap:nowrap; flex-wrap:nowrap; display:-webkit-box; display:-webkit-flex; display:flex;}\n.uni-swiper-msg-icon{width:50upx; margin-right:20upx;}\n.uni-swiper-msg-icon uni-image{width:100%; -webkit-flex-shrink:0; flex-shrink:0;}\n.uni-swiper-msg uni-swiper{width:100%; height:50upx;}\n.uni-swiper-msg uni-swiper-item{line-height:50upx;}\n/* product */\n.uni-product-list {\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    width: 100%;\r\n    -webkit-flex-wrap: wrap;\r\n            flex-wrap: wrap;\r\n    -webkit-box-orient: horizontal;\r\n    -webkit-box-direction: normal;\r\n    -webkit-flex-direction: row;\r\n            flex-direction: row;\n}\n.uni-product {\r\n    padding: 20upx;\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-box-direction: normal;\r\n    -webkit-flex-direction: column;\r\n            flex-direction: column;\n}\n.image-view {\r\n    height: 330upx;\r\n    width: 330upx;\r\n\tmargin:12upx 0;\n}\n.uni-product-image {\r\n    height: 330upx;\r\n    width: 330upx;\n}\n.uni-product-title {\r\n    width: 300upx;\r\n    word-break: break-all;\r\n    display: -webkit-box;\r\n    overflow: hidden;\r\n\tline-height:1.5;\r\n    text-overflow: ellipsis;\r\n    -webkit-box-orient: vertical;\r\n    -webkit-line-clamp: 2;\n}\n.uni-product-price {\r\n\tmargin-top:10upx;\r\n    font-size: 28upx;\r\n\tline-height:1.5;\r\n    position: relative;\n}\n.uni-product-price-original {\r\n    color: #e80080;\n}\n.uni-product-price-favour {\r\n    color: #888888;\r\n    text-decoration: line-through;\r\n    margin-left: 10upx;\n}\n.uni-product-tip {\r\n    position: absolute;\r\n    right: 10upx;\r\n    background-color: #ff3333;\r\n    color: #ffffff;\r\n    padding: 0 10upx;\r\n    border-radius: 5upx;\n}\n/* timeline */\n.uni-timeline {\r\n\t\tmargin: 35upx 0;\r\n\t\tdisplay: -webkit-box;\r\n\t\tdisplay: -webkit-flex;\r\n\t\tdisplay: flex;\r\n\t\t-webkit-box-orient: vertical;\r\n\t\t-webkit-box-direction: normal;\r\n\t\t-webkit-flex-direction: column;\r\n\t\t        flex-direction: column;\r\n\t\tposition: relative;\n}\n.uni-timeline-item {\r\n\t\tdisplay: -webkit-box;\r\n\t\tdisplay: -webkit-flex;\r\n\t\tdisplay: flex;\r\n\t\t-webkit-box-orient: horizontal;\r\n\t\t-webkit-box-direction: normal;\r\n\t\t-webkit-flex-direction: row;\r\n\t\t        flex-direction: row;\r\n\t\tposition: relative;\r\n\t\tpadding-bottom: 20upx;\r\n\t\tbox-sizing: border-box;\r\n\t\toverflow: hidden;\n}\n.uni-timeline-item .uni-timeline-item-keynode {\r\n\t\twidth: 160upx;\r\n\t\t-webkit-flex-shrink: 0;\r\n\t\t        flex-shrink: 0;\r\n\t\tbox-sizing: border-box;\r\n\t\tpadding-right: 20upx;\r\n\t\ttext-align: right;\r\n\t\tline-height: 65upx;\n}\n.uni-timeline-item .uni-timeline-item-divider {\r\n\t\t-webkit-flex-shrink: 0;\r\n\t\t        flex-shrink: 0;\r\n\t\tposition: relative;\r\n\t\twidth: 30upx;\r\n\t\theight: 30upx;\r\n\t\ttop: 15upx;\r\n\t\tborder-radius: 50%;\r\n\t\tbackground-color: #bbb;\n}\n.uni-timeline-item-divider::before,\r\n\t.uni-timeline-item-divider::after {\r\n\t\tposition: absolute;\r\n\t\tleft: 15upx;\r\n\t\twidth: 1upx;\r\n\t\theight: 100vh;\r\n\t\tcontent: '';\r\n\t\tbackground: inherit;\n}\n.uni-timeline-item-divider::before {\r\n\t\tbottom: 100%;\n}\n.uni-timeline-item-divider::after {\r\n\t\ttop: 100%;\n}\n.uni-timeline-last-item .uni-timeline-item-divider:after {\r\n\t\tdisplay: none;\n}\n.uni-timeline-first-item .uni-timeline-item-divider:before {\r\n\t\tdisplay: none;\n}\n.uni-timeline-item .uni-timeline-item-content {\r\n\t\tpadding-left: 20upx;\n}\n.uni-timeline-last-item .bottom-border::after{\r\n\t\tdisplay: none;\n}\n.uni-timeline-item-content .datetime{\r\n\t\tcolor: #CCCCCC;\n}\n/* 自定义节点颜色 */\n.uni-timeline-last-item .uni-timeline-item-divider{\r\n\t\tbackground-color: #1AAD19;\n}\n/* uni-icon */\n.uni-icon {\r\n\tfont-family: uniicons;\r\n\tfont-size: 24px;\r\n\tfont-weight: normal;\r\n\tfont-style: normal;\r\n\tline-height: 1;\r\n\tdisplay: inline-block;\r\n\ttext-decoration: none;\r\n\t-webkit-font-smoothing: antialiased;\n}\n.uni-icon.uni-active {\r\n\tcolor: #007aff;\n}\n.uni-icon-contact:before {\r\n\tcontent: '\\E100';\n}\n.uni-icon-person:before {\r\n\tcontent: '\\E101';\n}\n.uni-icon-personadd:before {\r\n\tcontent: '\\E102';\n}\n.uni-icon-contact-filled:before {\r\n\tcontent: '\\E130';\n}\n.uni-icon-person-filled:before {\r\n\tcontent: '\\E131';\n}\n.uni-icon-personadd-filled:before {\r\n\tcontent: '\\E132';\n}\n.uni-icon-phone:before {\r\n\tcontent: '\\E200';\n}\n.uni-icon-email:before {\r\n\tcontent: '\\E201';\n}\n.uni-icon-chatbubble:before {\r\n\tcontent: '\\E202';\n}\n.uni-icon-chatboxes:before {\r\n\tcontent: '\\E203';\n}\n.uni-icon-phone-filled:before {\r\n\tcontent: '\\E230';\n}\n.uni-icon-email-filled:before {\r\n\tcontent: '\\E231';\n}\n.uni-icon-chatbubble-filled:before {\r\n\tcontent: '\\E232';\n}\n.uni-icon-chatboxes-filled:before {\r\n\tcontent: '\\E233';\n}\n.uni-icon-weibo:before {\r\n\tcontent: '\\E260';\n}\n.uni-icon-weixin:before {\r\n\tcontent: '\\E261';\n}\n.uni-icon-pengyouquan:before {\r\n\tcontent: '\\E262';\n}\n.uni-icon-chat:before {\r\n\tcontent: '\\E263';\n}\n.uni-icon-qq:before {\r\n\tcontent: '\\E264';\n}\n.uni-icon-videocam:before {\r\n\tcontent: '\\E300';\n}\n.uni-icon-camera:before {\r\n\tcontent: '\\E301';\n}\n.uni-icon-mic:before {\r\n\tcontent: '\\E302';\n}\n.uni-icon-location:before {\r\n\tcontent: '\\E303';\n}\n.uni-icon-mic-filled:before,\r\n.uni-icon-speech:before {\r\n\tcontent: '\\E332';\n}\n.uni-icon-location-filled:before {\r\n\tcontent: '\\E333';\n}\n.uni-icon-micoff:before {\r\n\tcontent: '\\E360';\n}\n.uni-icon-image:before {\r\n\tcontent: '\\E363';\n}\n.uni-icon-map:before {\r\n\tcontent: '\\E364';\n}\n.uni-icon-compose:before {\r\n\tcontent: '\\E400';\n}\n.uni-icon-trash:before {\r\n\tcontent: '\\E401';\n}\n.uni-icon-upload:before {\r\n\tcontent: '\\E402';\n}\n.uni-icon-download:before {\r\n\tcontent: '\\E403';\n}\n.uni-icon-close:before {\r\n\tcontent: '\\E404';\n}\n.uni-icon-redo:before {\r\n\tcontent: '\\E405';\n}\n.uni-icon-undo:before {\r\n\tcontent: '\\E406';\n}\n.uni-icon-refresh:before {\r\n\tcontent: '\\E407';\n}\n.uni-icon-star:before {\r\n\tcontent: '\\E408';\n}\n.uni-icon-plus:before {\r\n\tcontent: '\\E409';\n}\n.uni-icon-minus:before {\r\n\tcontent: '\\E410';\n}\n.uni-icon-circle:before,\r\n.uni-icon-checkbox:before {\r\n\tcontent: '\\E411';\n}\n.uni-icon-close-filled:before,\r\n.uni-icon-clear:before {\r\n\tcontent: '\\E434';\n}\n.uni-icon-refresh-filled:before {\r\n\tcontent: '\\E437';\n}\n.uni-icon-star-filled:before {\r\n\tcontent: '\\E438';\n}\n.uni-icon-plus-filled:before {\r\n\tcontent: '\\E439';\n}\n.uni-icon-minus-filled:before {\r\n\tcontent: '\\E440';\n}\n.uni-icon-circle-filled:before {\r\n\tcontent: '\\E441';\n}\n.uni-icon-checkbox-filled:before {\r\n\tcontent: '\\E442';\n}\n.uni-icon-closeempty:before {\r\n\tcontent: '\\E460';\n}\n.uni-icon-refreshempty:before {\r\n\tcontent: '\\E461';\n}\n.uni-icon-reload:before {\r\n\tcontent: '\\E462';\n}\n.uni-icon-starhalf:before {\r\n\tcontent: '\\E463';\n}\n.uni-icon-spinner:before {\r\n\tcontent: '\\E464';\n}\n.uni-icon-spinner-cycle:before {\r\n\tcontent: '\\E465';\n}\n.uni-icon-search:before {\r\n\tcontent: '\\E466';\n}\n.uni-icon-plusempty:before {\r\n\tcontent: '\\E468';\n}\n.uni-icon-forward:before {\r\n\tcontent: '\\E470';\n}\n.uni-icon-back:before,\r\n.uni-icon-left-nav:before {\r\n\tcontent: '\\E471';\n}\n.uni-icon-checkmarkempty:before {\r\n\tcontent: '\\E472';\n}\n.uni-icon-home:before {\r\n\tcontent: '\\E500';\n}\n.uni-icon-navigate:before {\r\n\tcontent: '\\E501';\n}\n.uni-icon-gear:before {\r\n\tcontent: '\\E502';\n}\n.uni-icon-paperplane:before {\r\n\tcontent: '\\E503';\n}\n.uni-icon-info:before {\r\n\tcontent: '\\E504';\n}\n.uni-icon-help:before {\r\n\tcontent: '\\E505';\n}\n.uni-icon-locked:before {\r\n\tcontent: '\\E506';\n}\n.uni-icon-more:before {\r\n\tcontent: '\\E507';\n}\n.uni-icon-flag:before {\r\n\tcontent: '\\E508';\n}\n.uni-icon-home-filled:before {\r\n\tcontent: '\\E530';\n}\n.uni-icon-gear-filled:before {\r\n\tcontent: '\\E532';\n}\n.uni-icon-info-filled:before {\r\n\tcontent: '\\E534';\n}\n.uni-icon-help-filled:before {\r\n\tcontent: '\\E535';\n}\n.uni-icon-more-filled:before {\r\n\tcontent: '\\E537';\n}\n.uni-icon-settings:before {\r\n\tcontent: '\\E560';\n}\n.uni-icon-list:before {\r\n\tcontent: '\\E562';\n}\n.uni-icon-bars:before {\r\n\tcontent: '\\E563';\n}\n.uni-icon-loop:before {\r\n\tcontent: '\\E565';\n}\n.uni-icon-paperclip:before {\r\n\tcontent: '\\E567';\n}\n.uni-icon-eye:before {\r\n\tcontent: '\\E568';\n}\n.uni-icon-arrowup:before {\r\n\tcontent: '\\E580';\n}\n.uni-icon-arrowdown:before {\r\n\tcontent: '\\E581';\n}\n.uni-icon-arrowleft:before {\r\n\tcontent: '\\E582';\n}\n.uni-icon-arrowright:before {\r\n\tcontent: '\\E583';\n}\n.uni-icon-arrowthinup:before {\r\n\tcontent: '\\E584';\n}\n.uni-icon-arrowthindown:before {\r\n\tcontent: '\\E585';\n}\n.uni-icon-arrowthinleft:before {\r\n\tcontent: '\\E586';\n}\n.uni-icon-arrowthinright:before {\r\n\tcontent: '\\E587';\n}\n.uni-icon-pulldown:before {\r\n\tcontent: '\\E588';\n}\n.uni-icon-scan:before {\r\n    content: \"\\E612\";\n}\n/* 分界线 */\n.uni-divider{\r\n    height: 110upx;\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    -webkit-box-align:center;\r\n    -webkit-align-items:center;\r\n            align-items:center;\r\n    -webkit-box-pack: center;\r\n    -webkit-justify-content: center;\r\n            justify-content: center;\r\n    position: relative;\n}\n.uni-divider__content{\r\n    font-size: 28upx;\r\n    color: #999;\r\n    padding: 0 20upx;\r\n    position: relative;\r\n    z-index: 101;\r\n    background: #F4F5F6;\n}\n.uni-divider__line{\r\n    background-color: #CCCCCC;\r\n    height: 1px;\r\n    width: 100%;\r\n    position: absolute;\r\n    z-index: 100;\r\n    top: 50%;\r\n    left: 0;\r\n    -webkit-transform: translateY(50%);\r\n            transform: translateY(50%);\n}\n/*\n  ColorUi for uniApp  v2.1.6 | by 文晓港 2019-05-31 10:44:24\n  仅供学习交流，如作它用所承受的法律责任一概与作者无关  \n  \n  *使用ColorUi开发扩展与插件时，请注明基于ColorUi开发 \n  \n  （QQ交流群：240787041）\n*/\n/* ==================\n        初始化\n ==================== */\nbody {\n\tbackground-color: #f1f1f1;\n\tfont-size: 28upx;\n\tcolor: #333333;\n\tfont-family: Helvetica Neue, Helvetica, sans-serif;\n}\nuni-view,\nuni-scroll-view,\nuni-swiper,\nuni-button,\nuni-input,\nuni-textarea,\nuni-label,\nuni-navigator,\nuni-image {\n\tbox-sizing: border-box;\n}\n.round {\n\tborder-radius: 5000upx;\n}\n.radius {\n\tborder-radius: 6upx;\n}\n/* ==================\n          图片\n ==================== */\nuni-image {\n\tmax-width: 100%;\n\tdisplay: inline-block;\n\tposition: relative;\n\tz-index: 0;\n}\nuni-image.loading::before {\n\tcontent: \"\";\n\tbackground-color: #f5f5f5;\n\tdisplay: block;\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\tz-index: -2;\n}\nuni-image.loading::after {\n\tcontent: \"\\E7F1\";\n\tfont-family: \"cuIcon\";\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\twidth: 32upx;\n\theight: 32upx;\n\tline-height: 32upx;\n\tright: 0;\n\tbottom: 0;\n\tz-index: -1;\n\tfont-size: 32upx;\n\tmargin: auto;\n\tcolor: #ccc;\n\t-webkit-animation: cuIcon-spin 2s infinite linear;\n\tanimation: cuIcon-spin 2s infinite linear;\n\tdisplay: block;\n}\n.response {\n\twidth: 100%;\n}\n/* ==================\n         开关\n ==================== */\nuni-switch,\nuni-checkbox,\nuni-radio {\n\tposition: relative;\n}\nuni-switch::after,\nuni-switch::before {\n\tfont-family: \"iconfont\";\n\tcontent: \"\\E621\";\n\tposition: absolute;\n\tcolor: #ffffff !important;\n\ttop: 0%;\n\tleft: 0upx;\n\tfont-size: 26upx;\n\tline-height: 26px;\n\twidth: 50%;\n\ttext-align: center;\n\tpointer-events: none;\n\t-webkit-transform: scale(0, 0);\n\t        transform: scale(0, 0);\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\tz-index: 9;\n\tbottom: 0;\n\theight: 26px;\n\tmargin: auto;\n}\nuni-switch::before {\n\tcontent: \"\\E627\";\n\tright: 0;\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n\tleft: auto;\n}\nuni-switch[checked]::after,\nuni-switch.checked::after {\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n}\nuni-switch[checked]::before,\nuni-switch.checked::before {\n\t-webkit-transform: scale(0, 0);\n\t        transform: scale(0, 0);\n}\n\nuni-radio::before,\nuni-checkbox::before {\n\tfont-family: \"cuIcon\";\n\tcontent: \"\\E645\";\n\tposition: absolute;\n\tcolor: #ffffff !important;\n\ttop: 50%;\n\tmargin-top: -8px;\n\tright: 5px;\n\tfont-size: 32upx;\n\tline-height: 16px;\n\tpointer-events: none;\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\tz-index: 9;\n}\nuni-radio .wx-radio-input,\nuni-checkbox .wx-checkbox-input,\nuni-radio .uni-radio-input,\nuni-checkbox .uni-checkbox-input {\n\tmargin: 0;\n\twidth: 24px;\n\theight: 24px;\n}\nuni-checkbox.round .wx-checkbox-input,\nuni-checkbox.round .uni-checkbox-input {\n\tborder-radius: 100upx;\n}\n\nuni-switch[checked]::before {\n\t-webkit-transform: scale(0, 0);\n\t        transform: scale(0, 0);\n}\nuni-switch .wx-switch-input,\nuni-switch .uni-switch-input {\n\tborder: none;\n\tpadding: 0 24px;\n\twidth: 48px;\n\theight: 26px;\n\tmargin: 0;\n\tborder-radius: 100upx;\n}\nuni-switch .wx-switch-input:not([class*=\"bg-\"]),\nuni-switch .uni-switch-input:not([class*=\"bg-\"]) {\n\tbackground: #8799a3 !important;\n}\nuni-switch .wx-switch-input::after,\nuni-switch .uni-switch-input::after {\n\tmargin: auto;\n\twidth: 26px;\n\theight: 26px;\n\tborder-radius: 100upx;\n\tleft: 0upx;\n\ttop: 0upx;\n\tbottom: 0upx;\n\tposition: absolute;\n\t-webkit-transform: scale(0.9, 0.9);\n\t        transform: scale(0.9, 0.9);\n\t-webkit-transition: all 0.1s ease-in-out 0s;\n\ttransition: all 0.1s ease-in-out 0s;\n}\nuni-switch .wx-switch-input.wx-switch-input-checked::after,\nuni-switch .uni-switch-input.uni-switch-input-checked::after {\n\tmargin: auto;\n\tleft: 22px;\n\tbox-shadow: none;\n\t-webkit-transform: scale(0.9, 0.9);\n\t        transform: scale(0.9, 0.9);\n}\nuni-radio-group {\n\tdisplay: inline-block;\n}\nuni-switch.radius .wx-switch-input::after,\nuni-switch.radius .wx-switch-input,\nuni-switch.radius .wx-switch-input::before,\nuni-switch.radius .uni-switch-input::after,\nuni-switch.radius .uni-switch-input,\nuni-switch.radius .uni-switch-input::before {\n\tborder-radius: 10upx;\n}\nuni-switch .wx-switch-input::before,\nuni-radio.radio::before,\nuni-checkbox .wx-checkbox-input::before,\nuni-radio .wx-radio-input::before,\nuni-switch .uni-switch-input::before,\nuni-radio.radio::before,\nuni-checkbox .uni-checkbox-input::before,\nuni-radio .uni-radio-input::before {\n\tdisplay: none;\n}\nuni-radio.radio[checked]::after,\nuni-radio.radio .uni-radio-input-checked::after {\n\tcontent: \"\";\n\tbackground-color: transparent;\n\tdisplay: block;\n\tposition: absolute;\n\twidth: 8px;\n\theight: 8px;\n\tz-index: 999;\n\ttop: 0upx;\n\tleft: 0upx;\n\tright: 0;\n\tbottom: 0;\n\tmargin: auto;\n\tborder-radius: 200upx;\n\t\n\tborder: 7px solid #ffffff !important;\n\t\n\n\t\n}\n.switch-sex::after {\n\tcontent: \"\\E71C\";\n}\n.switch-sex::before {\n\tcontent: \"\\E71A\";\n}\n.switch-sex .wx-switch-input,\n.switch-sex .uni-switch-input {\n\tbackground: #e54d42 !important;\n\tborder-color: #e54d42 !important;\n}\n.switch-sex[checked] .wx-switch-input,\n.switch-sex.checked .uni-switch-input {\n\tbackground: #0081ff !important;\n\tborder-color: #0081ff !important;\n}\nuni-switch.red[checked] .wx-switch-input.wx-switch-input-checked,\nuni-checkbox.red[checked] .wx-checkbox-input,\nuni-radio.red[checked] .wx-radio-input,\nuni-switch.red.checked .uni-switch-input.uni-switch-input-checked,\nuni-checkbox.red.checked .uni-checkbox-input,\nuni-radio.red.checked .uni-radio-input {\n\tbackground-color: #e54d42 !important;\n\tborder-color: #e54d42 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.orange[checked] .wx-switch-input,\nuni-checkbox.orange[checked] .wx-checkbox-input,\nuni-radio.orange[checked] .wx-radio-input,\nuni-switch.orange.checked .uni-switch-input,\nuni-checkbox.orange.checked .uni-checkbox-input,\nuni-radio.orange.checked .uni-radio-input {\n\tbackground-color: #f37b1d !important;\n\tborder-color: #f37b1d !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.yellow[checked] .wx-switch-input,\nuni-checkbox.yellow[checked] .wx-checkbox-input,\nuni-radio.yellow[checked] .wx-radio-input,\nuni-switch.yellow.checked .uni-switch-input,\nuni-checkbox.yellow.checked .uni-checkbox-input,\nuni-radio.yellow.checked .uni-radio-input {\n\tbackground-color: #fbbd08 !important;\n\tborder-color: #fbbd08 !important;\n\tcolor: #333333 !important;\n}\nuni-switch.olive[checked] .wx-switch-input,\nuni-checkbox.olive[checked] .wx-checkbox-input,\nuni-radio.olive[checked] .wx-radio-input,\nuni-switch.olive.checked .uni-switch-input,\nuni-checkbox.olive.checked .uni-checkbox-input,\nuni-radio.olive.checked .uni-radio-input {\n\tbackground-color: #8dc63f !important;\n\tborder-color: #8dc63f !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.green[checked] .wx-switch-input,\nuni-switch[checked] .wx-switch-input,\nuni-checkbox.green[checked] .wx-checkbox-input,\nuni-checkbox[checked] .wx-checkbox-input,\nuni-radio.green[checked] .wx-radio-input,\nuni-radio[checked] .wx-radio-input,\nuni-switch.green.checked .uni-switch-input,\nuni-switch.checked .uni-switch-input,\nuni-checkbox.green.checked .uni-checkbox-input,\nuni-checkbox.checked .uni-checkbox-input,\nuni-radio.green.checked .uni-radio-input,\nuni-radio.checked .uni-radio-input {\n\tbackground-color: #39b54a !important;\n\tborder-color: #39b54a !important;\n\tcolor: #ffffff !important;\n\tborder-color: #39B54A !important;\n}\nuni-switch.cyan[checked] .wx-switch-input,\nuni-checkbox.cyan[checked] .wx-checkbox-input,\nuni-radio.cyan[checked] .wx-radio-input,\nuni-switch.cyan.checked .uni-switch-input,\nuni-checkbox.cyan.checked .uni-checkbox-input,\nuni-radio.cyan.checked .uni-radio-input {\n\tbackground-color: #1cbbb4 !important;\n\tborder-color: #1cbbb4 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.blue[checked] .wx-switch-input,\nuni-checkbox.blue[checked] .wx-checkbox-input,\nuni-radio.blue[checked] .wx-radio-input,\nuni-switch.blue.checked .uni-switch-input,\nuni-checkbox.blue.checked .uni-checkbox-input,\nuni-radio.blue.checked .uni-radio-input {\n\tbackground-color: #0081ff !important;\n\tborder-color: #0081ff !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.purple[checked] .wx-switch-input,\nuni-checkbox.purple[checked] .wx-checkbox-input,\nuni-radio.purple[checked] .wx-radio-input,\nuni-switch.purple.checked .uni-switch-input,\nuni-checkbox.purple.checked .uni-checkbox-input,\nuni-radio.purple.checked .uni-radio-input {\n\tbackground-color: #6739b6 !important;\n\tborder-color: #6739b6 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.mauve[checked] .wx-switch-input,\nuni-checkbox.mauve[checked] .wx-checkbox-input,\nuni-radio.mauve[checked] .wx-radio-input,\nuni-switch.mauve.checked .uni-switch-input,\nuni-checkbox.mauve.checked .uni-checkbox-input,\nuni-radio.mauve.checked .uni-radio-input {\n\tbackground-color: #9c26b0 !important;\n\tborder-color: #9c26b0 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.pink[checked] .wx-switch-input,\nuni-checkbox.pink[checked] .wx-checkbox-input,\nuni-radio.pink[checked] .wx-radio-input,\nuni-switch.pink.checked .uni-switch-input,\nuni-checkbox.pink.checked .uni-checkbox-input,\nuni-radio.pink.checked .uni-radio-input {\n\tbackground-color: #e03997 !important;\n\tborder-color: #e03997 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.brown[checked] .wx-switch-input,\nuni-checkbox.brown[checked] .wx-checkbox-input,\nuni-radio.brown[checked] .wx-radio-input,\nuni-switch.brown.checked .uni-switch-input,\nuni-checkbox.brown.checked .uni-checkbox-input,\nuni-radio.brown.checked .uni-radio-input {\n\tbackground-color: #a5673f !important;\n\tborder-color: #a5673f !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.grey[checked] .wx-switch-input,\nuni-checkbox.grey[checked] .wx-checkbox-input,\nuni-radio.grey[checked] .wx-radio-input,\nuni-switch.grey.checked .uni-switch-input,\nuni-checkbox.grey.checked .uni-checkbox-input,\nuni-radio.grey.checked .uni-radio-input {\n\tbackground-color: #8799a3 !important;\n\tborder-color: #8799a3 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.gray[checked] .wx-switch-input,\nuni-checkbox.gray[checked] .wx-checkbox-input,\nuni-radio.gray[checked] .wx-radio-input,\nuni-switch.gray.checked .uni-switch-input,\nuni-checkbox.gray.checked .uni-checkbox-input,\nuni-radio.gray.checked .uni-radio-input {\n\tbackground-color: #f0f0f0 !important;\n\tborder-color: #f0f0f0 !important;\n\tcolor: #333333 !important;\n}\nuni-switch.black[checked] .wx-switch-input,\nuni-checkbox.black[checked] .wx-checkbox-input,\nuni-radio.black[checked] .wx-radio-input,\nuni-switch.black.checked .uni-switch-input,\nuni-checkbox.black.checked .uni-checkbox-input,\nuni-radio.black.checked .uni-radio-input {\n\tbackground-color: #333333 !important;\n\tborder-color: #333333 !important;\n\tcolor: #ffffff !important;\n}\nuni-switch.white[checked] .wx-switch-input,\nuni-checkbox.white[checked] .wx-checkbox-input,\nuni-radio.white[checked] .wx-radio-input,\nuni-switch.white.checked .uni-switch-input,\nuni-checkbox.white.checked .uni-checkbox-input,\nuni-radio.white.checked .uni-radio-input {\n\tbackground-color: #ffffff !important;\n\tborder-color: #ffffff !important;\n\tcolor: #333333 !important;\n}\n/* ==================\n          边框\n ==================== */\n/* -- 实线 -- */\n.solid,\n.solid-top,\n.solid-right,\n.solid-bottom,\n.solid-left,\n.solids,\n.solids-top,\n.solids-right,\n.solids-bottom,\n.solids-left,\n.dashed,\n.dashed-top,\n.dashed-right,\n.dashed-bottom,\n.dashed-left {\n\tposition: relative;\n}\n.solid::after,\n.solid-top::after,\n.solid-right::after,\n.solid-bottom::after,\n.solid-left::after,\n.solids::after,\n.solids-top::after,\n.solids-right::after,\n.solids-bottom::after,\n.solids-left::after,\n.dashed::after,\n.dashed-top::after,\n.dashed-right::after,\n.dashed-bottom::after,\n.dashed-left::after {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder-radius: inherit;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none;\n\tbox-sizing: border-box;\n}\n.solid::after {\n\tborder: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-top::after {\n\tborder-top: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-right::after {\n\tborder-right: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-bottom::after {\n\tborder-bottom: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solid-left::after {\n\tborder-left: 1upx solid rgba(0, 0, 0, 0.1);\n}\n.solids::after {\n\tborder: 8upx solid #eee;\n}\n.solids-top::after {\n\tborder-top: 8upx solid #eee;\n}\n.solids-right::after {\n\tborder-right: 8upx solid #eee;\n}\n.solids-bottom::after {\n\tborder-bottom: 8upx solid #eee;\n}\n.solids-left::after {\n\tborder-left: 8upx solid #eee;\n}\n/* -- 虚线 -- */\n.dashed::after {\n\tborder: 1upx dashed #ddd;\n}\n.dashed-top::after {\n\tborder-top: 1upx dashed #ddd;\n}\n.dashed-right::after {\n\tborder-right: 1upx dashed #ddd;\n}\n.dashed-bottom::after {\n\tborder-bottom: 1upx dashed #ddd;\n}\n.dashed-left::after {\n\tborder-left: 1upx dashed #ddd;\n}\n/* -- 阴影 -- */\n.shadow[class*='white'] {\n\t--ShadowSize: 0 1upx 6upx;\n}\n.shadow-lg {\n\t--ShadowSize: 0upx 40upx 100upx 0upx;\n}\n.shadow-warp {\n\tposition: relative;\n\tbox-shadow: 0 0 10upx rgba(0, 0, 0, 0.1);\n}\n.shadow-warp:before,\n.shadow-warp:after {\n\tposition: absolute;\n\tcontent: \"\";\n\ttop: 20upx;\n\tbottom: 30upx;\n\tleft: 20upx;\n\twidth: 50%;\n\tbox-shadow: 0 30upx 20upx rgba(0, 0, 0, 0.2);\n\t-webkit-transform: rotate(-3deg);\n\t        transform: rotate(-3deg);\n\tz-index: -1;\n}\n.shadow-warp:after {\n\tright: 20upx;\n\tleft: auto;\n\t-webkit-transform: rotate(3deg);\n\t        transform: rotate(3deg);\n}\n.shadow-blur {\n\tposition: relative;\n}\n.shadow-blur::before {\n\tcontent: \"\";\n\tdisplay: block;\n\tbackground: inherit;\n\t-webkit-filter: blur(10upx);\n\t        filter: blur(10upx);\n\tposition: absolute;\n\twidth: 100%;\n\theight: 100%;\n\ttop: 10upx;\n\tleft: 10upx;\n\tz-index: -1;\n\topacity: 0.4;\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tborder-radius: inherit;\n\t-webkit-transform: scale(1, 1);\n\t        transform: scale(1, 1);\n}\n/* ==================\n          按钮\n ==================== */\n.cu-btn {\n\tposition: relative;\n\tborder: 0upx;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tbox-sizing: border-box;\n\tpadding: 0 30upx;\n\tfont-size: 28upx;\n\theight: 64upx;\n\tline-height: 1;\n\ttext-align: center;\n\ttext-decoration: none;\n\toverflow: visible;\n\tmargin-left: initial;\n\t-webkit-transform: translate(0upx, 0upx);\n\t        transform: translate(0upx, 0upx);\n\tmargin-right: initial;\n}\n.cu-btn::after {\n\tdisplay: none;\n}\n.cu-btn:not([class*=\"bg-\"]) {\n\tbackground-color: #f0f0f0;\n}\n.cu-btn[class*=\"line\"] {\n\tbackground-color: transparent;\n}\n.cu-btn[class*=\"line\"]::after {\n\tcontent: \" \";\n\tdisplay: block;\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder: 1upx solid currentColor;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tbox-sizing: border-box;\n\tborder-radius: 12upx;\n\tz-index: 1;\n\tpointer-events: none;\n}\n.cu-btn.round[class*=\"line\"]::after {\n\tborder-radius: 1000upx;\n}\n.cu-btn[class*=\"lines\"]::after {\n\tborder: 6upx solid currentColor;\n}\n.cu-btn[class*=\"bg-\"]::after {\n\tdisplay: none;\n}\n.cu-btn.sm {\n\tpadding: 0 20upx;\n\tfont-size: 20upx;\n\theight: 48upx;\n}\n.cu-btn.lg {\n\tpadding: 0 40upx;\n\tfont-size: 32upx;\n\theight: 80upx;\n}\n.cu-btn.cuIcon.sm {\n\twidth: 48upx;\n\theight: 48upx;\n}\n.cu-btn.cuIcon {\n\twidth: 64upx;\n\theight: 64upx;\n\tborder-radius: 500upx;\n\tpadding: 0;\n}\nuni-button.cuIcon.lg {\n\twidth: 80upx;\n\theight: 80upx;\n}\n.cu-btn.shadow-blur::before {\n\ttop: 4upx;\n\tleft: 4upx;\n\t-webkit-filter: blur(6upx);\n\t        filter: blur(6upx);\n\topacity: 0.6;\n}\n.cu-btn.button-hover {\n\t-webkit-transform: translate(1upx, 1upx);\n\t        transform: translate(1upx, 1upx);\n}\n.block {\n\tdisplay: block;\n}\n.cu-btn.block {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\n.cu-btn[disabled] {\n\topacity: 0.6;\n\tcolor: #ffffff;\n}\n/* ==================\n          徽章\n ==================== */\n.cu-tag {\n\tfont-size: 24upx;\n\tvertical-align: middle;\n\tposition: relative;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tbox-sizing: border-box;\n\tpadding: 0upx 16upx;\n\theight: 48upx;\n\tfont-family: Helvetica Neue, Helvetica, sans-serif;\n\twhite-space: nowrap;\n}\n.cu-tag:not([class*=\"bg\"]):not([class*=\"line\"]) {\n\tbackground-color: #f1f1f1;\n}\n.cu-tag[class*=\"line-\"]::after {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder: 1upx solid currentColor;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tbox-sizing: border-box;\n\tborder-radius: inherit;\n\tz-index: 1;\n\tpointer-events: none;\n}\n.cu-tag.radius[class*=\"line\"]::after {\n\tborder-radius: 12upx;\n}\n.cu-tag.round[class*=\"line\"]::after {\n\tborder-radius: 1000upx;\n}\n.cu-tag[class*=\"line-\"]::after {\n\tborder-radius: 0;\n}\n.cu-tag+.cu-tag {\n\tmargin-left: 10upx;\n}\n.cu-tag.sm {\n\tfont-size: 20upx;\n\tpadding: 0upx 12upx;\n\theight: 32upx;\n}\n.cu-capsule {\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\tvertical-align: middle;\n}\n/* .cu-capsule+.cu-capsule {\n\tmargin-left: 10upx;\n} */\n.cu-capsule .cu-tag {\n\tmargin: 0;\n}\n.cu-capsule .cu-tag[class*=\"line-\"]:last-child::after {\n\tborder-left: 0upx solid transparent;\n}\n.cu-capsule .cu-tag[class*=\"line-\"]:first-child::after {\n\tborder-right: 0upx solid transparent;\n}\n.cu-capsule.radius .cu-tag:first-child {\n\tborder-top-left-radius: 6upx;\n\tborder-bottom-left-radius: 6upx;\n}\n.cu-capsule.radius .cu-tag:last-child::after,\n.cu-capsule.radius .cu-tag[class*=\"line-\"] {\n\tborder-top-right-radius: 12upx;\n\tborder-bottom-right-radius: 12upx;\n}\n.cu-capsule.round .cu-tag:first-child {\n\tborder-top-left-radius: 200upx;\n\tborder-bottom-left-radius: 200upx;\n\ttext-indent: 4upx;\n}\n.cu-capsule.round .cu-tag:last-child::after,\n.cu-capsule.round .cu-tag:last-child {\n\tborder-top-right-radius: 200upx;\n\tborder-bottom-right-radius: 200upx;\n\ttext-indent: -4upx;\n}\n.cu-tag.badge {\n\tborder-radius: 200upx;\n\tposition: absolute;\n\ttop: -10upx;\n\tright: -10upx;\n\tfont-size: 20upx;\n\tpadding: 0upx 10upx;\n\theight: 28upx;\n\tcolor: #ffffff;\n}\n.cu-tag.badge:not([class*=\"bg-\"]) {\n\tbackground-color: #dd514c;\n}\n.cu-tag:empty:not([class*=\"cuIcon-\"]) {\n\tpadding: 0upx;\n\twidth: 16upx;\n\theight: 16upx;\n\ttop: -4upx;\n\tright: -4upx;\n}\n.cu-tag[class*=\"cuIcon-\"] {\n\twidth: 32upx;\n\theight: 32upx;\n\ttop: -4upx;\n\tright: -4upx;\n}\n/* ==================\n          头像\n ==================== */\n.cu-avatar {\n\tfont-variant: small-caps;\n\tmargin: 0;\n\tpadding: 0;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\ttext-align: center;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tbackground-color: #ccc;\n\tcolor: #ffffff;\n\twhite-space: nowrap;\n\tposition: relative;\n\twidth: 64upx;\n\theight: 64upx;\n\tbackground-size: cover;\n\tbackground-position: center;\n\tvertical-align: middle;\n\tfont-size: 1.5em;\n}\n.cu-avatar.sm {\n\twidth: 48upx;\n\theight: 48upx;\n\tfont-size: 1em;\n}\n.cu-avatar.lg {\n\twidth: 96upx;\n\theight: 96upx;\n\tfont-size: 2em;\n}\n.cu-avatar.xl {\n\twidth: 128upx;\n\theight: 128upx;\n\tfont-size: 2.5em;\n}\n.cu-avatar .avatar-text {\n\tfont-size: 0.4em;\n}\n.cu-avatar-group {\n\tdirection: rtl;\n\tunicode-bidi: bidi-override;\n\tpadding: 0 10upx 0 40upx;\n\tdisplay: inline-block;\n}\n.cu-avatar-group .cu-avatar {\n\tmargin-left: -30upx;\n\tborder: 4upx solid #f1f1f1;\n\tvertical-align: middle;\n}\n.cu-avatar-group .cu-avatar.sm {\n\tmargin-left: -20upx;\n\tborder: 1upx solid #f1f1f1;\n}\n/* ==================\n         进度条\n ==================== */\n.cu-progress {\n\toverflow: hidden;\n\theight: 28upx;\n\tbackground-color: #ebeef5;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\twidth: 100%;\n}\n.cu-progress+uni-view,\n.cu-progress+uni-text {\n\tline-height: 1;\n}\n.cu-progress.xs {\n\theight: 10upx;\n}\n.cu-progress.sm {\n\theight: 20upx;\n}\n.cu-progress uni-view {\n\twidth: 0;\n\theight: 100%;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tjustify-items: flex-end;\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n\tfont-size: 20upx;\n\tcolor: #ffffff;\n\t-webkit-transition: width 0.6s ease;\n\ttransition: width 0.6s ease;\n}\n.cu-progress uni-text {\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tfont-size: 20upx;\n\tcolor: #333333;\n\ttext-indent: 10upx;\n}\n.cu-progress.text-progress {\n\tpadding-right: 60upx;\n}\n.cu-progress.striped uni-view {\n\tbackground-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n\tbackground-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);\n\tbackground-size: 72upx 72upx;\n}\n.cu-progress.active uni-view {\n\t-webkit-animation: progress-stripes 2s linear infinite;\n\t        animation: progress-stripes 2s linear infinite;\n}\n@-webkit-keyframes progress-stripes {\nfrom {\n\t\tbackground-position: 72upx 0;\n}\nto {\n\t\tbackground-position: 0 0;\n}\n}\n@keyframes progress-stripes {\nfrom {\n\t\tbackground-position: 72upx 0;\n}\nto {\n\t\tbackground-position: 0 0;\n}\n}\n/* ==================\n          加载\n ==================== */\n.cu-load {\n\tdisplay: block;\n\tline-height: 3em;\n\ttext-align: center;\n}\n.cu-load::before {\n\tfont-family: \"cuIcon\";\n\tdisplay: inline-block;\n\tmargin-right: 6upx;\n}\n.cu-load.loading::before {\n\tcontent: \"\\E67A\";\n\t-webkit-animation: cuIcon-spin 2s infinite linear;\n\t        animation: cuIcon-spin 2s infinite linear;\n}\n.cu-load.loading::after {\n\tcontent: \"\\52A0\\8F7D\\4E2D...\";\n}\n.cu-load.over::before {\n\tcontent: \"\\E64A\";\n}\n.cu-load.over::after {\n\tcontent: \"\\6CA1\\6709\\66F4\\591A\\4E86\";\n}\n.cu-load.erro::before {\n\tcontent: \"\\E658\";\n}\n.cu-load.erro::after {\n\tcontent: \"\\52A0\\8F7D\\5931\\8D25\";\n}\n.cu-load.load-cuIcon::before {\n\tfont-size: 32upx;\n}\n.cu-load.load-cuIcon::after {\n\tdisplay: none;\n}\n.cu-load.load-cuIcon.over {\n\tdisplay: none;\n}\n.cu-load.load-modal {\n\tposition: fixed;\n\ttop: 0;\n\tright: 0;\n\tbottom: 140upx;\n\tleft: 0;\n\tmargin: auto;\n\twidth: 260upx;\n\theight: 260upx;\n\tbackground-color: #ffffff;\n\tborder-radius: 10upx;\n\tbox-shadow: 0 0 0upx 2000upx rgba(0, 0, 0, 0.5);\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tfont-size: 28upx;\n\tz-index: 9999;\n\tline-height: 2.4em;\n}\n.cu-load.load-modal [class*=\"cuIcon-\"] {\n\tfont-size: 60upx;\n}\n.cu-load.load-modal uni-image {\n\twidth: 70upx;\n\theight: 70upx;\n}\n.cu-load.load-modal::after {\n\tcontent: \"\";\n\tposition: absolute;\n\tbackground-color: #ffffff;\n\tborder-radius: 50%;\n\twidth: 200upx;\n\theight: 200upx;\n\tfont-size: 10px;\n\tborder-top: 6upx solid rgba(0, 0, 0, 0.05);\n\tborder-right: 6upx solid rgba(0, 0, 0, 0.05);\n\tborder-bottom: 6upx solid rgba(0, 0, 0, 0.05);\n\tborder-left: 6upx solid #f37b1d;\n\t-webkit-animation: cuIcon-spin 1s infinite linear;\n\t        animation: cuIcon-spin 1s infinite linear;\n\tz-index: -1;\n}\n.load-progress {\n\tpointer-events: none;\n\ttop: 0;\n\tposition: fixed;\n\twidth: 100%;\n\tleft: 0;\n\tz-index: 2000;\n}\n.load-progress.hide {\n\tdisplay: none;\n}\n.load-progress .load-progress-bar {\n\tposition: relative;\n\twidth: 100%;\n\theight: 4upx;\n\toverflow: hidden;\n\t-webkit-transition: all 200ms ease 0s;\n\ttransition: all 200ms ease 0s;\n}\n.load-progress .load-progress-spinner {\n\tposition: absolute;\n\ttop: 10upx;\n\tright: 10upx;\n\tz-index: 2000;\n\tdisplay: block;\n}\n.load-progress .load-progress-spinner::after {\n\tcontent: \"\";\n\tdisplay: block;\n\twidth: 24upx;\n\theight: 24upx;\n\tbox-sizing: border-box;\n\tborder: solid 4upx transparent;\n\tborder-top-color: inherit;\n\tborder-left-color: inherit;\n\tborder-radius: 50%;\n\t-webkit-animation: load-progress-spinner 0.4s linear infinite;\n\tanimation: load-progress-spinner 0.4s linear infinite;\n}\n@-webkit-keyframes load-progress-spinner {\n0% {\n\t\t-webkit-transform: rotate(0);\n\t\ttransform: rotate(0);\n}\n100% {\n\t\t-webkit-transform: rotate(360deg);\n\t\ttransform: rotate(360deg);\n}\n}\n@keyframes load-progress-spinner {\n0% {\n\t\t-webkit-transform: rotate(0);\n\t\ttransform: rotate(0);\n}\n100% {\n\t\t-webkit-transform: rotate(360deg);\n\t\ttransform: rotate(360deg);\n}\n}\n/* ==================\n          列表\n ==================== */\n.grayscale {\n\t-webkit-filter: grayscale(1);\n\t        filter: grayscale(1);\n}\n.cu-list+.cu-list {\n\tmargin-top: 30upx\n}\n.cu-list>.cu-item {\n\t-webkit-transition: all .6s ease-in-out 0s;\n\ttransition: all .6s ease-in-out 0s;\n\t-webkit-transform: translateX(0upx);\n\t        transform: translateX(0upx)\n}\n.cu-list>.cu-item.move-cur {\n\t-webkit-transform: translateX(-260upx);\n\t        transform: translateX(-260upx)\n}\n.cu-list>.cu-item .move {\n\tposition: absolute;\n\tright: 0;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\twidth: 260upx;\n\theight: 100%;\n\t-webkit-transform: translateX(100%);\n\t        transform: translateX(100%)\n}\n.cu-list>.cu-item .move uni-view {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu-avatar {\n\toverflow: hidden;\n}\n.cu-list.menu-avatar>.cu-item {\n\tposition: relative;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding-right: 10upx;\n\theight: 140upx;\n\tbackground-color: #ffffff;\n\t-webkit-box-pack: end;\n\t-webkit-justify-content: flex-end;\n\t        justify-content: flex-end;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu-avatar>.cu-item>.cu-avatar {\n\tposition: absolute;\n\tleft: 30upx\n}\n.cu-list.menu-avatar>.cu-item .flex .text-cut {\n\tmax-width: 510upx\n}\n.cu-list.menu-avatar>.cu-item .content {\n\tposition: absolute;\n\tleft: 146upx;\n\twidth: calc(100% - 96upx - 60upx - 120upx - 20upx);\n\tline-height: 1.6em;\n}\n.cu-list.menu-avatar>.cu-item .content.flex-sub {\n\twidth: calc(100% - 96upx - 60upx - 20upx);\n}\n.cu-list.menu-avatar>.cu-item .content>uni-view:first-child {\n\tfont-size: 30upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu-avatar>.cu-item .content .cu-tag.sm {\n\tdisplay: inline-block;\n\tmargin-left: 10upx;\n\theight: 28upx;\n\tfont-size: 16upx;\n\tline-height: 32upx\n}\n.cu-list.menu-avatar>.cu-item .action {\n\twidth: 100upx;\n\ttext-align: center\n}\n.cu-list.menu-avatar>.cu-item .action uni-view+uni-view {\n\tmargin-top: 10upx\n}\n.cu-list.menu-avatar.comment>.cu-item .content {\n\tposition: relative;\n\tleft: 0;\n\twidth: auto;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n}\n.cu-list.menu-avatar.comment>.cu-item {\n\tpadding: 30upx 30upx 30upx 120upx;\n\theight: auto\n}\n.cu-list.menu-avatar.comment .cu-avatar {\n\t-webkit-align-self: flex-start;\n\t        align-self: flex-start\n}\n.cu-list.menu>.cu-item {\n\tposition: relative;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 0 30upx;\n\tmin-height: 100upx;\n\tbackground-color: #ffffff;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu>.cu-item:last-child:after {\n\tborder: none\n}\n.cu-list.menu-avatar>.cu-item:after,\n.cu-list.menu>.cu-item:after {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tbox-sizing: border-box;\n\twidth: 200%;\n\theight: 200%;\n\tborder-bottom: 1upx solid #ddd;\n\tborder-radius: inherit;\n\tcontent: \" \";\n\t-webkit-transform: scale(.5);\n\t        transform: scale(.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none\n}\n.cu-list.menu>.cu-item.grayscale {\n\tbackground-color: #f5f5f5\n}\n.cu-list.menu>.cu-item.cur {\n\tbackground-color: #fcf7e9\n}\n.cu-list.menu>.cu-item.arrow {\n\tpadding-right: 90upx\n}\n.cu-list.menu>.cu-item.arrow:before {\n\tposition: absolute;\n\ttop: 0;\n\tright: 30upx;\n\tbottom: 0;\n\tdisplay: block;\n\tmargin: auto;\n\twidth: 30upx;\n\theight: 30upx;\n\tcolor: #8799a3;\n\tcontent: \"\\E6A3\";\n\ttext-align: center;\n\tfont-size: 34upx;\n\tfont-family: cuIcon;\n\tline-height: 30upx\n}\n.cu-list.menu>.cu-item uni-button.content {\n\tpadding: 0;\n\tbackground-color: transparent;\n\t-webkit-box-pack: start;\n\t-webkit-justify-content: flex-start;\n\t        justify-content: flex-start\n}\n.cu-list.menu>.cu-item uni-button.content:after {\n\tdisplay: none\n}\n.cu-list.menu>.cu-item .cu-avatar-group .cu-avatar {\n\tborder-color: #ffffff\n}\n.cu-list.menu>.cu-item .content>uni-view:first-child {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center\n}\n.cu-list.menu>.cu-item .content>uni-text[class*=cuIcon] {\n\tdisplay: inline-block;\n\tmargin-right: 10upx;\n\twidth: 1.6em;\n\ttext-align: center\n}\n.cu-list.menu>.cu-item .content>uni-image {\n\tdisplay: inline-block;\n\tmargin-right: 10upx;\n\twidth: 1.6em;\n\theight: 1.6em;\n\tvertical-align: middle\n}\n.cu-list.menu>.cu-item .content {\n\tfont-size: 30upx;\n\tline-height: 1.6em;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1\n}\n.cu-list.menu>.cu-item .content .cu-tag.sm {\n\tdisplay: inline-block;\n\tmargin-left: 10upx;\n\theight: 28upx;\n\tfont-size: 16upx;\n\tline-height: 32upx\n}\n.cu-list.menu>.cu-item .action .cu-tag:empty {\n\tright: 10upx\n}\n.cu-list.menu {\n\tdisplay: block;\n\toverflow: hidden\n}\n.cu-list.menu.sm-border>.cu-item:after {\n\tleft: 30upx;\n\twidth: calc(200% - 120upx)\n}\n.cu-list.grid>.cu-item {\n\tposition: relative;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 20upx 0 30upx;\n\t-webkit-transition-duration: 0s;\n\t        transition-duration: 0s;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column\n}\n.cu-list.grid>.cu-item:after {\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tbox-sizing: border-box;\n\twidth: 200%;\n\theight: 200%;\n\tborder-right: 1px solid rgba(0, 0, 0, .1);\n\tborder-bottom: 1px solid rgba(0, 0, 0, .1);\n\tborder-radius: inherit;\n\tcontent: \" \";\n\t-webkit-transform: scale(.5);\n\t        transform: scale(.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none\n}\n.cu-list.grid>.cu-item uni-text {\n\tdisplay: block;\n\tmargin-top: 10upx;\n\tcolor: #888;\n\tfont-size: 26upx;\n\tline-height: 40upx\n}\n.cu-list.grid>.cu-item [class*=cuIcon] {\n\tposition: relative;\n\tdisplay: block;\n\tmargin-top: 20upx;\n\twidth: 100%;\n\tfont-size: 48upx\n}\n.cu-list.grid>.cu-item .cu-tag {\n\tright: auto;\n\tleft: 50%;\n\tmargin-left: 20upx\n}\n.cu-list.grid {\n\tbackground-color: #ffffff;\n\ttext-align: center\n}\n.cu-list.grid.no-border>.cu-item {\n\tpadding-top: 10upx;\n\tpadding-bottom: 20upx\n}\n.cu-list.grid.no-border>.cu-item:after {\n\tborder: none\n}\n.cu-list.grid.no-border {\n\tpadding: 20upx 10upx\n}\n.cu-list.grid.col-3>.cu-item:nth-child(3n):after,\n.cu-list.grid.col-4>.cu-item:nth-child(4n):after,\n.cu-list.grid.col-5>.cu-item:nth-child(5n):after {\n\tborder-right-width: 0\n}\n.cu-list.card-menu {\n\toverflow: hidden;\n\tmargin-right: 30upx;\n\tmargin-left: 30upx;\n\tborder-radius: 20upx\n}\n/* ==================\n          操作条\n ==================== */\n.cu-bar {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tposition: relative;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tmin-height: 80upx;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.cu-bar .action {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\theight: 100%;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\tmax-width: 100%;\n}\n.cu-bar .action.border-title {\n\tposition: relative;\n\ttop: -10upx;\n}\n.cu-bar .action.border-title uni-text[class*=\"bg-\"]:last-child {\n\tposition: absolute;\n\tbottom: -0.5rem;\n\tmin-width: 2rem;\n\theight: 6upx;\n\tleft: 0;\n}\n.cu-bar .action.sub-title {\n\tposition: relative;\n\ttop: -0.2rem;\n}\n.cu-bar .action.sub-title uni-text {\n\tposition: relative;\n\tz-index: 1;\n}\n.cu-bar .action.sub-title uni-text[class*=\"bg-\"]:last-child {\n\tposition: absolute;\n\tdisplay: inline-block;\n\tbottom: -0.2rem;\n\tborder-radius: 6upx;\n\twidth: 100%;\n\theight: 0.6rem;\n\tleft: 0.6rem;\n\topacity: 0.3;\n\tz-index: 0;\n}\n.cu-bar .action.sub-title uni-text[class*=\"text-\"]:last-child {\n\tposition: absolute;\n\tdisplay: inline-block;\n\tbottom: -0.7rem;\n\tleft: 0.5rem;\n\topacity: 0.2;\n\tz-index: 0;\n\ttext-align: right;\n\tfont-weight: 900;\n\tfont-size: 36upx;\n}\n.cu-bar.justify-center .action.border-title uni-text:last-child,\n.cu-bar.justify-center .action.sub-title uni-text:last-child {\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\ttext-align: center;\n}\n.cu-bar .action:first-child {\n\tmargin-left: 30upx;\n\tfont-size: 30upx;\n}\n.cu-bar .action uni-text.text-cut {\n\ttext-align: left;\n\twidth: 100%;\n}\n.cu-bar .cu-avatar:first-child {\n\tmargin-left: 20upx;\n}\n.cu-bar .action:first-child>uni-text[class*=\"cuIcon-\"] {\n\tmargin-left: -0.3em;\n\tmargin-right: 0.3em;\n}\n.cu-bar .action:last-child {\n\tmargin-right: 30upx;\n}\n.cu-bar .action>uni-text[class*=\"cuIcon-\"],\n.cu-bar .action>uni-view[class*=\"cuIcon-\"] {\n\tfont-size: 36upx;\n}\n.cu-bar .action>uni-text[class*=\"cuIcon-\"]+uni-text[class*=\"cuIcon-\"] {\n\tmargin-left: 0.5em;\n}\n.cu-bar .content {\n\tposition: absolute;\n\ttext-align: center;\n\twidth: calc(100% - 340upx);\n\tleft: 0;\n\tright: 0;\n\tbottom: 0;\n\ttop: 0;\n\tmargin: auto;\n\theight: 60upx;\n\tfont-size: 32upx;\n\tline-height: 60upx;\n\tcursor: none;\n\tpointer-events: none;\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n\toverflow: hidden;\n}\n.cu-bar.ios .content {\n\tbottom: 7px;\n\theight: 30px;\n\tfont-size: 32upx;\n\tline-height: 30px;\n}\n.cu-bar.btn-group {\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n}\n.cu-bar.btn-group uni-button {\n\tpadding: 20upx 32upx;\n}\n.cu-bar.btn-group uni-button {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tmargin: 0 20upx;\n\tmax-width: 50%;\n}\n.cu-bar .search-form {\n\tbackground-color: #f5f5f5;\n\tline-height: 64upx;\n\theight: 64upx;\n\tfont-size: 24upx;\n\tcolor: #333333;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tmargin: 0 30upx;\n}\n.cu-bar .search-form+.action {\n\tmargin-right: 30upx;\n}\n.cu-bar .search-form uni-input {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tpadding-right: 30upx;\n\theight: 64upx;\n\tline-height: 64upx;\n\tfont-size: 26upx;\n\tbackground-color: transparent;\n}\n.cu-bar .search-form [class*=\"cuIcon-\"] {\n\tmargin: 0 0.5em 0 0.8em;\n}\n.cu-bar .search-form [class*=\"cuIcon-\"]::before {\n\ttop: 0upx;\n}\n.cu-bar.fixed,\n.nav.fixed {\n\tposition: fixed;\n\twidth: 100%;\n\ttop: 0;\n\tz-index: 1024;\n\tbox-shadow: 0 1upx 6upx rgba(0, 0, 0, 0.1);\n}\n.cu-bar.foot {\n\tposition: fixed;\n\twidth: 100%;\n\tbottom: 0;\n\tz-index: 1024;\n\tbox-shadow: 0 -1upx 6upx rgba(0, 0, 0, 0.1);\n}\n.cu-bar.tabbar {\n\tpadding: 0;\n\theight: calc(100upx + env(safe-area-inset-bottom) / 2);\n\tpadding-bottom: calc(env(safe-area-inset-bottom) / 2);\n}\n.cu-tabbar-height {\n\tmin-height: 100upx;\n\theight: calc(100upx + env(safe-area-inset-bottom) / 2);\n}\n.cu-bar.tabbar.shadow {\n\tbox-shadow: 0 -1upx 6upx rgba(0, 0, 0, 0.1);\n}\n.cu-bar.tabbar .action {\n\tfont-size: 22upx;\n\tposition: relative;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\ttext-align: center;\n\tpadding: 0;\n\tdisplay: block;\n\theight: auto;\n\tline-height: 1;\n\tmargin: 0;\n\tbackground-color: inherit;\n\toverflow: initial;\n}\n.cu-bar.tabbar.shop .action {\n\twidth: 140upx;\n\t-webkit-box-flex: initial;\n\t-webkit-flex: initial;\n\t        flex: initial;\n}\n.cu-bar.tabbar .action.add-action {\n\tposition: relative;\n\tz-index: 2;\n\tpadding-top: 50upx;\n}\n.cu-bar.tabbar .action.add-action [class*=\"cuIcon-\"] {\n\tposition: absolute;\n\twidth: 70upx;\n\tz-index: 2;\n\theight: 70upx;\n\tborder-radius: 50%;\n\tline-height: 70upx;\n\tfont-size: 50upx;\n\ttop: -35upx;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\tpadding: 0;\n}\n.cu-bar.tabbar .action.add-action::after {\n\tcontent: \"\";\n\tposition: absolute;\n\twidth: 100upx;\n\theight: 100upx;\n\ttop: -50upx;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\tbox-shadow: 0 -3upx 8upx rgba(0, 0, 0, 0.08);\n\tborder-radius: 50upx;\n\tbackground-color: inherit;\n\tz-index: 0;\n}\n.cu-bar.tabbar .action.add-action::before {\n\tcontent: \"\";\n\tposition: absolute;\n\twidth: 100upx;\n\theight: 30upx;\n\tbottom: 30upx;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\tbackground-color: inherit;\n\tz-index: 1;\n}\n.cu-bar.tabbar .btn-group {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tpadding: 0 10upx;\n}\n.cu-bar.tabbar uni-button.action::after {\n\tborder: 0;\n}\n.cu-bar.tabbar .action [class*=\"cuIcon-\"] {\n\twidth: 100upx;\n\tposition: relative;\n\tdisplay: block;\n\theight: auto;\n\tmargin: 0 auto 10upx;\n\ttext-align: center;\n\tfont-size: 40upx;\n}\n.cu-bar.tabbar .action .cuIcon-cu-image {\n\tmargin: 0 auto;\n}\n.cu-bar.tabbar .action .cuIcon-cu-image uni-image {\n\twidth: 50upx;\n\theight: 50upx;\n\tdisplay: inline-block;\n}\n.cu-bar.tabbar .submit {\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\ttext-align: center;\n\tposition: relative;\n\t-webkit-box-flex: 2;\n\t-webkit-flex: 2;\n\t        flex: 2;\n\t-webkit-align-self: stretch;\n\t        align-self: stretch;\n}\n.cu-bar.tabbar .submit:last-child {\n\t-webkit-box-flex: 2.6;\n\t-webkit-flex: 2.6;\n\t        flex: 2.6;\n}\n.cu-bar.tabbar .submit+.submit {\n\t-webkit-box-flex: 2;\n\t-webkit-flex: 2;\n\t        flex: 2;\n}\n.cu-bar.tabbar.border .action::before {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tborder-right: 1upx solid rgba(0, 0, 0, 0.1);\n\tz-index: 3;\n}\n.cu-bar.tabbar.border .action:last-child:before {\n\tdisplay: none;\n}\n.cu-bar.input {\n\tpadding-right: 20upx;\n\tbackground-color: #ffffff;\n}\n.cu-bar.input uni-input {\n\toverflow: initial;\n\tline-height: 64upx;\n\theight: 64upx;\n\tmin-height: 64upx;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tfont-size: 30upx;\n\tmargin: 0 20upx;\n}\n.cu-bar.input .action {\n\tmargin-left: 20upx;\n}\n.cu-bar.input .action [class*=\"cuIcon-\"] {\n\tfont-size: 48upx;\n}\n.cu-bar.input uni-input+.action {\n\tmargin-right: 20upx;\n\tmargin-left: 0upx;\n}\n.cu-bar.input .action:first-child [class*=\"cuIcon-\"] {\n\tmargin-left: 0upx;\n}\n.cu-custom {\n\tdisplay: block;\n\tposition: relative;\n}\n.cu-custom .cu-bar .content {\n\twidth: calc(100% - 440upx);\n}\n\n.cu-custom .cu-bar .content uni-image {\n\theight: 60upx;\n\twidth: 240upx;\n}\n.cu-custom .cu-bar {\n\tmin-height: 0px;\n\t\n\t\n\tbox-shadow: 0upx 0upx 0upx;\n\tz-index: 9999;\n}\n.cu-custom .cu-bar .border-custom {\n\tposition: relative;\n\tbackground: rgba(0, 0, 0, 0.15);\n\tborder-radius: 1000upx;\n\theight: 30px;\n}\n.cu-custom .cu-bar .border-custom::after {\n\tcontent: \" \";\n\twidth: 200%;\n\theight: 200%;\n\tposition: absolute;\n\ttop: 0;\n\tleft: 0;\n\tborder-radius: inherit;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none;\n\tbox-sizing: border-box;\n\tborder: 1upx solid #ffffff;\n\topacity: 0.5;\n}\n.cu-custom .cu-bar .border-custom::before {\n\tcontent: \" \";\n\twidth: 1upx;\n\theight: 110%;\n\tposition: absolute;\n\ttop: 22.5%;\n\tleft: 0;\n\tright: 0;\n\tmargin: auto;\n\t-webkit-transform: scale(0.5);\n\t        transform: scale(0.5);\n\t-webkit-transform-origin: 0 0;\n\t        transform-origin: 0 0;\n\tpointer-events: none;\n\tbox-sizing: border-box;\n\topacity: 0.6;\n\tbackground-color: #ffffff;\n}\n.cu-custom .cu-bar .border-custom uni-text {\n\tdisplay: block;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tmargin: auto !important;\n\ttext-align: center;\n\tfont-size: 34upx;\n}\n/* ==================\n         导航栏\n ==================== */\n.nav {\n\twhite-space: nowrap;\n}\n::-webkit-scrollbar {\n\tdisplay: none;\n}\n.nav .cu-item {\n\theight: 90upx;\n\tdisplay: inline-block;\n\tline-height: 90upx;\n\tmargin: 0 10upx;\n\tpadding: 0 20upx;\n}\n.nav .cu-item.cur {\n\tborder-bottom: 4upx solid;\n}\n/* ==================\n         时间轴\n ==================== */\n.cu-timeline {\n\tdisplay: block;\n\tbackground-color: #ffffff;\n}\n.cu-timeline .cu-time {\n\twidth: 120upx;\n\ttext-align: center;\n\tpadding: 20upx 0;\n\tfont-size: 26upx;\n\tcolor: #888;\n\tdisplay: block;\n}\n.cu-timeline>.cu-item {\n\tpadding: 30upx 30upx 30upx 120upx;\n\tposition: relative;\n\tdisplay: block;\n\tz-index: 0;\n}\n.cu-timeline>.cu-item:not([class*=\"text-\"]) {\n\tcolor: #ccc;\n}\n.cu-timeline>.cu-item::after {\n\tcontent: \"\";\n\tdisplay: block;\n\tposition: absolute;\n\twidth: 1upx;\n\tbackground-color: #ddd;\n\tleft: 60upx;\n\theight: 100%;\n\ttop: 0;\n\tz-index: 8;\n}\n.cu-timeline>.cu-item::before {\n\tfont-family: \"cuIcon\";\n\tdisplay: block;\n\tposition: absolute;\n\ttop: 36upx;\n\tz-index: 9;\n\tbackground-color: #ffffff;\n\twidth: 50upx;\n\theight: 50upx;\n\ttext-align: center;\n\tborder: none;\n\tline-height: 50upx;\n\tleft: 36upx;\n}\n.cu-timeline>.cu-item:not([class*=\"cuIcon-\"])::before {\n\tcontent: \"\\E763\";\n}\n.cu-timeline>.cu-item[class*=\"cuIcon-\"]::before {\n\tbackground-color: #ffffff;\n\twidth: 50upx;\n\theight: 50upx;\n\ttext-align: center;\n\tborder: none;\n\tline-height: 50upx;\n\tleft: 36upx;\n}\n.cu-timeline>.cu-item>.content {\n\tpadding: 30upx;\n\tborder-radius: 6upx;\n\tdisplay: block;\n\tline-height: 1.6;\n}\n.cu-timeline>.cu-item>.content:not([class*=\"bg-\"]) {\n\tbackground-color: #f1f1f1;\n\tcolor: #333333;\n}\n.cu-timeline>.cu-item>.content+.content {\n\tmargin-top: 20upx;\n}\n/* ==================\n         聊天\n ==================== */\n.cu-chat {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n}\n.cu-chat .cu-item {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 30upx 30upx 70upx;\n\tposition: relative;\n}\n.cu-chat .cu-item>.cu-avatar {\n\twidth: 80upx;\n\theight: 80upx;\n}\n.cu-chat .cu-item>.main {\n\tmax-width: calc(100% - 260upx);\n\tmargin: 0 40upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n}\n.cu-chat .cu-item>uni-image {\n\theight: 320upx;\n}\n.cu-chat .cu-item>.main .content {\n\tpadding: 20upx;\n\tborder-radius: 6upx;\n\tdisplay: -webkit-inline-box;\n\tdisplay: -webkit-inline-flex;\n\tdisplay: inline-flex;\n\tmax-width: 100%;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tfont-size: 30upx;\n\tposition: relative;\n\tmin-height: 80upx;\n\tline-height: 40upx;\n\ttext-align: left;\n}\n.cu-chat .cu-item>.main .content:not([class*=\"bg-\"]) {\n\tbackground-color: #ffffff;\n\tcolor: #333333;\n}\n.cu-chat .cu-item .date {\n\tposition: absolute;\n\tfont-size: 24upx;\n\tcolor: #8799a3;\n\twidth: calc(100% - 320upx);\n\tbottom: 20upx;\n\tleft: 160upx;\n}\n.cu-chat .cu-item .action {\n\tpadding: 0 30upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n}\n.cu-chat .cu-item>.main .content::after {\n\tcontent: \"\";\n\ttop: 27upx;\n\t-webkit-transform: rotate(45deg);\n\t        transform: rotate(45deg);\n\tposition: absolute;\n\tz-index: 100;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 24upx;\n\theight: 24upx;\n\tleft: -12upx;\n\tright: initial;\n\tbackground-color: inherit;\n}\n.cu-chat .cu-item.self>.main .content::after {\n\tleft: auto;\n\tright: -12upx;\n}\n.cu-chat .cu-item>.main .content::before {\n\tcontent: \"\";\n\ttop: 30upx;\n\t-webkit-transform: rotate(45deg);\n\t        transform: rotate(45deg);\n\tposition: absolute;\n\tz-index: -1;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\twidth: 24upx;\n\theight: 24upx;\n\tleft: -12upx;\n\tright: initial;\n\tbackground-color: inherit;\n\t-webkit-filter: blur(5upx);\n\t        filter: blur(5upx);\n\topacity: 0.3;\n}\n.cu-chat .cu-item>.main .content:not([class*=\"bg-\"])::before {\n\tbackground-color: #333333;\n\topacity: 0.1;\n}\n.cu-chat .cu-item.self>.main .content::before {\n\tleft: auto;\n\tright: -12upx;\n}\n.cu-chat .cu-item.self {\n\t-webkit-box-pack: end;\n\t-webkit-justify-content: flex-end;\n\t        justify-content: flex-end;\n\ttext-align: right;\n}\n.cu-chat .cu-info {\n\tdisplay: inline-block;\n\tmargin: 20upx auto;\n\tfont-size: 24upx;\n\tpadding: 8upx 12upx;\n\tbackground-color: rgba(0, 0, 0, 0.2);\n\tborder-radius: 6upx;\n\tcolor: #ffffff;\n\tmax-width: 400upx;\n\tline-height: 1.4;\n}\n/* ==================\n         卡片\n ==================== */\n.cu-card {\n\tdisplay: block;\n\toverflow: hidden;\n}\n.cu-card>.cu-item {\n\tdisplay: block;\n\tbackground-color: #ffffff;\n\toverflow: hidden;\n\tborder-radius: 10upx;\n\tmargin: 30upx;\n}\n.cu-card>.cu-item.shadow-blur {\n\toverflow: initial;\n}\n.cu-card.no-card>.cu-item {\n\tmargin: 0upx;\n\tborder-radius: 0upx;\n}\n.cu-card .grid.grid-square {\n\tmargin-bottom: -20upx;\n}\n.cu-card.case .image {\n\tposition: relative;\n}\n.cu-card.case .image uni-image {\n\twidth: 100%;\n}\n.cu-card.case .image .cu-tag {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n}\n.cu-card.case .image .cu-bar {\n\tposition: absolute;\n\tbottom: 0;\n\twidth: 100%;\n\tbackground-color: transparent;\n\tpadding: 0upx 30upx;\n}\n.cu-card.case.no-card .image {\n\tmargin: 30upx 30upx 0;\n\toverflow: hidden;\n\tborder-radius: 10upx;\n}\n.cu-card.dynamic {\n\tdisplay: block;\n}\n.cu-card.dynamic>.cu-item {\n\tdisplay: block;\n\tbackground-color: #ffffff;\n\toverflow: hidden;\n}\n.cu-card.dynamic>.cu-item>.text-content {\n\tpadding: 0 30upx 0;\n\tmax-height: 6.4em;\n\toverflow: hidden;\n\tfont-size: 30upx;\n\tmargin-bottom: 20upx;\n}\n.cu-card.dynamic>.cu-item .square-img {\n\twidth: 100%;\n\theight: 200upx;\n\tborder-radius: 6upx;\n}\n.cu-card.dynamic>.cu-item .only-img {\n\twidth: 100%;\n\theight: 320upx;\n\tborder-radius: 6upx;\n}\n/* card.dynamic>.cu-item .comment {\n  padding: 20upx;\n  background-color: #f1f1f1;\n  margin: 0 30upx 30upx;\n  border-radius: 6upx;\n} */\n.cu-card.article {\n\tdisplay: block;\n}\n.cu-card.article>.cu-item {\n\tpadding-bottom: 30upx;\n}\n.cu-card.article>.cu-item .title {\n\tfont-size: 30upx;\n\tfont-weight: 900;\n\tcolor: #333333;\n\tline-height: 100upx;\n\tpadding: 0 30upx;\n}\n.cu-card.article>.cu-item .content {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\tpadding: 0 30upx;\n}\n.cu-card.article>.cu-item .content>uni-image {\n\twidth: 240upx;\n\theight: 6.4em;\n\tmargin-right: 20upx;\n\tborder-radius: 6upx;\n}\n.cu-card.article>.cu-item .content .desc {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.cu-card.article>.cu-item .content .text-content {\n\tfont-size: 28upx;\n\tcolor: #888;\n\theight: 4.8em;\n\toverflow: hidden;\n}\n/* ==================\n         表单\n ==================== */\n.cu-form-group {\n\tbackground-color: #ffffff;\n\tpadding: 1upx 30upx;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\tmin-height: 100upx;\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.cu-form-group+.cu-form-group {\n\tborder-top: 1upx solid #eee;\n}\n.cu-form-group .title {\n\ttext-align: justify;\n\tpadding-right: 30upx;\n\tfont-size: 30upx;\n\tposition: relative;\n\theight: 60upx;\n\tline-height: 60upx;\n}\n.cu-form-group uni-input {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tfont-size: 30upx;\n\tcolor: #555;\n\tpadding-right: 20upx;\n}\n.cu-form-group>uni-text[class*=\"cuIcon-\"] {\n\tfont-size: 36upx;\n\tpadding: 0;\n\tbox-sizing: border-box;\n}\n.cu-form-group uni-textarea {\n\tmargin: 32upx 0 30upx;\n\theight: 4.6em;\n\twidth: 100%;\n\tline-height: 1.2em;\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tfont-size: 28upx;\n\tpadding: 0;\n}\n.cu-form-group.align-start .title {\n\theight: 1em;\n\tmargin-top: 32upx;\n\tline-height: 1em;\n}\n.cu-form-group uni-picker {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\tpadding-right: 40upx;\n\toverflow: hidden;\n\tposition: relative;\n}\n.cu-form-group uni-picker .picker {\n\tline-height: 100upx;\n\tfont-size: 28upx;\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n\toverflow: hidden;\n\twidth: 100%;\n\ttext-align: right;\n}\n.cu-form-group uni-picker::after {\n\tfont-family: cuIcon;\n\tdisplay: block;\n\tcontent: \"\\E6A3\";\n\tposition: absolute;\n\tfont-size: 34upx;\n\tcolor: #8799a3;\n\tline-height: 100upx;\n\twidth: 60upx;\n\ttext-align: center;\n\ttop: 0;\n\tbottom: 0;\n\tright: -20upx;\n\tmargin: auto;\n}\n.cu-form-group uni-textarea[disabled],\n.cu-form-group uni-textarea[disabled] .placeholder {\n\tcolor: transparent;\n}\n/* ==================\n         模态窗口\n ==================== */\n.cu-modal {\n\tposition: fixed;\n\ttop: 0;\n\tright: 0;\n\tbottom: 0;\n\tleft: 0;\n\tz-index: 1110;\n\topacity: 0;\n\toutline: 0;\n\ttext-align: center;\n\t-webkit-transform: scale(1.185);\n\t        transform: scale(1.185);\n\t-webkit-backface-visibility: hidden;\n\t        backface-visibility: hidden;\n\t-webkit-perspective: 2000upx;\n\t        perspective: 2000upx;\n\tbackground: rgba(0, 0, 0, 0.6);\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\tpointer-events: none;\n}\n.cu-modal::before {\n\tcontent: \"\\200B\";\n\tdisplay: inline-block;\n\theight: 100%;\n\tvertical-align: middle;\n}\n.cu-modal.show {\n\topacity: 1;\n\t-webkit-transition-duration: 0.3s;\n\t        transition-duration: 0.3s;\n\t-webkit-transform: scale(1);\n\t        transform: scale(1);\n\toverflow-x: hidden;\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n.cu-dialog {\n\tposition: relative;\n\tdisplay: inline-block;\n\tvertical-align: middle;\n\tmargin-left: auto;\n\tmargin-right: auto;\n\twidth: 680upx;\n\tmax-width: 100%;\n\tbackground-color: #f8f8f8;\n\tborder-radius: 10upx;\n\toverflow: hidden;\n}\n.cu-modal.bottom-modal::before {\n\tvertical-align: bottom;\n}\n.cu-modal.bottom-modal .cu-dialog {\n\twidth: 100%;\n\tborder-radius: 0;\n}\n.cu-modal.bottom-modal {\n\tmargin-bottom: -1000upx;\n}\n.cu-modal.bottom-modal.show {\n\tmargin-bottom: 0;\n}\n.cu-modal.drawer-modal {\n\t-webkit-transform: scale(1);\n\t        transform: scale(1);\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\n.cu-modal.drawer-modal .cu-dialog {\n\theight: 100%;\n\tmin-width: 200upx;\n\tborder-radius: 0;\n\tmargin: initial;\n\t-webkit-transition-duration: 0.3s;\n\t        transition-duration: 0.3s;\n}\n.cu-modal.drawer-modal.justify-start .cu-dialog {\n\t-webkit-transform: translateX(-100%);\n\t        transform: translateX(-100%);\n}\n.cu-modal.drawer-modal.justify-end .cu-dialog {\n\t-webkit-transform: translateX(100%);\n\t        transform: translateX(100%);\n}\n.cu-modal.drawer-modal.show .cu-dialog {\n\t-webkit-transform: translateX(0%);\n\t        transform: translateX(0%);\n}\n.cu-modal .cu-dialog>.cu-bar:first-child .action{\n  min-width: 100rpx;\n  margin-right: 0;\n  min-height: 100rpx;\n}\n/* ==================\n         轮播\n ==================== */\nuni-swiper .a-swiper-dot {\n\tdisplay: inline-block;\n\twidth: 16upx;\n\theight: 16upx;\n\tbackground: rgba(0, 0, 0, .3);\n\tborder-radius: 50%;\n\tvertical-align: middle;\n}\nuni-swiper[class*=\"-dot\"] .wx-swiper-dots,\nuni-swiper[class*=\"-dot\"] .a-swiper-dots,\nuni-swiper[class*=\"-dot\"] .uni-swiper-dots {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\twidth: 100%;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n}\nuni-swiper.square-dot .wx-swiper-dot,\nuni-swiper.square-dot .a-swiper-dot,\nuni-swiper.square-dot .uni-swiper-dot {\n\tbackground-color: #ffffff;\n\topacity: 0.4;\n\twidth: 10upx;\n\theight: 10upx;\n\tborder-radius: 20upx;\n\tmargin: 0 8upx !important;\n}\nuni-swiper.square-dot .wx-swiper-dot.wx-swiper-dot-active,\nuni-swiper.square-dot .a-swiper-dot.a-swiper-dot-active,\nuni-swiper.square-dot .uni-swiper-dot.uni-swiper-dot-active {\n\topacity: 1;\n\twidth: 30upx;\n}\nuni-swiper.round-dot .wx-swiper-dot,\nuni-swiper.round-dot .a-swiper-dot,\nuni-swiper.round-dot .uni-swiper-dot {\n\twidth: 10upx;\n\theight: 10upx;\n\tposition: relative;\n\tmargin: 4upx 8upx !important;\n}\nuni-swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active::after,\nuni-swiper.round-dot .a-swiper-dot.a-swiper-dot-active::after,\nuni-swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active::after {\n\tcontent: \"\";\n\tposition: absolute;\n\twidth: 10upx;\n\theight: 10upx;\n\ttop: 0upx;\n\tleft: 0upx;\n\tright: 0;\n\tbottom: 0;\n\tmargin: auto;\n\tbackground-color: #ffffff;\n\tborder-radius: 20upx;\n}\nuni-swiper.round-dot .wx-swiper-dot.wx-swiper-dot-active,\nuni-swiper.round-dot .a-swiper-dot.a-swiper-dot-active,\nuni-swiper.round-dot .uni-swiper-dot.uni-swiper-dot-active {\n\twidth: 18upx;\n\theight: 18upx;\n}\n.screen-swiper {\n\tmin-height: 375upx;\n}\n.screen-swiper uni-image,\n.screen-swiper uni-video,\n.swiper-item uni-image,\n.swiper-item uni-video {\n\twidth: 100%;\n\tdisplay: block;\n\theight: 100%;\n\tmargin: 0;\n\tpointer-events: none;\n}\n.card-swiper {\n\theight: 420upx !important;\n}\n.card-swiper uni-swiper-item {\n\twidth: 610upx !important;\n\tleft: 70upx;\n\tbox-sizing: border-box;\n\tpadding: 40upx 0upx 70upx;\n\toverflow: initial;\n}\n.card-swiper uni-swiper-item .swiper-item {\n\twidth: 100%;\n\tdisplay: block;\n\theight: 100%;\n\tborder-radius: 10upx;\n\t-webkit-transform: scale(0.9);\n\t        transform: scale(0.9);\n\t-webkit-transition: all 0.2s ease-in 0s;\n\ttransition: all 0.2s ease-in 0s;\n\toverflow: hidden;\n}\n.card-swiper uni-swiper-item.cur .swiper-item {\n\t-webkit-transform: none;\n\t        transform: none;\n\t-webkit-transition: all 0.2s ease-in 0s;\n\ttransition: all 0.2s ease-in 0s;\n}\n.tower-swiper {\n\theight: 420upx;\n\tposition: relative;\n\tmax-width: 750upx;\n\toverflow: hidden;\n}\n.tower-swiper .tower-item {\n\tposition: absolute;\n\twidth: 300upx;\n\theight: 380upx;\n\ttop: 0;\n\tbottom: 0;\n\tleft: 50%;\n\tmargin: auto;\n\t-webkit-transition: all 0.2s ease-in 0s;\n\ttransition: all 0.2s ease-in 0s;\n\topacity: 1;\n}\n.tower-swiper .tower-item.none {\n\topacity: 0;\n}\n.tower-swiper .tower-item .swiper-item {\n\twidth: 100%;\n\theight: 100%;\n\tborder-radius: 6upx;\n\toverflow: hidden;\n}\n/* ==================\n          步骤条\n ==================== */\n.cu-steps {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\nuni-scroll-view.cu-steps {\n\tdisplay: block;\n\twhite-space: nowrap;\n}\nuni-scroll-view.cu-steps .cu-item {\n\tdisplay: inline-block;\n}\n.cu-steps .cu-item {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n\ttext-align: center;\n\tposition: relative;\n\tmin-width: 100upx;\n}\n.cu-steps .cu-item:not([class*=\"text-\"]) {\n\tcolor: #8799a3;\n}\n.cu-steps .cu-item [class*=\"cuIcon-\"],\n.cu-steps .cu-item .num {\n\tdisplay: block;\n\tfont-size: 40upx;\n\tline-height: 80upx;\n}\n.cu-steps .cu-item::before,\n.cu-steps .cu-item::after,\n.cu-steps.steps-arrow .cu-item::before,\n.cu-steps.steps-arrow .cu-item::after {\n\tcontent: \"\";\n\tdisplay: block;\n\tposition: absolute;\n\theight: 0px;\n\twidth: calc(100% - 80upx);\n\tborder-bottom: 1px solid #ccc;\n\tleft: calc(0px - (100% - 80upx) / 2);\n\ttop: 40upx;\n\tz-index: 0;\n}\n.cu-steps.steps-arrow .cu-item::before,\n.cu-steps.steps-arrow .cu-item::after {\n\tcontent: \"\\E6A3\";\n\tfont-family: 'cuIcon';\n\theight: 30upx;\n\tborder-bottom-width: 0px;\n\tline-height: 30upx;\n\ttop: 0;\n\tbottom: 0;\n\tmargin: auto;\n\tcolor: #ccc;\n}\n.cu-steps.steps-bottom .cu-item::before,\n.cu-steps.steps-bottom .cu-item::after {\n\tbottom: 40upx;\n\ttop: initial;\n}\n.cu-steps .cu-item::after {\n\tborder-bottom: 1px solid currentColor;\n\twidth: 0px;\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n}\n.cu-steps .cu-item[class*=\"text-\"]::after {\n\twidth: calc(100% - 80upx);\n\tcolor: currentColor;\n}\n.cu-steps .cu-item:first-child::before,\n.cu-steps .cu-item:first-child::after {\n\tdisplay: none;\n}\n.cu-steps .cu-item .num {\n\twidth: 40upx;\n\theight: 40upx;\n\tborder-radius: 50%;\n\tline-height: 40upx;\n\tmargin: 20upx auto;\n\tfont-size: 24upx;\n\tborder: 1px solid currentColor;\n\tposition: relative;\n\toverflow: hidden;\n}\n.cu-steps .cu-item[class*=\"text-\"] .num {\n\tbackground-color: currentColor;\n}\n.cu-steps .cu-item .num::before,\n.cu-steps .cu-item .num::after {\n\tcontent: attr(data-index);\n\tposition: absolute;\n\tleft: 0;\n\tright: 0;\n\ttop: 0;\n\tbottom: 0;\n\tmargin: auto;\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n\t-webkit-transform: translateY(0upx);\n\t        transform: translateY(0upx);\n}\n.cu-steps .cu-item[class*=\"text-\"] .num::before {\n\t-webkit-transform: translateY(-40upx);\n\t        transform: translateY(-40upx);\n\tcolor: #ffffff;\n}\n.cu-steps .cu-item .num::after {\n\t-webkit-transform: translateY(40upx);\n\t        transform: translateY(40upx);\n\tcolor: #ffffff;\n\t-webkit-transition: all 0.3s ease-in-out 0s;\n\ttransition: all 0.3s ease-in-out 0s;\n}\n.cu-steps .cu-item[class*=\"text-\"] .num::after {\n\tcontent: \"\\E645\";\n\tfont-family: 'cuIcon';\n\tcolor: #ffffff;\n\t-webkit-transform: translateY(0upx);\n\t        transform: translateY(0upx);\n}\n.cu-steps .cu-item[class*=\"text-\"] .num.err::after {\n\tcontent: \"\\E646\";\n}\n/* ==================\n          布局\n ==================== */\n/*  -- flex弹性布局 -- */\n.flex {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n}\n.basis-xs {\n\t-webkit-flex-basis: 20%;\n\t        flex-basis: 20%;\n}\n.basis-sm {\n\t-webkit-flex-basis: 40%;\n\t        flex-basis: 40%;\n}\n.basis-df {\n\t-webkit-flex-basis: 50%;\n\t        flex-basis: 50%;\n}\n.basis-lg {\n\t-webkit-flex-basis: 60%;\n\t        flex-basis: 60%;\n}\n.basis-xl {\n\t-webkit-flex-basis: 80%;\n\t        flex-basis: 80%;\n}\n.flex-sub {\n\t-webkit-box-flex: 1;\n\t-webkit-flex: 1;\n\t        flex: 1;\n}\n.flex-twice {\n\t-webkit-box-flex: 2;\n\t-webkit-flex: 2;\n\t        flex: 2;\n}\n.flex-treble {\n\t-webkit-box-flex: 3;\n\t-webkit-flex: 3;\n\t        flex: 3;\n}\n.flex-direction {\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n}\n.flex-wrap {\n\t-webkit-flex-wrap: wrap;\n\t        flex-wrap: wrap;\n}\n.align-start {\n\t-webkit-box-align: start;\n\t-webkit-align-items: flex-start;\n\t        align-items: flex-start;\n}\n.align-end {\n\t-webkit-box-align: end;\n\t-webkit-align-items: flex-end;\n\t        align-items: flex-end;\n}\n.align-center {\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n}\n.align-stretch {\n\t-webkit-box-align: stretch;\n\t-webkit-align-items: stretch;\n\t        align-items: stretch;\n}\n.self-start {\n\t-webkit-align-self: flex-start;\n\t        align-self: flex-start;\n}\n.self-center {\n\t-webkit-align-self: flex-center;\n\t        align-self: flex-center;\n}\n.self-end {\n\t-webkit-align-self: flex-end;\n\t        align-self: flex-end;\n}\n.self-stretch {\n\t-webkit-align-self: stretch;\n\t        align-self: stretch;\n}\n.align-stretch {\n\t-webkit-box-align: stretch;\n\t-webkit-align-items: stretch;\n\t        align-items: stretch;\n}\n.justify-start {\n\t-webkit-box-pack: start;\n\t-webkit-justify-content: flex-start;\n\t        justify-content: flex-start;\n}\n.justify-end {\n\t-webkit-box-pack: end;\n\t-webkit-justify-content: flex-end;\n\t        justify-content: flex-end;\n}\n.justify-center {\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n}\n.justify-between {\n\t-webkit-box-pack: justify;\n\t-webkit-justify-content: space-between;\n\t        justify-content: space-between;\n}\n.justify-around {\n\t-webkit-justify-content: space-around;\n\t        justify-content: space-around;\n}\n/* grid布局 */\n.grid {\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-flex-wrap: wrap;\n\t        flex-wrap: wrap;\n}\n.grid.grid-square {\n\toverflow: hidden;\n}\n.grid.grid-square .cu-tag {\n\tposition: absolute;\n\tright: 0;\n\ttop: 0;\n\tborder-bottom-left-radius: 6upx;\n\tpadding: 6upx 12upx;\n\theight: auto;\n\tbackground-color: rgba(0, 0, 0, 0.5);\n}\n.grid.grid-square>uni-view>uni-text[class*=\"cuIcon-\"] {\n\tfont-size: 52upx;\n\tposition: absolute;\n\tcolor: #8799a3;\n\tmargin: auto;\n\ttop: 0;\n\tbottom: 0;\n\tleft: 0;\n\tright: 0;\n\tdisplay: -webkit-box;\n\tdisplay: -webkit-flex;\n\tdisplay: flex;\n\t-webkit-box-pack: center;\n\t-webkit-justify-content: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t-webkit-align-items: center;\n\t        align-items: center;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t-webkit-flex-direction: column;\n\t        flex-direction: column;\n}\n.grid.grid-square>uni-view {\n\tmargin-right: 20upx;\n\tmargin-bottom: 20upx;\n\tborder-radius: 6upx;\n\tposition: relative;\n\toverflow: hidden;\n}\n.grid.grid-square>uni-view.bg-img uni-image {\n\twidth: 100%;\n\theight: 100%;\n\tposition: absolute;\n}\n.grid.col-1.grid-square>uni-view {\n\tpadding-bottom: 100%;\n\theight: 0;\n\tmargin-right: 0;\n}\n.grid.col-2.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 20upx)/2);\n\theight: 0;\n\twidth: calc((100% - 20upx)/2);\n}\n.grid.col-3.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 40upx)/3);\n\theight: 0;\n\twidth: calc((100% - 40upx)/3);\n}\n.grid.col-4.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 60upx)/4);\n\theight: 0;\n\twidth: calc((100% - 60upx)/4);\n}\n.grid.col-5.grid-square>uni-view {\n\tpadding-bottom: calc((100% - 80upx)/5);\n\theight: 0;\n\twidth: calc((100% - 80upx)/5);\n}\n.grid.col-2.grid-square>uni-view:nth-child(2n),\n.grid.col-3.grid-square>uni-view:nth-child(3n),\n.grid.col-4.grid-square>uni-view:nth-child(4n),\n.grid.col-5.grid-square>uni-view:nth-child(5n) {\n\tmargin-right: 0;\n}\n.grid.col-1>uni-view {\n\twidth: 100%;\n}\n.grid.col-2>uni-view {\n\twidth: 50%;\n}\n.grid.col-3>uni-view {\n\twidth: 33.33%;\n}\n.grid.col-4>uni-view {\n\twidth: 25%;\n}\n.grid.col-5>uni-view {\n\twidth: 20%;\n}\n/*  -- 内外边距 -- */\n.margin-0 {\n\tmargin: 0;\n}\n.margin-xs {\n\tmargin: 10upx;\n}\n.margin-sm {\n\tmargin: 20upx;\n}\n.margin {\n\tmargin: 30upx;\n}\n.margin-lg {\n\tmargin: 40upx;\n}\n.margin-xl {\n\tmargin: 50upx;\n}\n.margin-top-xs {\n\tmargin-top: 10upx;\n}\n.margin-top-sm {\n\tmargin-top: 20upx;\n}\n.margin-top {\n\tmargin-top: 30upx;\n}\n.margin-top-lg {\n\tmargin-top: 40upx;\n}\n.margin-top-xl {\n\tmargin-top: 50upx;\n}\n.margin-right-xs {\n\tmargin-right: 10upx;\n}\n.margin-right-sm {\n\tmargin-right: 20upx;\n}\n.margin-right {\n\tmargin-right: 30upx;\n}\n.margin-right-lg {\n\tmargin-right: 40upx;\n}\n.margin-right-xl {\n\tmargin-right: 50upx;\n}\n.margin-bottom-xs {\n\tmargin-bottom: 10upx;\n}\n.margin-bottom-sm {\n\tmargin-bottom: 20upx;\n}\n.margin-bottom {\n\tmargin-bottom: 30upx;\n}\n.margin-bottom-lg {\n\tmargin-bottom: 40upx;\n}\n.margin-bottom-xl {\n\tmargin-bottom: 50upx;\n}\n.margin-left-xs {\n\tmargin-left: 10upx;\n}\n.margin-left-sm {\n\tmargin-left: 20upx;\n}\n.margin-left {\n\tmargin-left: 30upx;\n}\n.margin-left-lg {\n\tmargin-left: 40upx;\n}\n.margin-left-xl {\n\tmargin-left: 50upx;\n}\n.margin-lr-xs {\n\tmargin-left: 10upx;\n\tmargin-right: 10upx;\n}\n.margin-lr-sm {\n\tmargin-left: 20upx;\n\tmargin-right: 20upx;\n}\n.margin-lr {\n\tmargin-left: 30upx;\n\tmargin-right: 30upx;\n}\n.margin-lr-lg {\n\tmargin-left: 40upx;\n\tmargin-right: 40upx;\n}\n.margin-lr-xl {\n\tmargin-left: 50upx;\n\tmargin-right: 50upx;\n}\n.margin-tb-xs {\n\tmargin-top: 10upx;\n\tmargin-bottom: 10upx;\n}\n.margin-tb-sm {\n\tmargin-top: 20upx;\n\tmargin-bottom: 20upx;\n}\n.margin-tb {\n\tmargin-top: 30upx;\n\tmargin-bottom: 30upx;\n}\n.margin-tb-lg {\n\tmargin-top: 40upx;\n\tmargin-bottom: 40upx;\n}\n.margin-tb-xl {\n\tmargin-top: 50upx;\n\tmargin-bottom: 50upx;\n}\n.padding-0 {\n\tpadding: 0;\n}\n.padding-xs {\n\tpadding: 10upx;\n}\n.padding-sm {\n\tpadding: 20upx;\n}\n.padding {\n\tpadding: 30upx;\n}\n.padding-lg {\n\tpadding: 40upx;\n}\n.padding-xl {\n\tpadding: 50upx;\n}\n.padding-top-xs {\n\tpadding-top: 10upx;\n}\n.padding-top-sm {\n\tpadding-top: 20upx;\n}\n.padding-top {\n\tpadding-top: 30upx;\n}\n.padding-top-lg {\n\tpadding-top: 40upx;\n}\n.padding-top-xl {\n\tpadding-top: 50upx;\n}\n.padding-right-xs {\n\tpadding-right: 10upx;\n}\n.padding-right-sm {\n\tpadding-right: 20upx;\n}\n.padding-right {\n\tpadding-right: 30upx;\n}\n.padding-right-lg {\n\tpadding-right: 40upx;\n}\n.padding-right-xl {\n\tpadding-right: 50upx;\n}\n.padding-bottom-xs {\n\tpadding-bottom: 10upx;\n}\n.padding-bottom-sm {\n\tpadding-bottom: 20upx;\n}\n.padding-bottom {\n\tpadding-bottom: 30upx;\n}\n.padding-bottom-lg {\n\tpadding-bottom: 40upx;\n}\n.padding-bottom-xl {\n\tpadding-bottom: 50upx;\n}\n.padding-left-xs {\n\tpadding-left: 10upx;\n}\n.padding-left-sm {\n\tpadding-left: 20upx;\n}\n.padding-left {\n\tpadding-left: 30upx;\n}\n.padding-left-lg {\n\tpadding-left: 40upx;\n}\n.padding-left-xl {\n\tpadding-left: 50upx;\n}\n.padding-lr-xs {\n\tpadding-left: 10upx;\n\tpadding-right: 10upx;\n}\n.padding-lr-sm {\n\tpadding-left: 20upx;\n\tpadding-right: 20upx;\n}\n.padding-lr {\n\tpadding-left: 30upx;\n\tpadding-right: 30upx;\n}\n.padding-lr-lg {\n\tpadding-left: 40upx;\n\tpadding-right: 40upx;\n}\n.padding-lr-xl {\n\tpadding-left: 50upx;\n\tpadding-right: 50upx;\n}\n.padding-tb-xs {\n\tpadding-top: 10upx;\n\tpadding-bottom: 10upx;\n}\n.padding-tb-sm {\n\tpadding-top: 20upx;\n\tpadding-bottom: 20upx;\n}\n.padding-tb {\n\tpadding-top: 30upx;\n\tpadding-bottom: 30upx;\n}\n.padding-tb-lg {\n\tpadding-top: 40upx;\n\tpadding-bottom: 40upx;\n}\n.padding-tb-xl {\n\tpadding-top: 50upx;\n\tpadding-bottom: 50upx;\n}\n/* -- 浮动 --  */\n.cf::after,\n.cf::before {\n\tcontent: \" \";\n\tdisplay: table;\n}\n.cf::after {\n\tclear: both;\n}\n.fl {\n\tfloat: left;\n}\n.fr {\n\tfloat: right;\n}\n/* ==================\n          背景\n ==================== */\n.line-red::after,\n.lines-red::after {\n\tborder-color: #e54d42;\n}\n.line-orange::after,\n.lines-orange::after {\n\tborder-color: #f37b1d;\n}\n.line-yellow::after,\n.lines-yellow::after {\n\tborder-color: #fbbd08;\n}\n.line-olive::after,\n.lines-olive::after {\n\tborder-color: #8dc63f;\n}\n.line-green::after,\n.lines-green::after {\n\tborder-color: #39b54a;\n}\n.line-cyan::after,\n.lines-cyan::after {\n\tborder-color: #1cbbb4;\n}\n.line-blue::after,\n.lines-blue::after {\n\tborder-color: #0081ff;\n}\n.line-purple::after,\n.lines-purple::after {\n\tborder-color: #6739b6;\n}\n.line-mauve::after,\n.lines-mauve::after {\n\tborder-color: #9c26b0;\n}\n.line-pink::after,\n.lines-pink::after {\n\tborder-color: #e03997;\n}\n.line-brown::after,\n.lines-brown::after {\n\tborder-color: #a5673f;\n}\n.line-grey::after,\n.lines-grey::after {\n\tborder-color: #8799a3;\n}\n.line-gray::after,\n.lines-gray::after {\n\tborder-color: #aaaaaa;\n}\n.line-black::after,\n.lines-black::after {\n\tborder-color: #333333;\n}\n.line-white::after,\n.lines-white::after {\n\tborder-color: #ffffff;\n}\n.bg-red {\n\tbackground-color: #e54d42;\n\tcolor: #ffffff;\n}\n.bg-orange {\n\tbackground-color: #f37b1d;\n\tcolor: #ffffff;\n}\n.bg-yellow {\n\tbackground-color: #fbbd08;\n\tcolor: #333333;\n}\n.bg-olive {\n\tbackground-color: #8dc63f;\n\tcolor: #ffffff;\n}\n.bg-green {\n\tbackground-color: #39b54a;\n\tcolor: #ffffff;\n}\n.bg-cyan {\n\tbackground-color: #1cbbb4;\n\tcolor: #ffffff;\n}\n.bg-blue {\n\tbackground-color: #0081ff;\n\tcolor: #ffffff;\n}\n.bg-purple {\n\tbackground-color: #6739b6;\n\tcolor: #ffffff;\n}\n.bg-mauve {\n\tbackground-color: #9c26b0;\n\tcolor: #ffffff;\n}\n.bg-pink {\n\tbackground-color: #e03997;\n\tcolor: #ffffff;\n}\n.bg-brown {\n\tbackground-color: #a5673f;\n\tcolor: #ffffff;\n}\n.bg-grey {\n\tbackground-color: #8799a3;\n\tcolor: #ffffff;\n}\n.bg-gray {\n\tbackground-color: #f0f0f0;\n\tcolor: #333333;\n}\n.bg-black {\n\tbackground-color: #333333;\n\tcolor: #ffffff;\n}\n.bg-white {\n\tbackground-color: #ffffff;\n\tcolor: #666666;\n}\n.bg-shadeTop {\n\tbackground-image: -webkit-linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01));\n\tbackground-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.01));\n\tcolor: #ffffff;\n}\n.bg-shadeBottom {\n\tbackground-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));\n\tbackground-image: linear-gradient(rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 1));\n\tcolor: #ffffff;\n}\n.bg-red.light {\n\tcolor: #e54d42;\n\tbackground-color: #fadbd9;\n}\n.bg-orange.light {\n\tcolor: #f37b1d;\n\tbackground-color: #fde6d2;\n}\n.bg-yellow.light {\n\tcolor: #fbbd08;\n\tbackground-color: #fef2ced2;\n}\n.bg-olive.light {\n\tcolor: #8dc63f;\n\tbackground-color: #e8f4d9;\n}\n.bg-green.light {\n\tcolor: #39b54a;\n\tbackground-color: #d7f0dbff;\n}\n.bg-cyan.light {\n\tcolor: #1cbbb4;\n\tbackground-color: #d2f1f0;\n}\n.bg-blue.light {\n\tcolor: #0081ff;\n\tbackground-color: #cce6ff;\n}\n.bg-purple.light {\n\tcolor: #6739b6;\n\tbackground-color: #e1d7f0;\n}\n.bg-mauve.light {\n\tcolor: #9c26b0;\n\tbackground-color: #ebd4ef;\n}\n.bg-pink.light {\n\tcolor: #e03997;\n\tbackground-color: #f9d7ea;\n}\n.bg-brown.light {\n\tcolor: #a5673f;\n\tbackground-color: #ede1d9;\n}\n.bg-grey.light {\n\tcolor: #8799a3;\n\tbackground-color: #e7ebed;\n}\n.bg-gradual-red {\n\tbackground-image: -webkit-linear-gradient(45deg, #f43f3b, #ec008c);\n\tbackground-image: linear-gradient(45deg, #f43f3b, #ec008c);\n\tcolor: #ffffff;\n}\n.bg-gradual-orange {\n\tbackground-image: -webkit-linear-gradient(45deg, #ff9700, #ed1c24);\n\tbackground-image: linear-gradient(45deg, #ff9700, #ed1c24);\n\tcolor: #ffffff;\n}\n.bg-gradual-green {\n\tbackground-image: -webkit-linear-gradient(45deg, #39b54a, #8dc63f);\n\tbackground-image: linear-gradient(45deg, #39b54a, #8dc63f);\n\tcolor: #ffffff;\n}\n.bg-gradual-purple {\n\tbackground-image: -webkit-linear-gradient(45deg, #9000ff, #5e00ff);\n\tbackground-image: linear-gradient(45deg, #9000ff, #5e00ff);\n\tcolor: #ffffff;\n}\n.bg-gradual-pink {\n\tbackground-image: -webkit-linear-gradient(45deg, #ec008c, #6739b6);\n\tbackground-image: linear-gradient(45deg, #ec008c, #6739b6);\n\tcolor: #ffffff;\n}\n.bg-gradual-blue {\n\tbackground-image: -webkit-linear-gradient(45deg, #0081ff, #1cbbb4);\n\tbackground-image: linear-gradient(45deg, #0081ff, #1cbbb4);\n\tcolor: #ffffff;\n}\n.shadow[class*=\"-red\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(204, 69, 59, 0.2);\n}\n.shadow[class*=\"-orange\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(217, 109, 26, 0.2);\n}\n.shadow[class*=\"-yellow\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(224, 170, 7, 0.2);\n}\n.shadow[class*=\"-olive\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(124, 173, 55, 0.2);\n}\n.shadow[class*=\"-green\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(48, 156, 63, 0.2);\n}\n.shadow[class*=\"-cyan\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(28, 187, 180, 0.2);\n}\n.shadow[class*=\"-blue\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(0, 102, 204, 0.2);\n}\n.shadow[class*=\"-purple\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(88, 48, 156, 0.2);\n}\n.shadow[class*=\"-mauve\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(133, 33, 150, 0.2);\n}\n.shadow[class*=\"-pink\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(199, 50, 134, 0.2);\n}\n.shadow[class*=\"-brown\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(140, 88, 53, 0.2);\n}\n.shadow[class*=\"-grey\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.shadow[class*=\"-gray\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.shadow[class*=\"-black\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(26, 26, 26, 0.2);\n}\n.shadow[class*=\"-white\"] {\n\tbox-shadow: 6upx 6upx 8upx rgba(26, 26, 26, 0.2);\n}\n.text-shadow[class*=\"-red\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(204, 69, 59, 0.2);\n}\n.text-shadow[class*=\"-orange\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(217, 109, 26, 0.2);\n}\n.text-shadow[class*=\"-yellow\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(224, 170, 7, 0.2);\n}\n.text-shadow[class*=\"-olive\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(124, 173, 55, 0.2);\n}\n.text-shadow[class*=\"-green\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(48, 156, 63, 0.2);\n}\n.text-shadow[class*=\"-cyan\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(28, 187, 180, 0.2);\n}\n.text-shadow[class*=\"-blue\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(0, 102, 204, 0.2);\n}\n.text-shadow[class*=\"-purple\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(88, 48, 156, 0.2);\n}\n.text-shadow[class*=\"-mauve\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(133, 33, 150, 0.2);\n}\n.text-shadow[class*=\"-pink\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(199, 50, 134, 0.2);\n}\n.text-shadow[class*=\"-brown\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(140, 88, 53, 0.2);\n}\n.text-shadow[class*=\"-grey\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.text-shadow[class*=\"-gray\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(114, 130, 138, 0.2);\n}\n.text-shadow[class*=\"-black\"] {\n\ttext-shadow: 6upx 6upx 8upx rgba(26, 26, 26, 0.2);\n}\n.bg-img {\n\tbackground-size: cover;\n\tbackground-position: center;\n\tbackground-repeat: no-repeat;\n}\n.bg-mask {\n\tbackground-color: #333333;\n\tposition: relative;\n}\n.bg-mask::after {\n\tcontent: \"\";\n\tborder-radius: inherit;\n\twidth: 100%;\n\theight: 100%;\n\tdisplay: block;\n\tbackground-color: rgba(0, 0, 0, 0.4);\n\tposition: absolute;\n\tleft: 0;\n\tright: 0;\n\tbottom: 0;\n\ttop: 0;\n}\n.bg-mask uni-view,\n.bg-mask uni-cover-view {\n\tz-index: 5;\n\tposition: relative;\n}\n.bg-video {\n\tposition: relative;\n}\n.bg-video uni-video {\n\tdisplay: block;\n\theight: 100%;\n\twidth: 100%;\n\tobject-fit: cover;\n\tposition: absolute;\n\ttop: 0;\n\tz-index: 0;\n\tpointer-events: none;\n}\n/* ==================\n          文本\n ==================== */\n.text-xs {\n\tfont-size: 20upx;\n}\n.text-sm {\n\tfont-size: 24upx;\n}\n.text-df {\n\tfont-size: 28upx;\n}\n.text-lg {\n\tfont-size: 32upx;\n}\n.text-xl {\n\tfont-size: 36upx;\n}\n.text-xxl {\n\tfont-size: 44upx;\n}\n.text-sl {\n\tfont-size: 80upx;\n}\n.text-xsl {\n\tfont-size: 120upx;\n}\n.text-Abc {\n\ttext-transform: Capitalize;\n}\n.text-ABC {\n\ttext-transform: Uppercase;\n}\n.text-abc {\n\ttext-transform: Lowercase;\n}\n.text-price::before {\n\tcontent: \"\\A5\";\n\tfont-size: 80%;\n\tmargin-right: 4upx;\n}\n.text-cut {\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n\toverflow: hidden;\n}\n.text-bold {\n\tfont-weight: bold;\n}\n.text-center {\n\ttext-align: center;\n}\n.text-content {\n\tline-height: 1.6;\n}\n.text-left {\n\ttext-align: left;\n}\n.text-right {\n\ttext-align: right;\n}\n.text-red,\n.line-red,\n.lines-red {\n\tcolor: #e54d42;\n}\n.text-orange,\n.line-orange,\n.lines-orange {\n\tcolor: #f37b1d;\n}\n.text-yellow,\n.line-yellow,\n.lines-yellow {\n\tcolor: #fbbd08;\n}\n.text-olive,\n.line-olive,\n.lines-olive {\n\tcolor: #8dc63f;\n}\n.text-green,\n.line-green,\n.lines-green {\n\tcolor: #39b54a;\n}\n.text-cyan,\n.line-cyan,\n.lines-cyan {\n\tcolor: #1cbbb4;\n}\n.text-blue,\n.line-blue,\n.lines-blue {\n\tcolor: #0081ff;\n}\n.text-purple,\n.line-purple,\n.lines-purple {\n\tcolor: #6739b6;\n}\n.text-mauve,\n.line-mauve,\n.lines-mauve {\n\tcolor: #9c26b0;\n}\n.text-pink,\n.line-pink,\n.lines-pink {\n\tcolor: #e03997;\n}\n.text-brown,\n.line-brown,\n.lines-brown {\n\tcolor: #a5673f;\n}\n.text-grey,\n.line-grey,\n.lines-grey {\n\tcolor: #8799a3;\n}\n.text-gray,\n.line-gray,\n.lines-gray {\n\tcolor: #aaaaaa;\n}\n.text-black,\n.line-black,\n.lines-black {\n\tcolor: #333333;\n}\n.text-white,\n.line-white,\n.lines-white {\n\tcolor: #ffffff;\n}\n@font-face {\r\n\tfont-family: \"iconfont\";\r\n\tsrc: url('data:application/x-font-woff2;charset=utf-8;base64,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') format('woff2');\n}\n.iconfont {\n  font-family: \"iconfont\" !important;\r\n  font-size: 16px;\n  font-style: normal;\r\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n.icon-xingqier:before {\n  content: \"\\E617\";\n}\n.icon-xingqiwu:before {\n  content: \"\\E618\";\n}\n.icon-xingqisan:before {\n  content: \"\\E620\";\n}\n.icon-xingqiliu:before {\n  content: \"\\E626\";\n}\n.icon-xingqiri:before {\n  content: \"\\E629\";\n}\n.icon-xingqisi:before {\n  content: \"\\E62A\";\n}\n.icon-xingqiyi:before {\n  content: \"\\E62F\";\n}\n.icon-ke:before {\n  content: \"\\E637\";\n}\n.icon-xianshimoshi:before {\n  content: \"\\E76D\";\n}\n.icon-kaishishijian:before {\n  content: \"\\E628\";\n}\n.icon-icon_:before {\n  content: \"\\E670\";\n}\n.icon-CombinedShape:before {\n  content: \"\\E612\";\n}\n.icon-changyongtubiao-xianxingdaochu-zhuanqu-:before {\n  content: \"\\E746\";\n}\n.icon-beijingyanse1:before {\n  content: \"\\E62E\";\n}\n.icon-shichang-:before {\n  content: \"\\E747\";\n}\n.icon-riqiqishu:before {\n  content: \"\\E616\";\n}\n.icon-riqi1:before {\n  content: \"\\E69D\";\n}\n.icon-yanse:before {\n  content: \"\\E8EF\";\n}\n.icon-shichang:before {\n  content: \"\\E6A5\";\n}\n.icon-error:before {\n  content: \"\\E60A\";\n}\n.icon-waikuang:before {\n  content: \"\\E611\";\n}\n.icon-dui:before {\n  content: \"\\E60D\";\n}\n.icon-beijingyanse:before {\n  content: \"\\E632\";\n}\n.icon-riqi:before {\n  content: \"\\E67E\";\n}\n.icon-kecheng:before {\n  content: \"\\E60F\";\n}\n.icon-fangxing-:before {\n  content: \"\\E61F\";\n}\n.icon-gaoliangbian:before {\n  content: \"\\EB32\";\n}\n.icon-kecheng1:before {\n  content: \"\\E649\";\n}\n.icon-kecheng2:before {\n  content: \"\\EA8F\";\n}\n.icon-5:before {\n  content: \"\\E658\";\n}\n.icon-icon-test2:before {\n  content: \"\\E692\";\n}\n.icon-yuwen1:before {\n  content: \"\\E60B\";\n}\n.icon-shuxue1:before {\n  content: \"\\E609\";\n}\n.icon-yingyu:before {\n  content: \"\\E653\";\n}\n.icon-youxi:before {\n  content: \"\\E603\";\n}\n.icon-yingyushuiping:before {\n  content: \"\\E623\";\n}\n.icon-sanbu:before {\n  content: \"\\E60E\";\n}\n.icon-xiyifuwu:before {\n  content: \"\\E787\";\n}\n.icon-xinaixin:before {\n  content: \"\\E600\";\n}\n.icon-shijian:before {\n  content: \"\\E606\";\n}\n.icon-xiuli:before {\n  content: \"\\E615\";\n}\n.icon-xiuxi:before {\n  content: \"\\E7BA\";\n}\n.icon-paobu:before {\n  content: \"\\E622\";\n}\n.icon-wuli:before {\n  content: \"\\E631\";\n}\n.icon-xizaomuyu:before {\n  content: \"\\E61E\";\n}\n.icon-beer:before {\n  content: \"\\E666\";\n}\n.icon-baijiu_:before {\n  content: \"\\E636\";\n}\n.icon-shaokao:before {\n  content: \"\\EAB5\";\n}\n.icon-weibiaoti:before {\n  content: \"\\E607\";\n}\n.icon-icon-test:before {\n  content: \"\\E60C\";\n}\n.icon-icon-test1:before {\n  content: \"\\E619\";\n}\n.icon-kandianying-weijihuo:before {\n  content: \"\\E72D\";\n}\n.icon--huihua:before {\n  content: \"\\E680\";\n}\n.icon-yuwen:before {\n  content: \"\\E63D\";\n}\n.icon-shuxue:before {\n  content: \"\\E63E\";\n}\n.icon-huaxue:before {\n  content: \"\\E641\";\n}\n.icon-shaokao1:before {\n  content: \"\\E624\";\n}\n.icon-youyong:before {\n  content: \"\\E605\";\n}\n.icon-paobu1:before {\n  content: \"\\E61C\";\n}\n.icon-rest:before {\n  content: \"\\E62C\";\n}\n.icon-ziyuan:before {\n  content: \"\\E64B\";\n}\n.icon-guzhang:before {\n  content: \"\\E614\";\n}\n.icon-wanfatubiao-daochu-:before {\n  content: \"\\E625\";\n}\n.icon-yule:before {\n  content: \"\\E61B\";\n}\n.icon-fendou:before {\n  content: \"\\E604\";\n}\n.icon-jisuanji:before {\n  content: \"\\E654\";\n}\n.icon-pinpaishangou:before {\n  content: \"\\E62D\";\n}\n.icon-yuehui:before {\n  content: \"\\E708\";\n}\n.icon-quntidajia:before {\n  content: \"\\E816\";\n}\n.icon-getidajia:before {\n  content: \"\\E817\";\n}\n.icon-chifancopy-:before {\n  content: \"\\E608\";\n}\n.icon-shengwu:before {\n  content: \"\\E6B3\";\n}\n.icon-xiyifuwu1:before {\n  content: \"\\E61A\";\n}\n.icon-gongzuo:before {\n  content: \"\\E709\";\n}\n.icon-youyong4:before {\n  content: \"\\E627\";\n}\n.icon-zhuazhualiugou:before {\n  content: \"\\E621\";\n}\n.icon-shuijue:before {\n  content: \"\\E635\";\n}\n.icon-38464:before {\n  content: \"\\E652\";\n}\n.icon-kafeicoffee61:before {\n  content: \"\\E630\";\n}\n.icon-yuehuiqipao:before {\n  content: \"\\E61D\";\n}\n.icon-guangjie:before {\n  content: \"\\E716\";\n}\n.icon-zhengzhi:before {\n  content: \"\\E677\";\n}\n.icon-2:before {\n  content: \"\\E602\";\n}\n.icon-fendoumubiao:before {\n  content: \"\\E648\";\n}\n.icon-kezuofan:before {\n  content: \"\\E610\";\n}\n.icon-pashan:before {\n  content: \"\\E601\";\n}\n.icon-xuexi:before {\n  content: \"\\E613\";\n}\n.icon-weibiaoti--:before {\n  content: \"\\E7F3\";\n}\n.icon-kezuofan1:before {\n  content: \"\\E65F\";\n}\n.icon-yinle:before {\n  content: \"\\E62B\";\n}\n.icon-xizao:before {\n  content: \"\\E643\";\n}\n/* 对齐方式 */\n.ta-l {\r\n\ttext-align: left;\n}\n.ta-r {\r\n\ttext-align: right;\n}\n.ta-c {\r\n\ttext-align: center;\n}\n/* 粗体 */\n.fw-b {\r\n\tfont-weight: bold;\n}\n.fw-l {\r\n\tfont-weight: lighter;\n}\n.fw-n {\r\n\tfont-weight: normal;\n}\n.t-s{\r\n\ttext-shadow: #999 2rpx 2rpx 5rpx;\n}\n/* 特殊处理 */\n.td-lt{\r\n  text-decoration:line-through;/* 加删除线 */\n}\n.t-oh{\n    white-space: nowrap;\n    overflow: hidden;/* 单行超出 */\n    text-overflow: ellipsis;\n}\n.t-ohs{\n    overflow: hidden;\n    text-overflow: ellipsis;\n    display: -webkit-box;\n    -webkit-line-clamp: 2;/* 多行超出 */\n    -webkit-box-orient: vertical;\n}\n/* 多少行（3~15） */\n.t-lc3 {-webkit-line-clamp:3;\n}\n.t-lc4 {-webkit-line-clamp:4;\n}\n.t-lc5 {-webkit-line-clamp:5;\n}\n.t-lc6 {-webkit-line-clamp:6;\n}\n.t-lc7 {-webkit-line-clamp:7;\n}\n.t-lc8 {-webkit-line-clamp:8;\n}\n.t-lc9 {-webkit-line-clamp:9;\n}\n.t-lc10 {-webkit-line-clamp:10;\n}\n.t-lc11 {-webkit-line-clamp:11;\n}\n.t-lc12 {-webkit-line-clamp:12;\n}\n.t-lc13 {-webkit-line-clamp:13;\n}\n.t-lc14 {-webkit-line-clamp:14;\n}\n.t-lc15 {-webkit-line-clamp:15;\n}\n/* 字号(8~100) */\n.fs-8 {font-size:8rpx;\n}\n.fs-9 {font-size:9rpx;\n}\n.fs-10 {font-size:10rpx;\n}\n.fs-11 {font-size:11rpx;\n}\n.fs-12 {font-size:12rpx;\n}\n.fs-13 {font-size:13rpx;\n}\n.fs-14 {font-size:14rpx;\n}\n.fs-15 {font-size:15rpx;\n}\n.fs-16 {font-size:16rpx;\n}\n.fs-17 {font-size:17rpx;\n}\n.fs-18 {font-size:18rpx;\n}\n.fs-19 {font-size:19rpx;\n}\n.fs-20 {font-size:20rpx;\n}\n.fs-21 {font-size:21rpx;\n}\n.fs-22 {font-size:22rpx;\n}\n.fs-23 {font-size:23rpx;\n}\n.fs-24 {font-size:24rpx;\n}\n.fs-25 {font-size:25rpx;\n}\n.fs-26 {font-size:26rpx;\n}\n.fs-27 {font-size:27rpx;\n}\n.fs-28 {font-size:28rpx;\n}\n.fs-29 {font-size:29rpx;\n}\n.fs-30 {font-size:30rpx;\n}\n.fs-31 {font-size:31rpx;\n}\n.fs-32 {font-size:32rpx;\n}\n.fs-33 {font-size:33rpx;\n}\n.fs-34 {font-size:34rpx;\n}\n.fs-35 {font-size:35rpx;\n}\n.fs-36 {font-size:36rpx;\n}\n.fs-37 {font-size:37rpx;\n}\n.fs-38 {font-size:38rpx;\n}\n.fs-39 {font-size:39rpx;\n}\n.fs-40 {font-size:40rpx;\n}\n.fs-41 {font-size:41rpx;\n}\n.fs-42 {font-size:42rpx;\n}\n.fs-43 {font-size:43rpx;\n}\n.fs-44 {font-size:44rpx;\n}\n.fs-45 {font-size:45rpx;\n}\n.fs-46 {font-size:46rpx;\n}\n.fs-47 {font-size:47rpx;\n}\n.fs-48 {font-size:48rpx;\n}\n.fs-49 {font-size:49rpx;\n}\n.fs-50 {font-size:50rpx;\n}\n.fs-51 {font-size:51rpx;\n}\n.fs-52 {font-size:52rpx;\n}\n.fs-53 {font-size:53rpx;\n}\n.fs-54 {font-size:54rpx;\n}\n.fs-55 {font-size:55rpx;\n}\n.fs-56 {font-size:56rpx;\n}\n.fs-57 {font-size:57rpx;\n}\n.fs-58 {font-size:58rpx;\n}\n.fs-59 {font-size:59rpx;\n}\n.fs-60 {font-size:60rpx;\n}\n.fs-61 {font-size:61rpx;\n}\n.fs-62 {font-size:62rpx;\n}\n.fs-63 {font-size:63rpx;\n}\n.fs-64 {font-size:64rpx;\n}\n.fs-65 {font-size:65rpx;\n}\n.fs-66 {font-size:66rpx;\n}\n.fs-67 {font-size:67rpx;\n}\n.fs-68 {font-size:68rpx;\n}\n.fs-69 {font-size:69rpx;\n}\n.fs-70 {font-size:70rpx;\n}\n.fs-71 {font-size:71rpx;\n}\n.fs-72 {font-size:72rpx;\n}\n.fs-73 {font-size:73rpx;\n}\n.fs-74 {font-size:74rpx;\n}\n.fs-75 {font-size:75rpx;\n}\n.fs-76 {font-size:76rpx;\n}\n.fs-77 {font-size:77rpx;\n}\n.fs-78 {font-size:78rpx;\n}\n.fs-79 {font-size:79rpx;\n}\n.fs-80 {font-size:80rpx;\n}\n.fs-81 {font-size:81rpx;\n}\n.fs-82 {font-size:82rpx;\n}\n.fs-83 {font-size:83rpx;\n}\n.fs-84 {font-size:84rpx;\n}\n.fs-85 {font-size:85rpx;\n}\n.fs-86 {font-size:86rpx;\n}\n.fs-87 {font-size:87rpx;\n}\n.fs-88 {font-size:88rpx;\n}\n.fs-89 {font-size:89rpx;\n}\n.fs-90 {font-size:90rpx;\n}\n.fs-91 {font-size:91rpx;\n}\n.fs-92 {font-size:92rpx;\n}\n.fs-93 {font-size:93rpx;\n}\n.fs-94 {font-size:94rpx;\n}\n.fs-95 {font-size:95rpx;\n}\n.fs-96 {font-size:96rpx;\n}\n.fs-97 {font-size:97rpx;\n}\n.fs-98 {font-size:98rpx;\n}\n.fs-99 {font-size:99rpx;\n}\n.fs-100 {font-size:100rpx;\n}\n.fs40{font-size:40px;}\n.fs60{font-size:60px;}\n.fs80{font-size:80px;}\n/* 行高(8~100) */\n.lh-8 {line-height:8rpx;\n}\n.lh-9 {line-height:9rpx;\n}\n.lh-10 {line-height:10rpx;\n}\n.lh-11 {line-height:11rpx;\n}\n.lh-12 {line-height:12rpx;\n}\n.lh-13 {line-height:13rpx;\n}\n.lh-14 {line-height:14rpx;\n}\n.lh-15 {line-height:15rpx;\n}\n.lh-16 {line-height:16rpx;\n}\n.lh-17 {line-height:17rpx;\n}\n.lh-18 {line-height:18rpx;\n}\n.lh-19 {line-height:19rpx;\n}\n.lh-20 {line-height:20rpx;\n}\n.lh-21 {line-height:21rpx;\n}\n.lh-22 {line-height:22rpx;\n}\n.lh-23 {line-height:23rpx;\n}\n.lh-24 {line-height:24rpx;\n}\n.lh-25 {line-height:25rpx;\n}\n.lh-26 {line-height:26rpx;\n}\n.lh-27 {line-height:27rpx;\n}\n.lh-28 {line-height:28rpx;\n}\n.lh-29 {line-height:29rpx;\n}\n.lh-30 {line-height:30rpx;\n}\n.lh-31 {line-height:31rpx;\n}\n.lh-32 {line-height:32rpx;\n}\n.lh-33 {line-height:33rpx;\n}\n.lh-34 {line-height:34rpx;\n}\n.lh-35 {line-height:35rpx;\n}\n.lh-36 {line-height:36rpx;\n}\n.lh-37 {line-height:37rpx;\n}\n.lh-38 {line-height:38rpx;\n}\n.lh-39 {line-height:39rpx;\n}\n.lh-40 {line-height:40rpx;\n}\n.lh-41 {line-height:41rpx;\n}\n.lh-42 {line-height:42rpx;\n}\n.lh-43 {line-height:43rpx;\n}\n.lh-44 {line-height:44rpx;\n}\n.lh-45 {line-height:45rpx;\n}\n.lh-46 {line-height:46rpx;\n}\n.lh-47 {line-height:47rpx;\n}\n.lh-48 {line-height:48rpx;\n}\n.lh-49 {line-height:49rpx;\n}\n.lh-50 {line-height:50rpx;\n}\n.lh-51 {line-height:51rpx;\n}\n.lh-52 {line-height:52rpx;\n}\n.lh-53 {line-height:53rpx;\n}\n.lh-54 {line-height:54rpx;\n}\n.lh-55 {line-height:55rpx;\n}\n.lh-56 {line-height:56rpx;\n}\n.lh-57 {line-height:57rpx;\n}\n.lh-58 {line-height:58rpx;\n}\n.lh-59 {line-height:59rpx;\n}\n.lh-60 {line-height:60rpx;\n}\n.lh-61 {line-height:61rpx;\n}\n.lh-62 {line-height:62rpx;\n}\n.lh-63 {line-height:63rpx;\n}\n.lh-64 {line-height:64rpx;\n}\n.lh-65 {line-height:65rpx;\n}\n.lh-66 {line-height:66rpx;\n}\n.lh-67 {line-height:67rpx;\n}\n.lh-68 {line-height:68rpx;\n}\n.lh-69 {line-height:69rpx;\n}\n.lh-70 {line-height:70rpx;\n}\n.lh-71 {line-height:71rpx;\n}\n.lh-72 {line-height:72rpx;\n}\n.lh-73 {line-height:73rpx;\n}\n.lh-74 {line-height:74rpx;\n}\n.lh-75 {line-height:75rpx;\n}\n.lh-76 {line-height:76rpx;\n}\n.lh-77 {line-height:77rpx;\n}\n.lh-78 {line-height:78rpx;\n}\n.lh-79 {line-height:79rpx;\n}\n.lh-80 {line-height:80rpx;\n}\n.lh-81 {line-height:81rpx;\n}\n.lh-82 {line-height:82rpx;\n}\n.lh-83 {line-height:83rpx;\n}\n.lh-84 {line-height:84rpx;\n}\n.lh-85 {line-height:85rpx;\n}\n.lh-86 {line-height:86rpx;\n}\n.lh-87 {line-height:87rpx;\n}\n.lh-88 {line-height:88rpx;\n}\n.lh-89 {line-height:89rpx;\n}\n.lh-90 {line-height:90rpx;\n}\n.lh-91 {line-height:91rpx;\n}\n.lh-92 {line-height:92rpx;\n}\n.lh-93 {line-height:93rpx;\n}\n.lh-94 {line-height:94rpx;\n}\n.lh-95 {line-height:95rpx;\n}\n.lh-96 {line-height:96rpx;\n}\n.lh-97 {line-height:97rpx;\n}\n.lh-98 {line-height:98rpx;\n}\n.lh-99 {line-height:99rpx;\n}\n.lh-100 {line-height:100rpx;\n}\n/*========== flex布局相关 ==========*/\n.dp-f {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;/*在webkit内核的浏览器上使用要加前缀*/\n}\n/*快捷水平垂直居中*/\n.dp-fc {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  display: -webkit-flex;\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center;\n}\n/*行内块元素*/\n.dp-ib {\r\n  display: inline-block;\n}\n/* 主轴方向 */\n.fd-r {\r\n\t-webkit-box-orient:horizontal;\r\n\t-webkit-box-direction:normal;\r\n\t-webkit-flex-direction:row;\r\n\t        flex-direction:row;/* 主轴方向从右到左,默认从左到右 */\n}\n.fd-rr {\r\n\t-webkit-box-orient:horizontal;\r\n\t-webkit-box-direction:reverse;\r\n\t-webkit-flex-direction:row-reverse;\r\n\t        flex-direction:row-reverse;/* 主轴方向从右到左,默认从左到右 */\n}\n.fd-c {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: column;\r\n          flex-direction: column;/* 主轴方向从上到下,默认从左到右 */\n}\n.fd-cr {\r\n  -webkit-box-orient: vertical;\r\n  -webkit-box-direction: reverse;\r\n  -webkit-flex-direction: column-reverse;\r\n          flex-direction: column-reverse;/* 主轴方向从下到上,默认从左到右 */\n}\n/* flex-wrap属性 */\n.fw-w {\r\n  -webkit-flex-wrap: wrap;\r\n          flex-wrap: wrap;/* 换行，第一行在上方。 */\n}\n.fw-wr{\r\n\t-webkit-flex-wrap: wrap-reverse;\r\n\t        flex-wrap: wrap-reverse;/* 换行，第一行在下方。 */\n}\n/* justify-content属性 */\n.jc-fs {\r\n  -webkit-box-pack: start;\r\n  -webkit-justify-content: flex-start;\r\n          justify-content: flex-start;/* 在主轴左对齐-默认 */\n}\n.jc-fe {\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n          justify-content: flex-end;/* 在主轴右对齐 */\n}\n.jc-c {\r\n  -webkit-box-pack: center;\r\n  -webkit-justify-content: center;\r\n          justify-content: center; /* 在主轴居中对齐 */\n}\n.jc-sb {\r\n  -webkit-box-pack: justify;\r\n  -webkit-justify-content: space-between;\r\n          justify-content: space-between;/* 两端对齐（两边不留空） */\n}\n.jc-sa {\r\n  -webkit-justify-content: space-around;\r\n          justify-content: space-around;/* 等距对齐*/\n}\n.fb-100{\r\n\t-webkit-flex-basis: 100%;\r\n\t        flex-basis: 100%;\n}\n/* align-items属性 */\n.ai-fs {\r\n  -webkit-box-align: start;\r\n  -webkit-align-items: flex-start;\r\n          align-items: flex-start;\n}\n.ai-fe {\r\n  -webkit-box-align: end;\r\n  -webkit-align-items: flex-end;\r\n          align-items: flex-end;/* 底对齐 */\n}\n.ai-c {\r\n  -webkit-box-align: center;\r\n  -webkit-align-items: center;\r\n          align-items: center;/* 水平居中 */\n}\n.ai-bl {\r\n  -webkit-box-align: baseline;\r\n  -webkit-align-items: baseline;\r\n          align-items: baseline;/* 水平居中 */\n}\n.ai-s {\r\n\t-webkit-box-align: stretch;\r\n\t-webkit-align-items: stretch;\r\n\t        align-items: stretch;\n}\n/* align-content属性(多列对齐) */\n.ac-fs{\r\n  -webkit-align-content:flex-start;\r\n          align-content:flex-start;/* 与交叉轴的起点对齐 */\n}\n.ac-fe{\r\n  -webkit-align-content:flex-end;\r\n          align-content:flex-end;/* 与交叉轴的终点对齐 */\n}\n.ac-c {\r\n  -webkit-align-content: center;\r\n          align-content: center; /* 与交叉轴的中点对齐。 */\n}\n.ac-sb{\r\n  -webkit-align-content:space-between;\r\n          align-content:space-between;/* 与交叉轴两端对齐，轴线之间的间隔平均分布。 */\n}\n.ac-sa{\r\n  -webkit-align-content:space-around;\r\n          align-content:space-around;/* 每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。 */\n}\n/* align-self属性(默认auto),该属性用于子元素特殊处理 */\n.as-fs {\r\n  -webkit-align-self: flex-start;\r\n          align-self: flex-start;/* 自身在交叉左对齐 */\n}\n.as-fe {\r\n  -webkit-align-self: flex-end;\r\n          align-self: flex-end;/* 自身在交叉右对齐 */\n}\n.as-c {\r\n  -webkit-align-self: center;\r\n          align-self: center;/* 自身在交叉居中对齐 */\n}\n.as-bl {\r\n  -webkit-align-self: baseline;\r\n          align-self: baseline;/* 自身根据文字对齐 */\n}\n/* 子项占用空间比例 (1~10)*/\n.f-1 {-webkit-box-flex:1;-webkit-flex:1;flex:1;\n}\n.f-2 {-webkit-box-flex:2;-webkit-flex:2;flex:2;\n}\n.f-3 {-webkit-box-flex:3;-webkit-flex:3;flex:3;\n}\n.f-4 {-webkit-box-flex:4;-webkit-flex:4;flex:4;\n}\n.f-5 {-webkit-box-flex:5;-webkit-flex:5;flex:5;\n}\n.f-6 {-webkit-box-flex:6;-webkit-flex:6;flex:6;\n}\n.f-7 {-webkit-box-flex:7;-webkit-flex:7;flex:7;\n}\n.f-8 {-webkit-box-flex:8;-webkit-flex:8;flex:8;\n}\n.f-9 {-webkit-box-flex:9;-webkit-flex:9;flex:9;\n}\n.f-10 {-webkit-box-flex:10;-webkit-flex:10;flex:10;\n}\n/* 定位相关 */\n.pt-f {\r\n  position: fixed;\n}\n.pt-r {\r\n  position: relative;\n}\n.pt-a {\r\n  position: absolute;\n}\n.top-0 {\n  top: 0;\n}\n.lef-0 {\n  left: 0;\n}\n.rig-0 {\n  right: 0;\n}\n.bot-0 {\n  bottom: 0;\n}\n.all-0 {\r\n  top: 0;\r\n  left: 0;\r\n  right: 0;\r\n  bottom: 0;\n}\n/* 百分比 */\n.w100 {\r\n  width: 100%;\n}\n.h100{\r\n  height: 100%;\n}\n/* 宽 */\n.w-0 {width:0rpx;\n}\n.w-1 {width:1rpx;\n}\n.w-2 {width:2rpx;\n}\n.w-3 {width:3rpx;\n}\n.w-4 {width:4rpx;\n}\n.w-5 {width:5rpx;\n}\n.w-6 {width:6rpx;\n}\n.w-7 {width:7rpx;\n}\n.w-8 {width:8rpx;\n}\n.w-9 {width:9rpx;\n}\n.w-10 {width:10rpx;\n}\n.w-11 {width:11rpx;\n}\n.w-12 {width:12rpx;\n}\n.w-13 {width:13rpx;\n}\n.w-14 {width:14rpx;\n}\n.w-15 {width:15rpx;\n}\n.w-16 {width:16rpx;\n}\n.w-17 {width:17rpx;\n}\n.w-18 {width:18rpx;\n}\n.w-19 {width:19rpx;\n}\n.w-20 {width:20rpx;\n}\n.w-21 {width:21rpx;\n}\n.w-22 {width:22rpx;\n}\n.w-23 {width:23rpx;\n}\n.w-24 {width:24rpx;\n}\n.w-25 {width:25rpx;\n}\n.w-26 {width:26rpx;\n}\n.w-27 {width:27rpx;\n}\n.w-28 {width:28rpx;\n}\n.w-29 {width:29rpx;\n}\n.w-30 {width:30rpx;\n}\n.w-31 {width:31rpx;\n}\n.w-32 {width:32rpx;\n}\n.w-33 {width:33rpx;\n}\n.w-34 {width:34rpx;\n}\n.w-35 {width:35rpx;\n}\n.w-36 {width:36rpx;\n}\n.w-37 {width:37rpx;\n}\n.w-38 {width:38rpx;\n}\n.w-39 {width:39rpx;\n}\n.w-40 {width:40rpx;\n}\n.w-41 {width:41rpx;\n}\n.w-42 {width:42rpx;\n}\n.w-43 {width:43rpx;\n}\n.w-44 {width:44rpx;\n}\n.w-45 {width:45rpx;\n}\n.w-46 {width:46rpx;\n}\n.w-47 {width:47rpx;\n}\n.w-48 {width:48rpx;\n}\n.w-49 {width:49rpx;\n}\n.w-50 {width:50rpx;\n}\n.w-51 {width:51rpx;\n}\n.w-52 {width:52rpx;\n}\n.w-53 {width:53rpx;\n}\n.w-54 {width:54rpx;\n}\n.w-55 {width:55rpx;\n}\n.w-56 {width:56rpx;\n}\n.w-57 {width:57rpx;\n}\n.w-58 {width:58rpx;\n}\n.w-59 {width:59rpx;\n}\n.w-60 {width:60rpx;\n}\n.w-61 {width:61rpx;\n}\n.w-62 {width:62rpx;\n}\n.w-63 {width:63rpx;\n}\n.w-64 {width:64rpx;\n}\n.w-65 {width:65rpx;\n}\n.w-66 {width:66rpx;\n}\n.w-67 {width:67rpx;\n}\n.w-68 {width:68rpx;\n}\n.w-69 {width:69rpx;\n}\n.w-70 {width:70rpx;\n}\n.w-71 {width:71rpx;\n}\n.w-72 {width:72rpx;\n}\n.w-73 {width:73rpx;\n}\n.w-74 {width:74rpx;\n}\n.w-75 {width:75rpx;\n}\n.w-76 {width:76rpx;\n}\n.w-77 {width:77rpx;\n}\n.w-78 {width:78rpx;\n}\n.w-79 {width:79rpx;\n}\n.w-80 {width:80rpx;\n}\n.w-81 {width:81rpx;\n}\n.w-82 {width:82rpx;\n}\n.w-83 {width:83rpx;\n}\n.w-84 {width:84rpx;\n}\n.w-85 {width:85rpx;\n}\n.w-86 {width:86rpx;\n}\n.w-87 {width:87rpx;\n}\n.w-88 {width:88rpx;\n}\n.w-89 {width:89rpx;\n}\n.w-90 {width:90rpx;\n}\n.w-91 {width:91rpx;\n}\n.w-92 {width:92rpx;\n}\n.w-93 {width:93rpx;\n}\n.w-94 {width:94rpx;\n}\n.w-95 {width:95rpx;\n}\n.w-96 {width:96rpx;\n}\n.w-97 {width:97rpx;\n}\n.w-98 {width:98rpx;\n}\n.w-99 {width:99rpx;\n}\n.w-100 {width:100rpx;\n}\n.w-101 {width:101rpx;\n}\n.w-102 {width:102rpx;\n}\n.w-103 {width:103rpx;\n}\n.w-104 {width:104rpx;\n}\n.w-105 {width:105rpx;\n}\n.w-106 {width:106rpx;\n}\n.w-107 {width:107rpx;\n}\n.w-108 {width:108rpx;\n}\n.w-109 {width:109rpx;\n}\n.w-110 {width:110rpx;\n}\n.w-111 {width:111rpx;\n}\n.w-112 {width:112rpx;\n}\n.w-113 {width:113rpx;\n}\n.w-114 {width:114rpx;\n}\n.w-115 {width:115rpx;\n}\n.w-116 {width:116rpx;\n}\n.w-117 {width:117rpx;\n}\n.w-118 {width:118rpx;\n}\n.w-119 {width:119rpx;\n}\n.w-120 {width:120rpx;\n}\n.w-121 {width:121rpx;\n}\n.w-122 {width:122rpx;\n}\n.w-123 {width:123rpx;\n}\n.w-124 {width:124rpx;\n}\n.w-125 {width:125rpx;\n}\n.w-126 {width:126rpx;\n}\n.w-127 {width:127rpx;\n}\n.w-128 {width:128rpx;\n}\n.w-129 {width:129rpx;\n}\n.w-130 {width:130rpx;\n}\n.w-131 {width:131rpx;\n}\n.w-132 {width:132rpx;\n}\n.w-133 {width:133rpx;\n}\n.w-134 {width:134rpx;\n}\n.w-135 {width:135rpx;\n}\n.w-136 {width:136rpx;\n}\n.w-137 {width:137rpx;\n}\n.w-138 {width:138rpx;\n}\n.w-139 {width:139rpx;\n}\n.w-140 {width:140rpx;\n}\n.w-141 {width:141rpx;\n}\n.w-142 {width:142rpx;\n}\n.w-143 {width:143rpx;\n}\n.w-144 {width:144rpx;\n}\n.w-145 {width:145rpx;\n}\n.w-146 {width:146rpx;\n}\n.w-147 {width:147rpx;\n}\n.w-148 {width:148rpx;\n}\n.w-149 {width:149rpx;\n}\n.w-150 {width:150rpx;\n}\n.w-151 {width:151rpx;\n}\n.w-152 {width:152rpx;\n}\n.w-153 {width:153rpx;\n}\n.w-154 {width:154rpx;\n}\n.w-155 {width:155rpx;\n}\n.w-156 {width:156rpx;\n}\n.w-157 {width:157rpx;\n}\n.w-158 {width:158rpx;\n}\n.w-159 {width:159rpx;\n}\n.w-160 {width:160rpx;\n}\n.w-161 {width:161rpx;\n}\n.w-162 {width:162rpx;\n}\n.w-163 {width:163rpx;\n}\n.w-164 {width:164rpx;\n}\n.w-165 {width:165rpx;\n}\n.w-166 {width:166rpx;\n}\n.w-167 {width:167rpx;\n}\n.w-168 {width:168rpx;\n}\n.w-169 {width:169rpx;\n}\n.w-170 {width:170rpx;\n}\n.w-171 {width:171rpx;\n}\n.w-172 {width:172rpx;\n}\n.w-173 {width:173rpx;\n}\n.w-174 {width:174rpx;\n}\n.w-175 {width:175rpx;\n}\n.w-176 {width:176rpx;\n}\n.w-177 {width:177rpx;\n}\n.w-178 {width:178rpx;\n}\n.w-179 {width:179rpx;\n}\n.w-180 {width:180rpx;\n}\n.w-181 {width:181rpx;\n}\n.w-182 {width:182rpx;\n}\n.w-183 {width:183rpx;\n}\n.w-184 {width:184rpx;\n}\n.w-185 {width:185rpx;\n}\n.w-186 {width:186rpx;\n}\n.w-187 {width:187rpx;\n}\n.w-188 {width:188rpx;\n}\n.w-189 {width:189rpx;\n}\n.w-190 {width:190rpx;\n}\n.w-191 {width:191rpx;\n}\n.w-192 {width:192rpx;\n}\n.w-193 {width:193rpx;\n}\n.w-194 {width:194rpx;\n}\n.w-195 {width:195rpx;\n}\n.w-196 {width:196rpx;\n}\n.w-197 {width:197rpx;\n}\n.w-198 {width:198rpx;\n}\n.w-199 {width:199rpx;\n}\n.w-200 {width:200rpx;\n}\n.w-201 {width:201rpx;\n}\n.w-202 {width:202rpx;\n}\n.w-203 {width:203rpx;\n}\n.w-204 {width:204rpx;\n}\n.w-205 {width:205rpx;\n}\n.w-206 {width:206rpx;\n}\n.w-207 {width:207rpx;\n}\n.w-208 {width:208rpx;\n}\n.w-209 {width:209rpx;\n}\n.w-210 {width:210rpx;\n}\n.w-211 {width:211rpx;\n}\n.w-212 {width:212rpx;\n}\n.w-213 {width:213rpx;\n}\n.w-214 {width:214rpx;\n}\n.w-215 {width:215rpx;\n}\n.w-216 {width:216rpx;\n}\n.w-217 {width:217rpx;\n}\n.w-218 {width:218rpx;\n}\n.w-219 {width:219rpx;\n}\n.w-220 {width:220rpx;\n}\n.w-221 {width:221rpx;\n}\n.w-222 {width:222rpx;\n}\n.w-223 {width:223rpx;\n}\n.w-224 {width:224rpx;\n}\n.w-225 {width:225rpx;\n}\n.w-226 {width:226rpx;\n}\n.w-227 {width:227rpx;\n}\n.w-228 {width:228rpx;\n}\n.w-229 {width:229rpx;\n}\n.w-230 {width:230rpx;\n}\n.w-231 {width:231rpx;\n}\n.w-232 {width:232rpx;\n}\n.w-233 {width:233rpx;\n}\n.w-234 {width:234rpx;\n}\n.w-235 {width:235rpx;\n}\n.w-236 {width:236rpx;\n}\n.w-237 {width:237rpx;\n}\n.w-238 {width:238rpx;\n}\n.w-239 {width:239rpx;\n}\n.w-240 {width:240rpx;\n}\n.w-241 {width:241rpx;\n}\n.w-242 {width:242rpx;\n}\n.w-243 {width:243rpx;\n}\n.w-244 {width:244rpx;\n}\n.w-245 {width:245rpx;\n}\n.w-246 {width:246rpx;\n}\n.w-247 {width:247rpx;\n}\n.w-248 {width:248rpx;\n}\n.w-249 {width:249rpx;\n}\n.w-250 {width:250rpx;\n}\n.w-251 {width:251rpx;\n}\n.w-252 {width:252rpx;\n}\n.w-253 {width:253rpx;\n}\n.w-254 {width:254rpx;\n}\n.w-255 {width:255rpx;\n}\n.w-256 {width:256rpx;\n}\n.w-257 {width:257rpx;\n}\n.w-258 {width:258rpx;\n}\n.w-259 {width:259rpx;\n}\n.w-260 {width:260rpx;\n}\n.w-261 {width:261rpx;\n}\n.w-262 {width:262rpx;\n}\n.w-263 {width:263rpx;\n}\n.w-264 {width:264rpx;\n}\n.w-265 {width:265rpx;\n}\n.w-266 {width:266rpx;\n}\n.w-267 {width:267rpx;\n}\n.w-268 {width:268rpx;\n}\n.w-269 {width:269rpx;\n}\n.w-270 {width:270rpx;\n}\n.w-271 {width:271rpx;\n}\n.w-272 {width:272rpx;\n}\n.w-273 {width:273rpx;\n}\n.w-274 {width:274rpx;\n}\n.w-275 {width:275rpx;\n}\n.w-276 {width:276rpx;\n}\n.w-277 {width:277rpx;\n}\n.w-278 {width:278rpx;\n}\n.w-279 {width:279rpx;\n}\n.w-280 {width:280rpx;\n}\n.w-281 {width:281rpx;\n}\n.w-282 {width:282rpx;\n}\n.w-283 {width:283rpx;\n}\n.w-284 {width:284rpx;\n}\n.w-285 {width:285rpx;\n}\n.w-286 {width:286rpx;\n}\n.w-287 {width:287rpx;\n}\n.w-288 {width:288rpx;\n}\n.w-289 {width:289rpx;\n}\n.w-290 {width:290rpx;\n}\n.w-291 {width:291rpx;\n}\n.w-292 {width:292rpx;\n}\n.w-293 {width:293rpx;\n}\n.w-294 {width:294rpx;\n}\n.w-295 {width:295rpx;\n}\n.w-296 {width:296rpx;\n}\n.w-297 {width:297rpx;\n}\n.w-298 {width:298rpx;\n}\n.w-299 {width:299rpx;\n}\n.w-300 {width:300rpx;\n}\n.w-301 {width:301rpx;\n}\n.w-302 {width:302rpx;\n}\n.w-303 {width:303rpx;\n}\n.w-304 {width:304rpx;\n}\n.w-305 {width:305rpx;\n}\n.w-306 {width:306rpx;\n}\n.w-307 {width:307rpx;\n}\n.w-308 {width:308rpx;\n}\n.w-309 {width:309rpx;\n}\n.w-310 {width:310rpx;\n}\n.w-311 {width:311rpx;\n}\n.w-312 {width:312rpx;\n}\n.w-313 {width:313rpx;\n}\n.w-314 {width:314rpx;\n}\n.w-315 {width:315rpx;\n}\n.w-316 {width:316rpx;\n}\n.w-317 {width:317rpx;\n}\n.w-318 {width:318rpx;\n}\n.w-319 {width:319rpx;\n}\n.w-320 {width:320rpx;\n}\n.w-321 {width:321rpx;\n}\n.w-322 {width:322rpx;\n}\n.w-323 {width:323rpx;\n}\n.w-324 {width:324rpx;\n}\n.w-325 {width:325rpx;\n}\n.w-326 {width:326rpx;\n}\n.w-327 {width:327rpx;\n}\n.w-328 {width:328rpx;\n}\n.w-329 {width:329rpx;\n}\n.w-330 {width:330rpx;\n}\n.w-331 {width:331rpx;\n}\n.w-332 {width:332rpx;\n}\n.w-333 {width:333rpx;\n}\n.w-334 {width:334rpx;\n}\n.w-335 {width:335rpx;\n}\n.w-336 {width:336rpx;\n}\n.w-337 {width:337rpx;\n}\n.w-338 {width:338rpx;\n}\n.w-339 {width:339rpx;\n}\n.w-340 {width:340rpx;\n}\n.w-341 {width:341rpx;\n}\n.w-342 {width:342rpx;\n}\n.w-343 {width:343rpx;\n}\n.w-344 {width:344rpx;\n}\n.w-345 {width:345rpx;\n}\n.w-346 {width:346rpx;\n}\n.w-347 {width:347rpx;\n}\n.w-348 {width:348rpx;\n}\n.w-349 {width:349rpx;\n}\n.w-350 {width:350rpx;\n}\n.w-351 {width:351rpx;\n}\n.w-352 {width:352rpx;\n}\n.w-353 {width:353rpx;\n}\n.w-354 {width:354rpx;\n}\n.w-355 {width:355rpx;\n}\n.w-356 {width:356rpx;\n}\n.w-357 {width:357rpx;\n}\n.w-358 {width:358rpx;\n}\n.w-359 {width:359rpx;\n}\n.w-360 {width:360rpx;\n}\n.w-361 {width:361rpx;\n}\n.w-362 {width:362rpx;\n}\n.w-363 {width:363rpx;\n}\n.w-364 {width:364rpx;\n}\n.w-365 {width:365rpx;\n}\n.w-366 {width:366rpx;\n}\n.w-367 {width:367rpx;\n}\n.w-368 {width:368rpx;\n}\n.w-369 {width:369rpx;\n}\n.w-370 {width:370rpx;\n}\n.w-371 {width:371rpx;\n}\n.w-372 {width:372rpx;\n}\n.w-373 {width:373rpx;\n}\n.w-374 {width:374rpx;\n}\n.w-375 {width:375rpx;\n}\n.w-376 {width:376rpx;\n}\n.w-377 {width:377rpx;\n}\n.w-378 {width:378rpx;\n}\n.w-379 {width:379rpx;\n}\n.w-380 {width:380rpx;\n}\n.w-381 {width:381rpx;\n}\n.w-382 {width:382rpx;\n}\n.w-383 {width:383rpx;\n}\n.w-384 {width:384rpx;\n}\n.w-385 {width:385rpx;\n}\n.w-386 {width:386rpx;\n}\n.w-387 {width:387rpx;\n}\n.w-388 {width:388rpx;\n}\n.w-389 {width:389rpx;\n}\n.w-390 {width:390rpx;\n}\n.w-391 {width:391rpx;\n}\n.w-392 {width:392rpx;\n}\n.w-393 {width:393rpx;\n}\n.w-394 {width:394rpx;\n}\n.w-395 {width:395rpx;\n}\n.w-396 {width:396rpx;\n}\n.w-397 {width:397rpx;\n}\n.w-398 {width:398rpx;\n}\n.w-399 {width:399rpx;\n}\n.w-400 {width:400rpx;\n}\n.w-401 {width:401rpx;\n}\n.w-402 {width:402rpx;\n}\n.w-403 {width:403rpx;\n}\n.w-404 {width:404rpx;\n}\n.w-405 {width:405rpx;\n}\n.w-406 {width:406rpx;\n}\n.w-407 {width:407rpx;\n}\n.w-408 {width:408rpx;\n}\n.w-409 {width:409rpx;\n}\n.w-410 {width:410rpx;\n}\n.w-411 {width:411rpx;\n}\n.w-412 {width:412rpx;\n}\n.w-413 {width:413rpx;\n}\n.w-414 {width:414rpx;\n}\n.w-415 {width:415rpx;\n}\n.w-416 {width:416rpx;\n}\n.w-417 {width:417rpx;\n}\n.w-418 {width:418rpx;\n}\n.w-419 {width:419rpx;\n}\n.w-420 {width:420rpx;\n}\n.w-421 {width:421rpx;\n}\n.w-422 {width:422rpx;\n}\n.w-423 {width:423rpx;\n}\n.w-424 {width:424rpx;\n}\n.w-425 {width:425rpx;\n}\n.w-426 {width:426rpx;\n}\n.w-427 {width:427rpx;\n}\n.w-428 {width:428rpx;\n}\n.w-429 {width:429rpx;\n}\n.w-430 {width:430rpx;\n}\n.w-431 {width:431rpx;\n}\n.w-432 {width:432rpx;\n}\n.w-433 {width:433rpx;\n}\n.w-434 {width:434rpx;\n}\n.w-435 {width:435rpx;\n}\n.w-436 {width:436rpx;\n}\n.w-437 {width:437rpx;\n}\n.w-438 {width:438rpx;\n}\n.w-439 {width:439rpx;\n}\n.w-440 {width:440rpx;\n}\n.w-441 {width:441rpx;\n}\n.w-442 {width:442rpx;\n}\n.w-443 {width:443rpx;\n}\n.w-444 {width:444rpx;\n}\n.w-445 {width:445rpx;\n}\n.w-446 {width:446rpx;\n}\n.w-447 {width:447rpx;\n}\n.w-448 {width:448rpx;\n}\n.w-449 {width:449rpx;\n}\n.w-450 {width:450rpx;\n}\n.w-451 {width:451rpx;\n}\n.w-452 {width:452rpx;\n}\n.w-453 {width:453rpx;\n}\n.w-454 {width:454rpx;\n}\n.w-455 {width:455rpx;\n}\n.w-456 {width:456rpx;\n}\n.w-457 {width:457rpx;\n}\n.w-458 {width:458rpx;\n}\n.w-459 {width:459rpx;\n}\n.w-460 {width:460rpx;\n}\n.w-461 {width:461rpx;\n}\n.w-462 {width:462rpx;\n}\n.w-463 {width:463rpx;\n}\n.w-464 {width:464rpx;\n}\n.w-465 {width:465rpx;\n}\n.w-466 {width:466rpx;\n}\n.w-467 {width:467rpx;\n}\n.w-468 {width:468rpx;\n}\n.w-469 {width:469rpx;\n}\n.w-470 {width:470rpx;\n}\n.w-471 {width:471rpx;\n}\n.w-472 {width:472rpx;\n}\n.w-473 {width:473rpx;\n}\n.w-474 {width:474rpx;\n}\n.w-475 {width:475rpx;\n}\n.w-476 {width:476rpx;\n}\n.w-477 {width:477rpx;\n}\n.w-478 {width:478rpx;\n}\n.w-479 {width:479rpx;\n}\n.w-480 {width:480rpx;\n}\n.w-481 {width:481rpx;\n}\n.w-482 {width:482rpx;\n}\n.w-483 {width:483rpx;\n}\n.w-484 {width:484rpx;\n}\n.w-485 {width:485rpx;\n}\n.w-486 {width:486rpx;\n}\n.w-487 {width:487rpx;\n}\n.w-488 {width:488rpx;\n}\n.w-489 {width:489rpx;\n}\n.w-490 {width:490rpx;\n}\n.w-491 {width:491rpx;\n}\n.w-492 {width:492rpx;\n}\n.w-493 {width:493rpx;\n}\n.w-494 {width:494rpx;\n}\n.w-495 {width:495rpx;\n}\n.w-496 {width:496rpx;\n}\n.w-497 {width:497rpx;\n}\n.w-498 {width:498rpx;\n}\n.w-499 {width:499rpx;\n}\n.w-500 {width:500rpx;\n}\n.w-501 {width:501rpx;\n}\n.w-502 {width:502rpx;\n}\n.w-503 {width:503rpx;\n}\n.w-504 {width:504rpx;\n}\n.w-505 {width:505rpx;\n}\n.w-506 {width:506rpx;\n}\n.w-507 {width:507rpx;\n}\n.w-508 {width:508rpx;\n}\n.w-509 {width:509rpx;\n}\n.w-510 {width:510rpx;\n}\n.w-511 {width:511rpx;\n}\n.w-512 {width:512rpx;\n}\n.w-513 {width:513rpx;\n}\n.w-514 {width:514rpx;\n}\n.w-515 {width:515rpx;\n}\n.w-516 {width:516rpx;\n}\n.w-517 {width:517rpx;\n}\n.w-518 {width:518rpx;\n}\n.w-519 {width:519rpx;\n}\n.w-520 {width:520rpx;\n}\n.w-521 {width:521rpx;\n}\n.w-522 {width:522rpx;\n}\n.w-523 {width:523rpx;\n}\n.w-524 {width:524rpx;\n}\n.w-525 {width:525rpx;\n}\n.w-526 {width:526rpx;\n}\n.w-527 {width:527rpx;\n}\n.w-528 {width:528rpx;\n}\n.w-529 {width:529rpx;\n}\n.w-530 {width:530rpx;\n}\n.w-531 {width:531rpx;\n}\n.w-532 {width:532rpx;\n}\n.w-533 {width:533rpx;\n}\n.w-534 {width:534rpx;\n}\n.w-535 {width:535rpx;\n}\n.w-536 {width:536rpx;\n}\n.w-537 {width:537rpx;\n}\n.w-538 {width:538rpx;\n}\n.w-539 {width:539rpx;\n}\n.w-540 {width:540rpx;\n}\n.w-541 {width:541rpx;\n}\n.w-542 {width:542rpx;\n}\n.w-543 {width:543rpx;\n}\n.w-544 {width:544rpx;\n}\n.w-545 {width:545rpx;\n}\n.w-546 {width:546rpx;\n}\n.w-547 {width:547rpx;\n}\n.w-548 {width:548rpx;\n}\n.w-549 {width:549rpx;\n}\n.w-550 {width:550rpx;\n}\n.w-551 {width:551rpx;\n}\n.w-552 {width:552rpx;\n}\n.w-553 {width:553rpx;\n}\n.w-554 {width:554rpx;\n}\n.w-555 {width:555rpx;\n}\n.w-556 {width:556rpx;\n}\n.w-557 {width:557rpx;\n}\n.w-558 {width:558rpx;\n}\n.w-559 {width:559rpx;\n}\n.w-560 {width:560rpx;\n}\n.w-561 {width:561rpx;\n}\n.w-562 {width:562rpx;\n}\n.w-563 {width:563rpx;\n}\n.w-564 {width:564rpx;\n}\n.w-565 {width:565rpx;\n}\n.w-566 {width:566rpx;\n}\n.w-567 {width:567rpx;\n}\n.w-568 {width:568rpx;\n}\n.w-569 {width:569rpx;\n}\n.w-570 {width:570rpx;\n}\n.w-571 {width:571rpx;\n}\n.w-572 {width:572rpx;\n}\n.w-573 {width:573rpx;\n}\n.w-574 {width:574rpx;\n}\n.w-575 {width:575rpx;\n}\n.w-576 {width:576rpx;\n}\n.w-577 {width:577rpx;\n}\n.w-578 {width:578rpx;\n}\n.w-579 {width:579rpx;\n}\n.w-580 {width:580rpx;\n}\n.w-581 {width:581rpx;\n}\n.w-582 {width:582rpx;\n}\n.w-583 {width:583rpx;\n}\n.w-584 {width:584rpx;\n}\n.w-585 {width:585rpx;\n}\n.w-586 {width:586rpx;\n}\n.w-587 {width:587rpx;\n}\n.w-588 {width:588rpx;\n}\n.w-589 {width:589rpx;\n}\n.w-590 {width:590rpx;\n}\n.w-591 {width:591rpx;\n}\n.w-592 {width:592rpx;\n}\n.w-593 {width:593rpx;\n}\n.w-594 {width:594rpx;\n}\n.w-595 {width:595rpx;\n}\n.w-596 {width:596rpx;\n}\n.w-597 {width:597rpx;\n}\n.w-598 {width:598rpx;\n}\n.w-599 {width:599rpx;\n}\n.w-600 {width:600rpx;\n}\n.w-601 {width:601rpx;\n}\n.w-602 {width:602rpx;\n}\n.w-603 {width:603rpx;\n}\n.w-604 {width:604rpx;\n}\n.w-605 {width:605rpx;\n}\n.w-606 {width:606rpx;\n}\n.w-607 {width:607rpx;\n}\n.w-608 {width:608rpx;\n}\n.w-609 {width:609rpx;\n}\n.w-610 {width:610rpx;\n}\n.w-611 {width:611rpx;\n}\n.w-612 {width:612rpx;\n}\n.w-613 {width:613rpx;\n}\n.w-614 {width:614rpx;\n}\n.w-615 {width:615rpx;\n}\n.w-616 {width:616rpx;\n}\n.w-617 {width:617rpx;\n}\n.w-618 {width:618rpx;\n}\n.w-619 {width:619rpx;\n}\n.w-620 {width:620rpx;\n}\n.w-621 {width:621rpx;\n}\n.w-622 {width:622rpx;\n}\n.w-623 {width:623rpx;\n}\n.w-624 {width:624rpx;\n}\n.w-625 {width:625rpx;\n}\n.w-626 {width:626rpx;\n}\n.w-627 {width:627rpx;\n}\n.w-628 {width:628rpx;\n}\n.w-629 {width:629rpx;\n}\n.w-630 {width:630rpx;\n}\n.w-631 {width:631rpx;\n}\n.w-632 {width:632rpx;\n}\n.w-633 {width:633rpx;\n}\n.w-634 {width:634rpx;\n}\n.w-635 {width:635rpx;\n}\n.w-636 {width:636rpx;\n}\n.w-637 {width:637rpx;\n}\n.w-638 {width:638rpx;\n}\n.w-639 {width:639rpx;\n}\n.w-640 {width:640rpx;\n}\n.w-641 {width:641rpx;\n}\n.w-642 {width:642rpx;\n}\n.w-643 {width:643rpx;\n}\n.w-644 {width:644rpx;\n}\n.w-645 {width:645rpx;\n}\n.w-646 {width:646rpx;\n}\n.w-647 {width:647rpx;\n}\n.w-648 {width:648rpx;\n}\n.w-649 {width:649rpx;\n}\n.w-650 {width:650rpx;\n}\n.w-651 {width:651rpx;\n}\n.w-652 {width:652rpx;\n}\n.w-653 {width:653rpx;\n}\n.w-654 {width:654rpx;\n}\n.w-655 {width:655rpx;\n}\n.w-656 {width:656rpx;\n}\n.w-657 {width:657rpx;\n}\n.w-658 {width:658rpx;\n}\n.w-659 {width:659rpx;\n}\n.w-660 {width:660rpx;\n}\n.w-661 {width:661rpx;\n}\n.w-662 {width:662rpx;\n}\n.w-663 {width:663rpx;\n}\n.w-664 {width:664rpx;\n}\n.w-665 {width:665rpx;\n}\n.w-666 {width:666rpx;\n}\n.w-667 {width:667rpx;\n}\n.w-668 {width:668rpx;\n}\n.w-669 {width:669rpx;\n}\n.w-670 {width:670rpx;\n}\n.w-671 {width:671rpx;\n}\n.w-672 {width:672rpx;\n}\n.w-673 {width:673rpx;\n}\n.w-674 {width:674rpx;\n}\n.w-675 {width:675rpx;\n}\n.w-676 {width:676rpx;\n}\n.w-677 {width:677rpx;\n}\n.w-678 {width:678rpx;\n}\n.w-679 {width:679rpx;\n}\n.w-680 {width:680rpx;\n}\n.w-681 {width:681rpx;\n}\n.w-682 {width:682rpx;\n}\n.w-683 {width:683rpx;\n}\n.w-684 {width:684rpx;\n}\n.w-685 {width:685rpx;\n}\n.w-686 {width:686rpx;\n}\n.w-687 {width:687rpx;\n}\n.w-688 {width:688rpx;\n}\n.w-689 {width:689rpx;\n}\n.w-690 {width:690rpx;\n}\n.w-691 {width:691rpx;\n}\n.w-692 {width:692rpx;\n}\n.w-693 {width:693rpx;\n}\n.w-694 {width:694rpx;\n}\n.w-695 {width:695rpx;\n}\n.w-696 {width:696rpx;\n}\n.w-697 {width:697rpx;\n}\n.w-698 {width:698rpx;\n}\n.w-699 {width:699rpx;\n}\n.w-700 {width:700rpx;\n}\n.w-701 {width:701rpx;\n}\n.w-702 {width:702rpx;\n}\n.w-703 {width:703rpx;\n}\n.w-704 {width:704rpx;\n}\n.w-705 {width:705rpx;\n}\n.w-706 {width:706rpx;\n}\n.w-707 {width:707rpx;\n}\n.w-708 {width:708rpx;\n}\n.w-709 {width:709rpx;\n}\n.w-710 {width:710rpx;\n}\n.w-711 {width:711rpx;\n}\n.w-712 {width:712rpx;\n}\n.w-713 {width:713rpx;\n}\n.w-714 {width:714rpx;\n}\n.w-715 {width:715rpx;\n}\n.w-716 {width:716rpx;\n}\n.w-717 {width:717rpx;\n}\n.w-718 {width:718rpx;\n}\n.w-719 {width:719rpx;\n}\n.w-720 {width:720rpx;\n}\n.w-721 {width:721rpx;\n}\n.w-722 {width:722rpx;\n}\n.w-723 {width:723rpx;\n}\n.w-724 {width:724rpx;\n}\n.w-725 {width:725rpx;\n}\n.w-726 {width:726rpx;\n}\n.w-727 {width:727rpx;\n}\n.w-728 {width:728rpx;\n}\n.w-729 {width:729rpx;\n}\n.w-730 {width:730rpx;\n}\n.w-731 {width:731rpx;\n}\n.w-732 {width:732rpx;\n}\n.w-733 {width:733rpx;\n}\n.w-734 {width:734rpx;\n}\n.w-735 {width:735rpx;\n}\n.w-736 {width:736rpx;\n}\n.w-737 {width:737rpx;\n}\n.w-738 {width:738rpx;\n}\n.w-739 {width:739rpx;\n}\n.w-740 {width:740rpx;\n}\n.w-741 {width:741rpx;\n}\n.w-742 {width:742rpx;\n}\n.w-743 {width:743rpx;\n}\n.w-744 {width:744rpx;\n}\n.w-745 {width:745rpx;\n}\n.w-746 {width:746rpx;\n}\n.w-747 {width:747rpx;\n}\n.w-748 {width:748rpx;\n}\n.w-749 {width:749rpx;\n}\n.w-750 {width:750rpx;\n}\n/* 高 */\n.h-0 {height:0rpx;\n}\n.h-1 {height:1rpx;\n}\n.h-2 {height:2rpx;\n}\n.h-3 {height:3rpx;\n}\n.h-4 {height:4rpx;\n}\n.h-5 {height:5rpx;\n}\n.h-6 {height:6rpx;\n}\n.h-7 {height:7rpx;\n}\n.h-8 {height:8rpx;\n}\n.h-9 {height:9rpx;\n}\n.h-10 {height:10rpx;\n}\n.h-11 {height:11rpx;\n}\n.h-12 {height:12rpx;\n}\n.h-13 {height:13rpx;\n}\n.h-14 {height:14rpx;\n}\n.h-15 {height:15rpx;\n}\n.h-16 {height:16rpx;\n}\n.h-17 {height:17rpx;\n}\n.h-18 {height:18rpx;\n}\n.h-19 {height:19rpx;\n}\n.h-20 {height:20rpx;\n}\n.h-21 {height:21rpx;\n}\n.h-22 {height:22rpx;\n}\n.h-23 {height:23rpx;\n}\n.h-24 {height:24rpx;\n}\n.h-25 {height:25rpx;\n}\n.h-26 {height:26rpx;\n}\n.h-27 {height:27rpx;\n}\n.h-28 {height:28rpx;\n}\n.h-29 {height:29rpx;\n}\n.h-30 {height:30rpx;\n}\n.h-31 {height:31rpx;\n}\n.h-32 {height:32rpx;\n}\n.h-33 {height:33rpx;\n}\n.h-34 {height:34rpx;\n}\n.h-35 {height:35rpx;\n}\n.h-36 {height:36rpx;\n}\n.h-37 {height:37rpx;\n}\n.h-38 {height:38rpx;\n}\n.h-39 {height:39rpx;\n}\n.h-40 {height:40rpx;\n}\n.h-41 {height:41rpx;\n}\n.h-42 {height:42rpx;\n}\n.h-43 {height:43rpx;\n}\n.h-44 {height:44rpx;\n}\n.h-45 {height:45rpx;\n}\n.h-46 {height:46rpx;\n}\n.h-47 {height:47rpx;\n}\n.h-48 {height:48rpx;\n}\n.h-49 {height:49rpx;\n}\n.h-50 {height:50rpx;\n}\n.h-51 {height:51rpx;\n}\n.h-52 {height:52rpx;\n}\n.h-53 {height:53rpx;\n}\n.h-54 {height:54rpx;\n}\n.h-55 {height:55rpx;\n}\n.h-56 {height:56rpx;\n}\n.h-57 {height:57rpx;\n}\n.h-58 {height:58rpx;\n}\n.h-59 {height:59rpx;\n}\n.h-60 {height:60rpx;\n}\n.h-61 {height:61rpx;\n}\n.h-62 {height:62rpx;\n}\n.h-63 {height:63rpx;\n}\n.h-64 {height:64rpx;\n}\n.h-65 {height:65rpx;\n}\n.h-66 {height:66rpx;\n}\n.h-67 {height:67rpx;\n}\n.h-68 {height:68rpx;\n}\n.h-69 {height:69rpx;\n}\n.h-70 {height:70rpx;\n}\n.h-71 {height:71rpx;\n}\n.h-72 {height:72rpx;\n}\n.h-73 {height:73rpx;\n}\n.h-74 {height:74rpx;\n}\n.h-75 {height:75rpx;\n}\n.h-76 {height:76rpx;\n}\n.h-77 {height:77rpx;\n}\n.h-78 {height:78rpx;\n}\n.h-79 {height:79rpx;\n}\n.h-80 {height:80rpx;\n}\n.h-81 {height:81rpx;\n}\n.h-82 {height:82rpx;\n}\n.h-83 {height:83rpx;\n}\n.h-84 {height:84rpx;\n}\n.h-85 {height:85rpx;\n}\n.h-86 {height:86rpx;\n}\n.h-87 {height:87rpx;\n}\n.h-88 {height:88rpx;\n}\n.h-89 {height:89rpx;\n}\n.h-90 {height:90rpx;\n}\n.h-91 {height:91rpx;\n}\n.h-92 {height:92rpx;\n}\n.h-93 {height:93rpx;\n}\n.h-94 {height:94rpx;\n}\n.h-95 {height:95rpx;\n}\n.h-96 {height:96rpx;\n}\n.h-97 {height:97rpx;\n}\n.h-98 {height:98rpx;\n}\n.h-99 {height:99rpx;\n}\n.h-100 {height:100rpx;\n}\n.h-101 {height:101rpx;\n}\n.h-102 {height:102rpx;\n}\n.h-103 {height:103rpx;\n}\n.h-104 {height:104rpx;\n}\n.h-105 {height:105rpx;\n}\n.h-106 {height:106rpx;\n}\n.h-107 {height:107rpx;\n}\n.h-108 {height:108rpx;\n}\n.h-109 {height:109rpx;\n}\n.h-110 {height:110rpx;\n}\n.h-111 {height:111rpx;\n}\n.h-112 {height:112rpx;\n}\n.h-113 {height:113rpx;\n}\n.h-114 {height:114rpx;\n}\n.h-115 {height:115rpx;\n}\n.h-116 {height:116rpx;\n}\n.h-117 {height:117rpx;\n}\n.h-118 {height:118rpx;\n}\n.h-119 {height:119rpx;\n}\n.h-120 {height:120rpx;\n}\n.h-121 {height:121rpx;\n}\n.h-122 {height:122rpx;\n}\n.h-123 {height:123rpx;\n}\n.h-124 {height:124rpx;\n}\n.h-125 {height:125rpx;\n}\n.h-126 {height:126rpx;\n}\n.h-127 {height:127rpx;\n}\n.h-128 {height:128rpx;\n}\n.h-129 {height:129rpx;\n}\n.h-130 {height:130rpx;\n}\n.h-131 {height:131rpx;\n}\n.h-132 {height:132rpx;\n}\n.h-133 {height:133rpx;\n}\n.h-134 {height:134rpx;\n}\n.h-135 {height:135rpx;\n}\n.h-136 {height:136rpx;\n}\n.h-137 {height:137rpx;\n}\n.h-138 {height:138rpx;\n}\n.h-139 {height:139rpx;\n}\n.h-140 {height:140rpx;\n}\n.h-141 {height:141rpx;\n}\n.h-142 {height:142rpx;\n}\n.h-143 {height:143rpx;\n}\n.h-144 {height:144rpx;\n}\n.h-145 {height:145rpx;\n}\n.h-146 {height:146rpx;\n}\n.h-147 {height:147rpx;\n}\n.h-148 {height:148rpx;\n}\n.h-149 {height:149rpx;\n}\n.h-150 {height:150rpx;\n}\n.h-151 {height:151rpx;\n}\n.h-152 {height:152rpx;\n}\n.h-153 {height:153rpx;\n}\n.h-154 {height:154rpx;\n}\n.h-155 {height:155rpx;\n}\n.h-156 {height:156rpx;\n}\n.h-157 {height:157rpx;\n}\n.h-158 {height:158rpx;\n}\n.h-159 {height:159rpx;\n}\n.h-160 {height:160rpx;\n}\n.h-161 {height:161rpx;\n}\n.h-162 {height:162rpx;\n}\n.h-163 {height:163rpx;\n}\n.h-164 {height:164rpx;\n}\n.h-165 {height:165rpx;\n}\n.h-166 {height:166rpx;\n}\n.h-167 {height:167rpx;\n}\n.h-168 {height:168rpx;\n}\n.h-169 {height:169rpx;\n}\n.h-170 {height:170rpx;\n}\n.h-171 {height:171rpx;\n}\n.h-172 {height:172rpx;\n}\n.h-173 {height:173rpx;\n}\n.h-174 {height:174rpx;\n}\n.h-175 {height:175rpx;\n}\n.h-176 {height:176rpx;\n}\n.h-177 {height:177rpx;\n}\n.h-178 {height:178rpx;\n}\n.h-179 {height:179rpx;\n}\n.h-180 {height:180rpx;\n}\n.h-181 {height:181rpx;\n}\n.h-182 {height:182rpx;\n}\n.h-183 {height:183rpx;\n}\n.h-184 {height:184rpx;\n}\n.h-185 {height:185rpx;\n}\n.h-186 {height:186rpx;\n}\n.h-187 {height:187rpx;\n}\n.h-188 {height:188rpx;\n}\n.h-189 {height:189rpx;\n}\n.h-190 {height:190rpx;\n}\n.h-191 {height:191rpx;\n}\n.h-192 {height:192rpx;\n}\n.h-193 {height:193rpx;\n}\n.h-194 {height:194rpx;\n}\n.h-195 {height:195rpx;\n}\n.h-196 {height:196rpx;\n}\n.h-197 {height:197rpx;\n}\n.h-198 {height:198rpx;\n}\n.h-199 {height:199rpx;\n}\n.h-200 {height:200rpx;\n}\n.h-201 {height:201rpx;\n}\n.h-202 {height:202rpx;\n}\n.h-203 {height:203rpx;\n}\n.h-204 {height:204rpx;\n}\n.h-205 {height:205rpx;\n}\n.h-206 {height:206rpx;\n}\n.h-207 {height:207rpx;\n}\n.h-208 {height:208rpx;\n}\n.h-209 {height:209rpx;\n}\n.h-210 {height:210rpx;\n}\n.h-211 {height:211rpx;\n}\n.h-212 {height:212rpx;\n}\n.h-213 {height:213rpx;\n}\n.h-214 {height:214rpx;\n}\n.h-215 {height:215rpx;\n}\n.h-216 {height:216rpx;\n}\n.h-217 {height:217rpx;\n}\n.h-218 {height:218rpx;\n}\n.h-219 {height:219rpx;\n}\n.h-220 {height:220rpx;\n}\n.h-221 {height:221rpx;\n}\n.h-222 {height:222rpx;\n}\n.h-223 {height:223rpx;\n}\n.h-224 {height:224rpx;\n}\n.h-225 {height:225rpx;\n}\n.h-226 {height:226rpx;\n}\n.h-227 {height:227rpx;\n}\n.h-228 {height:228rpx;\n}\n.h-229 {height:229rpx;\n}\n.h-230 {height:230rpx;\n}\n.h-231 {height:231rpx;\n}\n.h-232 {height:232rpx;\n}\n.h-233 {height:233rpx;\n}\n.h-234 {height:234rpx;\n}\n.h-235 {height:235rpx;\n}\n.h-236 {height:236rpx;\n}\n.h-237 {height:237rpx;\n}\n.h-238 {height:238rpx;\n}\n.h-239 {height:239rpx;\n}\n.h-240 {height:240rpx;\n}\n.h-241 {height:241rpx;\n}\n.h-242 {height:242rpx;\n}\n.h-243 {height:243rpx;\n}\n.h-244 {height:244rpx;\n}\n.h-245 {height:245rpx;\n}\n.h-246 {height:246rpx;\n}\n.h-247 {height:247rpx;\n}\n.h-248 {height:248rpx;\n}\n.h-249 {height:249rpx;\n}\n.h-250 {height:250rpx;\n}\n.h-251 {height:251rpx;\n}\n.h-252 {height:252rpx;\n}\n.h-253 {height:253rpx;\n}\n.h-254 {height:254rpx;\n}\n.h-255 {height:255rpx;\n}\n.h-256 {height:256rpx;\n}\n.h-257 {height:257rpx;\n}\n.h-258 {height:258rpx;\n}\n.h-259 {height:259rpx;\n}\n.h-260 {height:260rpx;\n}\n.h-261 {height:261rpx;\n}\n.h-262 {height:262rpx;\n}\n.h-263 {height:263rpx;\n}\n.h-264 {height:264rpx;\n}\n.h-265 {height:265rpx;\n}\n.h-266 {height:266rpx;\n}\n.h-267 {height:267rpx;\n}\n.h-268 {height:268rpx;\n}\n.h-269 {height:269rpx;\n}\n.h-270 {height:270rpx;\n}\n.h-271 {height:271rpx;\n}\n.h-272 {height:272rpx;\n}\n.h-273 {height:273rpx;\n}\n.h-274 {height:274rpx;\n}\n.h-275 {height:275rpx;\n}\n.h-276 {height:276rpx;\n}\n.h-277 {height:277rpx;\n}\n.h-278 {height:278rpx;\n}\n.h-279 {height:279rpx;\n}\n.h-280 {height:280rpx;\n}\n.h-281 {height:281rpx;\n}\n.h-282 {height:282rpx;\n}\n.h-283 {height:283rpx;\n}\n.h-284 {height:284rpx;\n}\n.h-285 {height:285rpx;\n}\n.h-286 {height:286rpx;\n}\n.h-287 {height:287rpx;\n}\n.h-288 {height:288rpx;\n}\n.h-289 {height:289rpx;\n}\n.h-290 {height:290rpx;\n}\n.h-291 {height:291rpx;\n}\n.h-292 {height:292rpx;\n}\n.h-293 {height:293rpx;\n}\n.h-294 {height:294rpx;\n}\n.h-295 {height:295rpx;\n}\n.h-296 {height:296rpx;\n}\n.h-297 {height:297rpx;\n}\n.h-298 {height:298rpx;\n}\n.h-299 {height:299rpx;\n}\n.h-300 {height:300rpx;\n}\n.h-301 {height:301rpx;\n}\n.h-302 {height:302rpx;\n}\n.h-303 {height:303rpx;\n}\n.h-304 {height:304rpx;\n}\n.h-305 {height:305rpx;\n}\n.h-306 {height:306rpx;\n}\n.h-307 {height:307rpx;\n}\n.h-308 {height:308rpx;\n}\n.h-309 {height:309rpx;\n}\n.h-310 {height:310rpx;\n}\n.h-311 {height:311rpx;\n}\n.h-312 {height:312rpx;\n}\n.h-313 {height:313rpx;\n}\n.h-314 {height:314rpx;\n}\n.h-315 {height:315rpx;\n}\n.h-316 {height:316rpx;\n}\n.h-317 {height:317rpx;\n}\n.h-318 {height:318rpx;\n}\n.h-319 {height:319rpx;\n}\n.h-320 {height:320rpx;\n}\n.h-321 {height:321rpx;\n}\n.h-322 {height:322rpx;\n}\n.h-323 {height:323rpx;\n}\n.h-324 {height:324rpx;\n}\n.h-325 {height:325rpx;\n}\n.h-326 {height:326rpx;\n}\n.h-327 {height:327rpx;\n}\n.h-328 {height:328rpx;\n}\n.h-329 {height:329rpx;\n}\n.h-330 {height:330rpx;\n}\n.h-331 {height:331rpx;\n}\n.h-332 {height:332rpx;\n}\n.h-333 {height:333rpx;\n}\n.h-334 {height:334rpx;\n}\n.h-335 {height:335rpx;\n}\n.h-336 {height:336rpx;\n}\n.h-337 {height:337rpx;\n}\n.h-338 {height:338rpx;\n}\n.h-339 {height:339rpx;\n}\n.h-340 {height:340rpx;\n}\n.h-341 {height:341rpx;\n}\n.h-342 {height:342rpx;\n}\n.h-343 {height:343rpx;\n}\n.h-344 {height:344rpx;\n}\n.h-345 {height:345rpx;\n}\n.h-346 {height:346rpx;\n}\n.h-347 {height:347rpx;\n}\n.h-348 {height:348rpx;\n}\n.h-349 {height:349rpx;\n}\n.h-350 {height:350rpx;\n}\n.h-351 {height:351rpx;\n}\n.h-352 {height:352rpx;\n}\n.h-353 {height:353rpx;\n}\n.h-354 {height:354rpx;\n}\n.h-355 {height:355rpx;\n}\n.h-356 {height:356rpx;\n}\n.h-357 {height:357rpx;\n}\n.h-358 {height:358rpx;\n}\n.h-359 {height:359rpx;\n}\n.h-360 {height:360rpx;\n}\n.h-361 {height:361rpx;\n}\n.h-362 {height:362rpx;\n}\n.h-363 {height:363rpx;\n}\n.h-364 {height:364rpx;\n}\n.h-365 {height:365rpx;\n}\n.h-366 {height:366rpx;\n}\n.h-367 {height:367rpx;\n}\n.h-368 {height:368rpx;\n}\n.h-369 {height:369rpx;\n}\n.h-370 {height:370rpx;\n}\n.h-371 {height:371rpx;\n}\n.h-372 {height:372rpx;\n}\n.h-373 {height:373rpx;\n}\n.h-374 {height:374rpx;\n}\n.h-375 {height:375rpx;\n}\n.h-376 {height:376rpx;\n}\n.h-377 {height:377rpx;\n}\n.h-378 {height:378rpx;\n}\n.h-379 {height:379rpx;\n}\n.h-380 {height:380rpx;\n}\n.h-381 {height:381rpx;\n}\n.h-382 {height:382rpx;\n}\n.h-383 {height:383rpx;\n}\n.h-384 {height:384rpx;\n}\n.h-385 {height:385rpx;\n}\n.h-386 {height:386rpx;\n}\n.h-387 {height:387rpx;\n}\n.h-388 {height:388rpx;\n}\n.h-389 {height:389rpx;\n}\n.h-390 {height:390rpx;\n}\n.h-391 {height:391rpx;\n}\n.h-392 {height:392rpx;\n}\n.h-393 {height:393rpx;\n}\n.h-394 {height:394rpx;\n}\n.h-395 {height:395rpx;\n}\n.h-396 {height:396rpx;\n}\n.h-397 {height:397rpx;\n}\n.h-398 {height:398rpx;\n}\n.h-399 {height:399rpx;\n}\n.h-400 {height:400rpx;\n}\n.h-401 {height:401rpx;\n}\n.h-402 {height:402rpx;\n}\n.h-403 {height:403rpx;\n}\n.h-404 {height:404rpx;\n}\n.h-405 {height:405rpx;\n}\n.h-406 {height:406rpx;\n}\n.h-407 {height:407rpx;\n}\n.h-408 {height:408rpx;\n}\n.h-409 {height:409rpx;\n}\n.h-410 {height:410rpx;\n}\n.h-411 {height:411rpx;\n}\n.h-412 {height:412rpx;\n}\n.h-413 {height:413rpx;\n}\n.h-414 {height:414rpx;\n}\n.h-415 {height:415rpx;\n}\n.h-416 {height:416rpx;\n}\n.h-417 {height:417rpx;\n}\n.h-418 {height:418rpx;\n}\n.h-419 {height:419rpx;\n}\n.h-420 {height:420rpx;\n}\n.h-421 {height:421rpx;\n}\n.h-422 {height:422rpx;\n}\n.h-423 {height:423rpx;\n}\n.h-424 {height:424rpx;\n}\n.h-425 {height:425rpx;\n}\n.h-426 {height:426rpx;\n}\n.h-427 {height:427rpx;\n}\n.h-428 {height:428rpx;\n}\n.h-429 {height:429rpx;\n}\n.h-430 {height:430rpx;\n}\n.h-431 {height:431rpx;\n}\n.h-432 {height:432rpx;\n}\n.h-433 {height:433rpx;\n}\n.h-434 {height:434rpx;\n}\n.h-435 {height:435rpx;\n}\n.h-436 {height:436rpx;\n}\n.h-437 {height:437rpx;\n}\n.h-438 {height:438rpx;\n}\n.h-439 {height:439rpx;\n}\n.h-440 {height:440rpx;\n}\n.h-441 {height:441rpx;\n}\n.h-442 {height:442rpx;\n}\n.h-443 {height:443rpx;\n}\n.h-444 {height:444rpx;\n}\n.h-445 {height:445rpx;\n}\n.h-446 {height:446rpx;\n}\n.h-447 {height:447rpx;\n}\n.h-448 {height:448rpx;\n}\n.h-449 {height:449rpx;\n}\n.h-450 {height:450rpx;\n}\n.h-451 {height:451rpx;\n}\n.h-452 {height:452rpx;\n}\n.h-453 {height:453rpx;\n}\n.h-454 {height:454rpx;\n}\n.h-455 {height:455rpx;\n}\n.h-456 {height:456rpx;\n}\n.h-457 {height:457rpx;\n}\n.h-458 {height:458rpx;\n}\n.h-459 {height:459rpx;\n}\n.h-460 {height:460rpx;\n}\n.h-461 {height:461rpx;\n}\n.h-462 {height:462rpx;\n}\n.h-463 {height:463rpx;\n}\n.h-464 {height:464rpx;\n}\n.h-465 {height:465rpx;\n}\n.h-466 {height:466rpx;\n}\n.h-467 {height:467rpx;\n}\n.h-468 {height:468rpx;\n}\n.h-469 {height:469rpx;\n}\n.h-470 {height:470rpx;\n}\n.h-471 {height:471rpx;\n}\n.h-472 {height:472rpx;\n}\n.h-473 {height:473rpx;\n}\n.h-474 {height:474rpx;\n}\n.h-475 {height:475rpx;\n}\n.h-476 {height:476rpx;\n}\n.h-477 {height:477rpx;\n}\n.h-478 {height:478rpx;\n}\n.h-479 {height:479rpx;\n}\n.h-480 {height:480rpx;\n}\n.h-481 {height:481rpx;\n}\n.h-482 {height:482rpx;\n}\n.h-483 {height:483rpx;\n}\n.h-484 {height:484rpx;\n}\n.h-485 {height:485rpx;\n}\n.h-486 {height:486rpx;\n}\n.h-487 {height:487rpx;\n}\n.h-488 {height:488rpx;\n}\n.h-489 {height:489rpx;\n}\n.h-490 {height:490rpx;\n}\n.h-491 {height:491rpx;\n}\n.h-492 {height:492rpx;\n}\n.h-493 {height:493rpx;\n}\n.h-494 {height:494rpx;\n}\n.h-495 {height:495rpx;\n}\n.h-496 {height:496rpx;\n}\n.h-497 {height:497rpx;\n}\n.h-498 {height:498rpx;\n}\n.h-499 {height:499rpx;\n}\n.h-500 {height:500rpx;\n}\n.h-501 {height:501rpx;\n}\n.h-502 {height:502rpx;\n}\n.h-503 {height:503rpx;\n}\n.h-504 {height:504rpx;\n}\n.h-505 {height:505rpx;\n}\n.h-506 {height:506rpx;\n}\n.h-507 {height:507rpx;\n}\n.h-508 {height:508rpx;\n}\n.h-509 {height:509rpx;\n}\n.h-510 {height:510rpx;\n}\n.h-511 {height:511rpx;\n}\n.h-512 {height:512rpx;\n}\n.h-513 {height:513rpx;\n}\n.h-514 {height:514rpx;\n}\n.h-515 {height:515rpx;\n}\n.h-516 {height:516rpx;\n}\n.h-517 {height:517rpx;\n}\n.h-518 {height:518rpx;\n}\n.h-519 {height:519rpx;\n}\n.h-520 {height:520rpx;\n}\n.h-521 {height:521rpx;\n}\n.h-522 {height:522rpx;\n}\n.h-523 {height:523rpx;\n}\n.h-524 {height:524rpx;\n}\n.h-525 {height:525rpx;\n}\n.h-526 {height:526rpx;\n}\n.h-527 {height:527rpx;\n}\n.h-528 {height:528rpx;\n}\n.h-529 {height:529rpx;\n}\n.h-530 {height:530rpx;\n}\n.h-531 {height:531rpx;\n}\n.h-532 {height:532rpx;\n}\n.h-533 {height:533rpx;\n}\n.h-534 {height:534rpx;\n}\n.h-535 {height:535rpx;\n}\n.h-536 {height:536rpx;\n}\n.h-537 {height:537rpx;\n}\n.h-538 {height:538rpx;\n}\n.h-539 {height:539rpx;\n}\n.h-540 {height:540rpx;\n}\n.h-541 {height:541rpx;\n}\n.h-542 {height:542rpx;\n}\n.h-543 {height:543rpx;\n}\n.h-544 {height:544rpx;\n}\n.h-545 {height:545rpx;\n}\n.h-546 {height:546rpx;\n}\n.h-547 {height:547rpx;\n}\n.h-548 {height:548rpx;\n}\n.h-549 {height:549rpx;\n}\n.h-550 {height:550rpx;\n}\n.h-551 {height:551rpx;\n}\n.h-552 {height:552rpx;\n}\n.h-553 {height:553rpx;\n}\n.h-554 {height:554rpx;\n}\n.h-555 {height:555rpx;\n}\n.h-556 {height:556rpx;\n}\n.h-557 {height:557rpx;\n}\n.h-558 {height:558rpx;\n}\n.h-559 {height:559rpx;\n}\n.h-560 {height:560rpx;\n}\n.h-561 {height:561rpx;\n}\n.h-562 {height:562rpx;\n}\n.h-563 {height:563rpx;\n}\n.h-564 {height:564rpx;\n}\n.h-565 {height:565rpx;\n}\n.h-566 {height:566rpx;\n}\n.h-567 {height:567rpx;\n}\n.h-568 {height:568rpx;\n}\n.h-569 {height:569rpx;\n}\n.h-570 {height:570rpx;\n}\n.h-571 {height:571rpx;\n}\n.h-572 {height:572rpx;\n}\n.h-573 {height:573rpx;\n}\n.h-574 {height:574rpx;\n}\n.h-575 {height:575rpx;\n}\n.h-576 {height:576rpx;\n}\n.h-577 {height:577rpx;\n}\n.h-578 {height:578rpx;\n}\n.h-579 {height:579rpx;\n}\n.h-580 {height:580rpx;\n}\n.h-581 {height:581rpx;\n}\n.h-582 {height:582rpx;\n}\n.h-583 {height:583rpx;\n}\n.h-584 {height:584rpx;\n}\n.h-585 {height:585rpx;\n}\n.h-586 {height:586rpx;\n}\n.h-587 {height:587rpx;\n}\n.h-588 {height:588rpx;\n}\n.h-589 {height:589rpx;\n}\n.h-590 {height:590rpx;\n}\n.h-591 {height:591rpx;\n}\n.h-592 {height:592rpx;\n}\n.h-593 {height:593rpx;\n}\n.h-594 {height:594rpx;\n}\n.h-595 {height:595rpx;\n}\n.h-596 {height:596rpx;\n}\n.h-597 {height:597rpx;\n}\n.h-598 {height:598rpx;\n}\n.h-599 {height:599rpx;\n}\n.h-600 {height:600rpx;\n}\n.h-601 {height:601rpx;\n}\n.h-602 {height:602rpx;\n}\n.h-603 {height:603rpx;\n}\n.h-604 {height:604rpx;\n}\n.h-605 {height:605rpx;\n}\n.h-606 {height:606rpx;\n}\n.h-607 {height:607rpx;\n}\n.h-608 {height:608rpx;\n}\n.h-609 {height:609rpx;\n}\n.h-610 {height:610rpx;\n}\n.h-611 {height:611rpx;\n}\n.h-612 {height:612rpx;\n}\n.h-613 {height:613rpx;\n}\n.h-614 {height:614rpx;\n}\n.h-615 {height:615rpx;\n}\n.h-616 {height:616rpx;\n}\n.h-617 {height:617rpx;\n}\n.h-618 {height:618rpx;\n}\n.h-619 {height:619rpx;\n}\n.h-620 {height:620rpx;\n}\n.h-621 {height:621rpx;\n}\n.h-622 {height:622rpx;\n}\n.h-623 {height:623rpx;\n}\n.h-624 {height:624rpx;\n}\n.h-625 {height:625rpx;\n}\n.h-626 {height:626rpx;\n}\n.h-627 {height:627rpx;\n}\n.h-628 {height:628rpx;\n}\n.h-629 {height:629rpx;\n}\n.h-630 {height:630rpx;\n}\n.h-631 {height:631rpx;\n}\n.h-632 {height:632rpx;\n}\n.h-633 {height:633rpx;\n}\n.h-634 {height:634rpx;\n}\n.h-635 {height:635rpx;\n}\n.h-636 {height:636rpx;\n}\n.h-637 {height:637rpx;\n}\n.h-638 {height:638rpx;\n}\n.h-639 {height:639rpx;\n}\n.h-640 {height:640rpx;\n}\n.h-641 {height:641rpx;\n}\n.h-642 {height:642rpx;\n}\n.h-643 {height:643rpx;\n}\n.h-644 {height:644rpx;\n}\n.h-645 {height:645rpx;\n}\n.h-646 {height:646rpx;\n}\n.h-647 {height:647rpx;\n}\n.h-648 {height:648rpx;\n}\n.h-649 {height:649rpx;\n}\n.h-650 {height:650rpx;\n}\n.h-651 {height:651rpx;\n}\n.h-652 {height:652rpx;\n}\n.h-653 {height:653rpx;\n}\n.h-654 {height:654rpx;\n}\n.h-655 {height:655rpx;\n}\n.h-656 {height:656rpx;\n}\n.h-657 {height:657rpx;\n}\n.h-658 {height:658rpx;\n}\n.h-659 {height:659rpx;\n}\n.h-660 {height:660rpx;\n}\n.h-661 {height:661rpx;\n}\n.h-662 {height:662rpx;\n}\n.h-663 {height:663rpx;\n}\n.h-664 {height:664rpx;\n}\n.h-665 {height:665rpx;\n}\n.h-666 {height:666rpx;\n}\n.h-667 {height:667rpx;\n}\n.h-668 {height:668rpx;\n}\n.h-669 {height:669rpx;\n}\n.h-670 {height:670rpx;\n}\n.h-671 {height:671rpx;\n}\n.h-672 {height:672rpx;\n}\n.h-673 {height:673rpx;\n}\n.h-674 {height:674rpx;\n}\n.h-675 {height:675rpx;\n}\n.h-676 {height:676rpx;\n}\n.h-677 {height:677rpx;\n}\n.h-678 {height:678rpx;\n}\n.h-679 {height:679rpx;\n}\n.h-680 {height:680rpx;\n}\n.h-681 {height:681rpx;\n}\n.h-682 {height:682rpx;\n}\n.h-683 {height:683rpx;\n}\n.h-684 {height:684rpx;\n}\n.h-685 {height:685rpx;\n}\n.h-686 {height:686rpx;\n}\n.h-687 {height:687rpx;\n}\n.h-688 {height:688rpx;\n}\n.h-689 {height:689rpx;\n}\n.h-690 {height:690rpx;\n}\n.h-691 {height:691rpx;\n}\n.h-692 {height:692rpx;\n}\n.h-693 {height:693rpx;\n}\n.h-694 {height:694rpx;\n}\n.h-695 {height:695rpx;\n}\n.h-696 {height:696rpx;\n}\n.h-697 {height:697rpx;\n}\n.h-698 {height:698rpx;\n}\n.h-699 {height:699rpx;\n}\n.h-700 {height:700rpx;\n}\n.h-701 {height:701rpx;\n}\n.h-702 {height:702rpx;\n}\n.h-703 {height:703rpx;\n}\n.h-704 {height:704rpx;\n}\n.h-705 {height:705rpx;\n}\n.h-706 {height:706rpx;\n}\n.h-707 {height:707rpx;\n}\n.h-708 {height:708rpx;\n}\n.h-709 {height:709rpx;\n}\n.h-710 {height:710rpx;\n}\n.h-711 {height:711rpx;\n}\n.h-712 {height:712rpx;\n}\n.h-713 {height:713rpx;\n}\n.h-714 {height:714rpx;\n}\n.h-715 {height:715rpx;\n}\n.h-716 {height:716rpx;\n}\n.h-717 {height:717rpx;\n}\n.h-718 {height:718rpx;\n}\n.h-719 {height:719rpx;\n}\n.h-720 {height:720rpx;\n}\n.h-721 {height:721rpx;\n}\n.h-722 {height:722rpx;\n}\n.h-723 {height:723rpx;\n}\n.h-724 {height:724rpx;\n}\n.h-725 {height:725rpx;\n}\n.h-726 {height:726rpx;\n}\n.h-727 {height:727rpx;\n}\n.h-728 {height:728rpx;\n}\n.h-729 {height:729rpx;\n}\n.h-730 {height:730rpx;\n}\n.h-731 {height:731rpx;\n}\n.h-732 {height:732rpx;\n}\n.h-733 {height:733rpx;\n}\n.h-734 {height:734rpx;\n}\n.h-735 {height:735rpx;\n}\n.h-736 {height:736rpx;\n}\n.h-737 {height:737rpx;\n}\n.h-738 {height:738rpx;\n}\n.h-739 {height:739rpx;\n}\n.h-740 {height:740rpx;\n}\n.h-741 {height:741rpx;\n}\n.h-742 {height:742rpx;\n}\n.h-743 {height:743rpx;\n}\n.h-744 {height:744rpx;\n}\n.h-745 {height:745rpx;\n}\n.h-746 {height:746rpx;\n}\n.h-747 {height:747rpx;\n}\n.h-748 {height:748rpx;\n}\n.h-749 {height:749rpx;\n}\n.h-750 {height:750rpx;\n}\n/* 四边边距(0~50rpx) */\n.p-all-0 {padding:0rpx;\n}\n.p-all-1 {padding:1rpx;\n}\n.p-all-2 {padding:2rpx;\n}\n.p-all-3 {padding:3rpx;\n}\n.p-all-4 {padding:4rpx;\n}\n.p-all-5 {padding:5rpx;\n}\n.p-all-6 {padding:6rpx;\n}\n.p-all-7 {padding:7rpx;\n}\n.p-all-8 {padding:8rpx;\n}\n.p-all-9 {padding:9rpx;\n}\n.p-all-10 {padding:10rpx;\n}\n.p-all-11 {padding:11rpx;\n}\n.p-all-12 {padding:12rpx;\n}\n.p-all-13 {padding:13rpx;\n}\n.p-all-14 {padding:14rpx;\n}\n.p-all-15 {padding:15rpx;\n}\n.p-all-16 {padding:16rpx;\n}\n.p-all-17 {padding:17rpx;\n}\n.p-all-18 {padding:18rpx;\n}\n.p-all-19 {padding:19rpx;\n}\n.p-all-20 {padding:20rpx;\n}\n.p-all-21 {padding:21rpx;\n}\n.p-all-22 {padding:22rpx;\n}\n.p-all-23 {padding:23rpx;\n}\n.p-all-24 {padding:24rpx;\n}\n.p-all-25 {padding:25rpx;\n}\n.p-all-26 {padding:26rpx;\n}\n.p-all-27 {padding:27rpx;\n}\n.p-all-28 {padding:28rpx;\n}\n.p-all-29 {padding:29rpx;\n}\n.p-all-30 {padding:30rpx;\n}\n.p-all-31 {padding:31rpx;\n}\n.p-all-32 {padding:32rpx;\n}\n.p-all-33 {padding:33rpx;\n}\n.p-all-34 {padding:34rpx;\n}\n.p-all-35 {padding:35rpx;\n}\n.p-all-36 {padding:36rpx;\n}\n.p-all-37 {padding:37rpx;\n}\n.p-all-38 {padding:38rpx;\n}\n.p-all-39 {padding:39rpx;\n}\n.p-all-40 {padding:40rpx;\n}\n.p-all-41 {padding:41rpx;\n}\n.p-all-42 {padding:42rpx;\n}\n.p-all-43 {padding:43rpx;\n}\n.p-all-44 {padding:44rpx;\n}\n.p-all-45 {padding:45rpx;\n}\n.p-all-46 {padding:46rpx;\n}\n.p-all-47 {padding:47rpx;\n}\n.p-all-48 {padding:48rpx;\n}\n.p-all-49 {padding:49rpx;\n}\n.p-all-50 {padding:50rpx;\n}\n/* 左右边距(0~50rpx) */\n.p-0-0 {padding-left:0rpx;padding-right:0rpx;\n}\n.p-0-1 {padding-left:1rpx;padding-right:1rpx;\n}\n.p-0-2 {padding-left:2rpx;padding-right:2rpx;\n}\n.p-0-3 {padding-left:3rpx;padding-right:3rpx;\n}\n.p-0-4 {padding-left:4rpx;padding-right:4rpx;\n}\n.p-0-5 {padding-left:5rpx;padding-right:5rpx;\n}\n.p-0-6 {padding-left:6rpx;padding-right:6rpx;\n}\n.p-0-7 {padding-left:7rpx;padding-right:7rpx;\n}\n.p-0-8 {padding-left:8rpx;padding-right:8rpx;\n}\n.p-0-9 {padding-left:9rpx;padding-right:9rpx;\n}\n.p-0-10 {padding-left:10rpx;padding-right:10rpx;\n}\n.p-0-11 {padding-left:11rpx;padding-right:11rpx;\n}\n.p-0-12 {padding-left:12rpx;padding-right:12rpx;\n}\n.p-0-13 {padding-left:13rpx;padding-right:13rpx;\n}\n.p-0-14 {padding-left:14rpx;padding-right:14rpx;\n}\n.p-0-15 {padding-left:15rpx;padding-right:15rpx;\n}\n.p-0-16 {padding-left:16rpx;padding-right:16rpx;\n}\n.p-0-17 {padding-left:17rpx;padding-right:17rpx;\n}\n.p-0-18 {padding-left:18rpx;padding-right:18rpx;\n}\n.p-0-19 {padding-left:19rpx;padding-right:19rpx;\n}\n.p-0-20 {padding-left:20rpx;padding-right:20rpx;\n}\n.p-0-21 {padding-left:21rpx;padding-right:21rpx;\n}\n.p-0-22 {padding-left:22rpx;padding-right:22rpx;\n}\n.p-0-23 {padding-left:23rpx;padding-right:23rpx;\n}\n.p-0-24 {padding-left:24rpx;padding-right:24rpx;\n}\n.p-0-25 {padding-left:25rpx;padding-right:25rpx;\n}\n.p-0-26 {padding-left:26rpx;padding-right:26rpx;\n}\n.p-0-27 {padding-left:27rpx;padding-right:27rpx;\n}\n.p-0-28 {padding-left:28rpx;padding-right:28rpx;\n}\n.p-0-29 {padding-left:29rpx;padding-right:29rpx;\n}\n.p-0-30 {padding-left:30rpx;padding-right:30rpx;\n}\n.p-0-31 {padding-left:31rpx;padding-right:31rpx;\n}\n.p-0-32 {padding-left:32rpx;padding-right:32rpx;\n}\n.p-0-33 {padding-left:33rpx;padding-right:33rpx;\n}\n.p-0-34 {padding-left:34rpx;padding-right:34rpx;\n}\n.p-0-35 {padding-left:35rpx;padding-right:35rpx;\n}\n.p-0-36 {padding-left:36rpx;padding-right:36rpx;\n}\n.p-0-37 {padding-left:37rpx;padding-right:37rpx;\n}\n.p-0-38 {padding-left:38rpx;padding-right:38rpx;\n}\n.p-0-39 {padding-left:39rpx;padding-right:39rpx;\n}\n.p-0-40 {padding-left:40rpx;padding-right:40rpx;\n}\n.p-0-41 {padding-left:41rpx;padding-right:41rpx;\n}\n.p-0-42 {padding-left:42rpx;padding-right:42rpx;\n}\n.p-0-43 {padding-left:43rpx;padding-right:43rpx;\n}\n.p-0-44 {padding-left:44rpx;padding-right:44rpx;\n}\n.p-0-45 {padding-left:45rpx;padding-right:45rpx;\n}\n.p-0-46 {padding-left:46rpx;padding-right:46rpx;\n}\n.p-0-47 {padding-left:47rpx;padding-right:47rpx;\n}\n.p-0-48 {padding-left:48rpx;padding-right:48rpx;\n}\n.p-0-49 {padding-left:49rpx;padding-right:49rpx;\n}\n.p-0-50 {padding-left:50rpx;padding-right:50rpx;\n}\n/* 上下边距(0~50rpx) */\n.p-0-0 {padding-top:0rpx;padding-bottom:0rpx;\n}\n.p-1-0 {padding-top:1rpx;padding-bottom:1rpx;\n}\n.p-2-0 {padding-top:2rpx;padding-bottom:2rpx;\n}\n.p-3-0 {padding-top:3rpx;padding-bottom:3rpx;\n}\n.p-4-0 {padding-top:4rpx;padding-bottom:4rpx;\n}\n.p-5-0 {padding-top:5rpx;padding-bottom:5rpx;\n}\n.p-6-0 {padding-top:6rpx;padding-bottom:6rpx;\n}\n.p-7-0 {padding-top:7rpx;padding-bottom:7rpx;\n}\n.p-8-0 {padding-top:8rpx;padding-bottom:8rpx;\n}\n.p-9-0 {padding-top:9rpx;padding-bottom:9rpx;\n}\n.p-10-0 {padding-top:10rpx;padding-bottom:10rpx;\n}\n.p-11-0 {padding-top:11rpx;padding-bottom:11rpx;\n}\n.p-12-0 {padding-top:12rpx;padding-bottom:12rpx;\n}\n.p-13-0 {padding-top:13rpx;padding-bottom:13rpx;\n}\n.p-14-0 {padding-top:14rpx;padding-bottom:14rpx;\n}\n.p-15-0 {padding-top:15rpx;padding-bottom:15rpx;\n}\n.p-16-0 {padding-top:16rpx;padding-bottom:16rpx;\n}\n.p-17-0 {padding-top:17rpx;padding-bottom:17rpx;\n}\n.p-18-0 {padding-top:18rpx;padding-bottom:18rpx;\n}\n.p-19-0 {padding-top:19rpx;padding-bottom:19rpx;\n}\n.p-20-0 {padding-top:20rpx;padding-bottom:20rpx;\n}\n.p-21-0 {padding-top:21rpx;padding-bottom:21rpx;\n}\n.p-22-0 {padding-top:22rpx;padding-bottom:22rpx;\n}\n.p-23-0 {padding-top:23rpx;padding-bottom:23rpx;\n}\n.p-24-0 {padding-top:24rpx;padding-bottom:24rpx;\n}\n.p-25-0 {padding-top:25rpx;padding-bottom:25rpx;\n}\n.p-26-0 {padding-top:26rpx;padding-bottom:26rpx;\n}\n.p-27-0 {padding-top:27rpx;padding-bottom:27rpx;\n}\n.p-28-0 {padding-top:28rpx;padding-bottom:28rpx;\n}\n.p-29-0 {padding-top:29rpx;padding-bottom:29rpx;\n}\n.p-30-0 {padding-top:30rpx;padding-bottom:30rpx;\n}\n.p-31-0 {padding-top:31rpx;padding-bottom:31rpx;\n}\n.p-32-0 {padding-top:32rpx;padding-bottom:32rpx;\n}\n.p-33-0 {padding-top:33rpx;padding-bottom:33rpx;\n}\n.p-34-0 {padding-top:34rpx;padding-bottom:34rpx;\n}\n.p-35-0 {padding-top:35rpx;padding-bottom:35rpx;\n}\n.p-36-0 {padding-top:36rpx;padding-bottom:36rpx;\n}\n.p-37-0 {padding-top:37rpx;padding-bottom:37rpx;\n}\n.p-38-0 {padding-top:38rpx;padding-bottom:38rpx;\n}\n.p-39-0 {padding-top:39rpx;padding-bottom:39rpx;\n}\n.p-40-0 {padding-top:40rpx;padding-bottom:40rpx;\n}\n.p-41-0 {padding-top:41rpx;padding-bottom:41rpx;\n}\n.p-42-0 {padding-top:42rpx;padding-bottom:42rpx;\n}\n.p-43-0 {padding-top:43rpx;padding-bottom:43rpx;\n}\n.p-44-0 {padding-top:44rpx;padding-bottom:44rpx;\n}\n.p-45-0 {padding-top:45rpx;padding-bottom:45rpx;\n}\n.p-46-0 {padding-top:46rpx;padding-bottom:46rpx;\n}\n.p-47-0 {padding-top:47rpx;padding-bottom:47rpx;\n}\n.p-48-0 {padding-top:48rpx;padding-bottom:48rpx;\n}\n.p-49-0 {padding-top:49rpx;padding-bottom:49rpx;\n}\n.p-50-0 {padding-top:50rpx;padding-bottom:50rpx;\n}\n/* 左边距(1~50rpx) */\n.pl-1 {padding-left:1rpx;\n}\n.pl-2 {padding-left:2rpx;\n}\n.pl-3 {padding-left:3rpx;\n}\n.pl-4 {padding-left:4rpx;\n}\n.pl-5 {padding-left:5rpx;\n}\n.pl-6 {padding-left:6rpx;\n}\n.pl-7 {padding-left:7rpx;\n}\n.pl-8 {padding-left:8rpx;\n}\n.pl-9 {padding-left:9rpx;\n}\n.pl-10 {padding-left:10rpx;\n}\n.pl-11 {padding-left:11rpx;\n}\n.pl-12 {padding-left:12rpx;\n}\n.pl-13 {padding-left:13rpx;\n}\n.pl-14 {padding-left:14rpx;\n}\n.pl-15 {padding-left:15rpx;\n}\n.pl-16 {padding-left:16rpx;\n}\n.pl-17 {padding-left:17rpx;\n}\n.pl-18 {padding-left:18rpx;\n}\n.pl-19 {padding-left:19rpx;\n}\n.pl-20 {padding-left:20rpx;\n}\n.pl-21 {padding-left:21rpx;\n}\n.pl-22 {padding-left:22rpx;\n}\n.pl-23 {padding-left:23rpx;\n}\n.pl-24 {padding-left:24rpx;\n}\n.pl-25 {padding-left:25rpx;\n}\n.pl-26 {padding-left:26rpx;\n}\n.pl-27 {padding-left:27rpx;\n}\n.pl-28 {padding-left:28rpx;\n}\n.pl-29 {padding-left:29rpx;\n}\n.pl-30 {padding-left:30rpx;\n}\n.pl-31 {padding-left:31rpx;\n}\n.pl-32 {padding-left:32rpx;\n}\n.pl-33 {padding-left:33rpx;\n}\n.pl-34 {padding-left:34rpx;\n}\n.pl-35 {padding-left:35rpx;\n}\n.pl-36 {padding-left:36rpx;\n}\n.pl-37 {padding-left:37rpx;\n}\n.pl-38 {padding-left:38rpx;\n}\n.pl-39 {padding-left:39rpx;\n}\n.pl-40 {padding-left:40rpx;\n}\n.pl-41 {padding-left:41rpx;\n}\n.pl-42 {padding-left:42rpx;\n}\n.pl-43 {padding-left:43rpx;\n}\n.pl-44 {padding-left:44rpx;\n}\n.pl-45 {padding-left:45rpx;\n}\n.pl-46 {padding-left:46rpx;\n}\n.pl-47 {padding-left:47rpx;\n}\n.pl-48 {padding-left:48rpx;\n}\n.pl-49 {padding-left:49rpx;\n}\n.pl-50 {padding-left:50rpx;\n}\n/* 右边距(1~50rpx) */\n.pr-1 {padding-right:1rpx;\n}\n.pr-2 {padding-right:2rpx;\n}\n.pr-3 {padding-right:3rpx;\n}\n.pr-4 {padding-right:4rpx;\n}\n.pr-5 {padding-right:5rpx;\n}\n.pr-6 {padding-right:6rpx;\n}\n.pr-7 {padding-right:7rpx;\n}\n.pr-8 {padding-right:8rpx;\n}\n.pr-9 {padding-right:9rpx;\n}\n.pr-10 {padding-right:10rpx;\n}\n.pr-11 {padding-right:11rpx;\n}\n.pr-12 {padding-right:12rpx;\n}\n.pr-13 {padding-right:13rpx;\n}\n.pr-14 {padding-right:14rpx;\n}\n.pr-15 {padding-right:15rpx;\n}\n.pr-16 {padding-right:16rpx;\n}\n.pr-17 {padding-right:17rpx;\n}\n.pr-18 {padding-right:18rpx;\n}\n.pr-19 {padding-right:19rpx;\n}\n.pr-20 {padding-right:20rpx;\n}\n.pr-21 {padding-right:21rpx;\n}\n.pr-22 {padding-right:22rpx;\n}\n.pr-23 {padding-right:23rpx;\n}\n.pr-24 {padding-right:24rpx;\n}\n.pr-25 {padding-right:25rpx;\n}\n.pr-26 {padding-right:26rpx;\n}\n.pr-27 {padding-right:27rpx;\n}\n.pr-28 {padding-right:28rpx;\n}\n.pr-29 {padding-right:29rpx;\n}\n.pr-30 {padding-right:30rpx;\n}\n.pr-31 {padding-right:31rpx;\n}\n.pr-32 {padding-right:32rpx;\n}\n.pr-33 {padding-right:33rpx;\n}\n.pr-34 {padding-right:34rpx;\n}\n.pr-35 {padding-right:35rpx;\n}\n.pr-36 {padding-right:36rpx;\n}\n.pr-37 {padding-right:37rpx;\n}\n.pr-38 {padding-right:38rpx;\n}\n.pr-39 {padding-right:39rpx;\n}\n.pr-40 {padding-right:40rpx;\n}\n.pr-41 {padding-right:41rpx;\n}\n.pr-42 {padding-right:42rpx;\n}\n.pr-43 {padding-right:43rpx;\n}\n.pr-44 {padding-right:44rpx;\n}\n.pr-45 {padding-right:45rpx;\n}\n.pr-46 {padding-right:46rpx;\n}\n.pr-47 {padding-right:47rpx;\n}\n.pr-48 {padding-right:48rpx;\n}\n.pr-49 {padding-right:49rpx;\n}\n.pr-50 {padding-right:50rpx;\n}\n/* 上边距(1~50rpx) */\n.pt-1 {padding-top:1rpx;\n}\n.pt-2 {padding-top:2rpx;\n}\n.pt-3 {padding-top:3rpx;\n}\n.pt-4 {padding-top:4rpx;\n}\n.pt-5 {padding-top:5rpx;\n}\n.pt-6 {padding-top:6rpx;\n}\n.pt-7 {padding-top:7rpx;\n}\n.pt-8 {padding-top:8rpx;\n}\n.pt-9 {padding-top:9rpx;\n}\n.pt-10 {padding-top:10rpx;\n}\n.pt-11 {padding-top:11rpx;\n}\n.pt-12 {padding-top:12rpx;\n}\n.pt-13 {padding-top:13rpx;\n}\n.pt-14 {padding-top:14rpx;\n}\n.pt-15 {padding-top:15rpx;\n}\n.pt-16 {padding-top:16rpx;\n}\n.pt-17 {padding-top:17rpx;\n}\n.pt-18 {padding-top:18rpx;\n}\n.pt-19 {padding-top:19rpx;\n}\n.pt-20 {padding-top:20rpx;\n}\n.pt-21 {padding-top:21rpx;\n}\n.pt-22 {padding-top:22rpx;\n}\n.pt-23 {padding-top:23rpx;\n}\n.pt-24 {padding-top:24rpx;\n}\n.pt-25 {padding-top:25rpx;\n}\n.pt-26 {padding-top:26rpx;\n}\n.pt-27 {padding-top:27rpx;\n}\n.pt-28 {padding-top:28rpx;\n}\n.pt-29 {padding-top:29rpx;\n}\n.pt-30 {padding-top:30rpx;\n}\n.pt-31 {padding-top:31rpx;\n}\n.pt-32 {padding-top:32rpx;\n}\n.pt-33 {padding-top:33rpx;\n}\n.pt-34 {padding-top:34rpx;\n}\n.pt-35 {padding-top:35rpx;\n}\n.pt-36 {padding-top:36rpx;\n}\n.pt-37 {padding-top:37rpx;\n}\n.pt-38 {padding-top:38rpx;\n}\n.pt-39 {padding-top:39rpx;\n}\n.pt-40 {padding-top:40rpx;\n}\n.pt-41 {padding-top:41rpx;\n}\n.pt-42 {padding-top:42rpx;\n}\n.pt-43 {padding-top:43rpx;\n}\n.pt-44 {padding-top:44rpx;\n}\n.pt-45 {padding-top:45rpx;\n}\n.pt-46 {padding-top:46rpx;\n}\n.pt-47 {padding-top:47rpx;\n}\n.pt-48 {padding-top:48rpx;\n}\n.pt-49 {padding-top:49rpx;\n}\n.pt-50 {padding-top:50rpx;\n}\n/* 下边距(1~50rpx) */\n.pb-1 {padding-bottom:1rpx;\n}\n.pb-2 {padding-bottom:2rpx;\n}\n.pb-3 {padding-bottom:3rpx;\n}\n.pb-4 {padding-bottom:4rpx;\n}\n.pb-5 {padding-bottom:5rpx;\n}\n.pb-6 {padding-bottom:6rpx;\n}\n.pb-7 {padding-bottom:7rpx;\n}\n.pb-8 {padding-bottom:8rpx;\n}\n.pb-9 {padding-bottom:9rpx;\n}\n.pb-10 {padding-bottom:10rpx;\n}\n.pb-11 {padding-bottom:11rpx;\n}\n.pb-12 {padding-bottom:12rpx;\n}\n.pb-13 {padding-bottom:13rpx;\n}\n.pb-14 {padding-bottom:14rpx;\n}\n.pb-15 {padding-bottom:15rpx;\n}\n.pb-16 {padding-bottom:16rpx;\n}\n.pb-17 {padding-bottom:17rpx;\n}\n.pb-18 {padding-bottom:18rpx;\n}\n.pb-19 {padding-bottom:19rpx;\n}\n.pb-20 {padding-bottom:20rpx;\n}\n.pb-21 {padding-bottom:21rpx;\n}\n.pb-22 {padding-bottom:22rpx;\n}\n.pb-23 {padding-bottom:23rpx;\n}\n.pb-24 {padding-bottom:24rpx;\n}\n.pb-25 {padding-bottom:25rpx;\n}\n.pb-26 {padding-bottom:26rpx;\n}\n.pb-27 {padding-bottom:27rpx;\n}\n.pb-28 {padding-bottom:28rpx;\n}\n.pb-29 {padding-bottom:29rpx;\n}\n.pb-30 {padding-bottom:30rpx;\n}\n.pb-31 {padding-bottom:31rpx;\n}\n.pb-32 {padding-bottom:32rpx;\n}\n.pb-33 {padding-bottom:33rpx;\n}\n.pb-34 {padding-bottom:34rpx;\n}\n.pb-35 {padding-bottom:35rpx;\n}\n.pb-36 {padding-bottom:36rpx;\n}\n.pb-37 {padding-bottom:37rpx;\n}\n.pb-38 {padding-bottom:38rpx;\n}\n.pb-39 {padding-bottom:39rpx;\n}\n.pb-40 {padding-bottom:40rpx;\n}\n.pb-41 {padding-bottom:41rpx;\n}\n.pb-42 {padding-bottom:42rpx;\n}\n.pb-43 {padding-bottom:43rpx;\n}\n.pb-44 {padding-bottom:44rpx;\n}\n.pb-45 {padding-bottom:45rpx;\n}\n.pb-46 {padding-bottom:46rpx;\n}\n.pb-47 {padding-bottom:47rpx;\n}\n.pb-48 {padding-bottom:48rpx;\n}\n.pb-49 {padding-bottom:49rpx;\n}\n.pb-50 {padding-bottom:50rpx;\n}\n/* 上下外边(0~50) */\n.m-0-a {margin:0rpx auto;\n}\n.m-1-a {margin:1rpx auto;\n}\n.m-2-a {margin:2rpx auto;\n}\n.m-3-a {margin:3rpx auto;\n}\n.m-4-a {margin:4rpx auto;\n}\n.m-5-a {margin:5rpx auto;\n}\n.m-6-a {margin:6rpx auto;\n}\n.m-7-a {margin:7rpx auto;\n}\n.m-8-a {margin:8rpx auto;\n}\n.m-9-a {margin:9rpx auto;\n}\n.m-10-a {margin:10rpx auto;\n}\n.m-11-a {margin:11rpx auto;\n}\n.m-12-a {margin:12rpx auto;\n}\n.m-13-a {margin:13rpx auto;\n}\n.m-14-a {margin:14rpx auto;\n}\n.m-15-a {margin:15rpx auto;\n}\n.m-16-a {margin:16rpx auto;\n}\n.m-17-a {margin:17rpx auto;\n}\n.m-18-a {margin:18rpx auto;\n}\n.m-19-a {margin:19rpx auto;\n}\n.m-20-a {margin:20rpx auto;\n}\n.m-21-a {margin:21rpx auto;\n}\n.m-22-a {margin:22rpx auto;\n}\n.m-23-a {margin:23rpx auto;\n}\n.m-24-a {margin:24rpx auto;\n}\n.m-25-a {margin:25rpx auto;\n}\n.m-26-a {margin:26rpx auto;\n}\n.m-27-a {margin:27rpx auto;\n}\n.m-28-a {margin:28rpx auto;\n}\n.m-29-a {margin:29rpx auto;\n}\n.m-30-a {margin:30rpx auto;\n}\n.m-31-a {margin:31rpx auto;\n}\n.m-32-a {margin:32rpx auto;\n}\n.m-33-a {margin:33rpx auto;\n}\n.m-34-a {margin:34rpx auto;\n}\n.m-35-a {margin:35rpx auto;\n}\n.m-36-a {margin:36rpx auto;\n}\n.m-37-a {margin:37rpx auto;\n}\n.m-38-a {margin:38rpx auto;\n}\n.m-39-a {margin:39rpx auto;\n}\n.m-40-a {margin:40rpx auto;\n}\n.m-41-a {margin:41rpx auto;\n}\n.m-42-a {margin:42rpx auto;\n}\n.m-43-a {margin:43rpx auto;\n}\n.m-44-a {margin:44rpx auto;\n}\n.m-45-a {margin:45rpx auto;\n}\n.m-46-a {margin:46rpx auto;\n}\n.m-47-a {margin:47rpx auto;\n}\n.m-48-a {margin:48rpx auto;\n}\n.m-49-a {margin:49rpx auto;\n}\n.m-50-a {margin:50rpx auto;\n}\n.m-1-20{margin: 1rpx 20rpx;}\n.m-5-10{margin: 5rpx 10rpx;}\nm-10 {margin:10rpx;}\n.m-15 {margin:15rpx;}\n/* 左边框(1~50) */\n.ml-1 {margin-left:1rpx;\n}\n.ml-2 {margin-left:2rpx;\n}\n.ml-3 {margin-left:3rpx;\n}\n.ml-4 {margin-left:4rpx;\n}\n.ml-5 {margin-left:5rpx;\n}\n.ml-6 {margin-left:6rpx;\n}\n.ml-7 {margin-left:7rpx;\n}\n.ml-8 {margin-left:8rpx;\n}\n.ml-9 {margin-left:9rpx;\n}\n.ml-10 {margin-left:10rpx;\n}\n.ml-11 {margin-left:11rpx;\n}\n.ml-12 {margin-left:12rpx;\n}\n.ml-13 {margin-left:13rpx;\n}\n.ml-14 {margin-left:14rpx;\n}\n.ml-15 {margin-left:15rpx;\n}\n.ml-16 {margin-left:16rpx;\n}\n.ml-17 {margin-left:17rpx;\n}\n.ml-18 {margin-left:18rpx;\n}\n.ml-19 {margin-left:19rpx;\n}\n.ml-20 {margin-left:20rpx;\n}\n.ml-21 {margin-left:21rpx;\n}\n.ml-22 {margin-left:22rpx;\n}\n.ml-23 {margin-left:23rpx;\n}\n.ml-24 {margin-left:24rpx;\n}\n.ml-25 {margin-left:25rpx;\n}\n.ml-26 {margin-left:26rpx;\n}\n.ml-27 {margin-left:27rpx;\n}\n.ml-28 {margin-left:28rpx;\n}\n.ml-29 {margin-left:29rpx;\n}\n.ml-30 {margin-left:30rpx;\n}\n.ml-31 {margin-left:31rpx;\n}\n.ml-32 {margin-left:32rpx;\n}\n.ml-33 {margin-left:33rpx;\n}\n.ml-34 {margin-left:34rpx;\n}\n.ml-35 {margin-left:35rpx;\n}\n.ml-36 {margin-left:36rpx;\n}\n.ml-37 {margin-left:37rpx;\n}\n.ml-38 {margin-left:38rpx;\n}\n.ml-39 {margin-left:39rpx;\n}\n.ml-40 {margin-left:40rpx;\n}\n.ml-41 {margin-left:41rpx;\n}\n.ml-42 {margin-left:42rpx;\n}\n.ml-43 {margin-left:43rpx;\n}\n.ml-44 {margin-left:44rpx;\n}\n.ml-45 {margin-left:45rpx;\n}\n.ml-46 {margin-left:46rpx;\n}\n.ml-47 {margin-left:47rpx;\n}\n.ml-48 {margin-left:48rpx;\n}\n.ml-49 {margin-left:49rpx;\n}\n.ml-50 {margin-left:50rpx;\n}\n/* 右边框(1~50) */\n.mr-1 {margin-right:1rpx;\n}\n.mr-2 {margin-right:2rpx;\n}\n.mr-3 {margin-right:3rpx;\n}\n.mr-4 {margin-right:4rpx;\n}\n.mr-5 {margin-right:5rpx;\n}\n.mr-6 {margin-right:6rpx;\n}\n.mr-7 {margin-right:7rpx;\n}\n.mr-8 {margin-right:8rpx;\n}\n.mr-9 {margin-right:9rpx;\n}\n.mr-10 {margin-right:10rpx;\n}\n.mr-11 {margin-right:11rpx;\n}\n.mr-12 {margin-right:12rpx;\n}\n.mr-13 {margin-right:13rpx;\n}\n.mr-14 {margin-right:14rpx;\n}\n.mr-15 {margin-right:15rpx;\n}\n.mr-16 {margin-right:16rpx;\n}\n.mr-17 {margin-right:17rpx;\n}\n.mr-18 {margin-right:18rpx;\n}\n.mr-19 {margin-right:19rpx;\n}\n.mr-20 {margin-right:20rpx;\n}\n.mr-21 {margin-right:21rpx;\n}\n.mr-22 {margin-right:22rpx;\n}\n.mr-23 {margin-right:23rpx;\n}\n.mr-24 {margin-right:24rpx;\n}\n.mr-25 {margin-right:25rpx;\n}\n.mr-26 {margin-right:26rpx;\n}\n.mr-27 {margin-right:27rpx;\n}\n.mr-28 {margin-right:28rpx;\n}\n.mr-29 {margin-right:29rpx;\n}\n.mr-30 {margin-right:30rpx;\n}\n.mr-31 {margin-right:31rpx;\n}\n.mr-32 {margin-right:32rpx;\n}\n.mr-33 {margin-right:33rpx;\n}\n.mr-34 {margin-right:34rpx;\n}\n.mr-35 {margin-right:35rpx;\n}\n.mr-36 {margin-right:36rpx;\n}\n.mr-37 {margin-right:37rpx;\n}\n.mr-38 {margin-right:38rpx;\n}\n.mr-39 {margin-right:39rpx;\n}\n.mr-40 {margin-right:40rpx;\n}\n.mr-41 {margin-right:41rpx;\n}\n.mr-42 {margin-right:42rpx;\n}\n.mr-43 {margin-right:43rpx;\n}\n.mr-44 {margin-right:44rpx;\n}\n.mr-45 {margin-right:45rpx;\n}\n.mr-46 {margin-right:46rpx;\n}\n.mr-47 {margin-right:47rpx;\n}\n.mr-48 {margin-right:48rpx;\n}\n.mr-49 {margin-right:49rpx;\n}\n.mr-50 {margin-right:50rpx;\n}\n/* 上边框(1~50) */\n.mt-1 {margin-top:1rpx;\n}\n.mt-2 {margin-top:2rpx;\n}\n.mt-3 {margin-top:3rpx;\n}\n.mt-4 {margin-top:4rpx;\n}\n.mt-5 {margin-top:5rpx;\n}\n.mt-6 {margin-top:6rpx;\n}\n.mt-7 {margin-top:7rpx;\n}\n.mt-8 {margin-top:8rpx;\n}\n.mt-9 {margin-top:9rpx;\n}\n.mt-10 {margin-top:10rpx;\n}\n.mt-11 {margin-top:11rpx;\n}\n.mt-12 {margin-top:12rpx;\n}\n.mt-13 {margin-top:13rpx;\n}\n.mt-14 {margin-top:14rpx;\n}\n.mt-15 {margin-top:15rpx;\n}\n.mt-16 {margin-top:16rpx;\n}\n.mt-17 {margin-top:17rpx;\n}\n.mt-18 {margin-top:18rpx;\n}\n.mt-19 {margin-top:19rpx;\n}\n.mt-20 {margin-top:20rpx;\n}\n.mt-21 {margin-top:21rpx;\n}\n.mt-22 {margin-top:22rpx;\n}\n.mt-23 {margin-top:23rpx;\n}\n.mt-24 {margin-top:24rpx;\n}\n.mt-25 {margin-top:25rpx;\n}\n.mt-26 {margin-top:26rpx;\n}\n.mt-27 {margin-top:27rpx;\n}\n.mt-28 {margin-top:28rpx;\n}\n.mt-29 {margin-top:29rpx;\n}\n.mt-30 {margin-top:30rpx;\n}\n.mt-31 {margin-top:31rpx;\n}\n.mt-32 {margin-top:32rpx;\n}\n.mt-33 {margin-top:33rpx;\n}\n.mt-34 {margin-top:34rpx;\n}\n.mt-35 {margin-top:35rpx;\n}\n.mt-36 {margin-top:36rpx;\n}\n.mt-37 {margin-top:37rpx;\n}\n.mt-38 {margin-top:38rpx;\n}\n.mt-39 {margin-top:39rpx;\n}\n.mt-40 {margin-top:40rpx;\n}\n.mt-41 {margin-top:41rpx;\n}\n.mt-42 {margin-top:42rpx;\n}\n.mt-43 {margin-top:43rpx;\n}\n.mt-44 {margin-top:44rpx;\n}\n.mt-45 {margin-top:45rpx;\n}\n.mt-46 {margin-top:46rpx;\n}\n.mt-47 {margin-top:47rpx;\n}\n.mt-48 {margin-top:48rpx;\n}\n.mt-49 {margin-top:49rpx;\n}\n.mt-50 {margin-top:50rpx;\n}\n/* 下边框(1~50) */\n.mb-1 {margin-bottom:1rpx;\n}\n.mb-2 {margin-bottom:2rpx;\n}\n.mb-3 {margin-bottom:3rpx;\n}\n.mb-4 {margin-bottom:4rpx;\n}\n.mb-5 {margin-bottom:5rpx;\n}\n.mb-6 {margin-bottom:6rpx;\n}\n.mb-7 {margin-bottom:7rpx;\n}\n.mb-8 {margin-bottom:8rpx;\n}\n.mb-9 {margin-bottom:9rpx;\n}\n.mb-10 {margin-bottom:10rpx;\n}\n.mb-11 {margin-bottom:11rpx;\n}\n.mb-12 {margin-bottom:12rpx;\n}\n.mb-13 {margin-bottom:13rpx;\n}\n.mb-14 {margin-bottom:14rpx;\n}\n.mb-15 {margin-bottom:15rpx;\n}\n.mb-16 {margin-bottom:16rpx;\n}\n.mb-17 {margin-bottom:17rpx;\n}\n.mb-18 {margin-bottom:18rpx;\n}\n.mb-19 {margin-bottom:19rpx;\n}\n.mb-20 {margin-bottom:20rpx;\n}\n.mb-21 {margin-bottom:21rpx;\n}\n.mb-22 {margin-bottom:22rpx;\n}\n.mb-23 {margin-bottom:23rpx;\n}\n.mb-24 {margin-bottom:24rpx;\n}\n.mb-25 {margin-bottom:25rpx;\n}\n.mb-26 {margin-bottom:26rpx;\n}\n.mb-27 {margin-bottom:27rpx;\n}\n.mb-28 {margin-bottom:28rpx;\n}\n.mb-29 {margin-bottom:29rpx;\n}\n.mb-30 {margin-bottom:30rpx;\n}\n.mb-31 {margin-bottom:31rpx;\n}\n.mb-32 {margin-bottom:32rpx;\n}\n.mb-33 {margin-bottom:33rpx;\n}\n.mb-34 {margin-bottom:34rpx;\n}\n.mb-35 {margin-bottom:35rpx;\n}\n.mb-36 {margin-bottom:36rpx;\n}\n.mb-37 {margin-bottom:37rpx;\n}\n.mb-38 {margin-bottom:38rpx;\n}\n.mb-39 {margin-bottom:39rpx;\n}\n.mb-40 {margin-bottom:40rpx;\n}\n.mb-41 {margin-bottom:41rpx;\n}\n.mb-42 {margin-bottom:42rpx;\n}\n.mb-43 {margin-bottom:43rpx;\n}\n.mb-44 {margin-bottom:44rpx;\n}\n.mb-45 {margin-bottom:45rpx;\n}\n.mb-46 {margin-bottom:46rpx;\n}\n.mb-47 {margin-bottom:47rpx;\n}\n.mb-48 {margin-bottom:48rpx;\n}\n.mb-49 {margin-bottom:49rpx;\n}\n.mb-50 {margin-bottom:50rpx;\n}\n.cu-p {\n    cursor: pointer;\n}\n.cu-d {\n    cursor: default;\n}\n.o-h {\n    overflow: hidden;\n}\n.oy-s {\n    overflow-y: scroll;\n}\n.ox-s {\n    overflow-x: scroll;\n}\n/* 圆角 */\n.br-1 {border-radius:1rpx;\n}\n.br-2 {border-radius:2rpx;\n}\n.br-3 {border-radius:3rpx;\n}\n.br-4 {border-radius:4rpx;\n}\n.br-5 {border-radius:5rpx;\n}\n.br-6 {border-radius:6rpx;\n}\n.br-7 {border-radius:7rpx;\n}\n.br-8 {border-radius:8rpx;\n}\n.br-9 {border-radius:9rpx;\n}\n.br-10 {border-radius:10rpx;\n}\n.br-11 {border-radius:11rpx;\n}\n.br-12 {border-radius:12rpx;\n}\n.br-13 {border-radius:13rpx;\n}\n.br-14 {border-radius:14rpx;\n}\n.br-15 {border-radius:15rpx;\n}\n.br-16 {border-radius:16rpx;\n}\n.br-17 {border-radius:17rpx;\n}\n.br-18 {border-radius:18rpx;\n}\n.br-19 {border-radius:19rpx;\n}\n.br-20 {border-radius:20rpx;\n}\n.br-21 {border-radius:21rpx;\n}\n.br-22 {border-radius:22rpx;\n}\n.br-23 {border-radius:23rpx;\n}\n.br-24 {border-radius:24rpx;\n}\n.br-25 {border-radius:25rpx;\n}\n.br-26 {border-radius:26rpx;\n}\n.br-27 {border-radius:27rpx;\n}\n.br-28 {border-radius:28rpx;\n}\n.br-29 {border-radius:29rpx;\n}\n.br-30 {border-radius:30rpx;\n}\n.br-31 {border-radius:31rpx;\n}\n.br-32 {border-radius:32rpx;\n}\n.br-33 {border-radius:33rpx;\n}\n.br-34 {border-radius:34rpx;\n}\n.br-35 {border-radius:35rpx;\n}\n.br-36 {border-radius:36rpx;\n}\n.br-37 {border-radius:37rpx;\n}\n.br-38 {border-radius:38rpx;\n}\n.br-39 {border-radius:39rpx;\n}\n.br-40 {border-radius:40rpx;\n}\n.br-41 {border-radius:41rpx;\n}\n.br-42 {border-radius:42rpx;\n}\n.br-43 {border-radius:43rpx;\n}\n.br-44 {border-radius:44rpx;\n}\n.br-45 {border-radius:45rpx;\n}\n.br-46 {border-radius:46rpx;\n}\n.br-47 {border-radius:47rpx;\n}\n.br-48 {border-radius:48rpx;\n}\n.br-49 {border-radius:49rpx;\n}\n.br-50 {border-radius:50rpx;\n}\n.br-51 {border-radius:51rpx;\n}\n.br-52 {border-radius:52rpx;\n}\n.br-53 {border-radius:53rpx;\n}\n.br-54 {border-radius:54rpx;\n}\n.br-55 {border-radius:55rpx;\n}\n.br-56 {border-radius:56rpx;\n}\n.br-57 {border-radius:57rpx;\n}\n.br-58 {border-radius:58rpx;\n}\n.br-59 {border-radius:59rpx;\n}\n.br-60 {border-radius:60rpx;\n}\n.br-61 {border-radius:61rpx;\n}\n.br-62 {border-radius:62rpx;\n}\n.br-63 {border-radius:63rpx;\n}\n.br-64 {border-radius:64rpx;\n}\n.br-65 {border-radius:65rpx;\n}\n.br-66 {border-radius:66rpx;\n}\n.br-67 {border-radius:67rpx;\n}\n.br-68 {border-radius:68rpx;\n}\n.br-69 {border-radius:69rpx;\n}\n.br-70 {border-radius:70rpx;\n}\n.br-71 {border-radius:71rpx;\n}\n.br-72 {border-radius:72rpx;\n}\n.br-73 {border-radius:73rpx;\n}\n.br-74 {border-radius:74rpx;\n}\n.br-75 {border-radius:75rpx;\n}\n.br-76 {border-radius:76rpx;\n}\n.br-77 {border-radius:77rpx;\n}\n.br-78 {border-radius:78rpx;\n}\n.br-79 {border-radius:79rpx;\n}\n.br-80 {border-radius:80rpx;\n}\n.br-81 {border-radius:81rpx;\n}\n.br-82 {border-radius:82rpx;\n}\n.br-83 {border-radius:83rpx;\n}\n.br-84 {border-radius:84rpx;\n}\n.br-85 {border-radius:85rpx;\n}\n.br-86 {border-radius:86rpx;\n}\n.br-87 {border-radius:87rpx;\n}\n.br-88 {border-radius:88rpx;\n}\n.br-89 {border-radius:89rpx;\n}\n.br-90 {border-radius:90rpx;\n}\n.br-91 {border-radius:91rpx;\n}\n.br-92 {border-radius:92rpx;\n}\n.br-93 {border-radius:93rpx;\n}\n.br-94 {border-radius:94rpx;\n}\n.br-95 {border-radius:95rpx;\n}\n.br-96 {border-radius:96rpx;\n}\n.br-97 {border-radius:97rpx;\n}\n.br-98 {border-radius:98rpx;\n}\n.br-99 {border-radius:99rpx;\n}\n.br-100 {border-radius:100rpx;\n}\n/* 全圆角 */\n.br50{\n    border-radius: 50%;\n}\n/* 底边框表现 */\n.b-b1 {border-bottom:1rpx solid #f1f1f1;\n}\n.b-b2 {border-bottom:2rpx solid #f1f1f1;\n}\n.b-b3 {border-bottom:3rpx solid #f1f1f1;\n}\n.b-b4 {border-bottom:4rpx solid #f1f1f1;\n}\n.b-b5 {border-bottom:5rpx solid #f1f1f1;\n}\n.b-b6 {border-bottom:6rpx solid #f1f1f1;\n}\n.b-b7 {border-bottom:7rpx solid #f1f1f1;\n}\n.b-b8 {border-bottom:8rpx solid #f1f1f1;\n}\n.b-b9 {border-bottom:9rpx solid #f1f1f1;\n}\n.b-b10 {border-bottom:10rpx solid #f1f1f1;\n}\n/* 上边框表现 */\n.b-t1 {border-top:1rpx solid #f1f1f1;\n}\n.b-t2 {border-top:2rpx solid #f1f1f1;\n}\n.b-t3 {border-top:3rpx solid #f1f1f1;\n}\n.b-t4 {border-top:4rpx solid #f1f1f1;\n}\n.b-t5 {border-top:5rpx solid #f1f1f1;\n}\n.b-t6 {border-top:6rpx solid #f1f1f1;\n}\n.b-t7 {border-top:7rpx solid #f1f1f1;\n}\n.b-t8 {border-top:8rpx solid #f1f1f1;\n}\n.b-t9 {border-top:9rpx solid #f1f1f1;\n}\n.b-t10 {border-top:10rpx solid #f1f1f1;\n}\n/* 左边框表现 */\n.b-l1 {border-left:1rpx solid #f1f1f1;\n}\n.b-l2 {border-left:2rpx solid #f1f1f1;\n}\n.b-l3 {border-left:3rpx solid #f1f1f1;\n}\n.b-l4 {border-left:4rpx solid #f1f1f1;\n}\n.b-l5 {border-left:5rpx solid #f1f1f1;\n}\n.b-l6 {border-left:6rpx solid #f1f1f1;\n}\n.b-l7 {border-left:7rpx solid #f1f1f1;\n}\n.b-l8 {border-left:8rpx solid #f1f1f1;\n}\n.b-l9 {border-left:9rpx solid #f1f1f1;\n}\n.b-l10 {border-left:10rpx solid #f1f1f1;\n}\n/* 右边框表现 */\n.b-r1 {border-right:1rpx solid #f1f1f1;\n}\n.b-r2 {border-right:2rpx solid #f1f1f1;\n}\n.b-r3 {border-right:3rpx solid #f1f1f1;\n}\n.b-r4 {border-right:4rpx solid #f1f1f1;\n}\n.b-r5 {border-right:5rpx solid #f1f1f1;\n}\n.b-r6 {border-right:6rpx solid #f1f1f1;\n}\n.b-r7 {border-right:7rpx solid #f1f1f1;\n}\n.b-r8 {border-right:8rpx solid #f1f1f1;\n}\n.b-r9 {border-right:9rpx solid #f1f1f1;\n}\n.b-r10 {border-right:10rpx solid #f1f1f1;\n}\n/* 四边边框表现 */\n.b-1 {border:1rpx solid #f1f1f1;\n}\n.b-2 {border:2rpx solid #f1f1f1;\n}\n.b-3 {border:3rpx solid #f1f1f1;\n}\n.b-4 {border:4rpx solid #f1f1f1;\n}\n.b-5 {border:5rpx solid #f1f1f1;\n}\n.b-6 {border:6rpx solid #f1f1f1;\n}\n.b-7 {border:7rpx solid #f1f1f1;\n}\n.b-8 {border:8rpx solid #f1f1f1;\n}\n.b-9 {border:9rpx solid #f1f1f1;\n}\n.b-10 {border:10rpx solid #f1f1f1;\n}\n/* 文字颜色 */\n.c-fff {\r\n\tcolor: #fff;\n}\n.c-e5 {\r\n\tcolor: #e5e5e5;\n}\n.c-f1 {\r\n\tcolor: #f1f1f1;\n}\n.c-000 {\r\n\tcolor: #000;\n}\n.c-333 {\r\n\tcolor: #333;\n}\n.c-666 {\r\n\tcolor: #666;\n}\n.c-999 {\r\n\tcolor: #999;\n}\n.c-red {\r\n\tcolor: #e47470;\n}\n.c-0ff {\r\n\tcolor: #00ffff;\n}\n.c-0f0 {\r\n\tcolor: #00ff00;\n}\n.c-ff0 {\r\n\tcolor: #ffff00;\n}\n.c-f00 {\r\n\tcolor: #ff0000;\n}\n.c-f0f {\r\n\tcolor: #ff00ff;\n}\n.c-00f {\r\n\tcolor: #0000ff;\n}\n.c-ff{color: #ffffff;}\n.c-fc{color: #fcfcfc;}\n.c-f0{color: #f0f0f0;}\n.c-e0{color: #e0e0e0;}\n.c-d0{color: #d0d0d0;}\n.c-be{color: #bebebe;}\n.c-ad{color: #adadad;}\n.c-9d{color: #9d9d9d;}\n.c-8e{color: #8e8e8e;}\n.c-7b{color: #7b7b7b;}\n.c-6c{color: #6c6c6c;}\n.c-5b{color: #5b5b5b;}\n.c-4f{color: #4f4f4f;}\n.c-3c{color: #3c3c3c;}\n.c-27{color: #272727;}\n.c-00{color: #000000;}\n/* 背景颜色 */\n.bg-fff {\r\n\tbackground-color: #fff;\n}\n.bg-000 {\r\n\tbackground-color: #000;\n}\n.bg-333 {\r\n\tbackground-color: #333;\n}\n.bg-666 {\r\n\tbackground-color: #666;\n}\n.bg-999 {\r\n\tbackground-color: #999;\n}\n.bg-e5 {\r\n\tbackground-color: #e5e5e5;\n}\n.bg-f1 {\r\n\tbackground-color: #f1f1f1;\n}\n.bg-0ff {\r\n\tbackground-color: #00ffff;\n}\n.bg-0f0 {\r\n\tbackground-color: #00ff00;\n}\n.bg-ff0 {\r\n\tbackground-color: #ffff00;\n}\n.bg-f00 {\r\n\tbackground-color: #ff0000;\n}\n.bg-f0f {\r\n\tbackground-color: #ff00ff;\n}\n.bg-00f {\r\n\tbackground-color: #0000ff;\n}\n.bg-ff{background-color: #ffffff;}\n.bg-fc{background-color: #fcfcfc;}\n.bg-f0{background-color: #f0f0f0;}\n.bg-e0{background-color: #e0e0e0;}\n.bg-d0{background-color: #d0d0d0;}\n.bg-be{background-color: #bebebe;}\n.bg-ad{background-color: #adadad;}\n.bg-9d{background-color: #9d9d9d;}\n.bg-8e{background-color: #8e8e8e;}\n.bg-7b{background-color: #7b7b7b;}\n.bg-6c{background-color: #6c6c6c;}\n.bg-5b{background-color: #5b5b5b;}\n.bg-4f{background-color: #4f4f4f;}\n.bg-3c{background-color: #3c3c3c;}\n.bg-27{background-color: #272727;}\n.bg-00{background-color: #000000;}\n/* 边框颜色 */\n.bc-fff {\r\n\tborder-color: #fff;\n}\n.bc-000 {\r\n\tborder-color: #000;\n}\n.bc-333 {\r\n\tborder-color: #333;\n}\n.bc-666 {\r\n\tborder-color: #666;\n}\n.bc-999 {\r\n\tborder-color: #999;\n}\n.bc-e5 {\r\n\tborder-color: #e5e5e5;\n}\n.bc-f1 {\r\n\tborder-color: #f1f1f1;\n}\n.bc-0ff {\r\n\tborder-color: #00ffff;\n}\n.bc-0f0 {\r\n\tborder-color: #00ff00;\n}\n.bc-ff0 {\r\n\tborder-color: #ffff00;\n}\n.bc-f00 {\r\n\tborder-color: #ff0000;\n}\n.bc-f0f {\r\n\tborder-color: #ff00ff;\n}\n.bc-00f {\r\n\tborder-color: #0000ff;\n}\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n.indent-s {\n  margin: 5rpx 0 5rpx 40rpx;\n}\n.indent-m {\n  margin: 5rpx 0 5rpx 80rpx;\n}\n.indent-l {\n  margin: 5rpx 0 5rpx 120rpx;\n}\n.z-flex {\n  --dir-row: row;\n  --dir-col: column;\n  --wrap-no: nowrap;\n  --wrap-yes: wrap;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-flow: var(--dir) var(--wrap);\n          flex-flow: var(--dir) var(--wrap);\n}\n.form-top-view {\n  width: 100%;\n  height: 100%;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: start;\n  -webkit-justify-content: flex-start;\n          justify-content: flex-start;\n  background-color: #eeeeee;\n  border-radius: 10px;\n  padding: 20rpx 20rpx;\n}\n.form-top-view .form-item {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: justify;\n    -webkit-justify-content: space-between;\n            justify-content: space-between;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n            align-items: center;\n    border-radius: 10px;\n}\n.form-top-view .form-item .form-item-name {\n      font-weight: bold;\n      padding: 5rpx 20rpx;\n      margin: 5rpx 5rpx;\n}\n.form-top-view .form-item .form-item-text {\n      padding: 5rpx 20rpx;\n      margin: 5rpx 5rpx;\n}\n.form-top-view .pop-item-base {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n    -webkit-flex-direction: row;\n            flex-direction: row;\n    -webkit-box-pack: start;\n    -webkit-justify-content: flex-start;\n            justify-content: flex-start;\n    background: #bdbdbd;\n    padding: 5rpx 5rpx;\n    margin: 5rpx 5rpx;\n    border-radius: 10px;\n}\n.form-top-view .pop-title {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n            justify-content: center;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n            align-items: center;\n    line-height: 40rpx;\n    font-size: 40rpx;\n    font-weight: bold;\n    padding: 0 15rpx;\n    text-align: left;\n    color: #00bcd4;\n}\n.form-top-view .pop-title-waring {\n    display: -webkit-box;\n    display: -webkit-flex;\n    display: flex;\n    -webkit-box-pack: center;\n    -webkit-justify-content: center;\n            justify-content: center;\n    -webkit-box-align: center;\n    -webkit-align-items: center;\n            align-items: center;\n    line-height: 40rpx;\n    font-size: 40rpx;\n    font-weight: bold;\n    padding: 0 15rpx;\n    text-align: left;\n    color: #D32F2F;\n}\n.form-top-view .pop-text {\n    line-height: 25rpx;\n    font-size: 25rpx;\n    font-weight: bold;\n    padding: 15rpx 0;\n    text-align: center;\n    color: #00838f;\n}\n.form-top-view .pop-text-warning {\n    margin: 0 15rpx;\n    background-color: #EF5350;\n    border-radius: 10px;\n    -webkit-box-align: stretch;\n    -webkit-align-items: stretch;\n            align-items: stretch;\n    line-height: 40rpx;\n    font-size: 40rpx;\n}\n.form-top-view .pop-input {\n    margin: 0 10rpx;\n    height: 40rpx;\n    padding: 5rpx 25rpx;\n    line-height: 40rpx;\n    font-size: 40rpx;\n    background: #eceff1;\n    border-radius: 10rpx;\n}\n.form-top-view .pop-color-block {\n    margin: 10rpx 10rpx;\n    padding: 5rpx;\n    width: 60rpx;\n    height: 60rpx;\n    border-radius: 10rpx;\n    border: 1px solid black;\n}\n.btn {\n  text-decoration: none;\n  border: 1px solid #9294f8;\n  position: relative;\n  overflow: hidden;\n  border-radius: 100px;\n  padding: 0 15rpx;\n}\n.btn:hover {\n  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);\n}\n.btn:before {\n  content: '';\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background: -webkit-linear-gradient(330deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  background: linear-gradient(120deg, transparent, rgba(146, 148, 248, 0.4), transparent);\n  -webkit-transition: all 650ms;\n  transition: all 650ms;\n}\n.btn:hover:before {\n  left: 100%;\n}\n.color-picker {\n  width: 150px;\n  height: 150px;\n  border-radius: 15rpx;\n  border: 1px solid #000000;\n  z-index: 99;\n}\n/* @import './common/z-colors.scss'; */\n/* @import \"colorui/icon.css\"; */\n.colors-white-base {\n  background-color: #ffffff;\n}\n.colors-black-base {\n  background-color: #000000;\n}\n.colors-red-base {\n  background-color: #F44336;\n}\n.colors-red-lighten-1 {\n  background-color: #EF5350;\n}\n.colors-red-darken-1 {\n  background-color: #E53935;\n}\n.colors-pink-base {\n  background-color: #e91e63;\n}\n.colors-pink-lighten-1 {\n  background-color: #ec407a;\n}\n.colors-pink-darken-1 {\n  background-color: #d81b60;\n}\n.colors-purple-base {\n  background-color: #9c27b0;\n}\n.colors-purple-lighten-1 {\n  background-color: #ab47bc;\n}\n.colors-purple-darken-1 {\n  background-color: #8e24aa;\n}\n.colors-deep-purple-base {\n  background-color: #673ab7;\n}\n.colors-deep-purple-lighten-1 {\n  background-color: #7e57c2;\n}\n.colors-deep-purple-darken-1 {\n  background-color: #5e35b1;\n}\n.colors-indigo-base {\n  background-color: #3f51b5;\n}\n.colors-indigo-lighten-1 {\n  background-color: #5c6bc0;\n}\n.colors-indigo-darken-1 {\n  background-color: #3949ab;\n}\n.colors-blue-base {\n  background-color: #2196F3;\n}\n.colors-blue-lighten-1 {\n  background-color: #42A5F5;\n}\n.colors-blue-darken-1 {\n  background-color: #1E88E5;\n}\n.colors-light-blue-base {\n  background-color: #03a9f4;\n}\n.colors-light-blue-lighten-1 {\n  background-color: #29b6f6;\n}\n.colors-light-blue-darken-1 {\n  background-color: #039be5;\n}\n.colors-cyan-base {\n  background-color: #00bcd4;\n}\n.colors-cyan-lighten-1 {\n  background-color: #26c6da;\n}\n.colors-cyan-darken-1 {\n  background-color: #00acc1;\n}\n.colors-teal-base {\n  background-color: #009688;\n}\n.colors-teal-lighten-1 {\n  background-color: #26a69a;\n}\n.colors-teal-darken-1 {\n  background-color: #00897b;\n}\n.colors-green-base {\n  background-color: #4CAF50;\n}\n.colors-green-lighten-1 {\n  background-color: #66BB6A;\n}\n.colors-green-darken-1 {\n  background-color: #43A047;\n}\n.colors-light-green-base {\n  background-color: #8bc34a;\n}\n.colors-light-green-lighten-1 {\n  background-color: #9ccc65;\n}\n.colors-light-green-darken-1 {\n  background-color: #7cb342;\n}\n.colors-lime-base {\n  background-color: #cddc39;\n}\n.colors-lime-lighten-1 {\n  background-color: #d4e157;\n}\n.colors-lime-darken-1 {\n  background-color: #c0ca33;\n}\n.colors-yellow-base {\n  background-color: #ffeb3b;\n}\n.colors-yellow-lighten-1 {\n  background-color: #ffee58;\n}\n.colors-yellow-darken-1 {\n  background-color: #fdd835;\n}\n.colors-amber-base {\n  background-color: #ffc107;\n}\n.colors-amber-lighten-1 {\n  background-color: #ffca28;\n}\n.colors-amber-darken-1 {\n  background-color: #ffb300;\n}\n.colors-orange-base {\n  background-color: #ff9800;\n}\n.colors-orange-lighten-1 {\n  background-color: #ffa726;\n}\n.colors-orange-darken-1 {\n  background-color: #fb8c00;\n}\n.colors-deep-orange-base {\n  background-color: #ff5722;\n}\n.colors-deep-orange-lighten-1 {\n  background-color: #ff7043;\n}\n.colors-deep-orange-darken-1 {\n  background-color: #f4511e;\n}\n.colors-brown-base {\n  background-color: #795548;\n}\n.colors-brown-lighten-1 {\n  background-color: #8d6e63;\n}\n.colors-brown-darken-1 {\n  background-color: #6d4c41;\n}\n.colors-blue-grey-base {\n  background-color: #607d8b;\n}\n.colors-blue-grey-lighten-1 {\n  background-color: #78909c;\n}\n.colors-blue-grey-darken-1 {\n  background-color: #546e7a;\n}\n.colors-grey-base {\n  background-color: #9e9e9e;\n}\n.colors-grey-lighten-1 {\n  background-color: #bdbdbd;\n}\n.colors-grey-darken-1 {\n  background-color: #757575;\n}\n.colors-grey-lighten-2 {\n  background-color: #e0e0e0;\n}\n.colors-grey-darken-2 {\n  background-color: #616161;\n}\n.colors-grey-lighten-3 {\n  background-color: #eeeeee;\n}\n.colors-grey-darken-3 {\n  background-color: #424242;\n}\n.colors-grey-lighten-4 {\n  background-color: #f5f5f5;\n}\n.colors-grey-darken-4 {\n  background-color: #212121;\n}\n.colors-grey-lighten-5 {\n  background-color: #f5f5f5;\n}\n/* 以下样式用于 hello uni-app 演示所需 */\nbody {\n  background-color: #F4F5F6;\n  height: 100%;\n  font-size: 28upx;\n  line-height: 1.8;\n}\n.uni-header-logo {\n  padding: 30upx;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n  margin-top: 10upx;\n}\n.uni-header-image {\n  width: 100px;\n  height: 100px;\n}\n.uni-hello-text {\n  color: #7A7E83;\n}\n.uni-hello-addfile {\n  text-align: center;\n  line-height: 300upx;\n  background: #FFF;\n  padding: 50upx;\n  margin-top: 10px;\n  font-size: 38upx;\n  color: #808080;\n}\n/*\n\t\t全局公共样式和字体图标\n\t*/\n/* \t@font-face {\n\t\tfont-family: yticon;\n\t\tfont-weight: normal;\n\t\tfont-style: normal;\n\t\tsrc: url('https://at.alicdn.com/t/font_985780_km7mi63cihi.ttf?t=1545807318834') format('truetype'),\n\n\t} */\n/* \t.yticon {\n\t\tfont-family: \"yticon\" !important;\n\t\tfont-size: 16px;\n\t\tfont-style: normal;\n\t\t-webkit-font-smoothing: antialiased;\n\t\t-moz-osx-font-smoothing: grayscale;\n\t} */\n.icon-youyong4:before {\n  content: \"\\E627\";\n}\n.icon-zhuazhualiugou:before {\n  content: \"\\E621\";\n}\n.icon-shuijue:before {\n  content: \"\\E635\";\n}\n.iconfont {\n  font-family: \"iconfont\" !important;\n  font-size: 40rpx;\n  font-style: normal;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  margin-right: 14rpx;\n}\n/* button样式改写 */\nuni-button,\nuni-button {\n  height: 80upx;\n  line-height: 80upx;\n  font-size: 34upx;\n  font-weight: normal;\n  /* \t\t&.no-border:before,\n\t\t&.no-border:after {\n\t\t\tborder: 0;\n\t\t} */\n}\n.icon-xiatubiao:before {\n  content: '\\E608';\n}\n.icon-gouwuche:before {\n  content: '\\E609';\n}\n.icon-shoucang:before {\n  content: '\\E645';\n}\nuni-button[type=default],\nuni-button[type=default] {\n  color: #303133;\n}\n.icon {\n  width: 1em;\n  height: 1em;\n  vertical-align: -0.15em;\n  fill: currentColor;\n  overflow: hidden;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 113 */
+/* 121 */
+/*!***************************************************!*\
+  !*** ./node_modules/css-loader/lib/url/escape.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function escape(url) {
+    if (typeof url !== 'string') {
+        return url
+    }
+    // If url is already wrapped in quotes, remove them
+    if (/^['"].*['"]$/.test(url)) {
+        url = url.slice(1, -1);
+    }
+    // Should url be wrapped?
+    // See https://drafts.csswg.org/css-values-3/#urls
+    if (/["'() \t\n]/.test(url)) {
+        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
+    }
+
+    return url
+}
+
+
+/***/ }),
+/* 122 */
+/*!**********************************************!*\
+  !*** C:/proj/jellyClassTable/static/uni.ttf ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "static/uni.ttf";
+
+/***/ }),
+/* 123 */
 /*!********************************************************!*\
   !*** C:/proj/jellyClassTable/components/page-head.vue ***!
   \********************************************************/
@@ -7662,8 +7806,8 @@ exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置�
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _page_head_vue_vue_type_template_id_69742aae_name_page_head___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page-head.vue?vue&type=template&id=69742aae&name=page-head& */ 114);
-/* harmony import */ var _page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page-head.vue?vue&type=script&lang=js& */ 116);
+/* harmony import */ var _page_head_vue_vue_type_template_id_69742aae_name_page_head___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page-head.vue?vue&type=template&id=69742aae&name=page-head& */ 124);
+/* harmony import */ var _page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page-head.vue?vue&type=script&lang=js& */ 126);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
@@ -7693,7 +7837,7 @@ component.options.__file = "jellyClassTable/components/page-head.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 114 */
+/* 124 */
 /*!******************************************************************************************************!*\
   !*** C:/proj/jellyClassTable/components/page-head.vue?vue&type=template&id=69742aae&name=page-head& ***!
   \******************************************************************************************************/
@@ -7702,7 +7846,7 @@ component.options.__file = "jellyClassTable/components/page-head.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_template_id_69742aae_name_page_head___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-head.vue?vue&type=template&id=69742aae&name=page-head& */ 115);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_template_id_69742aae_name_page_head___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-head.vue?vue&type=template&id=69742aae&name=page-head& */ 125);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_template_id_69742aae_name_page_head___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_template_id_69742aae_name_page_head___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -7714,7 +7858,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 115 */
+/* 125 */
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/page-head.vue?vue&type=template&id=69742aae&name=page-head& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7750,7 +7894,7 @@ render._withStripped = true
 
 
 /***/ }),
-/* 116 */
+/* 126 */
 /*!*********************************************************************************!*\
   !*** C:/proj/jellyClassTable/components/page-head.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************/
@@ -7759,13 +7903,13 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-head.vue?vue&type=script&lang=js& */ 117);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-head.vue?vue&type=script&lang=js& */ 127);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_head_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 117 */
+/* 127 */
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/page-head.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7785,7 +7929,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   components: {} };exports.default = _default;
 
 /***/ }),
-/* 118 */
+/* 128 */
 /*!********************************************************!*\
   !*** C:/proj/jellyClassTable/components/page-foot.vue ***!
   \********************************************************/
@@ -7794,10 +7938,10 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _page_foot_vue_vue_type_template_id_79151b88_name_page_foot___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page-foot.vue?vue&type=template&id=79151b88&name=page-foot& */ 119);
-/* harmony import */ var _page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page-foot.vue?vue&type=script&lang=js& */ 121);
+/* harmony import */ var _page_foot_vue_vue_type_template_id_79151b88_name_page_foot___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./page-foot.vue?vue&type=template&id=79151b88&name=page-foot& */ 129);
+/* harmony import */ var _page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./page-foot.vue?vue&type=script&lang=js& */ 131);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page-foot.vue?vue&type=style&index=0&lang=css& */ 123);
+/* harmony import */ var _page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./page-foot.vue?vue&type=style&index=0&lang=css& */ 133);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
 var renderjs
@@ -7827,7 +7971,7 @@ component.options.__file = "jellyClassTable/components/page-foot.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 119 */
+/* 129 */
 /*!******************************************************************************************************!*\
   !*** C:/proj/jellyClassTable/components/page-foot.vue?vue&type=template&id=79151b88&name=page-foot& ***!
   \******************************************************************************************************/
@@ -7836,7 +7980,7 @@ component.options.__file = "jellyClassTable/components/page-foot.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_template_id_79151b88_name_page_foot___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=template&id=79151b88&name=page-foot& */ 120);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_template_id_79151b88_name_page_foot___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=template&id=79151b88&name=page-foot& */ 130);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_template_id_79151b88_name_page_foot___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_template_id_79151b88_name_page_foot___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -7848,7 +7992,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 120 */
+/* 130 */
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/page-foot.vue?vue&type=template&id=79151b88&name=page-foot& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7897,7 +8041,7 @@ render._withStripped = true
 
 
 /***/ }),
-/* 121 */
+/* 131 */
 /*!*********************************************************************************!*\
   !*** C:/proj/jellyClassTable/components/page-foot.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************/
@@ -7906,13 +8050,13 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=script&lang=js& */ 122);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=script&lang=js& */ 132);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 122 */
+/* 132 */
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/page-foot.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7932,7 +8076,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   components: {} };exports.default = _default;
 
 /***/ }),
-/* 123 */
+/* 133 */
 /*!*****************************************************************************************!*\
   !*** C:/proj/jellyClassTable/components/page-foot.vue?vue&type=style&index=0&lang=css& ***!
   \*****************************************************************************************/
@@ -7941,13 +8085,13 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=style&index=0&lang=css& */ 124);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=style&index=0&lang=css& */ 134);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_page_foot_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 124 */
+/* 134 */
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/page-foot.vue?vue&type=style&index=0&lang=css& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7957,7 +8101,7 @@ __webpack_require__.r(__webpack_exports__);
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(/*! !../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=style&index=0&lang=css& */ 125);
+var content = __webpack_require__(/*! !../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./page-foot.vue?vue&type=style&index=0&lang=css& */ 135);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -7967,7 +8111,7 @@ var update = add("8bda30ae", content, false, {"sourceMap":false,"shadowMode":fal
 if(false) {}
 
 /***/ }),
-/* 125 */
+/* 135 */
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/page-foot.vue?vue&type=style&index=0&lang=css& ***!
   \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -7985,7 +8129,7 @@ exports.push([module.i, "\n.page-share-title {\n\ttext-align: center;\n\tfont-si
 
 
 /***/ }),
-/* 126 */
+/* 136 */
 /*!****************************************************!*\
   !*** C:/proj/jellyClassTable/components/uLink.vue ***!
   \****************************************************/
@@ -7994,8 +8138,8 @@ exports.push([module.i, "\n.page-share-title {\n\ttext-align: center;\n\tfont-si
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _uLink_vue_vue_type_template_id_dfa3cc42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./uLink.vue?vue&type=template&id=dfa3cc42& */ 127);
-/* harmony import */ var _uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uLink.vue?vue&type=script&lang=js& */ 129);
+/* harmony import */ var _uLink_vue_vue_type_template_id_dfa3cc42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./uLink.vue?vue&type=template&id=dfa3cc42& */ 137);
+/* harmony import */ var _uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./uLink.vue?vue&type=script&lang=js& */ 139);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
 
@@ -8025,7 +8169,7 @@ component.options.__file = "jellyClassTable/components/uLink.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
-/* 127 */
+/* 137 */
 /*!***********************************************************************************!*\
   !*** C:/proj/jellyClassTable/components/uLink.vue?vue&type=template&id=dfa3cc42& ***!
   \***********************************************************************************/
@@ -8034,7 +8178,7 @@ component.options.__file = "jellyClassTable/components/uLink.vue"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_template_id_dfa3cc42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./uLink.vue?vue&type=template&id=dfa3cc42& */ 128);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_template_id_dfa3cc42___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./uLink.vue?vue&type=template&id=dfa3cc42& */ 138);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_template_id_dfa3cc42___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_template_id_dfa3cc42___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
@@ -8046,7 +8190,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ }),
-/* 128 */
+/* 138 */
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/uLink.vue?vue&type=template&id=dfa3cc42& ***!
   \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -8089,7 +8233,7 @@ render._withStripped = true
 
 
 /***/ }),
-/* 129 */
+/* 139 */
 /*!*****************************************************************************!*\
   !*** C:/proj/jellyClassTable/components/uLink.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************/
@@ -8098,13 +8242,13 @@ render._withStripped = true
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./uLink.vue?vue&type=script&lang=js& */ 130);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./uLink.vue?vue&type=script&lang=js& */ 140);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_uLink_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
-/* 130 */
+/* 140 */
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/uLink.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
@@ -8122,6 +8266,291 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   },
   components: {} };exports.default = _default;
+
+/***/ }),
+/* 141 */
+/*!**********************************************************!*\
+  !*** C:/proj/jellyClassTable/components/icon-picker.vue ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./icon-picker.vue?vue&type=template&id=781458b2&name=icon-picker& */ 142);
+/* harmony import */ var _icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./icon-picker.vue?vue&type=script&lang=js& */ 144);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _icon_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./icon-picker.vue?vue&type=style&index=0&lang=css& */ 146);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 18);
+
+var renderjs
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null,
+  false,
+  _icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__["components"],
+  renderjs
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "jellyClassTable/components/icon-picker.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+/* 142 */
+/*!**********************************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/icon-picker.vue?vue&type=template&id=781458b2&name=icon-picker& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./icon-picker.vue?vue&type=template&id=781458b2&name=icon-picker& */ 143);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__["recyclableRender"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "components", function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_16_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_filter_modules_template_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_page_meta_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_template_id_781458b2_name_icon_picker___WEBPACK_IMPORTED_MODULE_0__["components"]; });
+
+
+
+/***/ }),
+/* 143 */
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--16-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/filter-modules-template.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/page-meta.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/icon-picker.vue?vue&type=template&id=781458b2&name=icon-picker& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns, recyclableRender, components */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
+var components
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-uni-view",
+    { staticClass: _vm._$g(0, "sc"), style: _vm._$g(0, "s"), attrs: { _i: 0 } },
+    [
+      _c("v-uni-text", {
+        staticClass: _vm._$g(1, "sc"),
+        class: _vm._$g(1, "c"),
+        style: _vm._$g(1, "s"),
+        attrs: { _i: 1 },
+        on: {
+          click: function($event) {
+            return _vm.$handleViewEvent($event)
+          }
+        }
+      }),
+      _c(
+        "uni-transition",
+        {
+          attrs: { _i: 2 },
+          on: {
+            change: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(3, "sc"),
+              staticStyle: { "z-index": "9999" },
+              attrs: { _i: 3 }
+            },
+            [
+              _c("uni-segmented-control", {
+                attrs: { _i: 4 },
+                on: {
+                  clickItem: function($event) {
+                    return _vm.$handleViewEvent($event)
+                  }
+                }
+              }),
+              _c(
+                "v-uni-view",
+                {
+                  staticClass: _vm._$g(5, "sc"),
+                  staticStyle: { "flex-flow": "row wrap" },
+                  attrs: { _i: 5 }
+                },
+                _vm._l(_vm._$g(6, "f"), function(item, i, $20, $30) {
+                  return _c("v-uni-text", {
+                    key: item,
+                    staticClass: _vm._$g("6-" + $30, "sc"),
+                    class: _vm._$g("6-" + $30, "c"),
+                    attrs: {
+                      "data-icon": _vm._$g("6-" + $30, "a-data-icon"),
+                      _i: "6-" + $30
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      }
+                    }
+                  })
+                }),
+                1
+              ),
+              _c(
+                "v-uni-view",
+                {
+                  staticClass: _vm._$g(7, "sc"),
+                  staticStyle: { border: "2px solid #0066CC" },
+                  attrs: { _i: 7 },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
+                [
+                  _c("v-uni-text", {
+                    staticClass: _vm._$g(8, "sc"),
+                    class: _vm._$g(8, "c"),
+                    staticStyle: { "font-size": "80px", color: "#2196F3" },
+                    attrs: { _i: 8 }
+                  }),
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
+                    [_vm._v("确定")]
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var recyclableRender = false
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+/* 144 */
+/*!***********************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/icon-picker.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/babel-loader/lib!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./icon-picker.vue?vue&type=script&lang=js& */ 145);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_babel_loader_lib_index_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_12_1_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_view_script_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_uni_app_loader_using_components_js_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+/* 145 */
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/view/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-uni-app-loader/using-components.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/icon-picker.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+var _uniTransition = _interopRequireDefault(__webpack_require__(/*! @/components/uni-transition/uni-transition.vue */ 32));
+var _viewHighlight = _interopRequireDefault(__webpack_require__(/*! @/components/view-highlight.vue */ 67));
+var _uniSegmentedControl = _interopRequireDefault(__webpack_require__(/*! @/components/uni-segmented-control/uni-segmented-control.vue */ 43));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
+{
+  name: "icon-picker",
+  data: function data() {
+    return {
+      wxsProps: {} };
+
+  },
+  components: {
+    'uniTransition': _uniTransition.default,
+    'viewHighlight': _viewHighlight.default,
+    'uniSegmentedControl': _uniSegmentedControl.default } };exports.default = _default;
+
+/***/ }),
+/* 146 */
+/*!*******************************************************************************************!*\
+  !*** C:/proj/jellyClassTable/components/icon-picker.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./icon-picker.vue?vue&type=style&index=0&lang=css& */ 147);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_app_vue_style_loader_index_js_ref_6_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_6_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_6_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_6_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_icon_picker_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+/* 147 */
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader??ref--6-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/icon-picker.vue?vue&type=style&index=0&lang=css& ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--6-oneOf-1-2!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--6-oneOf-1-3!../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./icon-picker.vue?vue&type=style&index=0&lang=css& */ 148);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/app-vue-style-loader/lib/addStylesClient.js */ 16).default
+var update = add("1667a715", content, false, {"sourceMap":false,"shadowMode":false});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+/* 148 */
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--6-oneOf-1-1!./node_modules/css-loader??ref--6-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!C:/proj/jellyClassTable/components/icon-picker.vue?vue&type=style&index=0&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader/lib/css-base.js */ 15)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.cp1 {\r\n\tborder: 1px solid #000;\n}\r\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

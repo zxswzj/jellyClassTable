@@ -737,7 +737,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -7065,7 +7065,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7086,14 +7086,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7169,7 +7169,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8660,36 +8660,19 @@ var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 19));function
 
 _vue.default.use(_vuex.default);var _require =
 
-__webpack_require__(/*! ../common/colors.js */ 20),colors = _require.colors,colorSets = _require.colorSets;
+
+
+
+
+__webpack_require__(/*! ../common/colors.js */ 20),colors = _require.colors,colorSets = _require.colorSets,colorSetNames = _require.colorSetNames;var _require2 =
+
+
+
+
+__webpack_require__(/*! ../common/app-data.js */ 21),projs = _require2.projs,icons = _require2.icons;
 
 var store = new _vuex.default.Store({
   state: {
-    g: {
-      "iBgc": 1,
-      "iBgcGradient": 2,
-      "iColBgc": 3,
-      "iColBgcGradient": 4,
-      "iColBorderColor": 5,
-      "iClassBgc": 6,
-      "iClassBgcGradient": 7,
-      "iClassBorderColor": 8,
-      "iNameColor": 9,
-      "iNaneBgColor": 10,
-      "iNameBorderColor": 11,
-      "iIconColor": 12,
-      "iIconBgColor": 13,
-      "iIconBorderColor": 14,
-      "iStimeColor": 15,
-      "iStimeBgColor": 16,
-      "iStimeBorderColor": 17,
-      "iDurColor": 18,
-      "iDurBgColor": 19,
-      "iDurBorderColor": 20,
-      "iAxisBgc": 21,
-      "iAxisBgcGradient": 22,
-      "iAxisTextColor": 24,
-      "iAxisTexgBgColor": 25 },
-
     sysInfo: [],
     cfg: {
       bgc: '#cccccc',
@@ -8698,590 +8681,22 @@ var store = new _vuex.default.Store({
       colBgcGradient: 'transparent',
       hilightCurrentDay: true,
       daysMode: false, //false: day5; true: day7
-      axisColor: '#00ff00',
-      axisColor1: '#ff0000',
+      axisColor: '#69bc38',
+      axisColorGradient: '#f34598',
       axisTextColor: '#ffffff',
-      axisTextBgColor: '#000000' },
+      axisTextBgc: '#000000',
+      highlightBorderColor: '#00ff00' },
 
     colors: colors,
     colorSets: colorSets,
+    colorSetNames: colorSetNames,
+    projs: projs,
+    icons: icons,
     count: 0,
     hasLogin: false,
     loginProvider: "",
     openid: null,
-    testvuex: false,
-    icons: [
-    'icon-youyong4',
-    'icon-zhuazhualiugou',
-    'icon-shuijue',
-    'icon-38464',
-    'icon-kafeicoffee61',
-    'icon-yuehuiqipao',
-    'icon-guangjie',
-    'icon-zhengzhi:before',
-    'icon-2',
-    'icon-fendoumubiao',
-    'icon-kezuofan',
-    'icon-pashan',
-    'icon-xuexi',
-    'icon-weibiaoti--',
-    'icon-kezuofan1',
-    'icon-yinle',
-    'icon-xizao',
-    'icon-youxi',
-    'icon-yingyushuiping',
-    'icon-sanbu',
-    'icon-xiyifuwu',
-    'icon-xinaixin',
-    'icon-shijian',
-    'icon-xiuli',
-    'icon-xiuxi',
-    'icon-paobu',
-    'icon-wuli',
-    'icon-xizaomuyu',
-    'icon-beer',
-    'icon-baijiu_',
-    'icon-shaokao',
-    'icon-weibiaoti',
-    'icon-icon-test',
-    'icon-icon-test1',
-    'icon-kandianying-weijihuo',
-    'icon--huihua',
-    'icon-yuwen',
-    'icon-shuxue',
-    'icon-huaxue',
-    'icon-shaokao1',
-    'icon-youyong',
-    'icon-paobu1',
-    'icon-rest',
-    'icon-ziyuan',
-    'icon-guzhang',
-    'icon-wanfatubiao-daochu-',
-    'icon-yule',
-    'icon-fendou',
-    'icon-jisuanji',
-    'icon-pinpaishangou',
-    'icon-yuehui',
-    'icon-quntidajia',
-    'icon-getidajia',
-    'icon-chifancopy-',
-    'icon-xiyifuwu1',
-    'icon-shengwu'],
-
-
-    projs: {
-      tableHeight: 600,
-      rpx: 0,
-      startLineTime: 480,
-      endLineTime: 600,
-      timeSpan: 0,
-      days: [{
-        weekday: 'monday',
-        icon: 'chat',
-        marginTop: 100,
-        classes: [{
-          weekday: 'monday',
-          icon: 'icon-youyong4',
-          name: '语文',
-          time: 480,
-          dur: 60,
-          margintop: 100,
-          height: 100,
-          displayMode: 2,
-
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 20, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 20, //文字边框弧度
-
-          showIcon: true, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 40, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 20, //图标边框颜色
-
-          showStime: false,
-          stimeColor: "#ff0000",
-          stimeBgColor: "#00ff00",
-          stimeSize: 10,
-          stimeShowBorder: false,
-          stimeBorderColor: "#00ff00",
-          showDur: false,
-          durColor: "#0000ff",
-          durBgColor: "#00ff00",
-          durSize: 10,
-          durShowBorder: false,
-          durBorderColor: "#00ff00" },
-
-        {
-          weekday: 'monday',
-          icon: 'icon-yingyushuiping',
-          name: 'm2',
-          time: 720,
-          dur: 120,
-          margintop: 50,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 20, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 20, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#9943ff', //图标边框颜色
-          iconBorderRadio: 20, //图标边框颜色
-          showTime: false,
-          timeBgColor: "00ff00",
-          timeSize: 10,
-          timeShowBorder: false,
-          showDur: false,
-          durBgColor: "00ff00",
-          durSize: 10,
-          durShowBorder: false }] },
-
-
-
-      {
-        weekday: 'tuesday',
-        icon: 'like-o',
-        classes: [{
-          weekday: 'tuesday',
-          icon: 'icon-yingyushuiping',
-          name: 'm2',
-          time: 480,
-          dur: 45,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        },
-        {
-          weekday: 'tuesday',
-          icon: 'icon-yingyushuiping',
-          name: 'math',
-          time: 540,
-          dur: 60,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        }] },
-
-
-      {
-        weekday: 'wednesday',
-        icon: 'like-o',
-        classes: [{
-          weekday: 'wednesday',
-          icon: 'icon-yingyushuiping',
-          name: 'chinese',
-          time: 480,
-          dur: 45,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        },
-        {
-          weekday: 'wednesday',
-          icon: 'icon-yingyushuiping',
-          name: 'math',
-          time: 600,
-          dur: 60,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        }] },
-
-
-      {
-        weekday: 'thursday',
-        icon: 'like-o',
-        classes: [{
-          weekday: 'thursday',
-          icon: 'icon-yingyushuiping',
-          name: 'chinese',
-          time: 600,
-          dur: 45,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        },
-        {
-          weekday: 'thursday',
-          icon: 'icon-yingyushuiping',
-          name: 'math',
-          time: 700,
-          dur: 60,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        }] },
-
-
-      {
-        weekday: 'friday',
-        icon: 'like-o',
-        classes: [{
-          weekday: 'friday',
-          icon: 'icon-yingyushuiping',
-          name: 'chinese',
-          time: 800,
-          dur: 45,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        },
-        {
-          weekday: 'friday',
-          icon: 'icon-yingyushuiping',
-          name: 'math',
-          time: 900,
-          dur: 60,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        }] },
-
-
-      {
-        weekday: 'saturday',
-        icon: 'like-o',
-        classes: [{
-          weekday: 'saturday',
-          icon: 'icon-yingyushuiping',
-          name: 'chinese',
-          time: 800,
-          dur: 45,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        },
-        {
-          weekday: 'saturday',
-          icon: 'icon-yingyushuiping',
-          name: 'math',
-          time: 900,
-          dur: 60,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        }] },
-
-      {
-        weekday: 'sunday',
-        icon: 'like-o',
-        classes: [{
-          weekday: 'sunday',
-          icon: 'icon-yingyushuiping',
-          name: 'chinese',
-          time: 800,
-          dur: 45,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        },
-        {
-          weekday: 'sunday',
-          icon: 'icon-yingyushuiping',
-          name: 'math',
-          time: 900,
-          dur: 60,
-          marginTop: 10,
-          height: 100,
-          displayMode: 2,
-          bgc: 'transparent', //课程背景颜色
-          bgcGradient: 'transparent', //课程背景渐变色
-
-          showBorder: false, //是否显示课程外框
-          borderColor: '#123456', //课程外框颜色
-          borderRadio: 5, //课程边框弧度
-
-          showName: false, //是否显示课程名称
-          textColor: '#FFFFFF', //名称颜色
-          textBgColor: 'transparent', //名称背景颜色
-          textSize: 20, //文字尺寸
-          textShowBorder: false, //是否显示文字边框
-          textBorderColor: '#F44336', //文字边框颜色
-          textBorderRadio: 5, //文字边框弧度
-
-          showIcon: false, //是否显示图标
-          iconColor: '#ff0000', //图标颜色
-          iconBgColor: 'transparent', //图标背景颜色
-          iconSize: 20, //图标尺寸
-          iconShowBorder: false, //是否显示图标边框
-          iconBorderCorlor: '#0000ff', //图标边框颜色
-          iconBorderRadio: 5 //图标边框颜色
-        }] }] } },
-
-
-
-
+    testvuex: false },
 
   mutations: {
     setSysInfo: function setSysInfo(state, sysInfo) {
@@ -9290,7 +8705,7 @@ var store = new _vuex.default.Store({
     setTableHeight: function setTableHeight(state, tableHeight) {
       console.log('setTableHeight: ' + tableHeight);
       state.projs.tableHeight = tableHeight;
-      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan;
+      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
     },
     login: function login(state, provider) {
       state.hasLogin = true;
@@ -9324,7 +8739,7 @@ var store = new _vuex.default.Store({
     },
     updateProjs: function updateProjs(state) {
       console.log('store.updateProjs');
-      // console.log(JSON.stringify(state.projs));
+      console.log(JSON.stringify(state.projs));
 
       var pretime = 0;
       var start = 480;
@@ -9363,40 +8778,53 @@ var store = new _vuex.default.Store({
           }
 
           item2.height = item2.dur * state.projs.rpx;
-          if (item2.height > 77)
-          item2.displayMode = 4;else
-          if (item2.height > 59)
-          item2.displayMode = 3;else
-          if (item2.height > 41)
-          item2.displayMode = 2;else
-          if (item2.height > 23)
-          item2.displayMode = 1;else
-
-          item2.displayMode = 0;
         });
       });
     },
-    addClass: function addClass(state, item) {
-      console.log('addClass');
-      // console.log(JSON.stringify(item));
-      state.projs.days.forEach(function (i1) {
-        if (i1.weekday == item.weekday) {
-          i1.classes.push(item);
-        }
-      });
+    addClass: function addClass(state, index) {
+      var day = index.weekday;
+      var data = Object.assign({}, JSON.parse(JSON.stringify(index)));
+      state.projs.days[day].classes.push(data);
+      // console.log('store:addClass:');
+      // 			state.projs.days.forEach(function(i1,i) {
+      // 	if (i1.weekday == c.cfgt.weekday) {
+      // 		console.log('push: '+ c.cfgt.time);
+      // 		// console.log('before push:' + JSON.stringify(i1))
+      // 		var tmp = {};
+      // 		tmp = c.cfgt;
+      // 		console.log(JSON.stringify(tmp));
+      // 		i1.classes.push(tmp);
+      // 		// console.log('after push:' + JSON.stringify(i1))
+      // 	}
+      // 	else
+      // 		console.log('dummy :i='+ i)
+      // })
     },
     updateClass: function updateClass(state, item) {
-      console.log('store:updateClass');
-      // console.log(JSON.stringify(item));
-      // console.log(JSON.stringify(state.projs.days[x].classes[y]))
-      state.projs.days[item.x].classes[item.y] = item.cfgt;
-      //  state.projs.days.forEach(function(i1) {
-      //      if (i1.weekday == item.weekday) {
-      //          i1.classes.forEach(function(i2) {
-      // 	if
-      // })
-      //      }
-      //  })
+      // console.log('store:updateClass.showNane:' + item.cfgt.showName + ' x:' + item.x + ' y:' + item.y);
+      // console.log('item.cfgt:' + JSON.stringify(item.cfgt));
+      // console.log('state.projs.days before:' + JSON.stringify(state.projs.days[item.x].classes[item.y]));
+      //如果day没有变,只是当前日期的class替换
+      var previousDay = item.classTmp.weekdayPrevious;
+      var newDay = item.classTmp.weekday;
+      if (previousDay == newDay) {
+        state.projs.days[item.x].classes.splice([item.y], 1, item.classTmp);
+        // console.log('state.projs.days after:' + JSON.stringify(state.projs.days[item.x].classes[item.y]));
+
+        // state.projs.days.forEach(function(i1, i) {
+        // 	if (i == item.x) {
+        // 		i1.classes.forEach(function(i2, j) {
+        // 			if (j == item.y) {
+        // 				i1.classes.splice(j, 1, item.classTmp);
+        // 			}
+        // 		})
+        // 	}
+        // })
+      } else {
+        //删除当前记录,并增加新的记录
+        state.projs.days[previousDay].classes.splice(item.y, 1);
+        state.projs.days[newDay].classes.push(item.classTmp);
+      }
     },
     deleteClass: function deleteClass(state, item) {
       console.log('store:deleteClass');
@@ -11265,7 +10693,7 @@ module.exports = {
     "color": "transparent" }],
 
   "colorSets": [{
-    "name": "singleComplementary69bc38",
+    "name": "1c-69bc38",
     "colors": [{
       "color": "#69bc38" },
     {
@@ -11288,7 +10716,7 @@ module.exports = {
       "color": '#e28b9f' }] },
 
   {
-    "name": "singleadcd83",
+    "name": "1-adcd83",
     "colors": [{
       "color": "#adcd83" },
     {
@@ -11298,10 +10726,1361 @@ module.exports = {
     {
       "color": '#5e852b' },
     {
-      "color": '#889a70' }] }] };
+      "color": '#889a70' }] },
+
+  {
+    "name": "中国传统颜色",
+    "colors": [{
+      "name": "粉红",
+      "color": '#ffb3a7' },
+
+    {
+      "name": "妃红色",
+      "color": '#ed5736' },
+
+
+    {
+      "name": "品红",
+      "color": '#f00056' },
+
+
+    {
+      "name": "桃红",
+      "color": '#f47983' },
+
+
+    {
+      "name": "海棠红",
+      "color": '#db5a6b' },
+
+
+    {
+      "name": "石榴红",
+      "color": '#f20c00' },
+
+
+    {
+      "name": "樱桃色",
+      "color": '#c93756' },
+
+
+    {
+      "name": "银红",
+      "color": '#f05654' },
+
+
+    {
+      "name": "大红",
+      "color": '#ff2121' },
+
+
+    {
+      "name": "绛紫",
+      "color": '#8c4356' },
+
+
+    {
+      "name": "绯红",
+      "color": '#c83c23' },
+
+
+    {
+      "name": "胭脂",
+      "color": '#9d2933' },
+
+    {
+      "name": "朱红",
+      "color": '#ff4c00' },
+
+    {
+      "name": "丹",
+      "color": '#ff4e20' },
+
+    {
+      "name": "彤",
+      color: '#f35336' },
+
+    {
+      "name": "茜色",
+      "color": '#cb3a56' },
+
+    {
+      "name": "火红",
+      "color": '#ff2d51' },
+
+    {
+      "name": "赫赤",
+      "color": '#c91f37' },
+
+    {
+      "name": "嫣红",
+      "color": '#ef7a82' },
+
+    {
+      "name": "洋红色",
+      "color": '#ff0097' },
+
+    {
+      "name": "炎",
+      "color": '#ff3300' },
+
+    {
+      "name": "赤",
+      "color": '#c3272b' },
+
+    {
+      "name": "绾",
+      "color": '#a98175' },
+
+    {
+      "name": "枣红",
+      "color": '#c32136' },
+
+    {
+      "name": "檀",
+      "color": '#b36d61' },
+
+    {
+      "name": "殷红",
+      "color": '#be002f' },
+
+    {
+      "name": "酡红",
+      "color": '#dc3023' },
+
+    {
+      "name": "酡颜",
+      "color": '#f9906f' },
+
+    {
+      "name": "鹅黄",
+      "color": '#fff143' },
+
+
+    {
+      "name": "鸭黄",
+      "color": '#faff72' },
+
+
+    {
+      "name": "樱草色",
+      "color": '#eaff56' },
+
+    {
+      "name": "杏黄",
+      "color": '#ffa631' },
+
+    {
+      "name": "杏红",
+      "color": '#ff8c31' },
+
+    {
+      "name": "橘黄",
+      "color": '#ff8936' },
+
+    {
+      "name": "橙黄",
+      "color": '#ffa400' },
+
+    {
+      "name": "橘红",
+      "color": '#ff7500' },
+
+    {
+      "name": "姜黄",
+      "color": '#ffc773' },
+
+    {
+      "name": "缃色",
+      "color": '#f0c239' },
+
+    {
+      "name": "橙色",
+      "color": '#fa8c35' },
+
+    {
+      "name": "茶色",
+      "color": '#b35c44' },
+
+    {
+      "name": "驼色",
+      "color": '#a88462' },
+
+    {
+      "name": "昏黄",
+      "color": '#c89b40' },
+
+    {
+      "name": "栗色",
+      "color": '#60281e' },
+
+    {
+      "name": "棕色",
+      "color": '#b25d25' },
+
+    {
+      "name": "棕绿",
+      "color": '#827100' },
+
+    {
+      "name": "棕黑",
+      "color": '#7c4b00' },
+
+    {
+      "name": "棕红",
+      "color": '#9b4400' },
+
+    {
+      "name": "棕黄",
+      "color": '#ae7000' },
+
+    {
+      "name": "赭",
+      "color": '#9c5333' },
+
+    {
+      "name": "赭色",
+      "color": '#955539' },
+
+    {
+      "name": "琥珀",
+      "color": '#ca6924' },
+
+    {
+      "name": "褐色",
+      "color": '#6e511e' },
+
+    {
+      "name": "枯黄",
+      "color": '#d3b17d' },
+
+    {
+      "name": "黄栌",
+      "color": '#e29c45' },
+
+    {
+      "name": "秋色",
+      "color": '#896c39' },
+
+    {
+      "name": "秋香色",
+      "color": '#d9b611' },
+
+    {
+      "name": "嫩绿",
+      "color": '#bddd22 ' },
+
+
+    {
+      "name": "柳黄",
+      "color": '#c9dd22 ' },
+
+    {
+      "name": "柳绿",
+      "color": '#afdd22 ' },
+
+    {
+      "name": "竹青",
+      "color": '#789262' },
+
+    {
+      "name": "葱黄",
+
+      "color": '#a3d900' },
+
+    {
+      "name": "葱绿",
+      "color": '#9ed900' },
+
+    {
+      "name": "葱倩",
+      "color": '#0eb83a' },
+
+    {
+      "name": "青葱",
+      "color": '#0aa344' },
+
+    {
+      "name": "油绿",
+      "color": '#00bc12' },
+
+    {
+      "name": "绿沈",
+      "color": '#0c8918' },
+
+    {
+      "name": "碧色",
+      "color": '#1bd1a5' },
+
+    {
+      "name": "碧绿",
+      "color": '#2add9c' },
+
+    {
+      "name": "青碧",
+      "color": '#48c0a3' },
+
+    {
+      "name": "翡翠色",
+      "color": '#3de1ad' },
+
+    {
+      "name": "草绿",
+      "color": '#40de5a' },
+
+    {
+      "name": "青色",
+      "color": '#00e09e' },
+
+    {
+      "name": "青翠",
+      "color": '#00e079' },
+
+    {
+      "name": "青白",
+      "color": '#c0ebd7' },
+
+    {
+      "name": "鸭卵青",
+      "color": '#e0eee8' },
+
+    {
+      "name": "蟹壳青",
+      "color": '#bbcdc5' },
+
+    {
+      "name": "鸦青",
+      "color": '#424c50' },
+
+    {
+      "name": "绿色",
+      "color": '#00e500' },
+
+    {
+      "name": "豆绿",
+      "color": '#9ed048' },
+
+    {
+      "name": "豆青",
+      "color": '#96ce54' },
+
+    {
+      "name": "石青",
+      "color": '#7bcfa6' },
+
+    {
+      "name": "玉色",
+      "color": '#2edfa3' },
+
+    {
+      "name": "缥",
+      "color": '#7fecad' },
+
+    {
+      "name": "艾绿",
+      "color": '#a4e2c6' },
+
+    {
+      "name": "松柏绿",
+      "color": '#21a675' },
+
+    {
+      "name": "松花绿",
+      "color": '#057748' },
+
+    {
+      "name": "松花色",
+      "color": '#bce672' },
+
+    {
+      "name": "蓝",
+      "color": '#44cef6' },
+
+    {
+      "name": "靛青",
+      "color": '#177cb0' },
+
+    {
+      "name": "靛蓝",
+      "color": '#065279' },
+
+    {
+      "name": "碧蓝",
+      "color": '#3eede7' },
+
+    {
+      "name": "蔚蓝",
+      "color": '#70f3ff' },
+
+    {
+      "name": "宝蓝",
+      "color": '#4b5cc4' },
+
+    {
+      "name": "蓝灰色",
+      "color": '#a1afc9' },
+
+    {
+      "name": "藏青",
+      "color": '#2e4e7e' },
+
+    {
+      "name": "藏蓝",
+      "color": '#3b2e7e' },
+
+    {
+      "name": "黛色",
+      "color": '#4a4266' },
+
+    {
+      "name": "黛绿",
+      "color": '#426666' },
+
+    {
+      "name": "黛蓝",
+      "color": '#425066' },
+
+    {
+      "name": "黛紫",
+      "color": '#574266' },
+
+    {
+      "name": "紫色",
+      "color": '#8d4bbb' },
+
+    {
+      "name": "紫酱",
+      "color": '#815463' },
+
+    {
+      "name": "酱紫",
+      "color": '#815476' },
+
+    {
+      "name": "紫檀",
+      "color": '#4c221b' },
+
+    {
+      "name": "绀紫",
+      "color": '#003371' },
+
+    {
+      "name": "紫棠",
+      "color": '#56004f' },
+
+    {
+      "name": "青莲",
+      "color": '#801dae' },
+
+    {
+      "name": "群青",
+      "color": '#4c8dae' },
+
+    {
+      "name": "雪青",
+      "color": '#b0a4e3' },
+
+    {
+      "name": "丁香色",
+      "color": '#cca4e3' },
+
+    {
+      "name": "藕色",
+      "color": '#edd1d8' },
+
+    {
+      "name": "藕荷色",
+      "color": '#e4c6d0' },
+
+    {
+      "name": "苍色",
+      "color": '#75878a' },
+
+    {
+      "name": "苍黄",
+      "color": '#a29b7c' },
+
+    {
+      "name": "苍青",
+      "color": '#7397ab' },
+
+    {
+      "name": "苍黑",
+      "color": '#395260' },
+
+    {
+      "name": "苍白",
+      "color": '#d1d9e0' },
+
+    {
+      "name": "水色",
+      "color": '#88ada6' },
+
+    {
+      "name": "水绿",
+      "color": '#d4f2e7' },
+
+    {
+      "name": "水蓝",
+      "color": '#d2f0f4' },
+
+    {
+      "name": "淡青",
+      "color": '#d3e0f3' },
+
+    {
+      "name": "湖蓝",
+      "color": '#30dff3' },
+
+    {
+      "name": "湖绿",
+      "color": '#25f8cb' },
+
+    {
+      "name": "精白",
+      "color": '#ffffff' },
+
+    {
+      "name": "象牙白",
+      "color": '#fffbf0' },
+
+    {
+      "name": "雪白",
+      "color": '#f0fcff' },
+
+    {
+      "name": "月白",
+      "color": '#d6ecf0' },
+
+    {
+      "name": "缟",
+      "color": '#f2ecde' },
+
+    {
+      "name": "素",
+      "color": '#e0f0e9' },
+
+    {
+      "name": "荼白",
+      "color": '#f3f9f1' },
+
+    {
+      "name": "霜色",
+      "color": '#e9f1f6' },
+
+    {
+      "name": "花白",
+      "color": '#c2ccd0' },
+
+    {
+      "name": "鱼肚白",
+      "color": '#fcefe8' },
+
+    {
+      "name": "莹白",
+      "color": '#e3f9fd' },
+
+    {
+      "name": "灰色",
+      "color": '#808080' },
+
+    {
+      "name": "牙色",
+      "color": '#eedeb0' },
+
+    {
+      "name": "铅白",
+      "color": '#f0f0f4' },
+
+    {
+      "name": "玄色",
+      "color": '#622a1d' },
+
+    {
+      "name": "玄青",
+      "color": '#3d3b4f' },
+
+    {
+      "name": "乌色",
+      "color": '#725e82' },
+
+    {
+      "name": "乌黑",
+      "color": '#392f41' },
+
+    {
+      "name": "漆黑",
+      "color": '#161823' },
+
+    {
+      "name": "墨色",
+      "color": '#50616d' },
+
+    {
+      "name": "墨灰",
+      "color": '#758a99' },
+
+    {
+      "name": "黑色",
+      "color": '#000000' },
+
+    {
+      "name": "缁色",
+      "color": '#493131' },
+
+    {
+      "name": "象牙黑",
+      "color": '#312520' },
+
+    {
+      "name": "黧",
+      "color": '#5d513c' },
+
+    {
+      "name": "黎",
+      "color": '#75664d' },
+
+    {
+      "name": "黝",
+      "color": '#6b6882' },
+
+    {
+      "name": "黝黑",
+      "color": '#665757' },
+
+    {
+      "name": "黯",
+      "color": '#41555d' },
+
+    {
+      "name": "赤金",
+      "color": '#f2be45' },
+
+    {
+      "name": "金色",
+      "color": '#eacd76' },
+
+    {
+      "name": "银白",
+      "color": '#e9e7ef' },
+
+    {
+      "name": "铜绿",
+      "color": '#549688' },
+
+    {
+      "name": "乌金",
+      "color": '#a78e44' },
+
+    {
+      "name": "老银",
+      "color": '#bacac6' },
+
+    {
+      "name": "银朱",
+      "color": '#bf242a' },
+
+    {
+      "name": "朱砂",
+      "color": '#ff461f' },
+
+    {
+      "name": "朱膘",
+      "color": '#f36838' },
+
+    {
+      "name": "赭石色",
+      "color": '#845a33' },
+
+    {
+      "name": "石绿",
+      "color": '#16a951' },
+
+    {
+      "name": "白粉",
+      "color": '#fff2df' },
+
+    {
+      "name": "花青",
+      "color": '#003472' },
+
+    {
+      "name": "藤黄",
+      "color": '#ffb61e' },
+
+    {
+      "name": "雌黄",
+      "color": '#ffc64b' },
+
+    {
+      "name": "石黄",
+      "color": '#e9bb1d' },
+
+    {
+      "name": "洋红",
+      "color": '#ff4777' }] }],
+
+
+
+  "colorSetNames": [
+  "1c-69bc38",
+  "1-adcd83",
+  "中国传统颜色"] };
 
 /***/ }),
 /* 21 */
+/*!**************************************************!*\
+  !*** C:/proj/jellyClassTable/common/app-data.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+module.exports = {
+  'projs': {
+    tableHeight: 600,
+    rpx: 0,
+    startLineTime: 480,
+    endLineTime: 600,
+    timeSpan: 0,
+    days: [{
+      weekday: 0,
+      icon: 'chat',
+      marginTop: 100,
+      classes: [{
+        weekday: 0,
+        weekdayPrevious: 0,
+        icon: 'icon-youyong4',
+        name: '语文',
+        time: 480,
+        dur: 60,
+        margintop: 100,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 0,
+        weekdayPrevious: 0,
+        icon: 'icon-yingyushuiping',
+        name: 'm2',
+        time: 720,
+        dur: 120,
+        margintop: 50,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 1,
+      icon: 'like-o',
+      classes: [{
+        weekday: 1,
+        weekdayPrevious: 1,
+        icon: 'icon-yingyushuiping',
+        name: 'm2',
+        time: 480,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 2,
+      icon: 'like-o',
+      classes: [{
+        weekday: 2,
+        weekdayPrevious: 2,
+        icon: 'icon-yingyushuiping',
+        name: 'chinese',
+        time: 480,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 2,
+        weekdayPrevious: 2,
+        icon: 'icon-yingyushuiping',
+        name: 'math',
+        time: 600,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 3,
+      icon: 'like-o',
+      classes: [{
+        weekday: 3,
+        weekdayPrevious: 3,
+        icon: 'icon-yingyushuiping',
+        name: 'chinese',
+        time: 600,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 4,
+      icon: 'like-o',
+      classes: [{
+        weekday: 4,
+        weekdayPrevious: 4,
+        icon: 'icon-yingyushuiping',
+        name: 'chinese',
+        time: 800,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 4,
+        weekdayPrevious: 4,
+        icon: 'icon-yingyushuiping',
+        name: 'math',
+        time: 900,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 5,
+      icon: 'like-o',
+      classes: [{
+        weekday: 5,
+        weekdayPrevious: 5,
+        icon: 'icon-yingyushuiping',
+        name: 'chinese',
+        time: 800,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 5,
+        weekdayPrevious: 5,
+        icon: 'icon-yingyushuiping',
+        name: 'math',
+        time: 900,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 6,
+      icon: 'like-o',
+      classes: [{
+        weekday: 6,
+        weekdayPrevious: 6,
+        icon: 'icon-yingyushuiping',
+        name: 'chinese',
+        time: 800,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 6,
+        weekdayPrevious: 6,
+        icon: 'icon-yingyushuiping',
+        name: 'math',
+        time: 900,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classShowBorder: false, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] }] },
+
+
+
+
+
+  'icons': [
+  'icon-youyong4',
+  'icon-zhuazhualiugou',
+  'icon-shuijue',
+  'icon-38464',
+  'icon-kafeicoffee61',
+  'icon-yuehuiqipao',
+  'icon-guangjie',
+  'icon-zhengzhi:before',
+  'icon-2',
+  'icon-fendoumubiao',
+  'icon-kezuofan',
+  'icon-pashan',
+  'icon-xuexi',
+  'icon-weibiaoti--',
+  'icon-kezuofan1',
+  'icon-yinle',
+  'icon-xizao',
+  'icon-youxi',
+  'icon-yingyushuiping',
+  'icon-sanbu',
+  'icon-xiyifuwu',
+  'icon-xinaixin',
+  'icon-shijian',
+  'icon-xiuli',
+  'icon-xiuxi',
+  'icon-paobu',
+  'icon-wuli',
+  'icon-xizaomuyu',
+  'icon-beer',
+  'icon-baijiu_',
+  'icon-shaokao',
+  'icon-weibiaoti',
+  'icon-icon-test',
+  'icon-icon-test1',
+  'icon-kandianying-weijihuo',
+  'icon--huihua',
+  'icon-yuwen',
+  'icon-shuxue',
+  'icon-huaxue',
+  'icon-shaokao1',
+  'icon-youyong',
+  'icon-paobu1',
+  'icon-rest',
+  'icon-ziyuan',
+  'icon-guzhang',
+  'icon-wanfatubiao-daochu-',
+  'icon-yule',
+  'icon-fendou',
+  'icon-jisuanji',
+  'icon-pinpaishangou',
+  'icon-yuehui',
+  'icon-quntidajia',
+  'icon-getidajia',
+  'icon-chifancopy-',
+  'icon-xiyifuwu1',
+  'icon-shengwu'] };
+
+/***/ }),
+/* 22 */
 /*!****************************************************!*\
   !*** C:/proj/jellyClassTable/common/uniPromise.js ***!
   \****************************************************/
@@ -11326,13 +12105,13 @@ module.exports = {
   uniPromise: uniPromise };
 
 /***/ }),
-/* 22 */,
 /* 23 */,
 /* 24 */,
 /* 25 */,
 /* 26 */,
 /* 27 */,
-/* 28 */
+/* 28 */,
+/* 29 */
 /*!**********************************************!*\
   !*** C:/proj/jellyClassTable/common/util.js ***!
   \**********************************************/
@@ -11427,7 +12206,7 @@ module.exports = {
   getTime: getTime };
 
 /***/ }),
-/* 29 */
+/* 30 */
 /*!********************************************!*\
   !*** C:/proj/jellyClassTable/common/wx.js ***!
   \********************************************/

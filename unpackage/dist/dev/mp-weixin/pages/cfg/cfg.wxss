@@ -222,6 +222,9 @@
 .colors-grey-lighten-5 {
   background-color: #f5f5f5;
 }
+.icon-c1:before {
+  content: '\E621';
+}
 /* parameter
 --dir: flex方向 */
 .form-row {
@@ -247,16 +250,23 @@
   border-radius: 20rpx;
 }
 .switch-sex::after {
-  content: '\E716';
+  content: '\E610';
 }
 .switch-sex::before {
-  content: '\E7A9';
+  content: '\E601';
 }
-.switch-music::after {
-  content: '\E66A';
+.switch-57::after {
+  content: '\E670';
 }
-.switch-music::before {
-  content: '\E6DB';
+.switch-57::before {
+  content: '\E658';
+}
+.switch-hilight:before {
+  content: '\E612';
+}
+.switch-hilight:after {
+  content: '\E612';
+  color: #0066cc;
 }
 .indent {
   margin-left: 20rpx;

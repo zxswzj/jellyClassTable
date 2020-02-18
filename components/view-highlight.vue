@@ -1,29 +1,66 @@
 <template name="view-highlight">
-	<view class="w-500 h-500 bc-999 bg-333 highlight"  @click="$emit('click',color)">{{text}}
+	<view class="dp-fc fd-c ai-c">
+		<view class="br-15 m-10" :class="hl ? 'highlight' : ''" :style="'width:' + w + 'px;height:' + h + 'px;background-color:' + bgc" @click="getColor"></view>
+		<text class="c-3c">{{ text }}</text>
 	</view>
 </template>
 <script>
-	export default {
-		name: "view-highlight",
-		props: {
-			text: {
-				type: String,
-				default: "aa"
-			},
-			highlight: {
-				type: String
-			}
+// 自定义Person构造器k
+function dimen(w, h) {
+	this.w = w;
+	this.h = h;
+}
+//<view-highlight w="66" :h="h" bgc="#987654" @click="getColor"/>
+export default {
+	name: 'view-highlight',
+	props: {
+		w: {
+			type: Number,
+			default: 50
 		},
-		data() {
-			return {
-				color: "#00ff00"
-			}
+		h: {
+			type: Number,
+			default: 50
+		},
+		bgc: {
+			type: String,
+			default: '#666666'
+		},
+		text: {
+			type: String,
+			default: ''
+		}
+		// hl: {
+		// 	type: Boolean,
+		// 	default: false
+		// }
+	},
+	data() {
+		return {
+			color: '#00ff00',
+			style: '',
+			hl: false
+		};
+	},
+	computed: {},
+	mounted() {
+		// this.setStyle()
+	},
+	methods: {
+		setStyle() {
+			// this.style = `width: ${w}px; height: ${h}px;`
+		},
+		getColor() {
+			// this.hl = !this.hl;
+			// if(this.hl)
+			this.$emit('click', this.bgc);
 		}
 	}
+};
 </script>
 
 <style>
-.highlight {
-	border: 2px solid #0081FF;
+.m-10 {
+	margin: 10rpx;
 }
 </style>

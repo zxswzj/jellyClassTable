@@ -6,6 +6,8 @@ import pageFoot from './components/page-foot.vue'
 import uLink from '@/components/uLink.vue'
 import store from './store'
 import viewHighlight from './components/view-highlight.vue'
+import colorPicker from './components/color-picker.vue'
+import iconPicker from './components/icon-picker.vue'
 import uniPromise from './common/uniPromise.js'
 
 
@@ -32,6 +34,8 @@ Vue.component('page-head', pageHead)
 Vue.component('page-foot', pageFoot)
 Vue.component('uLink', uLink)
 Vue.component('view-highlight', viewHighlight)
+Vue.component('color-picker', colorPicker)
+Vue.component('icon-picker', iconPicker)
 
 Vue.prototype.$api = { json };
 

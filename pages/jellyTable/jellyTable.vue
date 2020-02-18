@@ -6,11 +6,11 @@
 			<view class="dp-fc fd-c ruler">
 				<view
 					class="dp-fc f-1 w100 h100 time-vertical"
-					:style="{ background: 'linear-gradient(' + cfg.axisColor + ', ' + cfg.axisColor1 + ')' }"
+					:style="{ background: 'linear-gradient(' + cfg.axisColor + ', ' + cfg.axisColorGradient + ')' }"
 					v-for="(item, i) in projs.timeSpan"
 					:key="i"
 				>
-					<view class="dot dp-fc" style="text-align: center;" :style="[{ color: cfg.axisTextColor }, { background: cfg.axisTextBgColor }]">
+					<view class="dot dp-fc" style="text-align: center;" :style="[{ color: cfg.axisTextColor }, { background: cfg.axisTextBgc }]">
 						<text>{{ projs.startLineTime / 60 + i }}</text>
 					</view>
 				</view>
@@ -20,8 +20,11 @@
 				<view
 					class="col-frame"
 					v-show="isDayDisplayed(i)"
-					:class="[{ emphasis: isEmphasis(i) }]"
-					:style="[{ height: projs.tableHeight + 'px' }, { background: 'linear-gradient(' + cfg.colBgc + ', ' + cfg.colBgcGradient + ')' }]"
+					:style="[
+						{ height: projs.tableHeight + 'px' },
+						{ background: 'linear-gradient(' + cfg.colBgc + ', ' + cfg.colBgcGradient + ')' },
+						{ 'box-shadow': isEmphasis(i) ? '2px 2px 5px 4px ' + cfg.highlightBorderColor : 'transparent' }
+					]"
 					v-for="(item1, i) in projs.days"
 					:key="i"
 					@click.stop="onNewClass"
@@ -31,17 +34,16 @@
 				>
 					<!--  -->
 					<view
-						class="dp-f fw-w item-frame"
+						class="dp-fc fw-w item-frame o-h"
 						v-for="(item2, j) in item1.classes"
 						:key="j"
 						:style="[
 							{ 'margin-top': item2.margintop + 'px' },
 							{ height: item2.height + 'px' },
-							{ background: 'linear-gradient(' + item2.bgc + ', ' + item2.bgcGradient + ')' },
-							{ border: item2.showBorder ? '1px solid' + item2.borderColor : transparent },
+							{ background: 'linear-gradient(' + item2.classBgc + ', ' + item2.classBgcGradient + ')' },
+							{ border: item2.classShowBorder ? '1px solid' + item2.classBorderColor : transparent },
 							{ 'border-radius': item2.borderRadio + 'px' }
 						]"
-						style="--dir:var(--dir-row); --wrap:var(--wrap-yes); width: 100%;text-align: center;"
 						@longpress.stop="onEditClass"
 						@click.stop="onEditClass"
 						:data-class="item2"
@@ -49,13 +51,12 @@
 						:data-y="j"
 					>
 						<view
-							class="atom z-flex"
-							style="text-align: center;--dir:var(--dir-row);--wrap:var(--wrap-yes);margin:0 auto;"
+							class="atom dp-fc w100 h100"
 							:style="[
 								{ border: item2.textShowBorder ? '1px solid ' + item2.textBorderColor : transparent },
 								{ 'border-radius': item2.textBorderRadio + 'px' },
 								{ color: item2.textColor },
-								{ 'background-color': item2.textBgColor }
+								{ 'background-color': item2.textBgc }
 							]"
 							v-show="item2.showName"
 						>
@@ -63,44 +64,43 @@
 						</view>
 
 						<view
-							class="iconfont"
+							class="iconfont f-1"
 							:class="item2.icon"
 							style="text-align: center;margin: 0 auto;text-align: center;width: 100%;"
 							:style="[
 								{ border: item2.iconShowBorder ? '1px solid ' + item2.iconBorderCorlor : transparent },
 								{ 'border-radius': item2.iconBorderRadio + 'px' },
 								{ color: item2.iconColor },
-								{ 'background-color': item2.iconBgColor },
+								{ 'background-color': item2.iconBgc },
 								{ 'font-size': item2.iconSize + 'px' }
 							]"
-							v-show="item2.showIcon"
+							v-if="item2.showIcon"
 						/>
-						<!-- <uni-tag :text="formatDate(item2.time)"></uni-tag> -->
-						<!-- <view class="w100 dp-fc"> -->
-						<text
-							v-if="item2.showStime"
-							:style="[
-								{ border: item2.stimeShowBorder ? '1px solid ' + item2.stimeBorderCorlor : transparent },
-								{ 'border-radius': item2.stimeBorderRadio ? '20px 0 0 20px' : '' },
-								{ color: item2.stimeColor },
-								{ 'font-size': item2.stimeSize + 'px' }
-							]"
-						>
-							{{ formatDate(item2.time) }}
-						</text>
-						<text v-if="item2.showDur">/</text>
-						<text
-							:style="[
-								{ border: item2.durShowBorder ? '1px solid ' + item2.durBorderCorlor : transparent },
-								{ 'border-radius': item2.durBorderRadio ? '20px 0 0 20px' : '' },
-								{ color: item2.durColor },
-								{ 'font-size': item2.durSize + 'px' }
-							]"
-							v-if="item2.showDur"
-						>
-							{{ formatDate(item2.dur) }}
-						</text>
-						<!-- </view> -->
+						<view class="w100 dp-f fb-100">
+							<text
+								v-if="item2.showStime"
+								:style="[
+									{ border: item2.stimeShowBorder ? '1px solid ' + item2.stimeBorderCorlor : transparent },
+									{ 'border-radius': item2.stimeBorderRadio ? '20px 0 0 20px' : '' },
+									{ color: item2.stimeColor },
+									{ 'font-size': item2.stimeSize + 'px' }
+								]"
+							>
+								{{ formatDate(item2.time) }}
+							</text>
+							<text v-if="item2.showDur">/</text>
+							<text
+								:style="[
+									{ border: item2.durShowBorder ? '1px solid ' + item2.durBorderCorlor : transparent },
+									{ 'border-radius': item2.durBorderRadio ? '20px 0 0 20px' : '' },
+									{ color: item2.durColor },
+									{ 'font-size': item2.durSize + 'px' }
+								]"
+								v-if="item2.showDur"
+							>
+								{{ formatDate(item2.dur) }}
+							</text>
+						</view>
 						<!-- 						<image
 							src="../../static/apiIndex.png"
 							:style="[
@@ -118,82 +118,60 @@
 			<!-- <view class="foot"></view> -->
 		</view>
 
-		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showPop > 0" @change="cfgChanged = false">
-			<scroll-view
-				class="form-top-view z-flex"
-				style="--dir:var(--dir-col);--wrap:var(--wrap-no)"
-				scroll-y="true"
-				:style="{ height: projs.tableHeight + 'px' }"
-				show-scrollbar="true"
-			>
-				<view class="form-item margin-top colors-white-base">
+		<uni-popup ref="popupCfg" type="center">
+			<!-- <uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showPop > 0" @change="cfgChanged = false"> -->
+			<view id="popupCfgBase" class="dp-f fd-c jc-sb ai-s bg-ff ac-fs p-0-40 w100 h100" show-scrollbar="true">
+				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
 					<view class="iconfont">
 						<text class="icon-xiuli"></text>
 						<text class="form-item-text">课程</text>
 					</view>
-					<input class="pop-input" style="display: flex;flex: 1;align-items: center;" @input="onUpdateClassName" :value="cfgt.name" />
+					<input class="pop-input" style="display: flex;flex: 1;align-items: center;" @input="onUpdateClassName" :value="classTmp.name" />
 				</view>
-				<view class="form-item margin-top colors-white-base">
+
+				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+					<view class="iconfont dp-f ai-c">
+						<text class="icon-xianshimoshi c-27"></text>
+						<text class="fs-32 c-3c">日期</text>
+					</view>
+
+					<!-- <view class="iconfont fs-32 f-1">
+						<text class="icon-xingqiyi c-27"></text>
+						<text class="icon-xingqier c-27"></text>
+						<text class="icon-xingqisan c-27"></text>
+						<text class="icon-xingqisi c-27"></text>
+						<text class="icon-xingqiwu c-27"></text>
+						<text class="icon-xingqiliu c-27"></text>
+						<text class="icon-xingqiri c-27"></text>
+					</view> -->
+					<uni-segmented-control class="f-1" :current="weekTabIndex" :values="weekTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeWeekTabItem" />
+				</view>
+
+				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
 					<view class="iconfont">
 						<text class="icon-xiuli"></text>
-						<text class="form-item-text">日期</text>
+						<text class="form-item-text">开始时间 {{ formatDate(classTmp.time) }}</text>
 					</view>
-					<radio-group name="week">
-						<label class="radio-bg" @click="cfgt.weekday = 'monday'">
-							<radio value="monday" :checked="cfgt.weekday == 'monday'" />
-							<text class="pop-text">周一</text>
-						</label>
-						<label class="radio-bg" @click="onChangeWeekday('tuesday')">
-							<radio value="tuesday" :checked="cfgt.weekday == 'tuesday'" />
-							<text class="pop-text">周二</text>
-						</label>
-						<label class="radio-bg" @click="onChangeWeekday('wednesday')">
-							<radio value="wednesday" :checked="cfgt.weekday == 'wednesday'" />
-							<text class="pop-text">周三</text>
-						</label>
-						<label class="radio-bg" @click="onChangeWeekday('thursday')">
-							<radio value="thursday" :checked="cfgt.weekday == 'thursday'" />
-							<text class="pop-text">周四</text>
-						</label>
-						<label class="radio-bg" @click="onChangeWeekday('friday')">
-							<radio value="friday" :checked="cfgt.weekday == 'friday'" />
-							<text class="pop-text">周五</text>
-						</label>
-						<label class="radio-bg" v-show="cfg.daysMode" @click="onChangeWeekday('saterday')">
-							<radio value="saterday" :checked="cfgt.weekday == 'saterday'" />
-							<text class="pop-text">周六</text>
-						</label>
-						<label class="radio-bg" v-show="cfg.daysMode" @click="onChangeWeekday('sunday')">
-							<radio value="sunday" :checked="cfgt.weekday == 'sunday'" />
-							<text class="pop-text">周日</text>
-						</label>
-					</radio-group>
+					<view class="pop-text-warning" v-show="classTmp.time >= 1200">太晚了吧，救救孩子</view>
 				</view>
-				<view class="form-item margin-top colors-white-base">
-					<view class="iconfont">
-						<text class="icon-xiuli"></text>
-						<text class="form-item-text">开始时间 {{ formatDate(cfgt.time) }}</text>
-					</view>
-					<view class="pop-text-warning" v-show="cfgt.time >= 1200">太晚了吧，救救孩子</view>
-				</view>
-				<view class="form-item colors-white-base">
+				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
 					<view class="slide-sub-btn pop-title" @click="onSubClassTime">-</view>
-					<slider style="flex:1" :value="cfgt.time" @change="sliderClassTimeChange" @changing="sliderClassTimeChange" max="1439" step="5" />
+					<slider style="flex:1" :value="classTmp.time" @change="sliderClassTimeChange" @changing="sliderClassTimeChange" max="1439" step="5" />
 					<view class="slide-add-btn pop-title" @click="onAddClassTime">+</view>
 				</view>
 
-				<view class="form-item  colors-white-base">
+				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
 					<view class="content">
 						<text class="cuIcon-circlefill text-grey"></text>
-						<text class="text-grey">时长:{{ formatDate(cfgt.dur) }}</text>
+						<text class="text-grey">时长:{{ formatDate(classTmp.dur) }}</text>
 					</view>
-					<view class="pop-text-warning" v-show="cfgt.dur >= 240">时间太长了吧，救救孩子</view>
+					<view class="pop-text-warning" v-show="classTmp.dur >= 240">时间太长了吧，救救孩子</view>
 				</view>
-				<view class="form-item colors-white-base">
-					<text class="text-grey slide-sub-btn" @click="cfgt.dur--">-</text>
-					<slider style="flex:1" :value="cfgt.dur" @changing="sliderClassDurChange" :max="durMax" step="5" />
-					<view class="text-grey slide-sub-btn" @click="cfgt.dur++">+</view>
-					<view class="text-grey slide-sub-btn" @click="onExtendClassDurMax" v-show="cfgt.dur >= 240">></view>
+				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+					<text class="text-grey slide-sub-btn" @click="classTmp.dur--">-</text>
+					<slider style="flex:1" :value="classTmp.dur" @changing="sliderClassDurChange" :max="durMax" step="5" />
+					<view class="text-grey slide-sub-btn" @click="classTmp.dur++">+</view>
+					<view class="text-grey slide-sub-btn" @click="onExtendClassDurMax" v-show="classTmp.dur >= 240">></view>
 				</view>
 
 				<view class="uni-padding-wrap mt-50">
@@ -212,8 +190,15 @@
 							<text class="text-grey">课程背景颜色</text>
 						</view>
 						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
-							<view :style="{ background: cfgt.bgc }" class="test" @click="showColorPicker = g.iBgc" />
-							<view :style="{ background: cfgt.bgcGradient }" class="test" @click="showColorPicker = g.iBgcGradient" />
+							<color-picker w="60" h="60" :defColor="classTmp.classBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetClassBgc" />
+							<color-picker
+								w="60"
+								h="60"
+								:defColor="classTmp.classBgcGradient"
+								:tabItems="colorSetNames"
+								:colorSets="colorSets"
+								@loadColorPicker="cpGetClassBgcGradient"
+							/>
 						</view>
 					</view>
 
@@ -223,11 +208,11 @@
 							<text class="text-grey">显示课程外框</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.showBorder = !cfgt.showBorder"
-							:class="cfgt.showBorder ? 'checked' : ''"
+							class="switch-outline"
+							@change="classTmp.classShowBorder = !classTmp.classShowBorder"
+							:class="classTmp.classShowBorder ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfg.showBorder ? true : false"
+							:checked="cfg.classShowBorder ? true : false"
 						></switch>
 					</view>
 
@@ -236,7 +221,14 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">外框颜色</text>
 						</view>
-						<view class="action"><view :style="{ background: cfgt.borderColor }" class="test" @click="showColorPicker = 3" /></view>
+						<color-picker
+							w="60"
+							h="60"
+							:defColor="classTmp.classBorderColor"
+							:tabItems="colorSetNames"
+							:colorSets="colorSets"
+							@loadColorPicker="cpGetClassBorderColor"
+						/>
 					</view>
 
 					<view class="dp-f jc-sb ai-c c-fff w100">
@@ -244,10 +236,9 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">外框弧度</text>
 						</view>
-						<slider style="flex:1" :value="cfgt.borderRadio" @change="sliderBorderRadio" min="0" max="20" show-value />
+						<slider style="flex:1" :value="classTmp.borderRadio" @change="sliderBorderRadio" min="0" max="20" show-value />
 					</view>
 				</view>
-
 				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 1">
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
@@ -255,11 +246,11 @@
 							<text class="text-grey">显示课程名称</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.showName = !cfgt.showName"
-							:class="cfgt.showName ? 'checked' : ''"
+							class="switch-class"
+							@change="classTmp.showName = !classTmp.showName"
+							:class="classTmp.showName ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.showName ? true : false"
+							:checked="classTmp.showName ? true : false"
 						></switch>
 					</view>
 
@@ -269,8 +260,8 @@
 							<text class="text-grey">名称颜色/名称背景颜色</text>
 						</view>
 						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
-							<view class="action"><view :style="{ background: cfgt.textColor }" class="test" @click="showColorPicker = 4" /></view>
-							<view class="action"><view :style="{ background: cfgt.textBgColor }" class="test" @click="showColorPicker = 5" /></view>
+							<color-picker w="60" h="60" :defColor="classTmp.textColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetTextColor" />
+							<color-picker w="60" h="60" :defColor="classTmp.textBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetTextBgc" />
 						</view>
 					</view>
 
@@ -279,7 +270,7 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">名称大小</text>
 						</view>
-						<slider style="flex:1" :value="cfgt.textSize" @change="sliderTextSize" min="0" max="30" show-value />
+						<slider style="flex:1" :value="classTmp.textSize" @change="sliderTextSize" min="0" max="30" show-value />
 					</view>
 
 					<view class="dp-f jc-sb mt-10 c-fff w100">
@@ -288,11 +279,11 @@
 							<text class="text-grey">显示文字边框</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.textShowBorder = !cfgt.textShowBorder"
-							:class="cfgt.textShowBorder ? 'checked' : ''"
+							class="switch-outline"
+							@change="classTmp.textShowBorder = !classTmp.textShowBorder"
+							:class="classTmp.textShowBorder ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.textShowBorder ? true : false"
+							:checked="classTmp.textShowBorder ? true : false"
 						></switch>
 					</view>
 
@@ -301,7 +292,7 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">文字边框颜色</text>
 						</view>
-						<view class="action"><view :style="{ background: cfgt.textBorderColor }" class="test" @click="showColorPicker = 6" /></view>
+						<color-picker w="60" h="60" :defColor="classTmp.textBorderColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetTextBorderColor" />
 					</view>
 
 					<view class="dp-f jc-sb mt-10 c-fff w100">
@@ -309,10 +300,9 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">文字边框弧度</text>
 						</view>
-						<slider style="flex:1" :value="cfgt.textBorderRadio" @change="sliderTextBorderRadio" min="0" max="10" show-value />
+						<slider style="flex:1" :value="classTmp.textBorderRadio" @change="sliderTextBorderRadio" min="0" max="10" show-value />
 					</view>
 				</view>
-
 				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 2">
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
@@ -320,19 +310,20 @@
 							<text class="text-grey">显示图标</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.showIcon = !cfgt.showIcon"
-							:class="cfgt.showIcon ? 'checked' : ''"
+							class="switch-icon"
+							@change="classTmp.showIcon = !classTmp.showIcon"
+							:class="classTmp.showIcon ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.showIcon ? true : false"
+							:checked="classTmp.showIcon ? true : false"
 						></switch>
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
+						<view class="dp-f jc-sb ai-c">
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">选择图标</text>
 						</view>
-						<view class="iconfont" :class="cfgt.icon" @click="showIconPicker = true" />
+						<!-- <view class="iconfont" :class="classTmp.icon" @click="showIconPicker = true" /> -->
+						<icon-picker w="80" h="80" :defIcon="classTmp.icon" tabItems="iconSetNames" :iconSets="icons" @loadIconPicker="cpGetIcon" />
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
@@ -340,8 +331,8 @@
 							<text class="text-grey">图标颜色/图标背景颜色</text>
 						</view>
 						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
-							<view class="action"><view :style="{ background: cfgt.iconColor }" class="test" @click="showColorPicker = 7" /></view>
-							<view class="action"><view :style="{ background: cfgt.iconBgColor }" class="test" @click="showColorPicker = 8" /></view>
+							<color-picker w="60" h="60" :defColor="classTmp.iconColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetIconColor" />
+							<color-picker w="60" h="60" :defColor="classTmp.iconBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetIconBgc" />
 						</view>
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
@@ -349,7 +340,7 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">图标大小</text>
 						</view>
-						<slider style="flex:1" :value="cfgt.iconSize" @change="sliderIconSize" min="0" max="50" show-value />
+						<slider style="flex:1" :value="classTmp.iconSize" @change="sliderIconSize" min="0" max="50" show-value />
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
@@ -357,11 +348,11 @@
 							<text class="text-grey">显示图标边框</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.iconShowBorder = !cfgt.iconShowBorder"
-							:class="cfgt.iconShowBorder ? 'checked' : ''"
+							class="switch-outline"
+							@change="classTmp.iconShowBorder = !classTmp.iconShowBorder"
+							:class="classTmp.iconShowBorder ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.iconShowBorder ? true : false"
+							:checked="classTmp.iconShowBorder ? true : false"
 						></switch>
 					</view>
 
@@ -370,17 +361,23 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">图标边框颜色</text>
 						</view>
-						<view class="action"><view :style="{ background: cfgt.iconBorderCorlor }" class="test" @click="showColorPicker = 9" /></view>
+						<color-picker
+							w="60"
+							h="60"
+							:defColor="classTmp.iconBorderCorlor"
+							:tabItems="colorSetNames"
+							:colorSets="colorSets"
+							@loadColorPicker="cpGetIconBorderColor"
+						/>
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">图标边框弧度</text>
 						</view>
-						<slider style="flex:1" :value="cfgt.iconBorderRadio" @change="sliderIconBorderRadio" min="0" max="10" show-value />
+						<slider style="flex:1" :value="classTmp.iconBorderRadio" @change="sliderIconBorderRadio" min="0" max="10" show-value />
 					</view>
 				</view>
-
 				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 3">
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
@@ -388,11 +385,11 @@
 							<text class="text-grey">显示开始时间</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.showStime = !cfgt.showStime"
-							:class="cfgt.showStime ? 'checked' : ''"
+							class="switch-time"
+							@change="classTmp.showStime = !classTmp.showStime"
+							:class="classTmp.showStime ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.showStime ? true : false"
+							:checked="classTmp.showStime ? true : false"
 						/>
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
@@ -401,8 +398,8 @@
 							<text class="text-grey">颜色/背景颜色</text>
 						</view>
 						<view class="dp-fc">
-							<view class="action"><view :style="{ background: cfgt.stimeColor }" class="test" @click="showColorPicker = 9" /></view>
-							<view class="action"><view :style="{ background: cfgt.stimeBgColor }" class="test" @click="showColorPicker = 9" /></view>
+							<color-picker w="60" h="60" :defColor="classTmp.stimeColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetStimeColor" />
+							<color-picker w="60" h="60" :defColor="classTmp.stimeBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetStimeBgc" />
 						</view>
 					</view>
 					<view class="dp-f jc-sb ai-c c-fff w100">
@@ -410,7 +407,7 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">字体大小</text>
 						</view>
-						<slider style="flex:1" :value="cfgt.stimeSize" @change="sliderSimeSize" min="0" max="50" show-value />
+						<slider style="flex:1" :value="classTmp.stimeSize" @change="sliderSimeSize" min="0" max="50" show-value />
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
@@ -418,32 +415,39 @@
 							<text class="text-grey">显示边框</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.stimeShowBorder = !cfgt.stimeShowBorder"
-							:class="cfgt.stimeShowBorder ? 'checked' : ''"
+							class="switch-outline"
+							@change="classTmp.stimeShowBorder = !classTmp.stimeShowBorder"
+							:class="classTmp.stimeShowBorder ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.stimeShowBorder ? true : false"
+							:checked="classTmp.stimeShowBorder ? true : false"
 						/>
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100 indent-s">
+					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">边框颜色</text>
 						</view>
-						<view class="action"><view :style="{ background: cfgt.stimeBorderColor }" class="test" @click="showColorPicker = 9" /></view>
+						<color-picker
+							w="60"
+							h="60"
+							:defColor="classTmp.stimeBorderColor"
+							:tabItems="colorSetNames"
+							:colorSets="colorSets"
+							@loadColorPicker="cpGetStimeBorderColor"
+						/>
 					</view>
 
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
 							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示开始时间</text>
+							<text class="text-grey">显示课程时长</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.showDur = !cfgt.showDur"
-							:class="cfgt.showDur ? 'checked' : ''"
+							class="switch-timeLen"
+							@change="classTmp.showDur = !classTmp.showDur"
+							:class="classTmp.showDur ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.showDur ? true : false"
+							:checked="classTmp.showDur ? true : false"
 						/>
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
@@ -452,8 +456,8 @@
 							<text class="text-grey">颜色/背景颜色</text>
 						</view>
 						<view class="dp-fc">
-							<view class="action"><view :style="{ background: cfgt.durColor }" class="test" @click="showColorPicker = 9" /></view>
-							<view class="action"><view :style="{ background: cfgt.durBgColor }" class="test" @click="showColorPicker = 9" /></view>
+							<color-picker w="60" h="60" :defColor="classTmp.durColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetDurColor" />
+							<color-picker w="60" h="60" :defColor="classTmp.durBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetDurBgc" />
 						</view>
 					</view>
 					<view class="dp-f jc-sb ai-c c-fff w100">
@@ -461,7 +465,7 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">字体大小</text>
 						</view>
-						<slider style="flex:1" :value="cfgt.durSize" @change="sliderDurSize" min="0" max="50" show-value />
+						<slider style="flex:1" :value="classTmp.durSize" @change="sliderDurSize" min="0" max="50" show-value />
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
 						<view class="content">
@@ -469,11 +473,11 @@
 							<text class="text-grey">显示边框</text>
 						</view>
 						<switch
-							class="switch-sex"
-							@change="cfgt.durShowBorder = !cfgt.durShowBorder"
-							:class="cfgt.durShowBorder ? 'checked' : ''"
+							class="switch-outline"
+							@change="classTmp.durShowBorder = !classTmp.durShowBorder"
+							:class="classTmp.durShowBorder ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfgt.durShowBorder ? true : false"
+							:checked="classTmp.durShowBorder ? true : false"
 						/>
 					</view>
 					<view class="dp-f jc-sb mt-10 c-fff w100">
@@ -481,20 +485,19 @@
 							<text class="cuIcon-circlefill text-grey"></text>
 							<text class="text-grey">边框颜色</text>
 						</view>
-						<view class="action"><view :style="{ background: cfgt.durBorderColor }" class="test" @click="timeBorderColor = 9" /></view>
+						<color-picker w="60" h="60" :defColor="classTmp.durBorderColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetDurBorderColor" />
 					</view>
 				</view>
 
-				<view class="form-item margin-top colors-white-base ai-c">
-					<!-- <view class="dp-fc btn w-200 h-80 c-000" @click="submitUpdateClass = false" v-show="showPop == 1">修改</view> -->
+				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
 					<button type="primary" @click="submitUpdateClass" v-show="showPop == 1">修改</button>
 					<button type="primary" @click="submitAddClass" v-show="showPop == 2">增加</button>
 					<button type="default" @click="cancelCreateProj">取消</button>
-					<button type="warn" @click="onDeleteCurrClass">删除</button>
+					<button type="warn" @click="onDeleteCurrClass" v-show="showPop == 1">删除</button>
 				</view>
-			</scroll-view>
-		</uni-transition>
-		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showColorPicker > 0" @change="transChange">
+			</view>
+		</uni-popup>
+		<!--		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showColorPicker > 0" @change="transChange">
 			<view class="form-top-view dp-fc fd-c w100 h100">
 				<view class="uni-padding-wrap uni-common-mt">
 					<uni-segmented-control
@@ -505,7 +508,7 @@
 						@clickItem="onChangeColorSetTabItem"
 					/>
 				</view>
-				<view class="pop-item-base" style="flex-flow:row wrap" v-if="colorSetsTabIndex == 0">
+ 				<view class="pop-item-base" style="flex-flow:row wrap" v-if="colorSetsTabIndex == 0">
 					<view
 						class="pop-color-block"
 						:class="[
@@ -556,20 +559,15 @@
 				</view>
 				<view class="dp-fc"><view class="dp-fc btn w-200 h-80 mt-50 c-000" @click="showColorPicker = false">确定</view></view>
 			</view>
-		</uni-transition>
-		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showIconPicker" @change="cfgChanged = false">
-			<scroll-view
-				class="form-top-view z-flex"
-				scroll-y="true"
-				:style="{ height: projs.tableHeight + 'px' }"
-				show-scrollbar="true"
-				style="--dir:var(--dir-col); --wrap:var(--wrap-yes);margin:0 auto;"
-			>
+		</uni-transition> -->
+		<!-- <uni-popup ref="popupIcon" type="center"> -->
+		<!-- 		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showIconPicker" @change="cfgChanged = false">
+			<scroll-view class="dp-fc mt-20 bc-333 bg-8e" style="z-index: 99999;" scroll-y="true" :style="{ height: projs.tableHeight + 'px' }" show-scrollbar="true">
 				<view
 					class="iconfont icon-block"
 					:class="[
 						{
-							popColorBlockSelected: item == cfgt.icon
+							popColorBlockSelected: item == classTmp.icon
 						},
 						item
 					]"
@@ -583,7 +581,8 @@
 					<view class="atom" style="width: 100%;justify-content: center;display: flex;" @click="showIconPicker = false">确定</view>
 				</view>
 			</scroll-view>
-		</uni-transition>
+		</uni-transition> -->
+		<!-- </uni-popup> -->
 	</view>
 </template>
 
@@ -610,8 +609,10 @@ export default {
 	},
 	data() {
 		return {
+			weekTabIndex: 0,
 			classStyleTabIndex: 0,
 			colorSetsTabIndex: 0,
+			weekTabItems: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
 			classStyleTabItems: ['课程', '名称', '图标', '时间'],
 			colorSetsTabItems: ['1c-69bc38', '1-adcd83'],
 			cfgChanged: false, //设置页面发生变化
@@ -621,51 +622,95 @@ export default {
 			key: 'KEY_PROJECT',
 			durMax: 240,
 			drawerMode: 0, //0:drawer close; 1: createClass drawer; 2: updateClass drawer;
-			cfgt: {
-				weekday: 'monday',
+			classDefault: {
+				weekday: 0,
+				weekdayPrevious: 0,
 				icon: 'icon-youyong4',
-				name: '撸串',
+				name: '语文',
 				time: 480,
 				dur: 60,
 				margintop: 100,
 				height: 100,
-				displayMode: 2,
 
-				bgc: 'transparent', //课程背景颜色
-				bgcGradient: 'transparent', //课程背景渐变色
-
-				showBorder: false, //是否显示课程外框
-				borderColor: '#123456', //课程外框颜色
-				borderRadio: 10, //课程边框弧度
+				classBgc: 'transparent', //课程背景颜色
+				classBgcGradient: 'transparent', //课程背景渐变色
+				classShowBorder: false, //是否显示课程外框
+				classBorderColor: '#123456', //课程外框颜色
+				classBorderRadio: 20, //课程边框弧度
 
 				showName: false, //是否显示课程名称
 				textColor: '#FFFFFF', //名称颜色
-				textBgColor: 'transparent', //名称背景颜色
+				textBgc: 'transparent', //名称背景颜色
 				textSize: 20, //文字尺寸
 				textShowBorder: false, //是否显示文字边框
 				textBorderColor: '#F44336', //文字边框颜色
-				textBorderRadio: 5, //文字边框弧度
+				textBorderRadio: 20, //文字边框弧度
 
 				showIcon: true, //是否显示图标
 				iconColor: '#ff0000', //图标颜色
-				iconBgColor: 'transparent', //图标背景颜色
+				iconBgc: 'transparent', //图标背景颜色
 				iconSize: 40, //图标尺寸
-				iconShowBorder: true, //是否显示图标边框
+				iconShowBorder: false, //是否显示图标边框
 				iconBorderCorlor: '#0000ff', //图标边框颜色
-				iconBorderRadio: 5, //图标边框颜色
+				iconBorderRadio: 20, //图标边框颜色
 
-							showStime: false,
-							stimeColor: "#ff0000",
-							stimeBgColor: "#00ff00",
-							stimeSize: 10,
-							stimeShowBorder: false,
-							stimeBorderColor: "#00ff00",
-							showDur: false,
-							durColor: "#0000ff",
-							durBgColor: "#00ff00",
-							durSize: 10,
-							durShowBorder: false,
-							durBorderColor: "#00ff00"
+				showStime: false,
+				stimeColor: '#ff0000',
+				stimeBgc: '#00ff00',
+				stimeSize: 10,
+				stimeShowBorder: false,
+				stimeBorderColor: '#00ff00',
+				showDur: false,
+				durColor: '#0000ff',
+				durBgc: '#00ff00',
+				durSize: 10,
+				durShowBorder: false,
+				durBorderColor: '#00ff00'
+			},
+			classTmp: {
+				weekday: 0,
+				weekdayPrevious: 0,
+				icon: 'icon-youyong4',
+				name: '语文',
+				time: 480,
+				dur: 60,
+				margintop: 100,
+				height: 100,
+
+				classBgc: 'transparent', //课程背景颜色
+				classBgcGradient: 'transparent', //课程背景渐变色
+				classShowBorder: false, //是否显示课程外框
+				classBorderColor: '#123456', //课程外框颜色
+				classBorderRadio: 20, //课程边框弧度
+
+				showName: false, //是否显示课程名称
+				textColor: '#FFFFFF', //名称颜色
+				textBgc: 'transparent', //名称背景颜色
+				textSize: 20, //文字尺寸
+				textShowBorder: false, //是否显示文字边框
+				textBorderColor: '#F44336', //文字边框颜色
+				textBorderRadio: 20, //文字边框弧度
+
+				showIcon: true, //是否显示图标
+				iconColor: '#ff0000', //图标颜色
+				iconBgc: 'transparent', //图标背景颜色
+				iconSize: 40, //图标尺寸
+				iconShowBorder: false, //是否显示图标边框
+				iconBorderCorlor: '#0000ff', //图标边框颜色
+				iconBorderRadio: 20, //图标边框颜色
+
+				showStime: false,
+				stimeColor: '#ff0000',
+				stimeBgc: '#00ff00',
+				stimeSize: 10,
+				stimeShowBorder: false,
+				stimeBorderColor: '#00ff00',
+				showDur: false,
+				durColor: '#0000ff',
+				durBgc: '#00ff00',
+				durSize: 10,
+				durShowBorder: false,
+				durBorderColor: '#00ff00'
 			},
 			x: 0,
 			y: 0,
@@ -681,17 +726,65 @@ export default {
 				left: 0,
 				right: 0,
 				width: '100%',
-				height: 'auto',
+				height: '100%',
 				margin: 'auto',
 				display: 'flex',
 				'justify-content': 'center',
 				'align-items': 'center',
-				'background-color': 'rgba(0, 0, 0, 0.4)'
+				'background-color': 'rgba(0, 0, 0, 0.99)'
 			}
 		};
 	},
 	methods: {
 		...mapMutations(['increaseCount', 'increaseCountBy', 'decreaseCount', 'updateProjs', 'addClass', 'updateClass', 'deleteClass']),
+		cpGetClassBgc(c) {
+			this.classTmp.classBgc = c;
+		},
+		cpGetClassBgcGradient(c) {
+			this.classTmp.classBgcGradient = c;
+		},
+		cpGetClassBorderColor(c) {
+			this.classTmp.classBorderColor = c;
+		},
+		cpGetTextColor(c) {
+			this.classTmp.textColor = c;
+		},
+		cpGetTextBgc(c) {
+			this.classTmp.textBgc = c;
+		},
+		cpGetTextBorderColor(c) {
+			this.classTmp.textBorderColor = c;
+		},
+		cpGetIconColor(c) {
+			this.classTmp.iconColor = c;
+		},
+		cpGetIconBgc(c) {
+			this.classTmp.iconBgc = c;
+		},
+		cpGetIconBorderColor(c) {
+			this.classTmp.iconBorderCorlor = c;
+		},
+		cpGetStimeColor(c) {
+			this.classTmp.stimeColor = c;
+		},
+		cpGetStimeBgc(c) {
+			this.classTmp.stimeBgc = c;
+		},
+		cpGetStimeBorderColor(c) {
+			this.classTmp.stimeBorderColor = c;
+		},
+		cpGetDurColor(c) {
+			this.classTmp.durColor = c;
+		},
+		cpGetDurBgc(c) {
+			this.classTmp.durBgc = c;
+		},
+		cpGetDurBorderColor(c) {
+			this.classTmp.durBorderColor = c;
+		},
+		cpGetIcon(icon) {
+			this.classTmp.icon = icon;
+		},
 		getStorage: function() {
 			var key = this.key;
 			//     data = this.projs;
@@ -776,148 +869,104 @@ export default {
 			return [h, s].join(':');
 		},
 		onNewClass(e) {
-			let weekday = 'monday';
-			switch (e.currentTarget.dataset.x) {
-				case 0:
-					weekday = 'monday';
-					break;
-				case 1:
-					weekday = 'tuesday';
-					break;
-				case 2:
-					weekday = 'wednesday';
-					break;
-				case 3:
-					weekday = 'thursday';
-					break;
-				case 4:
-					weekday = 'friday';
-					break;
-				case 5:
-					weekday = 'saturday';
-					break;
-				case 6:
-					weekday = 'sunday';
-					break;
-				default:
-					weekday = 'monday';
-					break;
-			}
-			(this.cfgt = {
-				weekday: weekday,
-				icon: 'success',
-				name: 'm1',
-				time: 480,
-				dur: 60,
-				margintop: 100,
-				height: 100,
-				displayMode: 2,
-				showName: false,
-				showIcon: false,
-				bgc: 'transparent',
-				bgcGradient: 'transparent',
-				textShowBorder: true,
-				textBorderColor: '#F44336',
-				textBorderRadio: 5,
-				textColor: '#FFFFFF',
-				textSize: 20
-			}),
-				// this.drawerMode = 2;
-				(this.x = e.currentTarget.dataset.x);
 			this.showPop = 2;
+			this.classTmp = this.classDefault;
+			this.classTmp.weekday = e.currentTarget.dataset.x;
+			this.weekTabIndex = e.currentTarget.dataset.x;
+			this.$refs.popupCfg.open();
 		},
 		onEditClass(e) {
-			console.log('onEditClass');
-			// console.log(JSON.stringify(e.currentTarget.dataset));
-			// this.drawerMode = 1;
+			this.weekTabIndex = e.currentTarget.dataset.x;
 			this.showPop = 1;
-			this.e = e;
-			this.cfgt = e.currentTarget.dataset.class;
+			console.log('onEditClass');
+			this.classTmp = e.currentTarget.dataset.class;
 			this.x = e.currentTarget.dataset.x;
 			this.y = e.currentTarget.dataset.y;
+			this.$refs.popupCfg.open();
+			// this.e = e;
 		},
 		onChangeClassStyleTabItem(e) {
 			if (this.classStyleTabIndex !== e.currentIndex) {
 				this.classStyleTabIndex = e.currentIndex;
 			}
 		},
-		onChangeColorSetTabItem(e) {
-			if (this.colorSetsTabIndex !== e.currentIndex) {
-				this.colorSetsTabIndex = e.currentIndex;
+		onChangeWeekTabItem(e) {
+			if (this.weekTabIndex !== e.currentIndex) {
+				this.weekTabIndex = e.currentIndex;
+				this.classTmp.weekdayPrevious = this.classTmp.weekday;
+				this.classTmp.weekday = e.currentIndex;
 			}
 		},
 		submitUpdateClass: function() {
-			console.log('submitUpdateClas');
-			// console.log(JSON.stringify(e.currentTarget.dataset))
-			this.cfgt.height = this.cfgt.dur * this.projs.rpx;
-			this.updateClass({ cfgt: this.cfgt, x: this.x, y: this.y });
+			console.log('submitUpdateClass: ' + this.classTmp.showName);
+			this.classTmp.height = this.classTmp.dur * this.projs.rpx;
+			this.$refs.popupCfg.close();
+			this.updateClass({ classTmp: this.classTmp, x: this.x, y: this.y });
 			this.updateProjs();
-			this.showPop = 0;
+
 			// this.setStorage();
 		},
 		submitAddClass: function() {
-			console.log('submitCreateProj');
-			this.cfgt.height = this.cfgt.dur * this.projs.rpx;
-			this.addClass(this.cfgt);
+			this.$refs.popupCfg.close();
+			console.log('submitAddClass');
+			// this.classTmp.height = this.classTmp.dur * this.projs.rpx;
+			this.addClass(this.classTmp);
 			this.updateProjs();
-			this.showPop = 0;
+
 			// this.setStorage();
 		},
 		cancelCreateProj: function() {
-			this.showPop = 0;
+			this.$refs.popupCfg.close();
 		},
 		onDeleteCurrClass: function() {
 			console.log('onDeleteCurrClass');
-			// console.log(JSON.stringify(this.cfgt));
-			this.deleteClass({ cfgt: this.cfgt, x: this.x, y: this.y });
+			this.$refs.popupCfg.close();
+			// console.log(JSON.stringify(this.classTmp));
+			this.deleteClass({ classTmp: this.classTmp, x: this.x, y: this.y });
 			this.updateProjs();
-			this.showPop = false;
 		},
 		sliderClassTimeChange: function(e) {
-			this.cfgt.time = e.detail.value;
+			this.classTmp.time = e.detail.value;
 		},
 		sliderClassDurChange: function(e) {
-			this.cfgt.dur = e.detail.value;
+			this.classTmp.dur = e.detail.value;
 		},
 		sliderBorderRadio: function(e) {
-			this.cfgt.borderRadio = e.detail.value;
+			this.classTmp.borderRadio = e.detail.value;
 		},
 		sliderTextSize: function(e) {
-			this.cfgt.textSize = e.detail.value;
+			this.classTmp.textSize = e.detail.value;
 		},
 		sliderTextBorderRadio: function(e) {
-			this.cfgt.textBorderRadio = e.detail.value;
+			this.classTmp.textBorderRadio = e.detail.value;
 		},
 		sliderIconSize: function(e) {
-			this.cfgt.iconSize = e.detail.value;
+			this.classTmp.iconSize = e.detail.value;
 		},
 		sliderIconBorderRadio: function(e) {
-			this.cfgt.iconBorderRadio = e.detail.value;
+			this.classTmp.iconBorderRadio = e.detail.value;
 		},
 		onSubClassTime: function() {
-			this.cfgt.time--;
+			this.classTmp.time--;
 		},
 		onAddClassTime: function() {
-			this.cfgt.time++;
+			this.classTmp.time++;
 		},
 		onSubClassDur: function() {
-			this.cfgt.dur--;
+			this.classTmp.dur--;
 		},
 		onAddClassDur: function() {
-			this.cfgt.dur++;
+			this.classTmp.dur++;
 		},
 		onExtendClassDurMax: function() {
 			this.durMax += 10;
-			// this.cfgt.dur ++;
-		},
-		onChangeWeekday: function(day) {
-			this.cfgt.weekday = day;
+			// this.classTmp.dur ++;
 		},
 		onUpdateClassName: function(e) {
-			this.cfgt.name = e.detail.value;
-		},
+			this.classTmp.name = e.detail.value;
+		}, 
 		onUpdateStartTime: function(e) {
-			this.cfgt.time = e.detail.value;
+			this.classTmp.time = e.detail.value;
 		},
 		isEmphasis: function(day) {
 			// console.log('isEmphasis');
@@ -928,21 +977,21 @@ export default {
 		onSelectColor: function(e) {
 			//双色模式
 			this.e = e;
-			if (this.showColorPicker == 1) this.cfgt.bgc = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 2) this.cfgt.bgcGradient = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 3) this.cfgt.borderColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 4) this.cfgt.textColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 5) this.cfgt.textBgColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 6) this.cfgt.textBorderColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 7) this.cfgt.iconColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 8) this.cfgt.iconBgColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 9) this.cfgt.iconBorderCorlor = e.currentTarget.dataset.color.color;
+			if (this.showColorPicker == 1) this.classTmp.bgc = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 2) this.classTmp.bgcGradient = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 3) this.classTmp.borderColor = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 4) this.classTmp.textColor = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 5) this.classTmp.textBgColor = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 6) this.classTmp.textBorderColor = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 7) this.classTmp.iconColor = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 8) this.classTmp.iconBgColor = e.currentTarget.dataset.color.color;
+			else if (this.showColorPicker == 9) this.classTmp.iconBorderCorlor = e.currentTarget.dataset.color.color;
 			else {
 				console.log('onSelectColor.exception');
 			}
 		},
 		onSelectIcon: function(e) {
-			this.cfgt.icon = e.currentTarget.dataset.icon;
+			this.classTmp.icon = e.currentTarget.dataset.icon;
 		},
 		isDayDisplayed: function(day) {
 			// console.log('isDayDisplayed' + day);
@@ -998,7 +1047,7 @@ export default {
 				this.$store.commit('setProjs', val);
 			}
 		},
-		...mapState(['cfg', 'colors', 'icons', 'colorSets', 'g'])
+		...mapState(['cfg', 'colors', 'icons', 'colorSets', 'colorSetNames'])
 	},
 	onLoad() {
 		// 获取系统信息
@@ -1328,5 +1377,41 @@ export default {
 	border: 1px solid $blue-base;
 	border-radius: 50%;
 	// background: #98FB98;
+}
+
+.switch-outline::after {
+	content: '\e611';
+	color: #0066cc;
+}
+.switch-outline::before {
+	content: '\e611';
+}
+.switch-class::after {
+	content: '\e637';
+	color: #0066cc;
+}
+.switch-class::before {
+	content: '\e637';
+}
+.switch-icon::after {
+	content: '\e60d';
+	color: #0066cc;
+}
+.switch-icon::before {
+	content: '\e60a';
+}
+.switch-time::after {
+	content: '\e606';
+	color: #0066cc;
+}
+.switch-time::before {
+	content: '\e606';
+}
+.switch-timeLen::after {
+	content: '\e747';
+	color: #0066cc;
+}
+.switch-timeLen::before {
+	content: '\e747';
 }
 </style>

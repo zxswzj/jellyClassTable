@@ -1,1 +1,1 @@
-<view data-event-opts="{{[['tap',[['$emit',['click','$0'],['color']]]]]}}" class="w-500 h-500 bc-999 bg-333 highlight" bindtap="__e">{{text+''}}</view>
+<view class="dp-fc fd-c ai-c"><view data-event-opts="{{[['tap',[['getColor',['$event']]]]]}}" class="{{['br-15 m-10',hl?'highlight':'']}}" style="{{('width:'+w+'px;height:'+h+'px;background-color:'+bgc)}}" bindtap="__e"></view><text class="c-3c">{{text}}</text></view>

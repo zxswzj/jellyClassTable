@@ -55,6 +55,23 @@
 	color: #0000ff;
 }
 
+.c-ff{color: #ffffff;}
+.c-fc{color: #fcfcfc;}
+.c-f0{color: #f0f0f0;}
+.c-e0{color: #e0e0e0;}
+.c-d0{color: #d0d0d0;}
+.c-be{color: #bebebe;}
+.c-ad{color: #adadad;}
+.c-9d{color: #9d9d9d;}
+.c-8e{color: #8e8e8e;}
+.c-7b{color: #7b7b7b;}
+.c-6c{color: #6c6c6c;}
+.c-5b{color: #5b5b5b;}
+.c-4f{color: #4f4f4f;}
+.c-3c{color: #3c3c3c;}
+.c-27{color: #272727;}
+.c-00{color: #000000;}
+
 /* 背景颜色 */
 .bg-fff {
 	background-color: #fff;
@@ -107,6 +124,23 @@
 .bg-00f {
 	background-color: #0000ff;
 }
+
+.bg-ff{background-color: #ffffff;}
+.bg-fc{background-color: #fcfcfc;}
+.bg-f0{background-color: #f0f0f0;}
+.bg-e0{background-color: #e0e0e0;}
+.bg-d0{background-color: #d0d0d0;}
+.bg-be{background-color: #bebebe;}
+.bg-ad{background-color: #adadad;}
+.bg-9d{background-color: #9d9d9d;}
+.bg-8e{background-color: #8e8e8e;}
+.bg-7b{background-color: #7b7b7b;}
+.bg-6c{background-color: #6c6c6c;}
+.bg-5b{background-color: #5b5b5b;}
+.bg-4f{background-color: #4f4f4f;}
+.bg-3c{background-color: #3c3c3c;}
+.bg-27{background-color: #272727;}
+.bg-00{background-color: #000000;}
 
 /* 边框颜色 */
 .bc-fff {
