@@ -9,8 +9,9 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.2",
-	"appid": "touristappid",
+	"appid": "wx3890ce6b9205839a",
 	"projectname": "jellyClassTable2",
+	"cloudfunctionRoot": "functions/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {

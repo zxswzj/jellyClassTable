@@ -1,8 +1,9 @@
 <template>
-	<view v-if="showPopup" class="uni-popup" @touchmove.stop.prevent="clear">
+<!-- 	<view v-if="showPopup" class="uni-popup" @touchmove.stop.prevent="clear"> -->
+	<view v-if="showPopup" class="uni-popup" >
 		<uni-transition :mode-class="['fade']" :styles="maskClass" :duration="duration" :show="showTrans" @click="onTap" />
 		<uni-transition :mode-class="ani" :styles="transClass" :duration="duration" :show="showTrans" @click="onTap">
-			<view class="uni-popup__wrapper-box" @click.stop="clear">
+			<view class="uni-popup__wrapper-box w100 h100" >
 				<slot />
 			</view>
 		</uni-transition>
@@ -11,7 +12,7 @@
 
 <script>
 	import uniTransition from '../uni-transition/uni-transition.vue'
-	import uniPopup from '@/components/uni-popup/uni-popup.vue';
+	// import uniPopup from '@/components/uni-popup/uni-popup.vue';
 
 	/**
 	 * PopUp 弹出层
@@ -29,7 +30,7 @@
 	export default {
 		name: 'UniPopup',
 		components: {
-			uniTransition,uniPopup
+			uniTransition
 		},
 		props: {
 			// 开启动画
@@ -60,12 +61,15 @@
 					'top': 0,
 					'left': 0,
 					'right': 0,
-					'backgroundColor': 'rgba(0, 0, 0, 0.4)'
+					'backgroundColor': 'rgba(255, 255, 255, 0.9)'
 				},
 				transClass: {
 					'position': 'fixed',
+					'bottom': 0,
+					'top': 0,
 					'left': 0,
 					'right': 0,
+					'backgroundColor': 'rgba(0, 0, 0, 0.1)'
 				}
 			}
 		},
@@ -103,9 +107,10 @@
 								'right': 0,
 								'top': 0,
 								'justifyContent': 'center',
-								'alignItems': 'center'
+								'alignItems': 'center',
+								'alignContent': 'flex-start',
+								'backgroundColor': 'rgba(255, 255, 255, 0.8)'
 							}
-
 							break
 					}
 				},
@@ -149,8 +154,9 @@
 				})
 			},
 			onTap() {
+				// console.log('onTap.maskClick:' + this.maskClick);
 				if (!this.maskClick) return
-				this.close()
+				// this.close()
 			}
 		}
 	}

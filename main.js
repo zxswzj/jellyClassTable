@@ -9,6 +9,7 @@ import viewHighlight from './components/view-highlight.vue'
 import colorPicker from './components/color-picker.vue'
 import iconPicker from './components/icon-picker.vue'
 import uniPromise from './common/uniPromise.js'
+// import uniAsync from '@/utils/uni-async.js'
 
 
 Vue.config.productionTip = false
@@ -20,6 +21,7 @@ Vue.prototype.$backgroundAudioData = {
 	formatedPlayTime: '00:00:00'
 }
 Vue.prototype.$uni = uniPromise.uniPromise;
+// Vue.prototype.$uniAsync = uniAsync
 
 const json = type=>{
 	//模拟异步请求数据

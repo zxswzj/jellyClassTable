@@ -1,6 +1,6 @@
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],[
-/* 0 */,
-/* 1 */
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
+
+/***/ 1:
 /*!************************************************************!*\
   !*** ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js ***!
   \************************************************************/
@@ -395,8 +395,25 @@ var previewImage = {
   } };
 
 
+function addSafeAreaInsets(result) {
+  if (result.safeArea) {
+    var safeArea = result.safeArea;
+    result.safeAreaInsets = {
+      top: safeArea.top,
+      left: safeArea.left,
+      right: result.windowWidth - safeArea.right,
+      bottom: result.windowHeight - safeArea.bottom };
+
+  }
+}
 var protocols = {
-  previewImage: previewImage };
+  previewImage: previewImage,
+  getSystemInfo: {
+    returnValue: addSafeAreaInsets },
+
+  getSystemInfoSync: {
+    returnValue: addSafeAreaInsets } };
+
 
 var todos = [
 'vibrate'];
@@ -1364,7 +1381,7 @@ function parseBaseComponent(vueComponentOptions)
         }
       },
       detached: function detached() {
-        this.$vm.$destroy();
+        this.$vm && this.$vm.$destroy();
       } },
 
     pageLifetimes: {
@@ -1533,7 +1550,2121 @@ var uni$1 = uni;var _default =
 uni$1;exports.default = _default;
 
 /***/ }),
-/* 2 */
+
+/***/ 14:
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \**********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode, /* vue-cli only */
+  components, // fixed by xxxxxx auto components
+  renderjs // fixed by xxxxxx renderjs
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // fixed by xxxxxx auto components
+  if (components) {
+    options.components = Object.assign(components, options.components || {})
+  }
+  // fixed by xxxxxx renderjs
+  if (renderjs) {
+    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
+      this[renderjs.__module] = this
+    });
+    (options.mixins || (options.mixins = [])).push(renderjs)
+  }
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ 15:
+/*!**********************************************!*\
+  !*** C:/proj/jellyClassTable/store/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
+var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+
+_vue.default.use(_vuex.default);var _require =
+
+
+
+
+
+__webpack_require__(/*! ../common/colors.js */ 20),colors = _require.colors,colorSets = _require.colorSets,colorSetNames = _require.colorSetNames;var _require2 =
+
+
+
+
+__webpack_require__(/*! ../common/app-data.js */ 21),projs = _require2.projs,icons = _require2.icons;
+
+var store = new _vuex.default.Store({
+  state: {
+    weeks: [],
+    date: [],
+    sysInfo: [],
+    userInfo: {},
+    cfg: {
+      bgc: '#cccccc',
+      bgcGradient: '#cccccc',
+      colBgc: 'transparent',
+      colBgcGradient: 'transparent',
+      colBorderShow: false,
+      colBorderColor: 'transparent',
+      hilightCurrentDay: true,
+      daysMode: false, //false: day5; true: day7
+      axisColor: '#69bc38',
+      axisColorGradient: '#f34598',
+      axisTextColor: '#ffffff',
+      axisTextBgc: '#000000',
+      highlightBorderColor: '#00ff00' },
+
+    colors: colors,
+    colorSets: colorSets,
+    colorSetNames: colorSetNames,
+    projs: projs,
+    icons: icons,
+    count: 0,
+    hasLogin: false,
+    loginProvider: "",
+    openid: null,
+    testvuex: false },
+
+  mutations: {
+    setSysInfo: function setSysInfo(state, sysInfo) {
+      state.sysInfo = sysInfo;
+    },
+    setTableHeight: function setTableHeight(state, tableHeight) {
+      console.log('setTableHeight: ' + tableHeight);
+      state.projs.tableHeight = tableHeight;
+      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
+    },
+    setDate: function setDate(state, date) {
+      state.date = date;
+    },
+    // logout(state) {
+    // 	state.hasLogin = false
+    // 	state.openid = null
+    // },
+    setUserInfo: function setUserInfo(state, userInfo) {
+      console.log('setUserInfo' + JSON.stringify(userInfo));
+      state.userInfo = userInfo;
+    },
+    setOpenid: function setOpenid(state, openid) {
+      state.openid = openid;
+    },
+    setTestTrue: function setTestTrue(state) {
+      state.testvuex = true;
+    },
+    setTestFalse: function setTestFalse(state) {
+      state.testvuex = false;
+    },
+    increaseCountBy: function increaseCountBy(state, cnt) {
+      state.count += cnt;
+    },
+    increaseCount: function increaseCount(state) {
+      console.log('increaseCount:');
+      state.count += 2;
+    },
+    decreaseCount: function decreaseCount(state) {
+      state.count--;
+    },
+    setProjs: function setProjs(state, item) {
+      state.projs = item;
+    },
+    updateProjs: function updateProjs(state) {
+      console.log('store.updateProjs');
+      // console.log(JSON.stringify(state.projs));
+
+      var pretime = 0;
+      var start = 480;
+      var stop = 720;
+
+      state.projs.days.forEach(function (item1, i) {
+        // console.log('x:' + i + JSON.stringify(item1));
+        item1.classes.forEach(function (item2, j) {
+          // console.log('xy:' + i + j + JSON.stringify(item2));
+
+          if (item2.time < start) {
+            start = item2.time;
+            console.log('i:' + i + '; j:' + j + ';start:' + start);
+          }
+          if (item2.time + item2.dur > stop) {
+            stop = item2.time + item2.dur;
+            console.log('i:' + i + '; j:' + j + ';stop:' + stop);
+          }
+        });
+      });
+      state.projs.startLineTime = Math.floor(start);
+      state.projs.endLineTime = Math.ceil(stop);
+      console.log('store.updateProjs: start:' + start);
+      console.log('store.updateProjs: stop:' + stop);
+
+      state.projs.timeSpan = Math.ceil((state.projs.endLineTime - state.projs.startLineTime) / 60);
+      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
+      console.log('store.updateProjs: timeSpan:' + state.projs.timeSpan);
+      // console.log('store.updateProjs: rpx:' + state.projs.rpx);
+      state.projs.days.forEach(function (item1) {
+        // console.log('store.updateProjs: days:' + JSON.stringify(item1));
+        item1.classes.forEach(function (item2, index2) {
+          // console.log('store.updateProjs: class:' + JSON.stringify(item2));
+          // console.log('index2:'+index2);
+          if (index2 == 0) {
+            item2.margintop = (item2.time - state.projs.startLineTime) * state.projs.rpx;
+            pretime = item2.time + item2.dur;
+            console.log('item2.margintop:' + item2.margintop);
+            console.log('pretime:' + pretime);
+          } else {
+            item2.margintop = (item2.time - pretime) * state.projs.rpx;
+            pretime = item2.time + item2.dur;
+          }
+          item2.height = item2.dur * state.projs.rpx;
+        });
+      });
+    },
+    addClass: function addClass(state, c) {
+      c.weekdayPrevious = c.weekday;
+      var day = c.weekday;
+      var data = Object.assign({}, JSON.parse(JSON.stringify(c)));
+      state.projs.days[day].classes.push(data);
+      state.projs.days[day].classes.sort(function (a, b) {
+        return a.time - b.time;
+      });
+      // console.log('store:addClass:');
+      // state.projs.days[day].classes.forEach(function(i1, i) {
+      // 	if (i1.weekday == c.weekday) {
+      // 		if (i1.time == c.time) {
+      // 			console.log('addClass.exception: class duplicated')
+      // 			return { errorCode:"addClassFail"}
+      // 		}
+      // 	}
+      // })
+      // return { errorCode:"addClassSuccess"};
+    },
+    updateClass: function updateClass(state, item) {
+      // console.log('store:updateClass.showNane:' + item.cfgt.showName + ' x:' + item.x + ' y:' + item.y);
+      // console.log('item.cfgt:' + JSON.stringify(item.cfgt));
+      // console.log('state.projs.days before:' + JSON.stringify(state.projs.days[item.x].classes[item.y]));
+      //如果day没有变,只是当前日期的class替换
+      var previousDay = item.classTmp.weekdayPrevious;
+      var newDay = item.classTmp.weekday;
+      if (previousDay == newDay) {
+        state.projs.days[item.x].classes.splice([item.y], 1, item.classTmp);
+        // console.log('state.projs.days after:' + JSON.stringify(state.projs.days[item.x].classes[item.y]));
+
+        // state.projs.days.forEach(function(i1, i) {
+        // 	if (i == item.x) {
+        // 		i1.classes.forEach(function(i2, j) {
+        // 			if (j == item.y) {
+        // 				i1.classes.splice(j, 1, item.classTmp);
+        // 			}
+        // 		})
+        // 	}
+        // })
+      } else {
+        //删除当前记录,并增加新的记录
+        item.classTmp.weekdayPrevious = item.classTmp.weekday;
+        state.projs.days[previousDay].classes.splice(item.y, 1);
+        state.projs.days[newDay].classes.push(item.classTmp);
+        state.projs.days[newDay].classes.sort(function (a, b) {
+          return a.time - b.time;
+        });
+      }
+    },
+    deleteClass: function deleteClass(state, item) {
+      console.log('store:deleteClass');
+      // console.log(JSON.stringify(item));
+      state.projs.days[item.x].classes.splice(item.y, 1);
+    },
+    updateCfg: function updateCfg(state, item) {
+      state.cfg = item;
+    },
+    addNewIcon: function addNewIcon(state, item) {
+      state.icons = item;
+    } },
+
+  actions: {
+    // lazy loading openid
+    getUserOpenId: function () {var _getUserOpenId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var commit, state;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                commit = _ref.commit,
+                state = _ref.state;_context.next = 3;return (
+
+                  new Promise(function (resolve, reject) {
+                    if (state.openid) {
+                      resolve(state.openid);
+                    } else {
+                      uni.login({
+                        success: function success(data) {
+                          commit('login');
+                          setTimeout(function () {//模拟异步请求服务器获取 openid
+                            var openid = '123456789';
+                            console.log(
+                            'uni.request mock openid[' +
+                            openid +
+                            ']');
+                            commit('setOpenid', openid);
+                            resolve(openid);
+                          }, 1000);
+                        },
+                        fail: function fail(err) {
+                          console.log('uni.login 接口调用失败，将无法正常使用开放接口等服务',
+                          err);
+                          reject(err);
+                        } });
+
+                    }
+                  }));case 3:return _context.abrupt("return", _context.sent);case 4:case "end":return _context.stop();}}}, _callee, this);}));function getUserOpenId(_x) {return _getUserOpenId.apply(this, arguments);}return getUserOpenId;}() } });var _default =
+
+
+
+
+store;exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 16:
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ 17);
+
+
+/***/ }),
+
+/***/ 17:
+/*!************************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+// This method of obtaining a reference to the global object needs to be
+// kept identical to the way it is obtained in runtime.js
+var g = (function() {
+  return this || (typeof self === "object" && self);
+})() || Function("return this")();
+
+// Use `getOwnPropertyNames` because not all browsers support calling
+// `hasOwnProperty` on the global `self` object in a worker. See #183.
+var hadRuntime = g.regeneratorRuntime &&
+  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
+
+// Save the old regeneratorRuntime in case it needs to be restored later.
+var oldRuntime = hadRuntime && g.regeneratorRuntime;
+
+// Force reevalutation of runtime.js.
+g.regeneratorRuntime = undefined;
+
+module.exports = __webpack_require__(/*! ./runtime */ 18);
+
+if (hadRuntime) {
+  // Restore the original runtime.
+  g.regeneratorRuntime = oldRuntime;
+} else {
+  // Remove the global property added by runtime.js.
+  try {
+    delete g.regeneratorRuntime;
+  } catch(e) {
+    g.regeneratorRuntime = undefined;
+  }
+}
+
+
+/***/ }),
+
+/***/ 18:
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+!(function(global) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  var inModule = typeof module === "object";
+  var runtime = global.regeneratorRuntime;
+  if (runtime) {
+    if (inModule) {
+      // If regeneratorRuntime is defined globally and we're in a module,
+      // make the exports object identical to regeneratorRuntime.
+      module.exports = runtime;
+    }
+    // Don't bother evaluating the rest of this file if the runtime was
+    // already defined globally.
+    return;
+  }
+
+  // Define the runtime globally (as expected by generated code) as either
+  // module.exports (if we're in a module) or a new, empty object.
+  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  runtime.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  IteratorPrototype[iteratorSymbol] = function () {
+    return this;
+  };
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+  GeneratorFunctionPrototype.constructor = GeneratorFunction;
+  GeneratorFunctionPrototype[toStringTagSymbol] =
+    GeneratorFunction.displayName = "GeneratorFunction";
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      prototype[method] = function(arg) {
+        return this._invoke(method, arg);
+      };
+    });
+  }
+
+  runtime.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  runtime.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      if (!(toStringTagSymbol in genFun)) {
+        genFun[toStringTagSymbol] = "GeneratorFunction";
+      }
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  runtime.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return Promise.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return Promise.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new Promise(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+    return this;
+  };
+  runtime.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList)
+    );
+
+    return runtime.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        if (delegate.iterator.return) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  Gp[toStringTagSymbol] = "Generator";
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  Gp[iteratorSymbol] = function() {
+    return this;
+  };
+
+  Gp.toString = function() {
+    return "[object Generator]";
+  };
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  runtime.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  runtime.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+})(
+  // In sloppy mode, unbound `this` refers to the global object, fallback to
+  // Function constructor if we're in global strict mode. That is sadly a form
+  // of indirect eval which violates Content Security Policy.
+  (function() {
+    return this || (typeof self === "object" && self);
+  })() || Function("return this")()
+);
+
+
+/***/ }),
+
+/***/ 19:
+/*!********************************************!*\
+  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
+  \********************************************/
+/*! exports provided: Store, install, mapState, mapMutations, mapGetters, mapActions, createNamespacedHelpers, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
+/**
+ * vuex v3.0.1
+ * (c) 2017 Evan You
+ * @license MIT
+ */
+var applyMixin = function (Vue) {
+  var version = Number(Vue.version.split('.')[0]);
+
+  if (version >= 2) {
+    Vue.mixin({ beforeCreate: vuexInit });
+  } else {
+    // override init and inject vuex init procedure
+    // for 1.x backwards compatibility.
+    var _init = Vue.prototype._init;
+    Vue.prototype._init = function (options) {
+      if ( options === void 0 ) options = {};
+
+      options.init = options.init
+        ? [vuexInit].concat(options.init)
+        : vuexInit;
+      _init.call(this, options);
+    };
+  }
+
+  /**
+   * Vuex init hook, injected into each instances init hooks list.
+   */
+
+  function vuexInit () {
+    var options = this.$options;
+    // store injection
+    if (options.store) {
+      this.$store = typeof options.store === 'function'
+        ? options.store()
+        : options.store;
+    } else if (options.parent && options.parent.$store) {
+      this.$store = options.parent.$store;
+    }
+  }
+};
+
+var devtoolHook =
+  typeof window !== 'undefined' &&
+  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
+function devtoolPlugin (store) {
+  if (!devtoolHook) { return }
+
+  store._devtoolHook = devtoolHook;
+
+  devtoolHook.emit('vuex:init', store);
+
+  devtoolHook.on('vuex:travel-to-state', function (targetState) {
+    store.replaceState(targetState);
+  });
+
+  store.subscribe(function (mutation, state) {
+    devtoolHook.emit('vuex:mutation', mutation, state);
+  });
+}
+
+/**
+ * Get the first item that pass the test
+ * by second argument function
+ *
+ * @param {Array} list
+ * @param {Function} f
+ * @return {*}
+ */
+/**
+ * Deep copy the given object considering circular structure.
+ * This function caches all nested objects and its copies.
+ * If it detects circular structure, use cached copy to avoid infinite loop.
+ *
+ * @param {*} obj
+ * @param {Array<Object>} cache
+ * @return {*}
+ */
+
+
+/**
+ * forEach for object
+ */
+function forEachValue (obj, fn) {
+  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
+}
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isPromise (val) {
+  return val && typeof val.then === 'function'
+}
+
+function assert (condition, msg) {
+  if (!condition) { throw new Error(("[vuex] " + msg)) }
+}
+
+var Module = function Module (rawModule, runtime) {
+  this.runtime = runtime;
+  this._children = Object.create(null);
+  this._rawModule = rawModule;
+  var rawState = rawModule.state;
+  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
+};
+
+var prototypeAccessors$1 = { namespaced: { configurable: true } };
+
+prototypeAccessors$1.namespaced.get = function () {
+  return !!this._rawModule.namespaced
+};
+
+Module.prototype.addChild = function addChild (key, module) {
+  this._children[key] = module;
+};
+
+Module.prototype.removeChild = function removeChild (key) {
+  delete this._children[key];
+};
+
+Module.prototype.getChild = function getChild (key) {
+  return this._children[key]
+};
+
+Module.prototype.update = function update (rawModule) {
+  this._rawModule.namespaced = rawModule.namespaced;
+  if (rawModule.actions) {
+    this._rawModule.actions = rawModule.actions;
+  }
+  if (rawModule.mutations) {
+    this._rawModule.mutations = rawModule.mutations;
+  }
+  if (rawModule.getters) {
+    this._rawModule.getters = rawModule.getters;
+  }
+};
+
+Module.prototype.forEachChild = function forEachChild (fn) {
+  forEachValue(this._children, fn);
+};
+
+Module.prototype.forEachGetter = function forEachGetter (fn) {
+  if (this._rawModule.getters) {
+    forEachValue(this._rawModule.getters, fn);
+  }
+};
+
+Module.prototype.forEachAction = function forEachAction (fn) {
+  if (this._rawModule.actions) {
+    forEachValue(this._rawModule.actions, fn);
+  }
+};
+
+Module.prototype.forEachMutation = function forEachMutation (fn) {
+  if (this._rawModule.mutations) {
+    forEachValue(this._rawModule.mutations, fn);
+  }
+};
+
+Object.defineProperties( Module.prototype, prototypeAccessors$1 );
+
+var ModuleCollection = function ModuleCollection (rawRootModule) {
+  // register root module (Vuex.Store options)
+  this.register([], rawRootModule, false);
+};
+
+ModuleCollection.prototype.get = function get (path) {
+  return path.reduce(function (module, key) {
+    return module.getChild(key)
+  }, this.root)
+};
+
+ModuleCollection.prototype.getNamespace = function getNamespace (path) {
+  var module = this.root;
+  return path.reduce(function (namespace, key) {
+    module = module.getChild(key);
+    return namespace + (module.namespaced ? key + '/' : '')
+  }, '')
+};
+
+ModuleCollection.prototype.update = function update$1 (rawRootModule) {
+  update([], this.root, rawRootModule);
+};
+
+ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
+    var this$1 = this;
+    if ( runtime === void 0 ) runtime = true;
+
+  if (true) {
+    assertRawModule(path, rawModule);
+  }
+
+  var newModule = new Module(rawModule, runtime);
+  if (path.length === 0) {
+    this.root = newModule;
+  } else {
+    var parent = this.get(path.slice(0, -1));
+    parent.addChild(path[path.length - 1], newModule);
+  }
+
+  // register nested modules
+  if (rawModule.modules) {
+    forEachValue(rawModule.modules, function (rawChildModule, key) {
+      this$1.register(path.concat(key), rawChildModule, runtime);
+    });
+  }
+};
+
+ModuleCollection.prototype.unregister = function unregister (path) {
+  var parent = this.get(path.slice(0, -1));
+  var key = path[path.length - 1];
+  if (!parent.getChild(key).runtime) { return }
+
+  parent.removeChild(key);
+};
+
+function update (path, targetModule, newModule) {
+  if (true) {
+    assertRawModule(path, newModule);
+  }
+
+  // update target module
+  targetModule.update(newModule);
+
+  // update nested modules
+  if (newModule.modules) {
+    for (var key in newModule.modules) {
+      if (!targetModule.getChild(key)) {
+        if (true) {
+          console.warn(
+            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
+            'manual reload is needed'
+          );
+        }
+        return
+      }
+      update(
+        path.concat(key),
+        targetModule.getChild(key),
+        newModule.modules[key]
+      );
+    }
+  }
+}
+
+var functionAssert = {
+  assert: function (value) { return typeof value === 'function'; },
+  expected: 'function'
+};
+
+var objectAssert = {
+  assert: function (value) { return typeof value === 'function' ||
+    (typeof value === 'object' && typeof value.handler === 'function'); },
+  expected: 'function or object with "handler" function'
+};
+
+var assertTypes = {
+  getters: functionAssert,
+  mutations: functionAssert,
+  actions: objectAssert
+};
+
+function assertRawModule (path, rawModule) {
+  Object.keys(assertTypes).forEach(function (key) {
+    if (!rawModule[key]) { return }
+
+    var assertOptions = assertTypes[key];
+
+    forEachValue(rawModule[key], function (value, type) {
+      assert(
+        assertOptions.assert(value),
+        makeAssertionMessage(path, key, type, value, assertOptions.expected)
+      );
+    });
+  });
+}
+
+function makeAssertionMessage (path, key, type, value, expected) {
+  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
+  if (path.length > 0) {
+    buf += " in module \"" + (path.join('.')) + "\"";
+  }
+  buf += " is " + (JSON.stringify(value)) + ".";
+  return buf
+}
+
+var Vue; // bind on install
+
+var Store = function Store (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #731
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  if (true) {
+    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
+    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
+    assert(this instanceof Store, "Store must be called with the new operator.");
+  }
+
+  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
+  var strict = options.strict; if ( strict === void 0 ) strict = false;
+
+  var state = options.state; if ( state === void 0 ) state = {};
+  if (typeof state === 'function') {
+    state = state() || {};
+  }
+
+  // store internal state
+  this._committing = false;
+  this._actions = Object.create(null);
+  this._actionSubscribers = [];
+  this._mutations = Object.create(null);
+  this._wrappedGetters = Object.create(null);
+  this._modules = new ModuleCollection(options);
+  this._modulesNamespaceMap = Object.create(null);
+  this._subscribers = [];
+  this._watcherVM = new Vue();
+
+  // bind commit and dispatch to self
+  var store = this;
+  var ref = this;
+  var dispatch = ref.dispatch;
+  var commit = ref.commit;
+  this.dispatch = function boundDispatch (type, payload) {
+    return dispatch.call(store, type, payload)
+  };
+  this.commit = function boundCommit (type, payload, options) {
+    return commit.call(store, type, payload, options)
+  };
+
+  // strict mode
+  this.strict = strict;
+
+  // init root module.
+  // this also recursively registers all sub-modules
+  // and collects all module getters inside this._wrappedGetters
+  installModule(this, state, [], this._modules.root);
+
+  // initialize the store vm, which is responsible for the reactivity
+  // (also registers _wrappedGetters as computed properties)
+  resetStoreVM(this, state);
+
+  // apply plugins
+  plugins.forEach(function (plugin) { return plugin(this$1); });
+
+  if (Vue.config.devtools) {
+    devtoolPlugin(this);
+  }
+};
+
+var prototypeAccessors = { state: { configurable: true } };
+
+prototypeAccessors.state.get = function () {
+  return this._vm._data.$$state
+};
+
+prototypeAccessors.state.set = function (v) {
+  if (true) {
+    assert(false, "Use store.replaceState() to explicit replace store state.");
+  }
+};
+
+Store.prototype.commit = function commit (_type, _payload, _options) {
+    var this$1 = this;
+
+  // check object-style commit
+  var ref = unifyObjectStyle(_type, _payload, _options);
+    var type = ref.type;
+    var payload = ref.payload;
+    var options = ref.options;
+
+  var mutation = { type: type, payload: payload };
+  var entry = this._mutations[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown mutation type: " + type));
+    }
+    return
+  }
+  this._withCommit(function () {
+    entry.forEach(function commitIterator (handler) {
+      handler(payload);
+    });
+  });
+  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
+
+  if (
+     true &&
+    options && options.silent
+  ) {
+    console.warn(
+      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
+      'Use the filter functionality in the vue-devtools'
+    );
+  }
+};
+
+Store.prototype.dispatch = function dispatch (_type, _payload) {
+    var this$1 = this;
+
+  // check object-style dispatch
+  var ref = unifyObjectStyle(_type, _payload);
+    var type = ref.type;
+    var payload = ref.payload;
+
+  var action = { type: type, payload: payload };
+  var entry = this._actions[type];
+  if (!entry) {
+    if (true) {
+      console.error(("[vuex] unknown action type: " + type));
+    }
+    return
+  }
+
+  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
+
+  return entry.length > 1
+    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
+    : entry[0](payload)
+};
+
+Store.prototype.subscribe = function subscribe (fn) {
+  return genericSubscribe(fn, this._subscribers)
+};
+
+Store.prototype.subscribeAction = function subscribeAction (fn) {
+  return genericSubscribe(fn, this._actionSubscribers)
+};
+
+Store.prototype.watch = function watch (getter, cb, options) {
+    var this$1 = this;
+
+  if (true) {
+    assert(typeof getter === 'function', "store.watch only accepts a function.");
+  }
+  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
+};
+
+Store.prototype.replaceState = function replaceState (state) {
+    var this$1 = this;
+
+  this._withCommit(function () {
+    this$1._vm._data.$$state = state;
+  });
+};
+
+Store.prototype.registerModule = function registerModule (path, rawModule, options) {
+    if ( options === void 0 ) options = {};
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+    assert(path.length > 0, 'cannot register the root module by using registerModule.');
+  }
+
+  this._modules.register(path, rawModule);
+  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
+  // reset store to update getters...
+  resetStoreVM(this, this.state);
+};
+
+Store.prototype.unregisterModule = function unregisterModule (path) {
+    var this$1 = this;
+
+  if (typeof path === 'string') { path = [path]; }
+
+  if (true) {
+    assert(Array.isArray(path), "module path must be a string or an Array.");
+  }
+
+  this._modules.unregister(path);
+  this._withCommit(function () {
+    var parentState = getNestedState(this$1.state, path.slice(0, -1));
+    Vue.delete(parentState, path[path.length - 1]);
+  });
+  resetStore(this);
+};
+
+Store.prototype.hotUpdate = function hotUpdate (newOptions) {
+  this._modules.update(newOptions);
+  resetStore(this, true);
+};
+
+Store.prototype._withCommit = function _withCommit (fn) {
+  var committing = this._committing;
+  this._committing = true;
+  fn();
+  this._committing = committing;
+};
+
+Object.defineProperties( Store.prototype, prototypeAccessors );
+
+function genericSubscribe (fn, subs) {
+  if (subs.indexOf(fn) < 0) {
+    subs.push(fn);
+  }
+  return function () {
+    var i = subs.indexOf(fn);
+    if (i > -1) {
+      subs.splice(i, 1);
+    }
+  }
+}
+
+function resetStore (store, hot) {
+  store._actions = Object.create(null);
+  store._mutations = Object.create(null);
+  store._wrappedGetters = Object.create(null);
+  store._modulesNamespaceMap = Object.create(null);
+  var state = store.state;
+  // init all modules
+  installModule(store, state, [], store._modules.root, true);
+  // reset vm
+  resetStoreVM(store, state, hot);
+}
+
+function resetStoreVM (store, state, hot) {
+  var oldVm = store._vm;
+
+  // bind store public getters
+  store.getters = {};
+  var wrappedGetters = store._wrappedGetters;
+  var computed = {};
+  forEachValue(wrappedGetters, function (fn, key) {
+    // use computed to leverage its lazy-caching mechanism
+    computed[key] = function () { return fn(store); };
+    Object.defineProperty(store.getters, key, {
+      get: function () { return store._vm[key]; },
+      enumerable: true // for local getters
+    });
+  });
+
+  // use a Vue instance to store the state tree
+  // suppress warnings just in case the user has added
+  // some funky global mixins
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  store._vm = new Vue({
+    data: {
+      $$state: state
+    },
+    computed: computed
+  });
+  Vue.config.silent = silent;
+
+  // enable strict mode for new vm
+  if (store.strict) {
+    enableStrictMode(store);
+  }
+
+  if (oldVm) {
+    if (hot) {
+      // dispatch changes in all subscribed watchers
+      // to force getter re-evaluation for hot reloading.
+      store._withCommit(function () {
+        oldVm._data.$$state = null;
+      });
+    }
+    Vue.nextTick(function () { return oldVm.$destroy(); });
+  }
+}
+
+function installModule (store, rootState, path, module, hot) {
+  var isRoot = !path.length;
+  var namespace = store._modules.getNamespace(path);
+
+  // register in namespace map
+  if (module.namespaced) {
+    store._modulesNamespaceMap[namespace] = module;
+  }
+
+  // set state
+  if (!isRoot && !hot) {
+    var parentState = getNestedState(rootState, path.slice(0, -1));
+    var moduleName = path[path.length - 1];
+    store._withCommit(function () {
+      Vue.set(parentState, moduleName, module.state);
+    });
+  }
+
+  var local = module.context = makeLocalContext(store, namespace, path);
+
+  module.forEachMutation(function (mutation, key) {
+    var namespacedType = namespace + key;
+    registerMutation(store, namespacedType, mutation, local);
+  });
+
+  module.forEachAction(function (action, key) {
+    var type = action.root ? key : namespace + key;
+    var handler = action.handler || action;
+    registerAction(store, type, handler, local);
+  });
+
+  module.forEachGetter(function (getter, key) {
+    var namespacedType = namespace + key;
+    registerGetter(store, namespacedType, getter, local);
+  });
+
+  module.forEachChild(function (child, key) {
+    installModule(store, rootState, path.concat(key), child, hot);
+  });
+}
+
+/**
+ * make localized dispatch, commit, getters and state
+ * if there is no namespace, just use root ones
+ */
+function makeLocalContext (store, namespace, path) {
+  var noNamespace = namespace === '';
+
+  var local = {
+    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._actions[type]) {
+          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      return store.dispatch(type, payload)
+    },
+
+    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
+      var args = unifyObjectStyle(_type, _payload, _options);
+      var payload = args.payload;
+      var options = args.options;
+      var type = args.type;
+
+      if (!options || !options.root) {
+        type = namespace + type;
+        if ( true && !store._mutations[type]) {
+          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
+          return
+        }
+      }
+
+      store.commit(type, payload, options);
+    }
+  };
+
+  // getters and state object must be gotten lazily
+  // because they will be changed by vm update
+  Object.defineProperties(local, {
+    getters: {
+      get: noNamespace
+        ? function () { return store.getters; }
+        : function () { return makeLocalGetters(store, namespace); }
+    },
+    state: {
+      get: function () { return getNestedState(store.state, path); }
+    }
+  });
+
+  return local
+}
+
+function makeLocalGetters (store, namespace) {
+  var gettersProxy = {};
+
+  var splitPos = namespace.length;
+  Object.keys(store.getters).forEach(function (type) {
+    // skip if the target getter is not match this namespace
+    if (type.slice(0, splitPos) !== namespace) { return }
+
+    // extract local getter type
+    var localType = type.slice(splitPos);
+
+    // Add a port to the getters proxy.
+    // Define as getter property because
+    // we do not want to evaluate the getters in this time.
+    Object.defineProperty(gettersProxy, localType, {
+      get: function () { return store.getters[type]; },
+      enumerable: true
+    });
+  });
+
+  return gettersProxy
+}
+
+function registerMutation (store, type, handler, local) {
+  var entry = store._mutations[type] || (store._mutations[type] = []);
+  entry.push(function wrappedMutationHandler (payload) {
+    handler.call(store, local.state, payload);
+  });
+}
+
+function registerAction (store, type, handler, local) {
+  var entry = store._actions[type] || (store._actions[type] = []);
+  entry.push(function wrappedActionHandler (payload, cb) {
+    var res = handler.call(store, {
+      dispatch: local.dispatch,
+      commit: local.commit,
+      getters: local.getters,
+      state: local.state,
+      rootGetters: store.getters,
+      rootState: store.state
+    }, payload, cb);
+    if (!isPromise(res)) {
+      res = Promise.resolve(res);
+    }
+    if (store._devtoolHook) {
+      return res.catch(function (err) {
+        store._devtoolHook.emit('vuex:error', err);
+        throw err
+      })
+    } else {
+      return res
+    }
+  });
+}
+
+function registerGetter (store, type, rawGetter, local) {
+  if (store._wrappedGetters[type]) {
+    if (true) {
+      console.error(("[vuex] duplicate getter key: " + type));
+    }
+    return
+  }
+  store._wrappedGetters[type] = function wrappedGetter (store) {
+    return rawGetter(
+      local.state, // local state
+      local.getters, // local getters
+      store.state, // root state
+      store.getters // root getters
+    )
+  };
+}
+
+function enableStrictMode (store) {
+  store._vm.$watch(function () { return this._data.$$state }, function () {
+    if (true) {
+      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
+    }
+  }, { deep: true, sync: true });
+}
+
+function getNestedState (state, path) {
+  return path.length
+    ? path.reduce(function (state, key) { return state[key]; }, state)
+    : state
+}
+
+function unifyObjectStyle (type, payload, options) {
+  if (isObject(type) && type.type) {
+    options = payload;
+    payload = type;
+    type = type.type;
+  }
+
+  if (true) {
+    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
+  }
+
+  return { type: type, payload: payload, options: options }
+}
+
+function install (_Vue) {
+  if (Vue && _Vue === Vue) {
+    if (true) {
+      console.error(
+        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
+      );
+    }
+    return
+  }
+  Vue = _Vue;
+  applyMixin(Vue);
+}
+
+var mapState = normalizeNamespace(function (namespace, states) {
+  var res = {};
+  normalizeMap(states).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedState () {
+      var state = this.$store.state;
+      var getters = this.$store.getters;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
+        if (!module) {
+          return
+        }
+        state = module.context.state;
+        getters = module.context.getters;
+      }
+      return typeof val === 'function'
+        ? val.call(this, state, getters)
+        : state[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapMutations = normalizeNamespace(function (namespace, mutations) {
+  var res = {};
+  normalizeMap(mutations).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedMutation () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var commit = this.$store.commit;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
+        if (!module) {
+          return
+        }
+        commit = module.context.commit;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [commit].concat(args))
+        : commit.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var mapGetters = normalizeNamespace(function (namespace, getters) {
+  var res = {};
+  normalizeMap(getters).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    val = namespace + val;
+    res[key] = function mappedGetter () {
+      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
+        return
+      }
+      if ( true && !(val in this.$store.getters)) {
+        console.error(("[vuex] unknown getter: " + val));
+        return
+      }
+      return this.$store.getters[val]
+    };
+    // mark vuex getter for devtools
+    res[key].vuex = true;
+  });
+  return res
+});
+
+var mapActions = normalizeNamespace(function (namespace, actions) {
+  var res = {};
+  normalizeMap(actions).forEach(function (ref) {
+    var key = ref.key;
+    var val = ref.val;
+
+    res[key] = function mappedAction () {
+      var args = [], len = arguments.length;
+      while ( len-- ) args[ len ] = arguments[ len ];
+
+      var dispatch = this.$store.dispatch;
+      if (namespace) {
+        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
+        if (!module) {
+          return
+        }
+        dispatch = module.context.dispatch;
+      }
+      return typeof val === 'function'
+        ? val.apply(this, [dispatch].concat(args))
+        : dispatch.apply(this.$store, [val].concat(args))
+    };
+  });
+  return res
+});
+
+var createNamespacedHelpers = function (namespace) { return ({
+  mapState: mapState.bind(null, namespace),
+  mapGetters: mapGetters.bind(null, namespace),
+  mapMutations: mapMutations.bind(null, namespace),
+  mapActions: mapActions.bind(null, namespace)
+}); };
+
+function normalizeMap (map) {
+  return Array.isArray(map)
+    ? map.map(function (key) { return ({ key: key, val: key }); })
+    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
+}
+
+function normalizeNamespace (fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    } else if (namespace.charAt(namespace.length - 1) !== '/') {
+      namespace += '/';
+    }
+    return fn(namespace, map)
+  }
+}
+
+function getModuleByNamespace (store, helper, namespace) {
+  var module = store._modulesNamespaceMap[namespace];
+  if ( true && !module) {
+    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
+  }
+  return module
+}
+
+var index_esm = {
+  Store: Store,
+  install: install,
+  version: '3.0.1',
+  mapState: mapState,
+  mapMutations: mapMutations,
+  mapGetters: mapGetters,
+  mapActions: mapActions,
+  createNamespacedHelpers: createNamespacedHelpers
+};
+
+
+/* harmony default export */ __webpack_exports__["default"] = (index_esm);
+
+
+/***/ }),
+
+/***/ 2:
 /*!******************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js ***!
   \******************************************************************************************/
@@ -7563,7 +9694,1688 @@ internalMixin(Vue);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 3)))
 
 /***/ }),
-/* 3 */
+
+/***/ 20:
+/*!************************************************!*\
+  !*** C:/proj/jellyClassTable/common/colors.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+module.exports = {
+  "colors": [{
+    "name": "redbase",
+    "color": "#F44336" },
+  {
+    "name": "pinkbase",
+    "color": "#e91e63" },
+  {
+    "name": "purplebase",
+    "color": "#9c27b0" },
+  {
+    "name": "deeppurplebase",
+    "color": "#673ab7" },
+  {
+    "name": "indigobase",
+    "color": "#3f51b5" },
+  {
+    "name": "bluebase",
+    "color": "#2196F3" },
+  {
+    "name": "lightbluebase",
+    "color": "#03a9f4" },
+  {
+    "name": "cyanbase",
+    "color": "#00bcd4" },
+  {
+    "name": "tealbase",
+    "color": "#009688" },
+  {
+    "name": "greenbase",
+    "color": "#4CAF50" },
+  {
+    "name": "lightgreenbase",
+    "color": "#8bc34a" },
+  {
+    "name": "limebase",
+    "color": "#cddc39" },
+  {
+    "name": "yellowbase",
+    "color": "#ffeb3b" },
+  {
+    "name": "amberbase",
+    "color": "#ffc107" },
+  {
+    "name": "orangebase",
+    "color": "#ff9800" },
+  {
+    "name": "deeporangebase",
+    "color": "#ff5722" },
+  {
+    "name": "brownbase",
+    "color": "#795548" },
+  {
+    "name": "bluegreybase",
+    "color": "#607d8b" },
+  {
+    "name": "greybase",
+    "color": "#9e9e9e" },
+  {
+    "name": "white",
+    "color": "#ffffff" },
+  {
+    "name": "black",
+    "color": "#000000" },
+  {
+    "name": "transparent",
+    "color": "transparent" }],
+
+  "colorSets": [{
+    "name": "1c-69bc38",
+    "colors": [{
+      "color": "#69bc38" },
+    {
+      "color": '#94dd69' },
+    {
+      "color": '#a8dd88' },
+    {
+      "color": '#c53b5b' },
+    {
+      "color": '#5e8d43' },
+    {
+      "color": '#944658' },
+    {
+      "color": '#397a12' },
+    {
+      "color": '#80132c' },
+    {
+      "color": '#e26b87' },
+    {
+      "color": '#e28b9f' }] },
+
+  {
+    "name": "1-adcd83",
+    "colors": [{
+      "color": "#adcd83" },
+    {
+      "color": '#cbe6a8' },
+    {
+      "color": '#d2e6b8' },
+    {
+      "color": '#5e852b' },
+    {
+      "color": '#889a70' }] },
+
+  {
+    "name": "中国传统颜色",
+    "colors": [{
+      "name": "粉红",
+      "color": '#ffb3a7' },
+
+    {
+      "name": "妃红色",
+      "color": '#ed5736' },
+
+
+    {
+      "name": "品红",
+      "color": '#f00056' },
+
+
+    {
+      "name": "桃红",
+      "color": '#f47983' },
+
+
+    {
+      "name": "海棠红",
+      "color": '#db5a6b' },
+
+
+    {
+      "name": "石榴红",
+      "color": '#f20c00' },
+
+
+    {
+      "name": "樱桃色",
+      "color": '#c93756' },
+
+
+    {
+      "name": "银红",
+      "color": '#f05654' },
+
+
+    {
+      "name": "大红",
+      "color": '#ff2121' },
+
+
+    {
+      "name": "绛紫",
+      "color": '#8c4356' },
+
+
+    {
+      "name": "绯红",
+      "color": '#c83c23' },
+
+
+    {
+      "name": "胭脂",
+      "color": '#9d2933' },
+
+    {
+      "name": "朱红",
+      "color": '#ff4c00' },
+
+    {
+      "name": "丹",
+      "color": '#ff4e20' },
+
+    {
+      "name": "彤",
+      color: '#f35336' },
+
+    {
+      "name": "茜色",
+      "color": '#cb3a56' },
+
+    {
+      "name": "火红",
+      "color": '#ff2d51' },
+
+    {
+      "name": "赫赤",
+      "color": '#c91f37' },
+
+    {
+      "name": "嫣红",
+      "color": '#ef7a82' },
+
+    {
+      "name": "洋红色",
+      "color": '#ff0097' },
+
+    {
+      "name": "炎",
+      "color": '#ff3300' },
+
+    {
+      "name": "赤",
+      "color": '#c3272b' },
+
+    {
+      "name": "绾",
+      "color": '#a98175' },
+
+    {
+      "name": "枣红",
+      "color": '#c32136' },
+
+    {
+      "name": "檀",
+      "color": '#b36d61' },
+
+    {
+      "name": "殷红",
+      "color": '#be002f' },
+
+    {
+      "name": "酡红",
+      "color": '#dc3023' },
+
+    {
+      "name": "酡颜",
+      "color": '#f9906f' },
+
+    {
+      "name": "鹅黄",
+      "color": '#fff143' },
+
+
+    {
+      "name": "鸭黄",
+      "color": '#faff72' },
+
+
+    {
+      "name": "樱草色",
+      "color": '#eaff56' },
+
+    {
+      "name": "杏黄",
+      "color": '#ffa631' },
+
+    {
+      "name": "杏红",
+      "color": '#ff8c31' },
+
+    {
+      "name": "橘黄",
+      "color": '#ff8936' },
+
+    {
+      "name": "橙黄",
+      "color": '#ffa400' },
+
+    {
+      "name": "橘红",
+      "color": '#ff7500' },
+
+    {
+      "name": "姜黄",
+      "color": '#ffc773' },
+
+    {
+      "name": "缃色",
+      "color": '#f0c239' },
+
+    {
+      "name": "橙色",
+      "color": '#fa8c35' },
+
+    {
+      "name": "茶色",
+      "color": '#b35c44' },
+
+    {
+      "name": "驼色",
+      "color": '#a88462' },
+
+    {
+      "name": "昏黄",
+      "color": '#c89b40' },
+
+    {
+      "name": "栗色",
+      "color": '#60281e' },
+
+    {
+      "name": "棕色",
+      "color": '#b25d25' },
+
+    {
+      "name": "棕绿",
+      "color": '#827100' },
+
+    {
+      "name": "棕黑",
+      "color": '#7c4b00' },
+
+    {
+      "name": "棕红",
+      "color": '#9b4400' },
+
+    {
+      "name": "棕黄",
+      "color": '#ae7000' },
+
+    {
+      "name": "赭",
+      "color": '#9c5333' },
+
+    {
+      "name": "赭色",
+      "color": '#955539' },
+
+    {
+      "name": "琥珀",
+      "color": '#ca6924' },
+
+    {
+      "name": "褐色",
+      "color": '#6e511e' },
+
+    {
+      "name": "枯黄",
+      "color": '#d3b17d' },
+
+    {
+      "name": "黄栌",
+      "color": '#e29c45' },
+
+    {
+      "name": "秋色",
+      "color": '#896c39' },
+
+    {
+      "name": "秋香色",
+      "color": '#d9b611' },
+
+    {
+      "name": "嫩绿",
+      "color": '#bddd22 ' },
+
+
+    {
+      "name": "柳黄",
+      "color": '#c9dd22 ' },
+
+    {
+      "name": "柳绿",
+      "color": '#afdd22 ' },
+
+    {
+      "name": "竹青",
+      "color": '#789262' },
+
+    {
+      "name": "葱黄",
+
+      "color": '#a3d900' },
+
+    {
+      "name": "葱绿",
+      "color": '#9ed900' },
+
+    {
+      "name": "葱倩",
+      "color": '#0eb83a' },
+
+    {
+      "name": "青葱",
+      "color": '#0aa344' },
+
+    {
+      "name": "油绿",
+      "color": '#00bc12' },
+
+    {
+      "name": "绿沈",
+      "color": '#0c8918' },
+
+    {
+      "name": "碧色",
+      "color": '#1bd1a5' },
+
+    {
+      "name": "碧绿",
+      "color": '#2add9c' },
+
+    {
+      "name": "青碧",
+      "color": '#48c0a3' },
+
+    {
+      "name": "翡翠色",
+      "color": '#3de1ad' },
+
+    {
+      "name": "草绿",
+      "color": '#40de5a' },
+
+    {
+      "name": "青色",
+      "color": '#00e09e' },
+
+    {
+      "name": "青翠",
+      "color": '#00e079' },
+
+    {
+      "name": "青白",
+      "color": '#c0ebd7' },
+
+    {
+      "name": "鸭卵青",
+      "color": '#e0eee8' },
+
+    {
+      "name": "蟹壳青",
+      "color": '#bbcdc5' },
+
+    {
+      "name": "鸦青",
+      "color": '#424c50' },
+
+    {
+      "name": "绿色",
+      "color": '#00e500' },
+
+    {
+      "name": "豆绿",
+      "color": '#9ed048' },
+
+    {
+      "name": "豆青",
+      "color": '#96ce54' },
+
+    {
+      "name": "石青",
+      "color": '#7bcfa6' },
+
+    {
+      "name": "玉色",
+      "color": '#2edfa3' },
+
+    {
+      "name": "缥",
+      "color": '#7fecad' },
+
+    {
+      "name": "艾绿",
+      "color": '#a4e2c6' },
+
+    {
+      "name": "松柏绿",
+      "color": '#21a675' },
+
+    {
+      "name": "松花绿",
+      "color": '#057748' },
+
+    {
+      "name": "松花色",
+      "color": '#bce672' },
+
+    {
+      "name": "蓝",
+      "color": '#44cef6' },
+
+    {
+      "name": "靛青",
+      "color": '#177cb0' },
+
+    {
+      "name": "靛蓝",
+      "color": '#065279' },
+
+    {
+      "name": "碧蓝",
+      "color": '#3eede7' },
+
+    {
+      "name": "蔚蓝",
+      "color": '#70f3ff' },
+
+    {
+      "name": "宝蓝",
+      "color": '#4b5cc4' },
+
+    {
+      "name": "蓝灰色",
+      "color": '#a1afc9' },
+
+    {
+      "name": "藏青",
+      "color": '#2e4e7e' },
+
+    {
+      "name": "藏蓝",
+      "color": '#3b2e7e' },
+
+    {
+      "name": "黛色",
+      "color": '#4a4266' },
+
+    {
+      "name": "黛绿",
+      "color": '#426666' },
+
+    {
+      "name": "黛蓝",
+      "color": '#425066' },
+
+    {
+      "name": "黛紫",
+      "color": '#574266' },
+
+    {
+      "name": "紫色",
+      "color": '#8d4bbb' },
+
+    {
+      "name": "紫酱",
+      "color": '#815463' },
+
+    {
+      "name": "酱紫",
+      "color": '#815476' },
+
+    {
+      "name": "紫檀",
+      "color": '#4c221b' },
+
+    {
+      "name": "绀紫",
+      "color": '#003371' },
+
+    {
+      "name": "紫棠",
+      "color": '#56004f' },
+
+    {
+      "name": "青莲",
+      "color": '#801dae' },
+
+    {
+      "name": "群青",
+      "color": '#4c8dae' },
+
+    {
+      "name": "雪青",
+      "color": '#b0a4e3' },
+
+    {
+      "name": "丁香色",
+      "color": '#cca4e3' },
+
+    {
+      "name": "藕色",
+      "color": '#edd1d8' },
+
+    {
+      "name": "藕荷色",
+      "color": '#e4c6d0' },
+
+    {
+      "name": "苍色",
+      "color": '#75878a' },
+
+    {
+      "name": "苍黄",
+      "color": '#a29b7c' },
+
+    {
+      "name": "苍青",
+      "color": '#7397ab' },
+
+    {
+      "name": "苍黑",
+      "color": '#395260' },
+
+    {
+      "name": "苍白",
+      "color": '#d1d9e0' },
+
+    {
+      "name": "水色",
+      "color": '#88ada6' },
+
+    {
+      "name": "水绿",
+      "color": '#d4f2e7' },
+
+    {
+      "name": "水蓝",
+      "color": '#d2f0f4' },
+
+    {
+      "name": "淡青",
+      "color": '#d3e0f3' },
+
+    {
+      "name": "湖蓝",
+      "color": '#30dff3' },
+
+    {
+      "name": "湖绿",
+      "color": '#25f8cb' },
+
+    {
+      "name": "精白",
+      "color": '#ffffff' },
+
+    {
+      "name": "象牙白",
+      "color": '#fffbf0' },
+
+    {
+      "name": "雪白",
+      "color": '#f0fcff' },
+
+    {
+      "name": "月白",
+      "color": '#d6ecf0' },
+
+    {
+      "name": "缟",
+      "color": '#f2ecde' },
+
+    {
+      "name": "素",
+      "color": '#e0f0e9' },
+
+    {
+      "name": "荼白",
+      "color": '#f3f9f1' },
+
+    {
+      "name": "霜色",
+      "color": '#e9f1f6' },
+
+    {
+      "name": "花白",
+      "color": '#c2ccd0' },
+
+    {
+      "name": "鱼肚白",
+      "color": '#fcefe8' },
+
+    {
+      "name": "莹白",
+      "color": '#e3f9fd' },
+
+    {
+      "name": "灰色",
+      "color": '#808080' },
+
+    {
+      "name": "牙色",
+      "color": '#eedeb0' },
+
+    {
+      "name": "铅白",
+      "color": '#f0f0f4' },
+
+    {
+      "name": "玄色",
+      "color": '#622a1d' },
+
+    {
+      "name": "玄青",
+      "color": '#3d3b4f' },
+
+    {
+      "name": "乌色",
+      "color": '#725e82' },
+
+    {
+      "name": "乌黑",
+      "color": '#392f41' },
+
+    {
+      "name": "漆黑",
+      "color": '#161823' },
+
+    {
+      "name": "墨色",
+      "color": '#50616d' },
+
+    {
+      "name": "墨灰",
+      "color": '#758a99' },
+
+    {
+      "name": "黑色",
+      "color": '#000000' },
+
+    {
+      "name": "缁色",
+      "color": '#493131' },
+
+    {
+      "name": "象牙黑",
+      "color": '#312520' },
+
+    {
+      "name": "黧",
+      "color": '#5d513c' },
+
+    {
+      "name": "黎",
+      "color": '#75664d' },
+
+    {
+      "name": "黝",
+      "color": '#6b6882' },
+
+    {
+      "name": "黝黑",
+      "color": '#665757' },
+
+    {
+      "name": "黯",
+      "color": '#41555d' },
+
+    {
+      "name": "赤金",
+      "color": '#f2be45' },
+
+    {
+      "name": "金色",
+      "color": '#eacd76' },
+
+    {
+      "name": "银白",
+      "color": '#e9e7ef' },
+
+    {
+      "name": "铜绿",
+      "color": '#549688' },
+
+    {
+      "name": "乌金",
+      "color": '#a78e44' },
+
+    {
+      "name": "老银",
+      "color": '#bacac6' },
+
+    {
+      "name": "银朱",
+      "color": '#bf242a' },
+
+    {
+      "name": "朱砂",
+      "color": '#ff461f' },
+
+    {
+      "name": "朱膘",
+      "color": '#f36838' },
+
+    {
+      "name": "赭石色",
+      "color": '#845a33' },
+
+    {
+      "name": "石绿",
+      "color": '#16a951' },
+
+    {
+      "name": "白粉",
+      "color": '#fff2df' },
+
+    {
+      "name": "花青",
+      "color": '#003472' },
+
+    {
+      "name": "藤黄",
+      "color": '#ffb61e' },
+
+    {
+      "name": "雌黄",
+      "color": '#ffc64b' },
+
+    {
+      "name": "石黄",
+      "color": '#e9bb1d' },
+
+    {
+      "name": "洋红",
+      "color": '#ff4777' }] }],
+
+
+
+  "colorSetNames": [
+  "1c-69bc38",
+  "1-adcd83",
+  "中国传统颜色"] };
+
+/***/ }),
+
+/***/ 21:
+/*!**************************************************!*\
+  !*** C:/proj/jellyClassTable/common/app-data.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+module.exports = {
+  'projs': {
+    tableHeight: 600,
+    rpx: 0,
+    startLineTime: 480,
+    endLineTime: 600,
+    timeSpan: 0,
+    days: [{
+      weekday: 0,
+      icon: 'chat',
+      marginTop: 100,
+      classes: [{
+        weekday: 0,
+        weekdayPrevious: 0,
+        icon: 'youyong4',
+        name: '语文',
+        time: 480,
+        dur: 60,
+        margintop: 100,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 1,
+      icon: 'like-o',
+      classes: [{
+        weekday: 1,
+        weekdayPrevious: 1,
+        icon: 'yingyushuiping',
+        name: 'm2',
+        time: 480,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 2,
+      icon: 'like-o',
+      classes: [{
+        weekday: 2,
+        weekdayPrevious: 2,
+        icon: 'yingyushuiping',
+        name: 'chinese',
+        time: 480,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 2,
+        weekdayPrevious: 2,
+        icon: 'yingyushuiping',
+        name: 'math',
+        time: 600,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 3,
+      icon: 'like-o',
+      classes: [{
+        weekday: 3,
+        weekdayPrevious: 3,
+        icon: 'yingyushuiping',
+        name: 'chinese',
+        time: 600,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 4,
+      icon: 'like-o',
+      classes: [{
+        weekday: 4,
+        weekdayPrevious: 4,
+        icon: 'yingyushuiping',
+        name: 'chinese',
+        time: 800,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 4,
+        weekdayPrevious: 4,
+        icon: 'yingyushuiping',
+        name: 'math',
+        time: 900,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 5,
+      icon: 'like-o',
+      classes: [{
+        weekday: 5,
+        weekdayPrevious: 5,
+        icon: 'yingyushuiping',
+        name: 'chinese',
+        time: 800,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 5,
+        weekdayPrevious: 5,
+        icon: 'yingyushuiping',
+        name: 'math',
+        time: 900,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] },
+
+
+
+    {
+      weekday: 6,
+      icon: 'like-o',
+      classes: [{
+        weekday: 6,
+        weekdayPrevious: 6,
+        icon: 'yingyushuiping',
+        name: 'chinese',
+        time: 800,
+        dur: 45,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" },
+
+      {
+        weekday: 6,
+        weekdayPrevious: 6,
+        icon: 'yingyushuiping',
+        name: 'math',
+        time: 900,
+        dur: 60,
+        marginTop: 10,
+        height: 100,
+
+        classBgc: 'transparent', //课程背景颜色
+        classBgcGradient: 'transparent', //课程背景渐变色
+        classBorderShow: true, //是否显示课程外框
+        classBorderColor: '#123456', //课程外框颜色
+        classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: false,
+
+        showName: false, //是否显示课程名称
+        textColor: '#FFFFFF', //名称颜色
+        textBgc: 'transparent', //名称背景颜色
+        textSize: 20, //文字尺寸
+        textShowBorder: false, //是否显示文字边框
+        textBorderColor: '#F44336', //文字边框颜色
+        textBorderRadio: 20, //文字边框弧度
+
+        showIcon: false, //是否显示图标
+        iconColor: '#ff0000', //图标颜色
+        iconBgc: 'transparent', //图标背景颜色
+        iconSize: 40, //图标尺寸
+        iconShowBorder: false, //是否显示图标边框
+        iconBorderCorlor: '#0000ff', //图标边框颜色
+        iconBorderRadio: 20, //图标边框颜色
+
+        showStime: false,
+        stimeColor: "#ff0000",
+        stimeBgc: "#00ff00",
+        stimeSize: 10,
+        stimeShowBorder: false,
+        stimeBorderColor: "#00ff00",
+        showDur: false,
+        durColor: "#0000ff",
+        durBgc: "#00ff00",
+        durSize: 10,
+        durShowBorder: false,
+        durBorderColor: "#00ff00" }] }] },
+
+
+
+
+
+  'icons': [
+  'youyong4',
+  'zhuazhualiugou',
+  'shuijue',
+  '38464',
+  'kafeicoffee61',
+  'yuehuiqipao',
+  'guangjie',
+  'zhengzhi:before',
+  '2',
+  'fendoumubiao',
+  'kezuofan',
+  'pashan',
+  'xuexi',
+  'weibiaoti--',
+  'kezuofan1',
+  'yinle',
+  'xizao',
+  'youxi',
+  'yingyushuiping',
+  'sanbu',
+  'xiyifuwu',
+  'xinaixin',
+  'shijian',
+  'xiuli',
+  'xiuxi',
+  'paobu',
+  'wuli',
+  'xizaomuyu',
+  'beer',
+  'baijiu_',
+  'shaokao',
+  'weibiaoti',
+  'test',
+  'test1',
+  'kandianying-weijihuo',
+  'huihua',
+  'yuwen',
+  'shuxue',
+  'huaxue',
+  'shaokao1',
+  'youyong',
+  'paobu1',
+  'rest',
+  'ziyuan',
+  'guzhang',
+  'wanfatubiao-daochu-',
+  'yule',
+  'fendou',
+  'jisuanji',
+  'pinpaishangou',
+  'yuehui',
+  'quntidajia',
+  'getidajia',
+  'chifancopy-',
+  'xiyifuwu1',
+  'shengwu'] };
+
+/***/ }),
+
+/***/ 22:
+/*!****************************************************!*\
+  !*** C:/proj/jellyClassTable/common/uniPromise.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ /**
+               * uniPromise
+               * */
+var uniPromise = function uniPromise(param) {
+  return function () {var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    return new Promise(function (resolve, reject) {
+      object.success = function (res) {return resolve(res);};
+      object.fail = function (res) {return reject(res);};
+      param(object);
+    });
+  };
+};
+
+module.exports = {
+  uniPromise: uniPromise };
+
+/***/ }),
+
+/***/ 29:
+/*!*********************************************!*\
+  !*** C:/proj/jellyClassTable/utils/util.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+function formatTime(time) {
+  if (typeof time !== 'number' || time < 0) {
+    return time;
+  }
+
+  var hour = parseInt(time / 3600);
+  time = time % 3600;
+  var minute = parseInt(time / 60);
+  time = time % 60;
+  var second = time;
+
+  return [hour, minute, second].map(function (n) {
+    n = n.toString();
+    return n[1] ? n : '0' + n;
+  }).join(':');
+}
+
+function formatLocation(longitude, latitude) {
+  if (typeof longitude === 'string' && typeof latitude === 'string') {
+    longitude = parseFloat(longitude);
+    latitude = parseFloat(latitude);
+  }
+
+  longitude = longitude.toFixed(2);
+  latitude = latitude.toFixed(2);
+
+  return {
+    longitude: longitude.toString().split('.'),
+    latitude: latitude.toString().split('.') };
+
+}
+
+function getTime(type) {
+  var date = new Date(),
+  currentDate,
+  currentTime,
+  seperator = "-", // 如果想要其他格式 只需 修改这里 
+  year = date.getFullYear(),
+  month = date.getMonth() + 1,
+  weex = date.getDay(),
+  day = date.getDate(),
+  hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
+  minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
+  second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+  month >= 1 && month <= 9 ? month = "0" + month : "";
+  day >= 0 && day <= 9 ? day = "0" + day : "";
+  //当前 日期
+  currentDate = year + seperator + month + seperator + day;
+  //当前 时间
+  currentTime = hour + ":" + minute + ":" + second;
+  // 输出格式 为 2018-8-27 14:45:33
+  // console.log(currentDate +" "+ currentTime);
+
+  if (type == 0) {
+    return currentDate;
+  } else if (type == 1) {
+    return currentTime;
+  } else if (type == 2) {
+    if (weex == 1) {
+      return '星期一';
+    }
+    if (weex == 2) {
+      return '星期二';
+    }
+    if (weex == 3) {
+      return '星期三';
+    }
+    if (weex == 4) {
+      return '星期四';
+    }
+    if (weex == 5) {
+      return '星期五';
+    }
+    if (weex == 6) {
+      return '星期六';
+    }
+    if (weex == 7) {
+      return '星期日';
+    }
+  } else {
+    return currentDate + " " + currentTime;
+  }
+}
+
+// 获取当月共多少天
+function getThisMonthDays(year, month) {
+  return new Date(year, month, 0).getDate();
+}
+// 获取当月第一天星期几
+function getFirstDayOfWeek(year, month) {
+  return new Date(Date.UTC(year, month - 1, 1)).getDay();
+}
+
+
+// 获取当前是一年中的第几周
+function getWeekOfYear() {
+  var totalDays = 0;
+  var myDate = new Date();
+  var year = myDate.getFullYear();
+  console.log('getWeekOfYear.year:' + year);
+  var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  if (year % 4 == 0)
+  days[1] = days[1] = 29;
+  if (myDate.getMonth() == 0) {
+    totalDays = totalDays + myDate.getDate();
+    console.log('getWeekOfYear.totalDays:' + totalDays);
+  } else {
+    var curMonth = myDate.getMonth();
+    console.log('getWeekOfYear.curMonth:' + curMonth);
+
+    for (var count = 1; count <= curMonth; count++) {
+      totalDays = totalDays + days[count - 1];
+    }
+    totalDays = totalDays + myDate.getDate() + new Date(year + '-01-01').getDay();
+    console.log('getWeekOfYear.totalDays:' + totalDays);
+
+  }
+  var week = Math.ceil(totalDays / 7);
+  console.log('getWeekOfYear.week:' + week);
+  return week;
+}
+//获取本周的日期/星期几
+function getCurrentWeek() {
+  var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  var week = [{
+    'weekday': '周一',
+    'date': '' },
+  {
+    'weekday': '周二',
+    'date': '' },
+  {
+    'weekday': '周三',
+    'date': '' },
+  {
+    'weekday': '周四',
+    'date': '' },
+  {
+    'weekday': '周五',
+    'date': '' },
+  {
+    'weekday': '周六',
+    'date': '' },
+  {
+    'weekday': '周日',
+    'date': '' }];
+
+  var d = new Date();
+  var year = d.getFullYear();
+  var month = d.getMonth(); //(0 ~ 11)
+  var day = d.getDate(); //当前一个月中的某一天 (1 ~ 31)
+
+  if (year % 4 == 0)
+  daysInMonth[1] = 29;
+
+  var weekday = d.getDay(); //一周中的第几天(0 ~ 6)
+  if (weekday == 0) weekday = 6; //返回值中周日为0,这里将周日放到最后
+
+  if (day - weekday <= 0) {
+    if (month - 1 < 0)
+    year--;else
+
+    month--;
+  } else {
+    day = day - weekday + 1;
+  }
+
+  console.log('getCurrentWeek.today: year:' + year + ' month:' + month + ' day:' + day);
+  console.log('getCurrentWeek.today is the ' + weekday + ' day in the week');
+
+  var dWeekStart = new Date(Date.UTC(year, month, day));
+  var yearWeekStart = dWeekStart.getFullYear();
+  var monthWeekStart = dWeekStart.getMonth();
+  var dayWeekStart = dWeekStart.getDate();
+  console.log('getCurrentWeek.start of this week: year:' + yearWeekStart + ' month:' + monthWeekStart + ' day:' + dayWeekStart);
+
+  for (var i = 0; i < 7; i++) {
+    var dd = dayWeekStart + i;
+    var daysin = daysInMonth[monthWeekStart];
+    console.log('getCurrentWeek.day' + i + 'in current week, current date ' + dd + 'aa' + daysin + 'days in current month');
+    if (dd > daysInMonth[monthWeekStart]) {
+      console.log('getCurrentWeek.step to next month, day' + i);
+      if (monthWeekStart == 11) {
+        console.log('getCurrentWeek.step to next year, day' + i);
+        week[i].month = 1;
+        week[i].year = yearWeekStart++;
+      } else
+      {
+        console.log('getCurrentWeek.step to next month, day' + i);
+        week[i].month = monthWeekStart + 2; //进位+1， month从【0:11】，变为【1:12】所以又+1,
+        week[i].year = yearWeekStart;
+      }
+      week[i].day = dayWeekStart + i - daysInMonth[monthWeekStart];
+    } else
+    {
+      console.log('getCurrentWeek.still in this month day' + i);
+      week[i].day = dayWeekStart + i;
+      week[i].month = monthWeekStart + 1;
+      week[i].year = yearWeekStart;
+    }
+  }
+
+  return { week: week, weekday: weekday };
+}
+module.exports = {
+  formatTime: formatTime,
+  formatLocation: formatLocation,
+  getTime: getTime,
+  getThisMonthDays: getThisMonthDays,
+  getFirstDayOfWeek: getFirstDayOfWeek,
+  getWeekOfYear: getWeekOfYear,
+  getCurrentWeek: getCurrentWeek };
+
+/***/ }),
+
+/***/ 3:
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
@@ -7593,7 +11405,367 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+
+/***/ 30:
+/*!********************************************!*\
+  !*** C:/proj/jellyClassTable/common/wx.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Promise化小程序接口
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */
+var api = function api(name, opts) {
+  return new Promise(function (success, fail) {
+    var obj = _objectSpread({},
+    opts,
+    {
+      success: success,
+      fail: fail });
+
+
+    wx[name](obj);
+  });
+};
+
+module.exports = {
+  api: api };
+
+/***/ }),
+
+/***/ 31:
+/*!*************************************************!*\
+  !*** C:/proj/jellyClassTable/utils/DateUtil.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ // export default {
+// 	friendlyDate: (timestamp) => {
+// 		var formats = {
+// 			'year': '%n% 年前',
+// 			'month': '%n% 月前',
+// 			'day': '%n% 天前',
+// 			'hour': '%n% 小时前',
+// 			'minute': '%n% 分钟前',
+// 			'second': '%n% 秒前',
+// 		};
+// 		var now = Date.now();
+// 		var seconds = Math.floor((now - parseInt(timestamp)) / 1000);
+// 		var minutes = Math.floor(seconds / 60);
+// 		var hours = Math.floor(minutes / 60);
+// 		var days = Math.floor(hours / 24);
+// 		var months = Math.floor(days / 30);
+// 		var years = Math.floor(months / 12);
+
+// 		var diffType = '';
+// 		var diffValue = 0;
+// 		if (years > 0) {
+// 			diffType = 'year';
+// 			diffValue = years;
+// 		} else {
+// 			if (months > 0) {
+// 				diffType = 'month';
+// 				diffValue = months;
+// 			} else {
+// 				if (days > 0) {
+// 					diffType = 'day';
+// 					diffValue = days;
+// 				} else {
+// 					if (hours > 0) {
+// 						diffType = 'hour';
+// 						diffValue = hours;
+// 					} else {
+// 						if (minutes > 0) {
+// 							diffType = 'minute';
+// 							diffValue = minutes;
+// 						} else {
+// 							diffType = 'second';
+// 							diffValue = seconds === 0 ? (seconds = 1) : seconds;
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 		return formats[diffType].replace('%n%', diffValue);
+// 	},
+// 	timeTodate: (format, timestamp) => {
+
+// 		var myDate = new Date();  
+// 		myDate.getYear(); //获取当前年份(2位)  
+// 		myDate.getFullYear(); //获取完整的年份(4位,1970-????)  
+// 		myDate.getMonth(); //获取当前月份(0-11,0代表1月)         // 所以获取当前月份是myDate.getMonth()+1;   
+// 		myDate.getDate(); //获取当前日(1-31)  
+// 		myDate.getDay(); //获取当前星期X(0-6,0代表星期天)  
+// 		myDate.getTime(); //获取当前时间(从1970.1.1开始的毫秒数)  
+// 		myDate.getHours(); //获取当前小时数(0-23)  
+// 		myDate.getMinutes(); //获取当前分钟数(0-59)  
+// 		myDate.getSeconds(); //获取当前秒数(0-59)  
+// 		myDate.getMilliseconds(); //获取当前毫秒数(0-999)  
+// 		myDate.toLocaleDateString(); //获取当前日期  
+// 		var mytime=myDate.toLocaleTimeString(); //获取当前时间  
+// 		myDate.toLocaleString( ); //获取日期与时间  
+
+// 		// 2019-10-01 23:08:35
+// 		var tmpDate = new Date(timestamp);
+// 		var seconds = tmpDate.getSeconds();
+// 		var minutes = ('0' + tmpDate.getMinutes()).substr(-2);
+// 		var hours = tmpDate.getHours();
+// 		var days = ('0' + tmpDate.getDate()).substr(-2);
+// 		var months = ('0' + (tmpDate.getMonth() + 1)).substr(-2);
+// 		var years = tmpDate.getFullYear();
+
+// 		var value = '自定义替换值';
+// 		// 输出格式为 .replace(被替换字符, 计算后值)
+
+// 		return format.replace('Y', years).replace('m', months).replace('d', days).replace('H', hours).replace('i', minutes).replace('s', seconds).replace('index', value);
+// 	}
+// }
+var formatTime = function formatTime(date) {
+  var year = date.getFullYear();
+  var month = date.getMonth() + 1;
+  var day = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
+  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':');
+};
+
+var formatNumber = function formatNumber(n) {
+  n = n.toString();
+  return n[1] ? n : '0' + n;
+};
+
+var getBiggerzIndex = function () {
+  //定义弹出层ui的最小zIndex
+  var index = 2000;
+  return function () {var level = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+    return level + ++index;
+  };
+}();
+
+/**
+      * @description 静态日期操作类，封装系列日期操作方法
+      * @description 输入时候月份自动减一，输出时候自动加一
+      * @return {object} 返回操作方法
+      */
+var dateUtil = {
+
+  //根据一个日期获取所有信息
+  getDetail: function getDetail(date) {
+    if (!date) date = new Date();
+    var d,now = new Date(),
+    dateInfo = {},
+    _diff;
+    var weekDayArr = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+
+    if (typeof date === 'number') {
+      d = new Date();
+      d.setTime(date);
+      date = d;
+    }
+
+    //充值date对象，让其成为一天的起点时间
+    date = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    now = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    _diff = date.getTime() - now.getTime();
+
+    if (_diff == 0) {
+      dateInfo.day1 = '今天';
+    } else if (_diff == 86400000) {
+      dateInfo.day1 = '明天';
+    } else if (_diff == 172800000) {
+      dateInfo.day1 = '后天';
+    }
+
+    dateInfo.weekday = weekDayArr[date.getDay()];
+
+    dateInfo.year = date.getFullYear();
+    dateInfo.month = date.getMonth() + 1;
+    dateInfo.day = date.getDate();
+
+    return dateInfo;
+
+  },
+
+  //获取前一个月
+  preMonth: function preMonth(d) {
+    if (typeof d === 'string') d = new Date(d);else
+    d = new Date();
+    var date = new Date(d.getFullYear(), d.getMonth() - 1);
+    return date;
+  },
+
+  nextMonth: function nextMonth(d) {
+    if (typeof d === 'string') d = new Date(d);else
+    d = new Date();
+    var date = new Date(d.getFullYear(), d.getMonth() + 1);
+    return date;
+  },
+
+  //获取前一个天
+  preDay: function preDay(d) {
+    if (typeof d === 'string') d = new Date(d);else
+    d = new Date();
+    var date = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1);
+    return date;
+  },
+
+  nextDay: function nextDay(d) {
+    if (typeof d === 'string') d = new Date(d);else
+    d = new Date();
+    var date = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1);
+    return date;
+  },
+
+  /**
+      * @description 数字操作，
+      * @return {string} 返回处理后的数字
+      */
+  formatNum: function formatNum(n) {
+    if (n < 10) return '0' + n;
+    return n;
+  },
+  /**
+      * @description 将字符串转换为日期，支持格式y-m-d ymd (y m r)以及标准的
+      * @return {Date} 返回日期对象
+      */
+  parse: function parse(dateStr, formatStr) {
+    if (typeof dateStr === 'undefined') return null;
+    if (typeof formatStr === 'string') {
+      var _d = new Date(formatStr);
+      //首先取得顺序相关字符串
+      var arrStr = formatStr.replace(/[^ymd]/g, '').split('');
+      if (!arrStr && arrStr.length != 3) return null;
+
+      var formatStr = formatStr.replace(/y|m|d/g, function (k) {
+        switch (k) {
+          case 'y':
+            return '(\\d{4})';
+          case 'm':
+            ;
+          case 'd':
+            return '(\\d{1,2})';}
+
+      });
+
+      var reg = new RegExp(formatStr, 'g');
+      var arr = reg.exec(dateStr);
+
+      var dateObj = {};
+      for (var i = 0, len = arrStr.length; i < len; i++) {
+        dateObj[arrStr[i]] = arr[i + 1];
+      }
+      return new Date(dateObj['y'], dateObj['m'] - 1, dateObj['d']);
+    }
+    return null;
+  },
+  /**
+      * @description将日期格式化为字符串
+      * @return {string} 常用格式化字符串
+      */
+  format: function (_format) {function format(_x, _x2) {return _format.apply(this, arguments);}format.toString = function () {return _format.toString();};return format;}(function (date, f) {
+    if (arguments.length < 2 && !date.getTime) {
+      format = date;
+      date = new Date();
+    } else if (arguments.length == 2 && typeof date === 'number' && typeof f === 'string') {
+      var d = new Date();
+      d.setTime(date);
+      date = d;
+    }
+
+    typeof f != 'string' && (f = 'Y年M月D日 H时F分S秒');
+    return f.replace(/Y|y|M|m|D|d|H|h|F|f|S|s/g, function (a) {
+      switch (a) {
+        case "y":
+          return (date.getFullYear() + "").slice(2);
+        case "Y":
+          return date.getFullYear();
+        case "m":
+          return date.getMonth() + 1;
+        case "M":
+          return dateUtil.formatNum(date.getMonth() + 1);
+        case "d":
+          return date.getDate();
+        case "D":
+          return dateUtil.formatNum(date.getDate());
+        case "h":
+          return date.getHours();
+        case "H":
+          return dateUtil.formatNum(date.getHours());
+        case "f":
+          return date.getMinutes();
+        case "F":
+          return dateUtil.formatNum(date.getMinutes());
+        case "s":
+          return date.getSeconds();
+        case "S":
+          return dateUtil.formatNum(date.getSeconds());}
+
+    });
+  }),
+  // @description 是否为为日期对象，该方法可能有坑，使用需要慎重
+  // @param year {num} 日期对象
+  // @return {boolean} 返回值
+  isDate: function isDate(d) {
+    if (typeof d == 'object' && d instanceof Date) return true;
+    return false;
+  },
+  // @description 是否为闰年
+  // @param year {num} 可能是年份或者为一个date时间
+  // @return {boolean} 返回值
+  isLeapYear: function isLeapYear(year) {
+    //传入为时间格式需要处理
+    if (_.dateUtil.isDate(year)) year = year.getFullYear();
+    if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) return true;
+    return false;
+  },
+
+  // @description 获取一个月份的天数
+  // @param year {num} 可能是年份或者为一个date时间
+  // @param year {num} 月份
+  // @return {num} 返回天数
+  getDaysOfMonth: function getDaysOfMonth(year, month) {
+    //自动减一以便操作
+    month--;
+    if (_.dateUtil.isDate(year)) {
+      month = year.getMonth(); //注意此处月份要加1，所以我们要减一
+      year = year.getFullYear();
+    }
+    return [31, _.dateUtil.isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][month];
+  },
+
+  // @description 获取一个月份1号是星期几，注意此时的月份传入时需要自主减一
+  // @param year {num} 可能是年份或者为一个date时间
+  // @param year {num} 月份
+  // @return {num} 当月一号为星期几0-6
+  getBeginDayOfMouth: function getBeginDayOfMouth(year, month) {
+    //自动减一以便操作
+    month--;
+    if (typeof year == 'object' && year instanceof Date) {
+      month = year.getMonth();
+      year = year.getFullYear();
+    }
+    var d = new Date(year, month, 1);
+    return d.getDay();
+  } };
+
+
+
+
+module.exports = {
+  formatTime: formatTime,
+  getBiggerzIndex: getBiggerzIndex,
+  dateUtil: dateUtil };
+
+/***/ }),
+
+/***/ 4:
 /*!******************************************!*\
   !*** C:/proj/jellyClassTable/pages.json ***!
   \******************************************/
@@ -7604,7 +11776,8 @@ module.exports = g;
 
 
 /***/ }),
-/* 5 */
+
+/***/ 5:
 /*!*******************************************************!*\
   !*** ./node_modules/@dcloudio/uni-stat/dist/index.js ***!
   \*******************************************************/
@@ -8490,17 +12663,19 @@ main();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 6 */
+
+/***/ 6:
 /*!******************************************************!*\
   !*** ./node_modules/@dcloudio/uni-stat/package.json ***!
   \******************************************************/
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2.0.0-alpha-25120200103005","_inBundle":false,"_integrity":"sha512-nYoIrRV2e5o/vzr6foSdWi3Rl2p0GuO+LPY3JctyY6uTKgPnuH99d7aL/QQdJ1SacQjBWO+QGK1qankN7oyrWw==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@alpha","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"alpha","saveSpec":null,"fetchSpec":"alpha"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-alpha-25120200103005.tgz","_shasum":"a77a63481f36474f3e86686868051219d1bb12df","_spec":"@dcloudio/uni-stat@alpha","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/alpha/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"6be187a3dfe15f95dd6146d9fec08e1f81100987","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-alpha-25120200103005"};
+module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2.0.0-alpha-25720200116005","_inBundle":false,"_integrity":"sha512-RZFw3WAaS/CZTzzv9JPaWvmoNitojD/06vPdHSzlqZi8GbuE222lFuyochEjrGkG8rPPrWHAnwfoPBuQVtkfdg==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@alpha","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"alpha","saveSpec":null,"fetchSpec":"alpha"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-alpha-25720200116005.tgz","_shasum":"08bb17aba91c84a981f33d74153aa3dd07b578ad","_spec":"@dcloudio/uni-stat@alpha","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/alpha/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"a129bde60de35f7ef497f43d5a45b4556231995c","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-alpha-25720200116005"};
 
 /***/ }),
-/* 7 */
+
+/***/ 7:
 /*!***********************************************************!*\
   !*** C:/proj/jellyClassTable/pages.json?{"type":"style"} ***!
   \***********************************************************/
@@ -8508,10 +12683,11 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/jellyTable/jellyTable": {}, "pages/cfg/cfg": { "navigationBarTitleText": "cfg" }, "pages/dbg/dbg": {}, "pages/test/test": {}, "pages/test1/test1": {} }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "课程表", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8", "backgroundColorTop": "#F4F5F6", "backgroundColorBottom": "#F4F5F6" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/jellyTable/jellyTable": {}, "pages/cfg/cfg": { "navigationBarTitleText": "cfg" }, "pages/dbg/dbg": {}, "pages/test/test": {}, "pages/test1/test1": {}, "pages/login/login": {}, "pages/login/forget": {}, "pages/login/register": {} }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "课程表", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8", "backgroundColorTop": "#F4F5F6", "backgroundColorBottom": "#F4F5F6" } };exports.default = _default;
 
 /***/ }),
-/* 8 */
+
+/***/ 8:
 /*!**********************************************************!*\
   !*** C:/proj/jellyClassTable/pages.json?{"type":"stat"} ***!
   \**********************************************************/
@@ -8522,3717 +12698,161 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__B564C4D" };exports.default = _default;
 
 /***/ }),
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */
-/*!**********************************************************************************************************!*\
-  !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \**********************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode, /* vue-cli only */
-  components, // fixed by xxxxxx auto components
-  renderjs // fixed by xxxxxx renderjs
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // fixed by xxxxxx auto components
-  if (components) {
-    options.components = Object.assign(components, options.components || {})
-  }
-  // fixed by xxxxxx renderjs
-  if (renderjs) {
-    (renderjs.beforeCreate || (renderjs.beforeCreate = [])).unshift(function() {
-      this[renderjs.__module] = this
-    });
-    (options.mixins || (options.mixins = [])).push(renderjs)
-  }
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 15 */
-/*!**********************************************!*\
-  !*** C:/proj/jellyClassTable/store/index.js ***!
-  \**********************************************/
+/***/ 85:
+/*!***************************************************!*\
+  !*** C:/proj/jellyClassTable/common/authorize.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 16));var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ 2));
-var _vuex = _interopRequireDefault(__webpack_require__(/*! vuex */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //authorize.js
+// var baseUrl = "https://xxxx.com";
 
-_vue.default.use(_vuex.default);var _require =
+// 同步获取storge
+var getStorageSync = function getStorageSync(key) {
+  try {
+    var value = uni.getStorageSync(key);
+    if (value) {
+      return value;
+    }
+    return false;
+  } catch (e) {
+    console.log('获取storge失败');
+  }
+  return false;
+};
 
+// 同步存储storge
+var setStorageSync = function setStorageSync(key, value) {
+  try {
+    uni.setStorageSync(key, value);
+    return true;
+  } catch (e) {
+    console.log('存储storge失败');
+  }
+  return false;
+};
 
+// 检测sessionkey是否过期 1未过期 0已过期
+var checkSessionKey = function checkSessionKey() {
 
+  return new Promise(function (resolve, reject) {
+    var user = getStorageSync('userInfo'); // 用户缓存信息
+    if (user) {
+      uni.checkSession({
+        success: function success() {
+          resolve(user); //状态未过期
+        },
+        fail: function fail() {
+          resolve(false); //状态已过期
+        } });
 
+    } else {
+      resolve(false); //未存贮
+    }
+  });
+};
 
-__webpack_require__(/*! ../common/colors.js */ 20),colors = _require.colors,colorSets = _require.colorSets,colorSetNames = _require.colorSetNames;var _require2 =
+// 登录授权
+var login = function login(params) {
 
-
-
-
-__webpack_require__(/*! ../common/app-data.js */ 21),projs = _require2.projs,icons = _require2.icons;
-
-var store = new _vuex.default.Store({
-  state: {
-    sysInfo: [],
-    cfg: {
-      bgc: '#cccccc',
-      bgcGradient: '#cccccc',
-      colBgc: 'transparent',
-      colBgcGradient: 'transparent',
-      hilightCurrentDay: true,
-      daysMode: false, //false: day5; true: day7
-      axisColor: '#69bc38',
-      axisColorGradient: '#f34598',
-      axisTextColor: '#ffffff',
-      axisTextBgc: '#000000',
-      highlightBorderColor: '#00ff00' },
-
-    colors: colors,
-    colorSets: colorSets,
-    colorSetNames: colorSetNames,
-    projs: projs,
-    icons: icons,
-    count: 0,
-    hasLogin: false,
-    loginProvider: "",
-    openid: null,
-    testvuex: false },
-
-  mutations: {
-    setSysInfo: function setSysInfo(state, sysInfo) {
-      state.sysInfo = sysInfo;
-    },
-    setTableHeight: function setTableHeight(state, tableHeight) {
-      console.log('setTableHeight: ' + tableHeight);
-      state.projs.tableHeight = tableHeight;
-      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
-    },
-    login: function login(state, provider) {
-      state.hasLogin = true;
-      state.loginProvider = provider;
-    },
-    logout: function logout(state) {
-      state.hasLogin = false;
-      state.openid = null;
-    },
-    setOpenid: function setOpenid(state, openid) {
-      state.openid = openid;
-    },
-    setTestTrue: function setTestTrue(state) {
-      state.testvuex = true;
-    },
-    setTestFalse: function setTestFalse(state) {
-      state.testvuex = false;
-    },
-    increaseCountBy: function increaseCountBy(state, cnt) {
-      state.count += cnt;
-    },
-    increaseCount: function increaseCount(state) {
-      console.log('increaseCount:');
-      state.count += 2;
-    },
-    decreaseCount: function decreaseCount(state) {
-      state.count--;
-    },
-    setProjs: function setProjs(state, item) {
-      state.projs = item;
-    },
-    updateProjs: function updateProjs(state) {
-      console.log('store.updateProjs');
-      console.log(JSON.stringify(state.projs));
-
-      var pretime = 0;
-      var start = 480;
-      var stop = 720;
-
-      state.projs.days.forEach(function (item1, i) {
-        // console.log('x:' + i + JSON.stringify(item1));
-        item1.classes.forEach(function (item2, j) {
-          // console.log('xy:' + i + j + JSON.stringify(item2));
-
-          if (item2.time < start) {
-            start = item2.time;
-            console.log('i:' + i + '; j:' + j + ';start:' + start);
-          }
-          if (item2.time + item2.dur > stop) {
-            stop = item2.time + item2.dur;
-            console.log('i:' + i + '; j:' + j + ';stop:' + stop);
-          }
-        });
-      });
-      state.projs.startLineTime = Math.floor(start);
-      state.projs.endLineTime = Math.ceil(stop);
-      console.log('store.updateProjs: start:' + start);
-      console.log('store.updateProjs: stop:' + stop);
-
-      state.projs.timeSpan = (state.projs.endLineTime - state.projs.startLineTime) / 60;
-      state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
-      state.projs.days.forEach(function (item1) {
-        item1.classes.forEach(function (item2, index2) {
-          if (index2 == 0) {
-            item2.margintop = (item2.time - state.projs.startLineTime) * state.projs.rpx;
-            pretime = item2.time + item2.dur;
-          } else {
-            item2.margintop = (item2.time - pretime) * state.projs.rpx;
-            pretime = item2.time + item2.dur;
-          }
-
-          item2.height = item2.dur * state.projs.rpx;
-        });
-      });
-    },
-    addClass: function addClass(state, index) {
-      var day = index.weekday;
-      var data = Object.assign({}, JSON.parse(JSON.stringify(index)));
-      state.projs.days[day].classes.push(data);
-      // console.log('store:addClass:');
-      // 			state.projs.days.forEach(function(i1,i) {
-      // 	if (i1.weekday == c.cfgt.weekday) {
-      // 		console.log('push: '+ c.cfgt.time);
-      // 		// console.log('before push:' + JSON.stringify(i1))
-      // 		var tmp = {};
-      // 		tmp = c.cfgt;
-      // 		console.log(JSON.stringify(tmp));
-      // 		i1.classes.push(tmp);
-      // 		// console.log('after push:' + JSON.stringify(i1))
-      // 	}
-      // 	else
-      // 		console.log('dummy :i='+ i)
-      // })
-    },
-    updateClass: function updateClass(state, item) {
-      // console.log('store:updateClass.showNane:' + item.cfgt.showName + ' x:' + item.x + ' y:' + item.y);
-      // console.log('item.cfgt:' + JSON.stringify(item.cfgt));
-      // console.log('state.projs.days before:' + JSON.stringify(state.projs.days[item.x].classes[item.y]));
-      //如果day没有变,只是当前日期的class替换
-      var previousDay = item.classTmp.weekdayPrevious;
-      var newDay = item.classTmp.weekday;
-      if (previousDay == newDay) {
-        state.projs.days[item.x].classes.splice([item.y], 1, item.classTmp);
-        // console.log('state.projs.days after:' + JSON.stringify(state.projs.days[item.x].classes[item.y]));
-
-        // state.projs.days.forEach(function(i1, i) {
-        // 	if (i == item.x) {
-        // 		i1.classes.forEach(function(i2, j) {
-        // 			if (j == item.y) {
-        // 				i1.classes.splice(j, 1, item.classTmp);
-        // 			}
-        // 		})
-        // 	}
-        // })
-      } else {
-        //删除当前记录,并增加新的记录
-        state.projs.days[previousDay].classes.splice(item.y, 1);
-        state.projs.days[newDay].classes.push(item.classTmp);
+  return new Promise(function (resolve, reject) {
+    authDo(params).then(function (res) {
+      if (res.statusCode && res.statusCode != 200) {
+        reject('网络错误，请检查一下网络');return;
       }
-    },
-    deleteClass: function deleteClass(state, item) {
-      console.log('store:deleteClass');
-      // console.log(JSON.stringify(item));
-      state.projs.days[item.x].classes.splice(item.y, 1);
-    },
-    updateCfg: function updateCfg(state, item) {
-      state.cfg = item;
-    },
-    addNewIcon: function addNewIcon(state, item) {
-      state.icons = item;
-    } },
+      if (res.data.code != 0) {
+        reject('登录失败');return;
+      }
+      var user = res.data.data.user;
+      uni.setStorageSync('userInfo', user); //储存用户信息到本地
+      resolve(user);
+    });
+  });
+};
 
-  actions: {
-    // lazy loading openid
-    getUserOpenId: function () {var _getUserOpenId = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref) {var commit, state;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                commit = _ref.commit,
-                state = _ref.state;_context.next = 3;return (
+// 保存用户信息 write by self
+var authDo = function authDo(params) {
+  return new Promise(function (resolve, reject) {
+    uni.request({
+      url: baseUrl + 'xcx/user/login',
+      data: params,
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' },
 
-                  new Promise(function (resolve, reject) {
-                    if (state.openid) {
-                      resolve(state.openid);
-                    } else {
-                      uni.login({
-                        success: function success(data) {
-                          commit('login');
-                          setTimeout(function () {//模拟异步请求服务器获取 openid
-                            var openid = '123456789';
-                            console.log(
-                            'uni.request mock openid[' +
-                            openid +
-                            ']');
-                            commit('setOpenid', openid);
-                            resolve(openid);
-                          }, 1000);
-                        },
-                        fail: function fail(err) {
-                          console.log('uni.login 接口调用失败，将无法正常使用开放接口等服务',
-                          err);
-                          reject(err);
-                        } });
+      success: function success(res) {resolve(res);},
+      fail: function fail() {reject("保存用户信息失败");} });
 
-                    }
-                  }));case 3:return _context.abrupt("return", _context.sent);case 4:case "end":return _context.stop();}}}, _callee, this);}));function getUserOpenId(_x) {return _getUserOpenId.apply(this, arguments);}return getUserOpenId;}() } });var _default =
+  });
+};
 
+// 获取服务商信息 uni-app是聚合开发 所以先获得是什么小程序 原生的不用这个
+var getProvider = function getProvider() {
+  return new Promise(function (resolve, reject) {
+    uni.getProvider({
+      service: 'oauth', //服务类型  登录授权
+      success: function success(res) {resolve(res.provider[0]);},
+      fail: function fail() {reject("获取服务商失败");} });
 
+  });
+};
 
+// 获取code
+var getCode = function getCode(provider) {
+  return new Promise(function (resolve, reject) {
+    if (!provider) {reject("获取缺少provider参数");}
+    uni.login({
+      provider: provider,
+      success: function success(loginRes) {
+        if (loginRes && loginRes.code) {resolve(loginRes.code);} else {reject("获取code失败");}
+      },
+      fail: function fail() {reject("获取code失败");} });
 
-store;exports.default = _default;
+  });
+};
+
+// 是否开启了获取用户名授权 当用户一开始拒绝了 需再次提醒授权
+var getSetting = function getSetting() {
+  return new Promise(function (resolve, reject) {
+    uni.getSetting({
+      success: function success(res) {
+        var authSetting = res.authSetting;
+        if (authSetting['scope.userInfo']) {resolve(1);return;} //授权成功
+        if (authSetting['scope.userInfo'] === false) {resolve(0);return;} //拒绝授权
+        resolve(2); //2未操作
+      },
+      fail: function fail() {reject("获取用户授权失败");} });
+
+  });
+};
+
+// 获取用户信息
+var getUserInfo = function getUserInfo(provider) {
+  return new Promise(function (resolve, reject) {
+    if (!provider) {reject("获取缺少provider参数");return;}
+    uni.getUserInfo({
+      provider: provider,
+      success: function success(detail) {
+        if (detail.iv != '') {
+          resolve(detail);
+        } else {
+          reject(0); //用户点击拒绝授权
+        }
+      },
+      fail: function fail(error) {
+        reject(0); //如果用户拒绝过授权 直接走fail
+      } });
+
+  });
+};var _default =
+
+{ getStorageSync: getStorageSync, setStorageSync: setStorageSync, getProvider: getProvider, getSetting: getSetting, checkSessionKey: checkSessionKey, getCode: getCode, login: login, getUserInfo: getUserInfo };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
-/***/ }),
-/* 16 */
-/*!**********************************************************!*\
-  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
-  \**********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! regenerator-runtime */ 17);
-
-
-/***/ }),
-/* 17 */
-/*!************************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
-  \************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-// This method of obtaining a reference to the global object needs to be
-// kept identical to the way it is obtained in runtime.js
-var g = (function() {
-  return this || (typeof self === "object" && self);
-})() || Function("return this")();
-
-// Use `getOwnPropertyNames` because not all browsers support calling
-// `hasOwnProperty` on the global `self` object in a worker. See #183.
-var hadRuntime = g.regeneratorRuntime &&
-  Object.getOwnPropertyNames(g).indexOf("regeneratorRuntime") >= 0;
-
-// Save the old regeneratorRuntime in case it needs to be restored later.
-var oldRuntime = hadRuntime && g.regeneratorRuntime;
-
-// Force reevalutation of runtime.js.
-g.regeneratorRuntime = undefined;
-
-module.exports = __webpack_require__(/*! ./runtime */ 18);
-
-if (hadRuntime) {
-  // Restore the original runtime.
-  g.regeneratorRuntime = oldRuntime;
-} else {
-  // Remove the global property added by runtime.js.
-  try {
-    delete g.regeneratorRuntime;
-  } catch(e) {
-    g.regeneratorRuntime = undefined;
-  }
-}
-
-
-/***/ }),
-/* 18 */
-/*!*****************************************************!*\
-  !*** ./node_modules/regenerator-runtime/runtime.js ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * Copyright (c) 2014-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-!(function(global) {
-  "use strict";
-
-  var Op = Object.prototype;
-  var hasOwn = Op.hasOwnProperty;
-  var undefined; // More compressible than void 0.
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-
-  var inModule = typeof module === "object";
-  var runtime = global.regeneratorRuntime;
-  if (runtime) {
-    if (inModule) {
-      // If regeneratorRuntime is defined globally and we're in a module,
-      // make the exports object identical to regeneratorRuntime.
-      module.exports = runtime;
-    }
-    // Don't bother evaluating the rest of this file if the runtime was
-    // already defined globally.
-    return;
-  }
-
-  // Define the runtime globally (as expected by generated code) as either
-  // module.exports (if we're in a module) or a new, empty object.
-  runtime = global.regeneratorRuntime = inModule ? module.exports : {};
-
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    var context = new Context(tryLocsList || []);
-
-    // The ._invoke method unifies the implementations of the .next,
-    // .throw, and .return methods.
-    generator._invoke = makeInvokeMethod(innerFn, self, context);
-
-    return generator;
-  }
-  runtime.wrap = wrap;
-
-  // Try/catch helper to minimize deoptimizations. Returns a completion
-  // record like context.tryEntries[i].completion. This interface could
-  // have been (and was previously) designed to take a closure to be
-  // invoked without arguments, but in all the cases we care about we
-  // already have an existing method we want to call, so there's no need
-  // to create a new function object. We can even get away with assuming
-  // the method takes exactly one argument, since that happens to be true
-  // in every case, so we don't have to touch the arguments object. The
-  // only additional allocation required is the completion record, which
-  // has a stable shape and so hopefully should be cheap to allocate.
-  function tryCatch(fn, obj, arg) {
-    try {
-      return { type: "normal", arg: fn.call(obj, arg) };
-    } catch (err) {
-      return { type: "throw", arg: err };
-    }
-  }
-
-  var GenStateSuspendedStart = "suspendedStart";
-  var GenStateSuspendedYield = "suspendedYield";
-  var GenStateExecuting = "executing";
-  var GenStateCompleted = "completed";
-
-  // Returning this object from the innerFn has the same effect as
-  // breaking out of the dispatch switch statement.
-  var ContinueSentinel = {};
-
-  // Dummy constructor functions that we use as the .constructor and
-  // .constructor.prototype properties for functions that return Generator
-  // objects. For full spec compliance, you may wish to configure your
-  // minifier not to mangle the names of these two functions.
-  function Generator() {}
-  function GeneratorFunction() {}
-  function GeneratorFunctionPrototype() {}
-
-  // This is a polyfill for %IteratorPrototype% for environments that
-  // don't natively support it.
-  var IteratorPrototype = {};
-  IteratorPrototype[iteratorSymbol] = function () {
-    return this;
-  };
-
-  var getProto = Object.getPrototypeOf;
-  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
-  if (NativeIteratorPrototype &&
-      NativeIteratorPrototype !== Op &&
-      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
-    // This environment has a native %IteratorPrototype%; use it instead
-    // of the polyfill.
-    IteratorPrototype = NativeIteratorPrototype;
-  }
-
-  var Gp = GeneratorFunctionPrototype.prototype =
-    Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-  GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
-
-  // Helper for defining the .next, .throw, and .return methods of the
-  // Iterator interface in terms of a single ._invoke method.
-  function defineIteratorMethods(prototype) {
-    ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
-        return this._invoke(method, arg);
-      };
-    });
-  }
-
-  runtime.isGeneratorFunction = function(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor
-      ? ctor === GeneratorFunction ||
-        // For the native GeneratorFunction constructor, the best we can
-        // do is to check its .name property.
-        (ctor.displayName || ctor.name) === "GeneratorFunction"
-      : false;
-  };
-
-  runtime.mark = function(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  };
-
-  // Within the body of any async function, `await x` is transformed to
-  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
-  // `hasOwn.call(value, "__await")` to determine if the yielded value is
-  // meant to be awaited.
-  runtime.awrap = function(arg) {
-    return { __await: arg };
-  };
-
-  function AsyncIterator(generator) {
-    function invoke(method, arg, resolve, reject) {
-      var record = tryCatch(generator[method], generator, arg);
-      if (record.type === "throw") {
-        reject(record.arg);
-      } else {
-        var result = record.arg;
-        var value = result.value;
-        if (value &&
-            typeof value === "object" &&
-            hasOwn.call(value, "__await")) {
-          return Promise.resolve(value.__await).then(function(value) {
-            invoke("next", value, resolve, reject);
-          }, function(err) {
-            invoke("throw", err, resolve, reject);
-          });
-        }
-
-        return Promise.resolve(value).then(function(unwrapped) {
-          // When a yielded Promise is resolved, its final value becomes
-          // the .value of the Promise<{value,done}> result for the
-          // current iteration.
-          result.value = unwrapped;
-          resolve(result);
-        }, function(error) {
-          // If a rejected Promise was yielded, throw the rejection back
-          // into the async generator function so it can be handled there.
-          return invoke("throw", error, resolve, reject);
-        });
-      }
-    }
-
-    var previousPromise;
-
-    function enqueue(method, arg) {
-      function callInvokeWithMethodAndArg() {
-        return new Promise(function(resolve, reject) {
-          invoke(method, arg, resolve, reject);
-        });
-      }
-
-      return previousPromise =
-        // If enqueue has been called before, then we want to wait until
-        // all previous Promises have been resolved before calling invoke,
-        // so that results are always delivered in the correct order. If
-        // enqueue has not been called before, then it is important to
-        // call invoke immediately, without waiting on a callback to fire,
-        // so that the async generator function has the opportunity to do
-        // any necessary setup in a predictable way. This predictability
-        // is why the Promise constructor synchronously invokes its
-        // executor callback, and why async functions synchronously
-        // execute code before the first await. Since we implement simple
-        // async functions in terms of async generators, it is especially
-        // important to get this right, even though it requires care.
-        previousPromise ? previousPromise.then(
-          callInvokeWithMethodAndArg,
-          // Avoid propagating failures to Promises returned by later
-          // invocations of the iterator.
-          callInvokeWithMethodAndArg
-        ) : callInvokeWithMethodAndArg();
-    }
-
-    // Define the unified helper method that is used to implement .next,
-    // .throw, and .return (see defineIteratorMethods).
-    this._invoke = enqueue;
-  }
-
-  defineIteratorMethods(AsyncIterator.prototype);
-  AsyncIterator.prototype[asyncIteratorSymbol] = function () {
-    return this;
-  };
-  runtime.AsyncIterator = AsyncIterator;
-
-  // Note that simple async functions are implemented on top of
-  // AsyncIterator objects; they just return a Promise for the value of
-  // the final result produced by the iterator.
-  runtime.async = function(innerFn, outerFn, self, tryLocsList) {
-    var iter = new AsyncIterator(
-      wrap(innerFn, outerFn, self, tryLocsList)
-    );
-
-    return runtime.isGeneratorFunction(outerFn)
-      ? iter // If outerFn is a generator, return the full iterator.
-      : iter.next().then(function(result) {
-          return result.done ? result.value : iter.next();
-        });
-  };
-
-  function makeInvokeMethod(innerFn, self, context) {
-    var state = GenStateSuspendedStart;
-
-    return function invoke(method, arg) {
-      if (state === GenStateExecuting) {
-        throw new Error("Generator is already running");
-      }
-
-      if (state === GenStateCompleted) {
-        if (method === "throw") {
-          throw arg;
-        }
-
-        // Be forgiving, per 25.3.3.3.3 of the spec:
-        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
-        return doneResult();
-      }
-
-      context.method = method;
-      context.arg = arg;
-
-      while (true) {
-        var delegate = context.delegate;
-        if (delegate) {
-          var delegateResult = maybeInvokeDelegate(delegate, context);
-          if (delegateResult) {
-            if (delegateResult === ContinueSentinel) continue;
-            return delegateResult;
-          }
-        }
-
-        if (context.method === "next") {
-          // Setting context._sent for legacy support of Babel's
-          // function.sent implementation.
-          context.sent = context._sent = context.arg;
-
-        } else if (context.method === "throw") {
-          if (state === GenStateSuspendedStart) {
-            state = GenStateCompleted;
-            throw context.arg;
-          }
-
-          context.dispatchException(context.arg);
-
-        } else if (context.method === "return") {
-          context.abrupt("return", context.arg);
-        }
-
-        state = GenStateExecuting;
-
-        var record = tryCatch(innerFn, self, context);
-        if (record.type === "normal") {
-          // If an exception is thrown from innerFn, we leave state ===
-          // GenStateExecuting and loop back for another invocation.
-          state = context.done
-            ? GenStateCompleted
-            : GenStateSuspendedYield;
-
-          if (record.arg === ContinueSentinel) {
-            continue;
-          }
-
-          return {
-            value: record.arg,
-            done: context.done
-          };
-
-        } else if (record.type === "throw") {
-          state = GenStateCompleted;
-          // Dispatch the exception by looping back around to the
-          // context.dispatchException(context.arg) call above.
-          context.method = "throw";
-          context.arg = record.arg;
-        }
-      }
-    };
-  }
-
-  // Call delegate.iterator[context.method](context.arg) and handle the
-  // result, either by returning a { value, done } result from the
-  // delegate iterator, or by modifying context.method and context.arg,
-  // setting context.delegate to null, and returning the ContinueSentinel.
-  function maybeInvokeDelegate(delegate, context) {
-    var method = delegate.iterator[context.method];
-    if (method === undefined) {
-      // A .throw or .return when the delegate iterator has no .throw
-      // method always terminates the yield* loop.
-      context.delegate = null;
-
-      if (context.method === "throw") {
-        if (delegate.iterator.return) {
-          // If the delegate iterator has a return method, give it a
-          // chance to clean up.
-          context.method = "return";
-          context.arg = undefined;
-          maybeInvokeDelegate(delegate, context);
-
-          if (context.method === "throw") {
-            // If maybeInvokeDelegate(context) changed context.method from
-            // "return" to "throw", let that override the TypeError below.
-            return ContinueSentinel;
-          }
-        }
-
-        context.method = "throw";
-        context.arg = new TypeError(
-          "The iterator does not provide a 'throw' method");
-      }
-
-      return ContinueSentinel;
-    }
-
-    var record = tryCatch(method, delegate.iterator, context.arg);
-
-    if (record.type === "throw") {
-      context.method = "throw";
-      context.arg = record.arg;
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    var info = record.arg;
-
-    if (! info) {
-      context.method = "throw";
-      context.arg = new TypeError("iterator result is not an object");
-      context.delegate = null;
-      return ContinueSentinel;
-    }
-
-    if (info.done) {
-      // Assign the result of the finished delegate to the temporary
-      // variable specified by delegate.resultName (see delegateYield).
-      context[delegate.resultName] = info.value;
-
-      // Resume execution at the desired location (see delegateYield).
-      context.next = delegate.nextLoc;
-
-      // If context.method was "throw" but the delegate handled the
-      // exception, let the outer generator proceed normally. If
-      // context.method was "next", forget context.arg since it has been
-      // "consumed" by the delegate iterator. If context.method was
-      // "return", allow the original .return call to continue in the
-      // outer generator.
-      if (context.method !== "return") {
-        context.method = "next";
-        context.arg = undefined;
-      }
-
-    } else {
-      // Re-yield the result returned by the delegate method.
-      return info;
-    }
-
-    // The delegate iterator is finished, so forget it and continue with
-    // the outer generator.
-    context.delegate = null;
-    return ContinueSentinel;
-  }
-
-  // Define Generator.prototype.{next,throw,return} in terms of the
-  // unified ._invoke helper method.
-  defineIteratorMethods(Gp);
-
-  Gp[toStringTagSymbol] = "Generator";
-
-  // A Generator should always return itself as the iterator object when the
-  // @@iterator function is called on it. Some browsers' implementations of the
-  // iterator prototype chain incorrectly implement this, causing the Generator
-  // object to not be returned from this call. This ensures that doesn't happen.
-  // See https://github.com/facebook/regenerator/issues/274 for more details.
-  Gp[iteratorSymbol] = function() {
-    return this;
-  };
-
-  Gp.toString = function() {
-    return "[object Generator]";
-  };
-
-  function pushTryEntry(locs) {
-    var entry = { tryLoc: locs[0] };
-
-    if (1 in locs) {
-      entry.catchLoc = locs[1];
-    }
-
-    if (2 in locs) {
-      entry.finallyLoc = locs[2];
-      entry.afterLoc = locs[3];
-    }
-
-    this.tryEntries.push(entry);
-  }
-
-  function resetTryEntry(entry) {
-    var record = entry.completion || {};
-    record.type = "normal";
-    delete record.arg;
-    entry.completion = record;
-  }
-
-  function Context(tryLocsList) {
-    // The root entry object (effectively a try statement without a catch
-    // or a finally block) gives us a place to store values thrown from
-    // locations where there is no enclosing try statement.
-    this.tryEntries = [{ tryLoc: "root" }];
-    tryLocsList.forEach(pushTryEntry, this);
-    this.reset(true);
-  }
-
-  runtime.keys = function(object) {
-    var keys = [];
-    for (var key in object) {
-      keys.push(key);
-    }
-    keys.reverse();
-
-    // Rather than returning an object with a next method, we keep
-    // things simple and return the next function itself.
-    return function next() {
-      while (keys.length) {
-        var key = keys.pop();
-        if (key in object) {
-          next.value = key;
-          next.done = false;
-          return next;
-        }
-      }
-
-      // To avoid creating an additional object, we just hang the .value
-      // and .done properties off the next function object itself. This
-      // also ensures that the minifier will not anonymize the function.
-      next.done = true;
-      return next;
-    };
-  };
-
-  function values(iterable) {
-    if (iterable) {
-      var iteratorMethod = iterable[iteratorSymbol];
-      if (iteratorMethod) {
-        return iteratorMethod.call(iterable);
-      }
-
-      if (typeof iterable.next === "function") {
-        return iterable;
-      }
-
-      if (!isNaN(iterable.length)) {
-        var i = -1, next = function next() {
-          while (++i < iterable.length) {
-            if (hasOwn.call(iterable, i)) {
-              next.value = iterable[i];
-              next.done = false;
-              return next;
-            }
-          }
-
-          next.value = undefined;
-          next.done = true;
-
-          return next;
-        };
-
-        return next.next = next;
-      }
-    }
-
-    // Return an iterator with no values.
-    return { next: doneResult };
-  }
-  runtime.values = values;
-
-  function doneResult() {
-    return { value: undefined, done: true };
-  }
-
-  Context.prototype = {
-    constructor: Context,
-
-    reset: function(skipTempReset) {
-      this.prev = 0;
-      this.next = 0;
-      // Resetting context._sent for legacy support of Babel's
-      // function.sent implementation.
-      this.sent = this._sent = undefined;
-      this.done = false;
-      this.delegate = null;
-
-      this.method = "next";
-      this.arg = undefined;
-
-      this.tryEntries.forEach(resetTryEntry);
-
-      if (!skipTempReset) {
-        for (var name in this) {
-          // Not sure about the optimal order of these conditions:
-          if (name.charAt(0) === "t" &&
-              hasOwn.call(this, name) &&
-              !isNaN(+name.slice(1))) {
-            this[name] = undefined;
-          }
-        }
-      }
-    },
-
-    stop: function() {
-      this.done = true;
-
-      var rootEntry = this.tryEntries[0];
-      var rootRecord = rootEntry.completion;
-      if (rootRecord.type === "throw") {
-        throw rootRecord.arg;
-      }
-
-      return this.rval;
-    },
-
-    dispatchException: function(exception) {
-      if (this.done) {
-        throw exception;
-      }
-
-      var context = this;
-      function handle(loc, caught) {
-        record.type = "throw";
-        record.arg = exception;
-        context.next = loc;
-
-        if (caught) {
-          // If the dispatched exception was caught by a catch block,
-          // then let that catch block handle the exception normally.
-          context.method = "next";
-          context.arg = undefined;
-        }
-
-        return !! caught;
-      }
-
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        var record = entry.completion;
-
-        if (entry.tryLoc === "root") {
-          // Exception thrown outside of any try block that could handle
-          // it, so set the completion value of the entire function to
-          // throw the exception.
-          return handle("end");
-        }
-
-        if (entry.tryLoc <= this.prev) {
-          var hasCatch = hasOwn.call(entry, "catchLoc");
-          var hasFinally = hasOwn.call(entry, "finallyLoc");
-
-          if (hasCatch && hasFinally) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            } else if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else if (hasCatch) {
-            if (this.prev < entry.catchLoc) {
-              return handle(entry.catchLoc, true);
-            }
-
-          } else if (hasFinally) {
-            if (this.prev < entry.finallyLoc) {
-              return handle(entry.finallyLoc);
-            }
-
-          } else {
-            throw new Error("try statement without catch or finally");
-          }
-        }
-      }
-    },
-
-    abrupt: function(type, arg) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc <= this.prev &&
-            hasOwn.call(entry, "finallyLoc") &&
-            this.prev < entry.finallyLoc) {
-          var finallyEntry = entry;
-          break;
-        }
-      }
-
-      if (finallyEntry &&
-          (type === "break" ||
-           type === "continue") &&
-          finallyEntry.tryLoc <= arg &&
-          arg <= finallyEntry.finallyLoc) {
-        // Ignore the finally entry if control is not jumping to a
-        // location outside the try/catch block.
-        finallyEntry = null;
-      }
-
-      var record = finallyEntry ? finallyEntry.completion : {};
-      record.type = type;
-      record.arg = arg;
-
-      if (finallyEntry) {
-        this.method = "next";
-        this.next = finallyEntry.finallyLoc;
-        return ContinueSentinel;
-      }
-
-      return this.complete(record);
-    },
-
-    complete: function(record, afterLoc) {
-      if (record.type === "throw") {
-        throw record.arg;
-      }
-
-      if (record.type === "break" ||
-          record.type === "continue") {
-        this.next = record.arg;
-      } else if (record.type === "return") {
-        this.rval = this.arg = record.arg;
-        this.method = "return";
-        this.next = "end";
-      } else if (record.type === "normal" && afterLoc) {
-        this.next = afterLoc;
-      }
-
-      return ContinueSentinel;
-    },
-
-    finish: function(finallyLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.finallyLoc === finallyLoc) {
-          this.complete(entry.completion, entry.afterLoc);
-          resetTryEntry(entry);
-          return ContinueSentinel;
-        }
-      }
-    },
-
-    "catch": function(tryLoc) {
-      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
-        var entry = this.tryEntries[i];
-        if (entry.tryLoc === tryLoc) {
-          var record = entry.completion;
-          if (record.type === "throw") {
-            var thrown = record.arg;
-            resetTryEntry(entry);
-          }
-          return thrown;
-        }
-      }
-
-      // The context.catch method must only be called with a location
-      // argument that corresponds to a known catch block.
-      throw new Error("illegal catch attempt");
-    },
-
-    delegateYield: function(iterable, resultName, nextLoc) {
-      this.delegate = {
-        iterator: values(iterable),
-        resultName: resultName,
-        nextLoc: nextLoc
-      };
-
-      if (this.method === "next") {
-        // Deliberately forget the last sent value so that we don't
-        // accidentally pass it on to the delegate.
-        this.arg = undefined;
-      }
-
-      return ContinueSentinel;
-    }
-  };
-})(
-  // In sloppy mode, unbound `this` refers to the global object, fallback to
-  // Function constructor if we're in global strict mode. That is sadly a form
-  // of indirect eval which violates Content Security Policy.
-  (function() {
-    return this || (typeof self === "object" && self);
-  })() || Function("return this")()
-);
-
-
-/***/ }),
-/* 19 */
-/*!********************************************!*\
-  !*** ./node_modules/vuex/dist/vuex.esm.js ***!
-  \********************************************/
-/*! exports provided: Store, install, mapState, mapMutations, mapGetters, mapActions, createNamespacedHelpers, default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapState", function() { return mapState; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapMutations", function() { return mapMutations; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapGetters", function() { return mapGetters; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mapActions", function() { return mapActions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNamespacedHelpers", function() { return createNamespacedHelpers; });
-/**
- * vuex v3.0.1
- * (c) 2017 Evan You
- * @license MIT
- */
-var applyMixin = function (Vue) {
-  var version = Number(Vue.version.split('.')[0]);
-
-  if (version >= 2) {
-    Vue.mixin({ beforeCreate: vuexInit });
-  } else {
-    // override init and inject vuex init procedure
-    // for 1.x backwards compatibility.
-    var _init = Vue.prototype._init;
-    Vue.prototype._init = function (options) {
-      if ( options === void 0 ) options = {};
-
-      options.init = options.init
-        ? [vuexInit].concat(options.init)
-        : vuexInit;
-      _init.call(this, options);
-    };
-  }
-
-  /**
-   * Vuex init hook, injected into each instances init hooks list.
-   */
-
-  function vuexInit () {
-    var options = this.$options;
-    // store injection
-    if (options.store) {
-      this.$store = typeof options.store === 'function'
-        ? options.store()
-        : options.store;
-    } else if (options.parent && options.parent.$store) {
-      this.$store = options.parent.$store;
-    }
-  }
-};
-
-var devtoolHook =
-  typeof window !== 'undefined' &&
-  window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
-
-function devtoolPlugin (store) {
-  if (!devtoolHook) { return }
-
-  store._devtoolHook = devtoolHook;
-
-  devtoolHook.emit('vuex:init', store);
-
-  devtoolHook.on('vuex:travel-to-state', function (targetState) {
-    store.replaceState(targetState);
-  });
-
-  store.subscribe(function (mutation, state) {
-    devtoolHook.emit('vuex:mutation', mutation, state);
-  });
-}
-
-/**
- * Get the first item that pass the test
- * by second argument function
- *
- * @param {Array} list
- * @param {Function} f
- * @return {*}
- */
-/**
- * Deep copy the given object considering circular structure.
- * This function caches all nested objects and its copies.
- * If it detects circular structure, use cached copy to avoid infinite loop.
- *
- * @param {*} obj
- * @param {Array<Object>} cache
- * @return {*}
- */
-
-
-/**
- * forEach for object
- */
-function forEachValue (obj, fn) {
-  Object.keys(obj).forEach(function (key) { return fn(obj[key], key); });
-}
-
-function isObject (obj) {
-  return obj !== null && typeof obj === 'object'
-}
-
-function isPromise (val) {
-  return val && typeof val.then === 'function'
-}
-
-function assert (condition, msg) {
-  if (!condition) { throw new Error(("[vuex] " + msg)) }
-}
-
-var Module = function Module (rawModule, runtime) {
-  this.runtime = runtime;
-  this._children = Object.create(null);
-  this._rawModule = rawModule;
-  var rawState = rawModule.state;
-  this.state = (typeof rawState === 'function' ? rawState() : rawState) || {};
-};
-
-var prototypeAccessors$1 = { namespaced: { configurable: true } };
-
-prototypeAccessors$1.namespaced.get = function () {
-  return !!this._rawModule.namespaced
-};
-
-Module.prototype.addChild = function addChild (key, module) {
-  this._children[key] = module;
-};
-
-Module.prototype.removeChild = function removeChild (key) {
-  delete this._children[key];
-};
-
-Module.prototype.getChild = function getChild (key) {
-  return this._children[key]
-};
-
-Module.prototype.update = function update (rawModule) {
-  this._rawModule.namespaced = rawModule.namespaced;
-  if (rawModule.actions) {
-    this._rawModule.actions = rawModule.actions;
-  }
-  if (rawModule.mutations) {
-    this._rawModule.mutations = rawModule.mutations;
-  }
-  if (rawModule.getters) {
-    this._rawModule.getters = rawModule.getters;
-  }
-};
-
-Module.prototype.forEachChild = function forEachChild (fn) {
-  forEachValue(this._children, fn);
-};
-
-Module.prototype.forEachGetter = function forEachGetter (fn) {
-  if (this._rawModule.getters) {
-    forEachValue(this._rawModule.getters, fn);
-  }
-};
-
-Module.prototype.forEachAction = function forEachAction (fn) {
-  if (this._rawModule.actions) {
-    forEachValue(this._rawModule.actions, fn);
-  }
-};
-
-Module.prototype.forEachMutation = function forEachMutation (fn) {
-  if (this._rawModule.mutations) {
-    forEachValue(this._rawModule.mutations, fn);
-  }
-};
-
-Object.defineProperties( Module.prototype, prototypeAccessors$1 );
-
-var ModuleCollection = function ModuleCollection (rawRootModule) {
-  // register root module (Vuex.Store options)
-  this.register([], rawRootModule, false);
-};
-
-ModuleCollection.prototype.get = function get (path) {
-  return path.reduce(function (module, key) {
-    return module.getChild(key)
-  }, this.root)
-};
-
-ModuleCollection.prototype.getNamespace = function getNamespace (path) {
-  var module = this.root;
-  return path.reduce(function (namespace, key) {
-    module = module.getChild(key);
-    return namespace + (module.namespaced ? key + '/' : '')
-  }, '')
-};
-
-ModuleCollection.prototype.update = function update$1 (rawRootModule) {
-  update([], this.root, rawRootModule);
-};
-
-ModuleCollection.prototype.register = function register (path, rawModule, runtime) {
-    var this$1 = this;
-    if ( runtime === void 0 ) runtime = true;
-
-  if (true) {
-    assertRawModule(path, rawModule);
-  }
-
-  var newModule = new Module(rawModule, runtime);
-  if (path.length === 0) {
-    this.root = newModule;
-  } else {
-    var parent = this.get(path.slice(0, -1));
-    parent.addChild(path[path.length - 1], newModule);
-  }
-
-  // register nested modules
-  if (rawModule.modules) {
-    forEachValue(rawModule.modules, function (rawChildModule, key) {
-      this$1.register(path.concat(key), rawChildModule, runtime);
-    });
-  }
-};
-
-ModuleCollection.prototype.unregister = function unregister (path) {
-  var parent = this.get(path.slice(0, -1));
-  var key = path[path.length - 1];
-  if (!parent.getChild(key).runtime) { return }
-
-  parent.removeChild(key);
-};
-
-function update (path, targetModule, newModule) {
-  if (true) {
-    assertRawModule(path, newModule);
-  }
-
-  // update target module
-  targetModule.update(newModule);
-
-  // update nested modules
-  if (newModule.modules) {
-    for (var key in newModule.modules) {
-      if (!targetModule.getChild(key)) {
-        if (true) {
-          console.warn(
-            "[vuex] trying to add a new module '" + key + "' on hot reloading, " +
-            'manual reload is needed'
-          );
-        }
-        return
-      }
-      update(
-        path.concat(key),
-        targetModule.getChild(key),
-        newModule.modules[key]
-      );
-    }
-  }
-}
-
-var functionAssert = {
-  assert: function (value) { return typeof value === 'function'; },
-  expected: 'function'
-};
-
-var objectAssert = {
-  assert: function (value) { return typeof value === 'function' ||
-    (typeof value === 'object' && typeof value.handler === 'function'); },
-  expected: 'function or object with "handler" function'
-};
-
-var assertTypes = {
-  getters: functionAssert,
-  mutations: functionAssert,
-  actions: objectAssert
-};
-
-function assertRawModule (path, rawModule) {
-  Object.keys(assertTypes).forEach(function (key) {
-    if (!rawModule[key]) { return }
-
-    var assertOptions = assertTypes[key];
-
-    forEachValue(rawModule[key], function (value, type) {
-      assert(
-        assertOptions.assert(value),
-        makeAssertionMessage(path, key, type, value, assertOptions.expected)
-      );
-    });
-  });
-}
-
-function makeAssertionMessage (path, key, type, value, expected) {
-  var buf = key + " should be " + expected + " but \"" + key + "." + type + "\"";
-  if (path.length > 0) {
-    buf += " in module \"" + (path.join('.')) + "\"";
-  }
-  buf += " is " + (JSON.stringify(value)) + ".";
-  return buf
-}
-
-var Vue; // bind on install
-
-var Store = function Store (options) {
-  var this$1 = this;
-  if ( options === void 0 ) options = {};
-
-  // Auto install if it is not done yet and `window` has `Vue`.
-  // To allow users to avoid auto-installation in some cases,
-  // this code should be placed here. See #731
-  if (!Vue && typeof window !== 'undefined' && window.Vue) {
-    install(window.Vue);
-  }
-
-  if (true) {
-    assert(Vue, "must call Vue.use(Vuex) before creating a store instance.");
-    assert(typeof Promise !== 'undefined', "vuex requires a Promise polyfill in this browser.");
-    assert(this instanceof Store, "Store must be called with the new operator.");
-  }
-
-  var plugins = options.plugins; if ( plugins === void 0 ) plugins = [];
-  var strict = options.strict; if ( strict === void 0 ) strict = false;
-
-  var state = options.state; if ( state === void 0 ) state = {};
-  if (typeof state === 'function') {
-    state = state() || {};
-  }
-
-  // store internal state
-  this._committing = false;
-  this._actions = Object.create(null);
-  this._actionSubscribers = [];
-  this._mutations = Object.create(null);
-  this._wrappedGetters = Object.create(null);
-  this._modules = new ModuleCollection(options);
-  this._modulesNamespaceMap = Object.create(null);
-  this._subscribers = [];
-  this._watcherVM = new Vue();
-
-  // bind commit and dispatch to self
-  var store = this;
-  var ref = this;
-  var dispatch = ref.dispatch;
-  var commit = ref.commit;
-  this.dispatch = function boundDispatch (type, payload) {
-    return dispatch.call(store, type, payload)
-  };
-  this.commit = function boundCommit (type, payload, options) {
-    return commit.call(store, type, payload, options)
-  };
-
-  // strict mode
-  this.strict = strict;
-
-  // init root module.
-  // this also recursively registers all sub-modules
-  // and collects all module getters inside this._wrappedGetters
-  installModule(this, state, [], this._modules.root);
-
-  // initialize the store vm, which is responsible for the reactivity
-  // (also registers _wrappedGetters as computed properties)
-  resetStoreVM(this, state);
-
-  // apply plugins
-  plugins.forEach(function (plugin) { return plugin(this$1); });
-
-  if (Vue.config.devtools) {
-    devtoolPlugin(this);
-  }
-};
-
-var prototypeAccessors = { state: { configurable: true } };
-
-prototypeAccessors.state.get = function () {
-  return this._vm._data.$$state
-};
-
-prototypeAccessors.state.set = function (v) {
-  if (true) {
-    assert(false, "Use store.replaceState() to explicit replace store state.");
-  }
-};
-
-Store.prototype.commit = function commit (_type, _payload, _options) {
-    var this$1 = this;
-
-  // check object-style commit
-  var ref = unifyObjectStyle(_type, _payload, _options);
-    var type = ref.type;
-    var payload = ref.payload;
-    var options = ref.options;
-
-  var mutation = { type: type, payload: payload };
-  var entry = this._mutations[type];
-  if (!entry) {
-    if (true) {
-      console.error(("[vuex] unknown mutation type: " + type));
-    }
-    return
-  }
-  this._withCommit(function () {
-    entry.forEach(function commitIterator (handler) {
-      handler(payload);
-    });
-  });
-  this._subscribers.forEach(function (sub) { return sub(mutation, this$1.state); });
-
-  if (
-     true &&
-    options && options.silent
-  ) {
-    console.warn(
-      "[vuex] mutation type: " + type + ". Silent option has been removed. " +
-      'Use the filter functionality in the vue-devtools'
-    );
-  }
-};
-
-Store.prototype.dispatch = function dispatch (_type, _payload) {
-    var this$1 = this;
-
-  // check object-style dispatch
-  var ref = unifyObjectStyle(_type, _payload);
-    var type = ref.type;
-    var payload = ref.payload;
-
-  var action = { type: type, payload: payload };
-  var entry = this._actions[type];
-  if (!entry) {
-    if (true) {
-      console.error(("[vuex] unknown action type: " + type));
-    }
-    return
-  }
-
-  this._actionSubscribers.forEach(function (sub) { return sub(action, this$1.state); });
-
-  return entry.length > 1
-    ? Promise.all(entry.map(function (handler) { return handler(payload); }))
-    : entry[0](payload)
-};
-
-Store.prototype.subscribe = function subscribe (fn) {
-  return genericSubscribe(fn, this._subscribers)
-};
-
-Store.prototype.subscribeAction = function subscribeAction (fn) {
-  return genericSubscribe(fn, this._actionSubscribers)
-};
-
-Store.prototype.watch = function watch (getter, cb, options) {
-    var this$1 = this;
-
-  if (true) {
-    assert(typeof getter === 'function', "store.watch only accepts a function.");
-  }
-  return this._watcherVM.$watch(function () { return getter(this$1.state, this$1.getters); }, cb, options)
-};
-
-Store.prototype.replaceState = function replaceState (state) {
-    var this$1 = this;
-
-  this._withCommit(function () {
-    this$1._vm._data.$$state = state;
-  });
-};
-
-Store.prototype.registerModule = function registerModule (path, rawModule, options) {
-    if ( options === void 0 ) options = {};
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if (true) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-    assert(path.length > 0, 'cannot register the root module by using registerModule.');
-  }
-
-  this._modules.register(path, rawModule);
-  installModule(this, this.state, path, this._modules.get(path), options.preserveState);
-  // reset store to update getters...
-  resetStoreVM(this, this.state);
-};
-
-Store.prototype.unregisterModule = function unregisterModule (path) {
-    var this$1 = this;
-
-  if (typeof path === 'string') { path = [path]; }
-
-  if (true) {
-    assert(Array.isArray(path), "module path must be a string or an Array.");
-  }
-
-  this._modules.unregister(path);
-  this._withCommit(function () {
-    var parentState = getNestedState(this$1.state, path.slice(0, -1));
-    Vue.delete(parentState, path[path.length - 1]);
-  });
-  resetStore(this);
-};
-
-Store.prototype.hotUpdate = function hotUpdate (newOptions) {
-  this._modules.update(newOptions);
-  resetStore(this, true);
-};
-
-Store.prototype._withCommit = function _withCommit (fn) {
-  var committing = this._committing;
-  this._committing = true;
-  fn();
-  this._committing = committing;
-};
-
-Object.defineProperties( Store.prototype, prototypeAccessors );
-
-function genericSubscribe (fn, subs) {
-  if (subs.indexOf(fn) < 0) {
-    subs.push(fn);
-  }
-  return function () {
-    var i = subs.indexOf(fn);
-    if (i > -1) {
-      subs.splice(i, 1);
-    }
-  }
-}
-
-function resetStore (store, hot) {
-  store._actions = Object.create(null);
-  store._mutations = Object.create(null);
-  store._wrappedGetters = Object.create(null);
-  store._modulesNamespaceMap = Object.create(null);
-  var state = store.state;
-  // init all modules
-  installModule(store, state, [], store._modules.root, true);
-  // reset vm
-  resetStoreVM(store, state, hot);
-}
-
-function resetStoreVM (store, state, hot) {
-  var oldVm = store._vm;
-
-  // bind store public getters
-  store.getters = {};
-  var wrappedGetters = store._wrappedGetters;
-  var computed = {};
-  forEachValue(wrappedGetters, function (fn, key) {
-    // use computed to leverage its lazy-caching mechanism
-    computed[key] = function () { return fn(store); };
-    Object.defineProperty(store.getters, key, {
-      get: function () { return store._vm[key]; },
-      enumerable: true // for local getters
-    });
-  });
-
-  // use a Vue instance to store the state tree
-  // suppress warnings just in case the user has added
-  // some funky global mixins
-  var silent = Vue.config.silent;
-  Vue.config.silent = true;
-  store._vm = new Vue({
-    data: {
-      $$state: state
-    },
-    computed: computed
-  });
-  Vue.config.silent = silent;
-
-  // enable strict mode for new vm
-  if (store.strict) {
-    enableStrictMode(store);
-  }
-
-  if (oldVm) {
-    if (hot) {
-      // dispatch changes in all subscribed watchers
-      // to force getter re-evaluation for hot reloading.
-      store._withCommit(function () {
-        oldVm._data.$$state = null;
-      });
-    }
-    Vue.nextTick(function () { return oldVm.$destroy(); });
-  }
-}
-
-function installModule (store, rootState, path, module, hot) {
-  var isRoot = !path.length;
-  var namespace = store._modules.getNamespace(path);
-
-  // register in namespace map
-  if (module.namespaced) {
-    store._modulesNamespaceMap[namespace] = module;
-  }
-
-  // set state
-  if (!isRoot && !hot) {
-    var parentState = getNestedState(rootState, path.slice(0, -1));
-    var moduleName = path[path.length - 1];
-    store._withCommit(function () {
-      Vue.set(parentState, moduleName, module.state);
-    });
-  }
-
-  var local = module.context = makeLocalContext(store, namespace, path);
-
-  module.forEachMutation(function (mutation, key) {
-    var namespacedType = namespace + key;
-    registerMutation(store, namespacedType, mutation, local);
-  });
-
-  module.forEachAction(function (action, key) {
-    var type = action.root ? key : namespace + key;
-    var handler = action.handler || action;
-    registerAction(store, type, handler, local);
-  });
-
-  module.forEachGetter(function (getter, key) {
-    var namespacedType = namespace + key;
-    registerGetter(store, namespacedType, getter, local);
-  });
-
-  module.forEachChild(function (child, key) {
-    installModule(store, rootState, path.concat(key), child, hot);
-  });
-}
-
-/**
- * make localized dispatch, commit, getters and state
- * if there is no namespace, just use root ones
- */
-function makeLocalContext (store, namespace, path) {
-  var noNamespace = namespace === '';
-
-  var local = {
-    dispatch: noNamespace ? store.dispatch : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if ( true && !store._actions[type]) {
-          console.error(("[vuex] unknown local action type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      return store.dispatch(type, payload)
-    },
-
-    commit: noNamespace ? store.commit : function (_type, _payload, _options) {
-      var args = unifyObjectStyle(_type, _payload, _options);
-      var payload = args.payload;
-      var options = args.options;
-      var type = args.type;
-
-      if (!options || !options.root) {
-        type = namespace + type;
-        if ( true && !store._mutations[type]) {
-          console.error(("[vuex] unknown local mutation type: " + (args.type) + ", global type: " + type));
-          return
-        }
-      }
-
-      store.commit(type, payload, options);
-    }
-  };
-
-  // getters and state object must be gotten lazily
-  // because they will be changed by vm update
-  Object.defineProperties(local, {
-    getters: {
-      get: noNamespace
-        ? function () { return store.getters; }
-        : function () { return makeLocalGetters(store, namespace); }
-    },
-    state: {
-      get: function () { return getNestedState(store.state, path); }
-    }
-  });
-
-  return local
-}
-
-function makeLocalGetters (store, namespace) {
-  var gettersProxy = {};
-
-  var splitPos = namespace.length;
-  Object.keys(store.getters).forEach(function (type) {
-    // skip if the target getter is not match this namespace
-    if (type.slice(0, splitPos) !== namespace) { return }
-
-    // extract local getter type
-    var localType = type.slice(splitPos);
-
-    // Add a port to the getters proxy.
-    // Define as getter property because
-    // we do not want to evaluate the getters in this time.
-    Object.defineProperty(gettersProxy, localType, {
-      get: function () { return store.getters[type]; },
-      enumerable: true
-    });
-  });
-
-  return gettersProxy
-}
-
-function registerMutation (store, type, handler, local) {
-  var entry = store._mutations[type] || (store._mutations[type] = []);
-  entry.push(function wrappedMutationHandler (payload) {
-    handler.call(store, local.state, payload);
-  });
-}
-
-function registerAction (store, type, handler, local) {
-  var entry = store._actions[type] || (store._actions[type] = []);
-  entry.push(function wrappedActionHandler (payload, cb) {
-    var res = handler.call(store, {
-      dispatch: local.dispatch,
-      commit: local.commit,
-      getters: local.getters,
-      state: local.state,
-      rootGetters: store.getters,
-      rootState: store.state
-    }, payload, cb);
-    if (!isPromise(res)) {
-      res = Promise.resolve(res);
-    }
-    if (store._devtoolHook) {
-      return res.catch(function (err) {
-        store._devtoolHook.emit('vuex:error', err);
-        throw err
-      })
-    } else {
-      return res
-    }
-  });
-}
-
-function registerGetter (store, type, rawGetter, local) {
-  if (store._wrappedGetters[type]) {
-    if (true) {
-      console.error(("[vuex] duplicate getter key: " + type));
-    }
-    return
-  }
-  store._wrappedGetters[type] = function wrappedGetter (store) {
-    return rawGetter(
-      local.state, // local state
-      local.getters, // local getters
-      store.state, // root state
-      store.getters // root getters
-    )
-  };
-}
-
-function enableStrictMode (store) {
-  store._vm.$watch(function () { return this._data.$$state }, function () {
-    if (true) {
-      assert(store._committing, "Do not mutate vuex store state outside mutation handlers.");
-    }
-  }, { deep: true, sync: true });
-}
-
-function getNestedState (state, path) {
-  return path.length
-    ? path.reduce(function (state, key) { return state[key]; }, state)
-    : state
-}
-
-function unifyObjectStyle (type, payload, options) {
-  if (isObject(type) && type.type) {
-    options = payload;
-    payload = type;
-    type = type.type;
-  }
-
-  if (true) {
-    assert(typeof type === 'string', ("Expects string as the type, but found " + (typeof type) + "."));
-  }
-
-  return { type: type, payload: payload, options: options }
-}
-
-function install (_Vue) {
-  if (Vue && _Vue === Vue) {
-    if (true) {
-      console.error(
-        '[vuex] already installed. Vue.use(Vuex) should be called only once.'
-      );
-    }
-    return
-  }
-  Vue = _Vue;
-  applyMixin(Vue);
-}
-
-var mapState = normalizeNamespace(function (namespace, states) {
-  var res = {};
-  normalizeMap(states).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedState () {
-      var state = this.$store.state;
-      var getters = this.$store.getters;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapState', namespace);
-        if (!module) {
-          return
-        }
-        state = module.context.state;
-        getters = module.context.getters;
-      }
-      return typeof val === 'function'
-        ? val.call(this, state, getters)
-        : state[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-var mapMutations = normalizeNamespace(function (namespace, mutations) {
-  var res = {};
-  normalizeMap(mutations).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedMutation () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      var commit = this.$store.commit;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapMutations', namespace);
-        if (!module) {
-          return
-        }
-        commit = module.context.commit;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [commit].concat(args))
-        : commit.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-var mapGetters = normalizeNamespace(function (namespace, getters) {
-  var res = {};
-  normalizeMap(getters).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    val = namespace + val;
-    res[key] = function mappedGetter () {
-      if (namespace && !getModuleByNamespace(this.$store, 'mapGetters', namespace)) {
-        return
-      }
-      if ( true && !(val in this.$store.getters)) {
-        console.error(("[vuex] unknown getter: " + val));
-        return
-      }
-      return this.$store.getters[val]
-    };
-    // mark vuex getter for devtools
-    res[key].vuex = true;
-  });
-  return res
-});
-
-var mapActions = normalizeNamespace(function (namespace, actions) {
-  var res = {};
-  normalizeMap(actions).forEach(function (ref) {
-    var key = ref.key;
-    var val = ref.val;
-
-    res[key] = function mappedAction () {
-      var args = [], len = arguments.length;
-      while ( len-- ) args[ len ] = arguments[ len ];
-
-      var dispatch = this.$store.dispatch;
-      if (namespace) {
-        var module = getModuleByNamespace(this.$store, 'mapActions', namespace);
-        if (!module) {
-          return
-        }
-        dispatch = module.context.dispatch;
-      }
-      return typeof val === 'function'
-        ? val.apply(this, [dispatch].concat(args))
-        : dispatch.apply(this.$store, [val].concat(args))
-    };
-  });
-  return res
-});
-
-var createNamespacedHelpers = function (namespace) { return ({
-  mapState: mapState.bind(null, namespace),
-  mapGetters: mapGetters.bind(null, namespace),
-  mapMutations: mapMutations.bind(null, namespace),
-  mapActions: mapActions.bind(null, namespace)
-}); };
-
-function normalizeMap (map) {
-  return Array.isArray(map)
-    ? map.map(function (key) { return ({ key: key, val: key }); })
-    : Object.keys(map).map(function (key) { return ({ key: key, val: map[key] }); })
-}
-
-function normalizeNamespace (fn) {
-  return function (namespace, map) {
-    if (typeof namespace !== 'string') {
-      map = namespace;
-      namespace = '';
-    } else if (namespace.charAt(namespace.length - 1) !== '/') {
-      namespace += '/';
-    }
-    return fn(namespace, map)
-  }
-}
-
-function getModuleByNamespace (store, helper, namespace) {
-  var module = store._modulesNamespaceMap[namespace];
-  if ( true && !module) {
-    console.error(("[vuex] module namespace not found in " + helper + "(): " + namespace));
-  }
-  return module
-}
-
-var index_esm = {
-  Store: Store,
-  install: install,
-  version: '3.0.1',
-  mapState: mapState,
-  mapMutations: mapMutations,
-  mapGetters: mapGetters,
-  mapActions: mapActions,
-  createNamespacedHelpers: createNamespacedHelpers
-};
-
-
-/* harmony default export */ __webpack_exports__["default"] = (index_esm);
-
-
-/***/ }),
-/* 20 */
-/*!************************************************!*\
-  !*** C:/proj/jellyClassTable/common/colors.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-module.exports = {
-  "colors": [{
-    "name": "redbase",
-    "color": "#F44336" },
-  {
-    "name": "pinkbase",
-    "color": "#e91e63" },
-  {
-    "name": "purplebase",
-    "color": "#9c27b0" },
-  {
-    "name": "deeppurplebase",
-    "color": "#673ab7" },
-  {
-    "name": "indigobase",
-    "color": "#3f51b5" },
-  {
-    "name": "bluebase",
-    "color": "#2196F3" },
-  {
-    "name": "lightbluebase",
-    "color": "#03a9f4" },
-  {
-    "name": "cyanbase",
-    "color": "#00bcd4" },
-  {
-    "name": "tealbase",
-    "color": "#009688" },
-  {
-    "name": "greenbase",
-    "color": "#4CAF50" },
-  {
-    "name": "lightgreenbase",
-    "color": "#8bc34a" },
-  {
-    "name": "limebase",
-    "color": "#cddc39" },
-  {
-    "name": "yellowbase",
-    "color": "#ffeb3b" },
-  {
-    "name": "amberbase",
-    "color": "#ffc107" },
-  {
-    "name": "orangebase",
-    "color": "#ff9800" },
-  {
-    "name": "deeporangebase",
-    "color": "#ff5722" },
-  {
-    "name": "brownbase",
-    "color": "#795548" },
-  {
-    "name": "bluegreybase",
-    "color": "#607d8b" },
-  {
-    "name": "greybase",
-    "color": "#9e9e9e" },
-  {
-    "name": "white",
-    "color": "#ffffff" },
-  {
-    "name": "black",
-    "color": "#000000" },
-  {
-    "name": "transparent",
-    "color": "transparent" }],
-
-  "colorSets": [{
-    "name": "1c-69bc38",
-    "colors": [{
-      "color": "#69bc38" },
-    {
-      "color": '#94dd69' },
-    {
-      "color": '#a8dd88' },
-    {
-      "color": '#c53b5b' },
-    {
-      "color": '#5e8d43' },
-    {
-      "color": '#944658' },
-    {
-      "color": '#397a12' },
-    {
-      "color": '#80132c' },
-    {
-      "color": '#e26b87' },
-    {
-      "color": '#e28b9f' }] },
-
-  {
-    "name": "1-adcd83",
-    "colors": [{
-      "color": "#adcd83" },
-    {
-      "color": '#cbe6a8' },
-    {
-      "color": '#d2e6b8' },
-    {
-      "color": '#5e852b' },
-    {
-      "color": '#889a70' }] },
-
-  {
-    "name": "中国传统颜色",
-    "colors": [{
-      "name": "粉红",
-      "color": '#ffb3a7' },
-
-    {
-      "name": "妃红色",
-      "color": '#ed5736' },
-
-
-    {
-      "name": "品红",
-      "color": '#f00056' },
-
-
-    {
-      "name": "桃红",
-      "color": '#f47983' },
-
-
-    {
-      "name": "海棠红",
-      "color": '#db5a6b' },
-
-
-    {
-      "name": "石榴红",
-      "color": '#f20c00' },
-
-
-    {
-      "name": "樱桃色",
-      "color": '#c93756' },
-
-
-    {
-      "name": "银红",
-      "color": '#f05654' },
-
-
-    {
-      "name": "大红",
-      "color": '#ff2121' },
-
-
-    {
-      "name": "绛紫",
-      "color": '#8c4356' },
-
-
-    {
-      "name": "绯红",
-      "color": '#c83c23' },
-
-
-    {
-      "name": "胭脂",
-      "color": '#9d2933' },
-
-    {
-      "name": "朱红",
-      "color": '#ff4c00' },
-
-    {
-      "name": "丹",
-      "color": '#ff4e20' },
-
-    {
-      "name": "彤",
-      color: '#f35336' },
-
-    {
-      "name": "茜色",
-      "color": '#cb3a56' },
-
-    {
-      "name": "火红",
-      "color": '#ff2d51' },
-
-    {
-      "name": "赫赤",
-      "color": '#c91f37' },
-
-    {
-      "name": "嫣红",
-      "color": '#ef7a82' },
-
-    {
-      "name": "洋红色",
-      "color": '#ff0097' },
-
-    {
-      "name": "炎",
-      "color": '#ff3300' },
-
-    {
-      "name": "赤",
-      "color": '#c3272b' },
-
-    {
-      "name": "绾",
-      "color": '#a98175' },
-
-    {
-      "name": "枣红",
-      "color": '#c32136' },
-
-    {
-      "name": "檀",
-      "color": '#b36d61' },
-
-    {
-      "name": "殷红",
-      "color": '#be002f' },
-
-    {
-      "name": "酡红",
-      "color": '#dc3023' },
-
-    {
-      "name": "酡颜",
-      "color": '#f9906f' },
-
-    {
-      "name": "鹅黄",
-      "color": '#fff143' },
-
-
-    {
-      "name": "鸭黄",
-      "color": '#faff72' },
-
-
-    {
-      "name": "樱草色",
-      "color": '#eaff56' },
-
-    {
-      "name": "杏黄",
-      "color": '#ffa631' },
-
-    {
-      "name": "杏红",
-      "color": '#ff8c31' },
-
-    {
-      "name": "橘黄",
-      "color": '#ff8936' },
-
-    {
-      "name": "橙黄",
-      "color": '#ffa400' },
-
-    {
-      "name": "橘红",
-      "color": '#ff7500' },
-
-    {
-      "name": "姜黄",
-      "color": '#ffc773' },
-
-    {
-      "name": "缃色",
-      "color": '#f0c239' },
-
-    {
-      "name": "橙色",
-      "color": '#fa8c35' },
-
-    {
-      "name": "茶色",
-      "color": '#b35c44' },
-
-    {
-      "name": "驼色",
-      "color": '#a88462' },
-
-    {
-      "name": "昏黄",
-      "color": '#c89b40' },
-
-    {
-      "name": "栗色",
-      "color": '#60281e' },
-
-    {
-      "name": "棕色",
-      "color": '#b25d25' },
-
-    {
-      "name": "棕绿",
-      "color": '#827100' },
-
-    {
-      "name": "棕黑",
-      "color": '#7c4b00' },
-
-    {
-      "name": "棕红",
-      "color": '#9b4400' },
-
-    {
-      "name": "棕黄",
-      "color": '#ae7000' },
-
-    {
-      "name": "赭",
-      "color": '#9c5333' },
-
-    {
-      "name": "赭色",
-      "color": '#955539' },
-
-    {
-      "name": "琥珀",
-      "color": '#ca6924' },
-
-    {
-      "name": "褐色",
-      "color": '#6e511e' },
-
-    {
-      "name": "枯黄",
-      "color": '#d3b17d' },
-
-    {
-      "name": "黄栌",
-      "color": '#e29c45' },
-
-    {
-      "name": "秋色",
-      "color": '#896c39' },
-
-    {
-      "name": "秋香色",
-      "color": '#d9b611' },
-
-    {
-      "name": "嫩绿",
-      "color": '#bddd22 ' },
-
-
-    {
-      "name": "柳黄",
-      "color": '#c9dd22 ' },
-
-    {
-      "name": "柳绿",
-      "color": '#afdd22 ' },
-
-    {
-      "name": "竹青",
-      "color": '#789262' },
-
-    {
-      "name": "葱黄",
-
-      "color": '#a3d900' },
-
-    {
-      "name": "葱绿",
-      "color": '#9ed900' },
-
-    {
-      "name": "葱倩",
-      "color": '#0eb83a' },
-
-    {
-      "name": "青葱",
-      "color": '#0aa344' },
-
-    {
-      "name": "油绿",
-      "color": '#00bc12' },
-
-    {
-      "name": "绿沈",
-      "color": '#0c8918' },
-
-    {
-      "name": "碧色",
-      "color": '#1bd1a5' },
-
-    {
-      "name": "碧绿",
-      "color": '#2add9c' },
-
-    {
-      "name": "青碧",
-      "color": '#48c0a3' },
-
-    {
-      "name": "翡翠色",
-      "color": '#3de1ad' },
-
-    {
-      "name": "草绿",
-      "color": '#40de5a' },
-
-    {
-      "name": "青色",
-      "color": '#00e09e' },
-
-    {
-      "name": "青翠",
-      "color": '#00e079' },
-
-    {
-      "name": "青白",
-      "color": '#c0ebd7' },
-
-    {
-      "name": "鸭卵青",
-      "color": '#e0eee8' },
-
-    {
-      "name": "蟹壳青",
-      "color": '#bbcdc5' },
-
-    {
-      "name": "鸦青",
-      "color": '#424c50' },
-
-    {
-      "name": "绿色",
-      "color": '#00e500' },
-
-    {
-      "name": "豆绿",
-      "color": '#9ed048' },
-
-    {
-      "name": "豆青",
-      "color": '#96ce54' },
-
-    {
-      "name": "石青",
-      "color": '#7bcfa6' },
-
-    {
-      "name": "玉色",
-      "color": '#2edfa3' },
-
-    {
-      "name": "缥",
-      "color": '#7fecad' },
-
-    {
-      "name": "艾绿",
-      "color": '#a4e2c6' },
-
-    {
-      "name": "松柏绿",
-      "color": '#21a675' },
-
-    {
-      "name": "松花绿",
-      "color": '#057748' },
-
-    {
-      "name": "松花色",
-      "color": '#bce672' },
-
-    {
-      "name": "蓝",
-      "color": '#44cef6' },
-
-    {
-      "name": "靛青",
-      "color": '#177cb0' },
-
-    {
-      "name": "靛蓝",
-      "color": '#065279' },
-
-    {
-      "name": "碧蓝",
-      "color": '#3eede7' },
-
-    {
-      "name": "蔚蓝",
-      "color": '#70f3ff' },
-
-    {
-      "name": "宝蓝",
-      "color": '#4b5cc4' },
-
-    {
-      "name": "蓝灰色",
-      "color": '#a1afc9' },
-
-    {
-      "name": "藏青",
-      "color": '#2e4e7e' },
-
-    {
-      "name": "藏蓝",
-      "color": '#3b2e7e' },
-
-    {
-      "name": "黛色",
-      "color": '#4a4266' },
-
-    {
-      "name": "黛绿",
-      "color": '#426666' },
-
-    {
-      "name": "黛蓝",
-      "color": '#425066' },
-
-    {
-      "name": "黛紫",
-      "color": '#574266' },
-
-    {
-      "name": "紫色",
-      "color": '#8d4bbb' },
-
-    {
-      "name": "紫酱",
-      "color": '#815463' },
-
-    {
-      "name": "酱紫",
-      "color": '#815476' },
-
-    {
-      "name": "紫檀",
-      "color": '#4c221b' },
-
-    {
-      "name": "绀紫",
-      "color": '#003371' },
-
-    {
-      "name": "紫棠",
-      "color": '#56004f' },
-
-    {
-      "name": "青莲",
-      "color": '#801dae' },
-
-    {
-      "name": "群青",
-      "color": '#4c8dae' },
-
-    {
-      "name": "雪青",
-      "color": '#b0a4e3' },
-
-    {
-      "name": "丁香色",
-      "color": '#cca4e3' },
-
-    {
-      "name": "藕色",
-      "color": '#edd1d8' },
-
-    {
-      "name": "藕荷色",
-      "color": '#e4c6d0' },
-
-    {
-      "name": "苍色",
-      "color": '#75878a' },
-
-    {
-      "name": "苍黄",
-      "color": '#a29b7c' },
-
-    {
-      "name": "苍青",
-      "color": '#7397ab' },
-
-    {
-      "name": "苍黑",
-      "color": '#395260' },
-
-    {
-      "name": "苍白",
-      "color": '#d1d9e0' },
-
-    {
-      "name": "水色",
-      "color": '#88ada6' },
-
-    {
-      "name": "水绿",
-      "color": '#d4f2e7' },
-
-    {
-      "name": "水蓝",
-      "color": '#d2f0f4' },
-
-    {
-      "name": "淡青",
-      "color": '#d3e0f3' },
-
-    {
-      "name": "湖蓝",
-      "color": '#30dff3' },
-
-    {
-      "name": "湖绿",
-      "color": '#25f8cb' },
-
-    {
-      "name": "精白",
-      "color": '#ffffff' },
-
-    {
-      "name": "象牙白",
-      "color": '#fffbf0' },
-
-    {
-      "name": "雪白",
-      "color": '#f0fcff' },
-
-    {
-      "name": "月白",
-      "color": '#d6ecf0' },
-
-    {
-      "name": "缟",
-      "color": '#f2ecde' },
-
-    {
-      "name": "素",
-      "color": '#e0f0e9' },
-
-    {
-      "name": "荼白",
-      "color": '#f3f9f1' },
-
-    {
-      "name": "霜色",
-      "color": '#e9f1f6' },
-
-    {
-      "name": "花白",
-      "color": '#c2ccd0' },
-
-    {
-      "name": "鱼肚白",
-      "color": '#fcefe8' },
-
-    {
-      "name": "莹白",
-      "color": '#e3f9fd' },
-
-    {
-      "name": "灰色",
-      "color": '#808080' },
-
-    {
-      "name": "牙色",
-      "color": '#eedeb0' },
-
-    {
-      "name": "铅白",
-      "color": '#f0f0f4' },
-
-    {
-      "name": "玄色",
-      "color": '#622a1d' },
-
-    {
-      "name": "玄青",
-      "color": '#3d3b4f' },
-
-    {
-      "name": "乌色",
-      "color": '#725e82' },
-
-    {
-      "name": "乌黑",
-      "color": '#392f41' },
-
-    {
-      "name": "漆黑",
-      "color": '#161823' },
-
-    {
-      "name": "墨色",
-      "color": '#50616d' },
-
-    {
-      "name": "墨灰",
-      "color": '#758a99' },
-
-    {
-      "name": "黑色",
-      "color": '#000000' },
-
-    {
-      "name": "缁色",
-      "color": '#493131' },
-
-    {
-      "name": "象牙黑",
-      "color": '#312520' },
-
-    {
-      "name": "黧",
-      "color": '#5d513c' },
-
-    {
-      "name": "黎",
-      "color": '#75664d' },
-
-    {
-      "name": "黝",
-      "color": '#6b6882' },
-
-    {
-      "name": "黝黑",
-      "color": '#665757' },
-
-    {
-      "name": "黯",
-      "color": '#41555d' },
-
-    {
-      "name": "赤金",
-      "color": '#f2be45' },
-
-    {
-      "name": "金色",
-      "color": '#eacd76' },
-
-    {
-      "name": "银白",
-      "color": '#e9e7ef' },
-
-    {
-      "name": "铜绿",
-      "color": '#549688' },
-
-    {
-      "name": "乌金",
-      "color": '#a78e44' },
-
-    {
-      "name": "老银",
-      "color": '#bacac6' },
-
-    {
-      "name": "银朱",
-      "color": '#bf242a' },
-
-    {
-      "name": "朱砂",
-      "color": '#ff461f' },
-
-    {
-      "name": "朱膘",
-      "color": '#f36838' },
-
-    {
-      "name": "赭石色",
-      "color": '#845a33' },
-
-    {
-      "name": "石绿",
-      "color": '#16a951' },
-
-    {
-      "name": "白粉",
-      "color": '#fff2df' },
-
-    {
-      "name": "花青",
-      "color": '#003472' },
-
-    {
-      "name": "藤黄",
-      "color": '#ffb61e' },
-
-    {
-      "name": "雌黄",
-      "color": '#ffc64b' },
-
-    {
-      "name": "石黄",
-      "color": '#e9bb1d' },
-
-    {
-      "name": "洋红",
-      "color": '#ff4777' }] }],
-
-
-
-  "colorSetNames": [
-  "1c-69bc38",
-  "1-adcd83",
-  "中国传统颜色"] };
-
-/***/ }),
-/* 21 */
-/*!**************************************************!*\
-  !*** C:/proj/jellyClassTable/common/app-data.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-module.exports = {
-  'projs': {
-    tableHeight: 600,
-    rpx: 0,
-    startLineTime: 480,
-    endLineTime: 600,
-    timeSpan: 0,
-    days: [{
-      weekday: 0,
-      icon: 'chat',
-      marginTop: 100,
-      classes: [{
-        weekday: 0,
-        weekdayPrevious: 0,
-        icon: 'icon-youyong4',
-        name: '语文',
-        time: 480,
-        dur: 60,
-        margintop: 100,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" },
-
-      {
-        weekday: 0,
-        weekdayPrevious: 0,
-        icon: 'icon-yingyushuiping',
-        name: 'm2',
-        time: 720,
-        dur: 120,
-        margintop: 50,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" }] },
-
-
-
-    {
-      weekday: 1,
-      icon: 'like-o',
-      classes: [{
-        weekday: 1,
-        weekdayPrevious: 1,
-        icon: 'icon-yingyushuiping',
-        name: 'm2',
-        time: 480,
-        dur: 45,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" }] },
-
-
-
-    {
-      weekday: 2,
-      icon: 'like-o',
-      classes: [{
-        weekday: 2,
-        weekdayPrevious: 2,
-        icon: 'icon-yingyushuiping',
-        name: 'chinese',
-        time: 480,
-        dur: 45,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" },
-
-      {
-        weekday: 2,
-        weekdayPrevious: 2,
-        icon: 'icon-yingyushuiping',
-        name: 'math',
-        time: 600,
-        dur: 60,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" }] },
-
-
-
-    {
-      weekday: 3,
-      icon: 'like-o',
-      classes: [{
-        weekday: 3,
-        weekdayPrevious: 3,
-        icon: 'icon-yingyushuiping',
-        name: 'chinese',
-        time: 600,
-        dur: 45,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" }] },
-
-
-
-    {
-      weekday: 4,
-      icon: 'like-o',
-      classes: [{
-        weekday: 4,
-        weekdayPrevious: 4,
-        icon: 'icon-yingyushuiping',
-        name: 'chinese',
-        time: 800,
-        dur: 45,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" },
-
-      {
-        weekday: 4,
-        weekdayPrevious: 4,
-        icon: 'icon-yingyushuiping',
-        name: 'math',
-        time: 900,
-        dur: 60,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" }] },
-
-
-
-    {
-      weekday: 5,
-      icon: 'like-o',
-      classes: [{
-        weekday: 5,
-        weekdayPrevious: 5,
-        icon: 'icon-yingyushuiping',
-        name: 'chinese',
-        time: 800,
-        dur: 45,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" },
-
-      {
-        weekday: 5,
-        weekdayPrevious: 5,
-        icon: 'icon-yingyushuiping',
-        name: 'math',
-        time: 900,
-        dur: 60,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" }] },
-
-
-
-    {
-      weekday: 6,
-      icon: 'like-o',
-      classes: [{
-        weekday: 6,
-        weekdayPrevious: 6,
-        icon: 'icon-yingyushuiping',
-        name: 'chinese',
-        time: 800,
-        dur: 45,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" },
-
-      {
-        weekday: 6,
-        weekdayPrevious: 6,
-        icon: 'icon-yingyushuiping',
-        name: 'math',
-        time: 900,
-        dur: 60,
-        marginTop: 10,
-        height: 100,
-
-        classBgc: 'transparent', //课程背景颜色
-        classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
-        classBorderColor: '#123456', //课程外框颜色
-        classBorderRadio: 20, //课程边框弧度
-
-        showName: false, //是否显示课程名称
-        textColor: '#FFFFFF', //名称颜色
-        textBgc: 'transparent', //名称背景颜色
-        textSize: 20, //文字尺寸
-        textShowBorder: false, //是否显示文字边框
-        textBorderColor: '#F44336', //文字边框颜色
-        textBorderRadio: 20, //文字边框弧度
-
-        showIcon: false, //是否显示图标
-        iconColor: '#ff0000', //图标颜色
-        iconBgc: 'transparent', //图标背景颜色
-        iconSize: 40, //图标尺寸
-        iconShowBorder: false, //是否显示图标边框
-        iconBorderCorlor: '#0000ff', //图标边框颜色
-        iconBorderRadio: 20, //图标边框颜色
-
-        showStime: false,
-        stimeColor: "#ff0000",
-        stimeBgc: "#00ff00",
-        stimeSize: 10,
-        stimeShowBorder: false,
-        stimeBorderColor: "#00ff00",
-        showDur: false,
-        durColor: "#0000ff",
-        durBgc: "#00ff00",
-        durSize: 10,
-        durShowBorder: false,
-        durBorderColor: "#00ff00" }] }] },
-
-
-
-
-
-  'icons': [
-  'icon-youyong4',
-  'icon-zhuazhualiugou',
-  'icon-shuijue',
-  'icon-38464',
-  'icon-kafeicoffee61',
-  'icon-yuehuiqipao',
-  'icon-guangjie',
-  'icon-zhengzhi:before',
-  'icon-2',
-  'icon-fendoumubiao',
-  'icon-kezuofan',
-  'icon-pashan',
-  'icon-xuexi',
-  'icon-weibiaoti--',
-  'icon-kezuofan1',
-  'icon-yinle',
-  'icon-xizao',
-  'icon-youxi',
-  'icon-yingyushuiping',
-  'icon-sanbu',
-  'icon-xiyifuwu',
-  'icon-xinaixin',
-  'icon-shijian',
-  'icon-xiuli',
-  'icon-xiuxi',
-  'icon-paobu',
-  'icon-wuli',
-  'icon-xizaomuyu',
-  'icon-beer',
-  'icon-baijiu_',
-  'icon-shaokao',
-  'icon-weibiaoti',
-  'icon-icon-test',
-  'icon-icon-test1',
-  'icon-kandianying-weijihuo',
-  'icon--huihua',
-  'icon-yuwen',
-  'icon-shuxue',
-  'icon-huaxue',
-  'icon-shaokao1',
-  'icon-youyong',
-  'icon-paobu1',
-  'icon-rest',
-  'icon-ziyuan',
-  'icon-guzhang',
-  'icon-wanfatubiao-daochu-',
-  'icon-yule',
-  'icon-fendou',
-  'icon-jisuanji',
-  'icon-pinpaishangou',
-  'icon-yuehui',
-  'icon-quntidajia',
-  'icon-getidajia',
-  'icon-chifancopy-',
-  'icon-xiyifuwu1',
-  'icon-shengwu'] };
-
-/***/ }),
-/* 22 */
-/*!****************************************************!*\
-  !*** C:/proj/jellyClassTable/common/uniPromise.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
- /**
-               * uniPromise
-               * */
-var uniPromise = function uniPromise(param) {
-  return function () {var object = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    return new Promise(function (resolve, reject) {
-      object.success = function (res) {return resolve(res);};
-      object.fail = function (res) {return reject(res);};
-      param(object);
-    });
-  };
-};
-
-module.exports = {
-  uniPromise: uniPromise };
-
-/***/ }),
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */
-/*!**********************************************!*\
-  !*** C:/proj/jellyClassTable/common/util.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-function formatTime(time) {
-  if (typeof time !== 'number' || time < 0) {
-    return time;
-  }
-
-  var hour = parseInt(time / 3600);
-  time = time % 3600;
-  var minute = parseInt(time / 60);
-  time = time % 60;
-  var second = time;
-
-  return [hour, minute, second].map(function (n) {
-    n = n.toString();
-    return n[1] ? n : '0' + n;
-  }).join(':');
-}
-
-function formatLocation(longitude, latitude) {
-  if (typeof longitude === 'string' && typeof latitude === 'string') {
-    longitude = parseFloat(longitude);
-    latitude = parseFloat(latitude);
-  }
-
-  longitude = longitude.toFixed(2);
-  latitude = latitude.toFixed(2);
-
-  return {
-    longitude: longitude.toString().split('.'),
-    latitude: latitude.toString().split('.') };
-
-}
-
-function getTime(type) {
-  var date = new Date(),
-  currentDate,
-  currentTime,
-  seperator = "-", // 如果想要其他格式 只需 修改这里 
-  year = date.getFullYear(),
-  month = date.getMonth() + 1,
-  weex = date.getDay(),
-  day = date.getDate(),
-  hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours(),
-  minute = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes(),
-  second = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
-  month >= 1 && month <= 9 ? month = "0" + month : "";
-  day >= 0 && day <= 9 ? day = "0" + day : "";
-  //当前 日期
-  currentDate = year + seperator + month + seperator + day;
-  //当前 时间
-  currentTime = hour + ":" + minute + ":" + second;
-  // 输出格式 为 2018-8-27 14:45:33
-  // console.log(currentDate +" "+ currentTime);
-
-  if (type == 0) {
-    return currentDate;
-  } else
-  if (type == 1) {
-    return currentTime;
-  } else
-  if (type == 2) {
-    if (weex == 1) {
-      return '星期一';
-    }if (weex == 2) {
-      return '星期二';
-    }if (weex == 3) {
-      return '星期三';
-    }if (weex == 4) {
-      return '星期四';
-    }if (weex == 5) {
-      return '星期五';
-    }if (weex == 6) {
-      return '星期六';
-    }if (weex == 7) {
-      return '星期日';
-    }
-  } else
-  {
-    return currentDate + " " + currentTime;
-  }
-}
-
-module.exports = {
-  formatTime: formatTime,
-  formatLocation: formatLocation,
-  getTime: getTime };
-
-/***/ }),
-/* 30 */
-/*!********************************************!*\
-  !*** C:/proj/jellyClassTable/common/wx.js ***!
-  \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;} /**
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            * Promise化小程序接口
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            */
-var api = function api(name, opts) {
-  return new Promise(function (success, fail) {
-    var obj = _objectSpread({},
-    opts,
-    {
-      success: success,
-      fail: fail });
-
-
-    wx[name](obj);
-  });
-};
-
-module.exports = {
-  api: api };
-
 /***/ })
-]]);
+
+}]);
 //# sourceMappingURL=../../.sourcemap/mp-weixin/common/vendor.js.map

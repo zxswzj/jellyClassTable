@@ -74,6 +74,13 @@
             "sdkConfigs" : {
                 "speech" : {
                     "ifly" : {}
+                },
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wx3890ce6b9205839a",
+                        "appsecret" : "0c4a7997ed9d157ddcd87a889333a0b8",
+                        "UniversalLinks" : ""
+                    }
                 }
             },
             "orientation" : [ "portrait-primary" ]
@@ -83,7 +90,7 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wx3890ce6b9205839a",
         "setting" : {
             "urlCheck" : false
         },
@@ -92,7 +99,8 @@
             "scope.userLocation" : {
                 "desc" : "演示定位能力"
             }
-        }
+        },
+		"cloudfunctionRoot" : "./functions/" // 这一行就是标记云函数目录的字段
     },
     "mp-alipay" : {
         "usingComponents" : true

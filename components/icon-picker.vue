@@ -1,20 +1,23 @@
 <template name="icon-picker">
-	<view class="c-0ff" :style="'width:' + w + 'rpx;height:' + h + 'rpx;'">
-		<text class="iconfont br-15 w100 h100" :class="defIcon" :style="'background:' + defColor + ';'" @click="showPicker = true" />
-		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showPicker" @change="transIsDone">
-			<view class="dp-f fd-c ac-fs bg-e5 p-20-0 w100 h100" style="z-index: 9999;">
-				<uni-segmented-control :current="tabIndex" :values="tabItems" style-type="button" active-color="#007aff" @clickItem="onChangeTabItem" />
-				<view class="dp-fc fd-r ac-fs p-20-0 w100" style="flex-flow:row wrap">
-					<text class="iconfont c-4f fs40" :class="item" :data-icon="item" @click="getIcon" v-for="(item, i) in iconSets" :key="i" />
-				</view>
+	<view class="cp1 br-15 bg-999 m-5-10" :style="'width:' + w + 'px;height:' + h + 'px;'">
+		<cmd-icon :type="defIcon" :size="w" color="#654321" @click="openPopup" />
+		<uni-popup ref="popupIcon" :maskClick="maskClick" type="center">
+			<view class="dp-fc fd-c ac-fs ai-c w100" style="overflow:scroll;overflow-y: scroll;" :style="{ height: viewH + 'px' }">
+				<view class="dp-fc fd-r fw-w ac-fs w100" style="overflow:auto;overflow-y: scroll;" :style="{ height: viewH * 0.8 + 'px' }">
+					<!-- <view-highlight :w="w" :h="h" :bgc="item.color" :text="item.name" @click="getColor" v-for="(item, i) in colorSets[tabIndex].colors" :key="i" /> -->
+					<block v-for="(item, i) in iconSets" :key="i">					
+						<cmd-icon :type="item" size="50" color="#654321" @click="getIcon(item)"/>						
+					</block>
 
-				<view class="dp-fc fd-r ai-c br-100" style="border:2px solid #0066CC" @click="showPicker = false;$emit('loadIconPicker', icon);">
-					<text class="dp-fc iconfont " :class="icon" style="font-size:80px;color:#2196F3"/>
-					<view class="dp-fc fs-70 w-200 h-80 c-000">确定</view>
+				</view>
+				<view>
+					<cmd-icon :type="icon" size="50" color="#654321" />
+					<view class="dp-fc fs-70 w-200 h-80 br-50 c-000" style="border: 1px solid rgb(146, 148, 248);" @click="submit">
+						确定
+					</view>
 				</view>
 			</view>
-		</uni-transition>
-		<!-- </uni-popup> -->
+		</uni-popup>
 	</view>
 </template>
 
@@ -22,11 +25,13 @@
 import uniTransition from '@/components/uni-transition/uni-transition.vue';
 import viewHighlight from '@/components/view-highlight.vue';
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
+import cmdIcon from '@/components/cmd-icon/cmd-icon.vue';
+import uniPopup from '@/components/uni-popup/uni-popup.vue';
 
 import { mapState } from 'vuex';
 
 export default {
-	components: { uniTransition, viewHighlight, uniSegmentedControl },
+	components: { uniTransition, viewHighlight, uniSegmentedControl, cmdIcon, uniPopup },
 	name: 'icon-picker',
 	props: {
 		tabItems: {
@@ -46,12 +51,17 @@ export default {
 		h: {
 			type: Number,
 			default: 50
+		},
+		viewH: {
+			type: Number,
+			default: 600
 		}
 	},
 	data() {
 		return {
-			// tabItems:['a','b','c'],
-			showPicker: false,
+			e: [],
+			maskClick: false,
+			showColorPicker: false,
 			icon: '',
 			style: '',
 			hl: false,
@@ -63,19 +73,18 @@ export default {
 				left: 0,
 				right: 0,
 				width: '100%',
-				height: '100%',
 				margin: 'auto',
 				display: 'flex',
 				'justify-content': 'center',
-				'align-items': 'center',
-				'background-color': 'rgba(251, 251, 251, 0.9)'
+				'background-color': 'black'
 			}
 		};
 	},
 	methods: {
-		getIcon(e) {
-			// console.log(JSON.stringify(e));
-			this.icon = e.currentTarget.dataset.icon;
+		getIcon(icon) {
+			// this.e = e;
+			// console.log(JSON.stringify(icon));
+			this.icon = icon;
 			console.log(this.icon);
 		},
 		onChangeColorSetTabItem: function(e) {
@@ -85,15 +94,17 @@ export default {
 		},
 		transIsDone() {},
 		onDone() {},
-		onChangeTabItem(e) {
-			if (this.tabIndex !== e.currentIndex) {
-				this.tabIndex = e.currentIndex;
-			}
+		submit() {
+			this.$refs.popupIcon.close();
+			this.$emit('loadIconPicker', this.icon);
+		},
+		openPopup() {
+			this.$refs.popupIcon.open();
 		}
 	},
 	mounted() {
 		this.icon = this.defIcon;
-		console.log('icon-picker.onLoad' + this.icon)
+		console.log('icon-picker.onLoad' + this.icon);
 	}
 };
 </script>

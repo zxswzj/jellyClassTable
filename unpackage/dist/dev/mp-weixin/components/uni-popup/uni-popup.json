@@ -1,7 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "uni-transition": "/components/uni-transition/uni-transition",
-    "uni-popup": "/components/uni-popup/uni-popup"
+    "uni-transition": "/components/uni-transition/uni-transition"
   }
 }

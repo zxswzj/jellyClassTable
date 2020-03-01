@@ -16,12 +16,17 @@ let {
 
 const store = new Vuex.Store({
 	state: {
+		weeks: [],
+		date: [],
 		sysInfo: [],
+		userInfo: {},
 		cfg: {
 			bgc: '#cccccc',
 			bgcGradient: '#cccccc',
 			colBgc: 'transparent',
 			colBgcGradient: 'transparent',
+			colBorderShow: false,
+			colBorderColor: 'transparent',
 			hilightCurrentDay: true,
 			daysMode: false, //false: day5; true: day7
 			axisColor: '#69bc38',
@@ -50,13 +55,16 @@ const store = new Vuex.Store({
 			state.projs.tableHeight = tableHeight;
 			state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
 		},
-		login(state, provider) {
-			state.hasLogin = true;
-			state.loginProvider = provider;
+		setDate(state, date) {
+			state.date = date;
 		},
-		logout(state) {
-			state.hasLogin = false
-			state.openid = null
+		// logout(state) {
+		// 	state.hasLogin = false
+		// 	state.openid = null
+		// },
+		setUserInfo(state, userInfo) {
+			console.log('setUserInfo' + JSON.stringify(userInfo));
+			state.userInfo = userInfo;
 		},
 		setOpenid(state, openid) {
 			state.openid = openid
@@ -82,7 +90,7 @@ const store = new Vuex.Store({
 		},
 		updateProjs(state) {
 			console.log('store.updateProjs');
-			console.log(JSON.stringify(state.projs));
+			// console.log(JSON.stringify(state.projs));
 
 			let pretime = 0;
 			let start = 480;
@@ -108,40 +116,46 @@ const store = new Vuex.Store({
 			console.log('store.updateProjs: start:' + start)
 			console.log('store.updateProjs: stop:' + stop)
 
-			state.projs.timeSpan = (state.projs.endLineTime - state.projs.startLineTime) / 60;
+			state.projs.timeSpan = Math.ceil((state.projs.endLineTime - state.projs.startLineTime) / 60);
 			state.projs.rpx = state.projs.tableHeight / state.projs.timeSpan / 60;
+			console.log('store.updateProjs: timeSpan:' + state.projs.timeSpan);
+			// console.log('store.updateProjs: rpx:' + state.projs.rpx);
 			state.projs.days.forEach(function(item1) {
+				// console.log('store.updateProjs: days:' + JSON.stringify(item1));
 				item1.classes.forEach(function(item2, index2) {
+					// console.log('store.updateProjs: class:' + JSON.stringify(item2));
+					// console.log('index2:'+index2);
 					if (index2 == 0) {
 						item2.margintop = (item2.time - state.projs.startLineTime) * state.projs.rpx;
 						pretime = item2.time + item2.dur;
+						console.log('item2.margintop:'+item2.margintop);
+						console.log('pretime:'+pretime);
 					} else {
 						item2.margintop = (item2.time - pretime) * state.projs.rpx;
 						pretime = item2.time + item2.dur;
 					}
-
 					item2.height = item2.dur * state.projs.rpx;
 				})
 			})
 		},
-		addClass(state, index) {
-			let day = index.weekday;
-			let data = Object.assign({}, JSON.parse(JSON.stringify(index)));
+		addClass(state, c) {
+			c.weekdayPrevious = c.weekday;
+			let day = c.weekday;
+			let data = Object.assign({}, JSON.parse(JSON.stringify(c)));
 			state.projs.days[day].classes.push(data);
+			state.projs.days[day].classes.sort(function(a,b){
+				return a.time - b.time;
+			})
 			// console.log('store:addClass:');
-			// 			state.projs.days.forEach(function(i1,i) {
-			// 	if (i1.weekday == c.cfgt.weekday) {
-			// 		console.log('push: '+ c.cfgt.time);
-			// 		// console.log('before push:' + JSON.stringify(i1))
-			// 		var tmp = {};
-			// 		tmp = c.cfgt;
-			// 		console.log(JSON.stringify(tmp));
-			// 		i1.classes.push(tmp);
-			// 		// console.log('after push:' + JSON.stringify(i1))
+			// state.projs.days[day].classes.forEach(function(i1, i) {
+			// 	if (i1.weekday == c.weekday) {
+			// 		if (i1.time == c.time) {
+			// 			console.log('addClass.exception: class duplicated')
+			// 			return { errorCode:"addClassFail"}
+			// 		}
 			// 	}
-			// 	else
-			// 		console.log('dummy :i='+ i)
 			// })
+			// return { errorCode:"addClassSuccess"};
 		},
 		updateClass(state, item) {
 			// console.log('store:updateClass.showNane:' + item.cfgt.showName + ' x:' + item.x + ' y:' + item.y);
@@ -151,7 +165,7 @@ const store = new Vuex.Store({
 			let previousDay = item.classTmp.weekdayPrevious;
 			let newDay = item.classTmp.weekday;
 			if (previousDay == newDay) {
-				state.projs.days[item.x].classes.splice([item.y],1,item.classTmp);
+				state.projs.days[item.x].classes.splice([item.y], 1, item.classTmp);
 				// console.log('state.projs.days after:' + JSON.stringify(state.projs.days[item.x].classes[item.y]));
 
 				// state.projs.days.forEach(function(i1, i) {
@@ -165,8 +179,12 @@ const store = new Vuex.Store({
 				// })
 			} else {
 				//删除当前记录,并增加新的记录
+				item.classTmp.weekdayPrevious = item.classTmp.weekday;
 				state.projs.days[previousDay].classes.splice(item.y, 1);
 				state.projs.days[newDay].classes.push(item.classTmp);
+				state.projs.days[newDay].classes.sort(function(a,b){
+					return a.time - b.time;
+				})
 			}
 		},
 		deleteClass(state, item) {

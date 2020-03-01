@@ -254,7 +254,7 @@ import uniTag from '@/components/uni-tag/uni-tag.vue';
 import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import uniTransition from '@/components/uni-transition/uni-transition.vue';
-var util = require('../../common/util.js');
+var util = require('@/utils/util.js');
 
 export default {
 	components: {

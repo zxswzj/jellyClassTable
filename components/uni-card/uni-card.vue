@@ -105,7 +105,7 @@
 		flex: 1;
 		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
 		/* #endif */
-		margin: 12px;
+		margin: 2px;
 		background-color: #ffffff;
 		position: relative;
 		flex-direction: column;

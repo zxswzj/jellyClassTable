@@ -1,7 +1,22 @@
 <template>
-	<view id="topview" class="body z-flex" style="--dir:var(--dir-col);--wrap:var(--wrap-no)" :style="{ background: 'linear-gradient(' + cfg.bgc + ', ' + cfg.bgcGradient + ')' }">
-		<view class="head"></view>
-		<view class="main z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-no)">
+	<view id="topview" class="body dp-f ff-cn" style="height: 100vh;" :style="[{ background: 'linear-gradient(' + cfg.bgc + ', ' + cfg.bgcGradient + ')' }]">
+		<view id="idtop" class="dp-fc fd-c w100 h10">
+			<view class="dp-f ff-rn jc-sb">
+				<cmd-icon type="arrowLeft1" color="red"/>
+				{{date.currentDate}} 第{{date.weekofYear}}周
+				<cmd-icon type="xiangyou-copy" color="red"/>
+			</view>
+			<view class="dp-fc fd-r w100 h100">
+				<view class="w10 h100"/>
+				<view class="dp-fc fd-r w90 h100">
+					<view class="dp-fc fd-c w100 h100" v-for="(item,i) in date.week" :key="i" v-show="isDayDisplayed(i)">
+						<view class="dp-fc ff-rn w100 h100">{{item.weekday}}</view>
+						<view class="dp-fc ff-rn w100 h100">{{item.month}}/{{item.day}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="w100 h90 dp-f ff-rn">
 			<view class="dp-fc fd-c ruler-dummy" />
 			<view class="dp-fc fd-c ruler">
 				<view
@@ -11,7 +26,7 @@
 					:key="i"
 				>
 					<view class="dot dp-fc" style="text-align: center;" :style="[{ color: cfg.axisTextColor }, { background: cfg.axisTextBgc }]">
-						<text>{{ projs.startLineTime / 60 + i }}</text>
+						<text>{{ Math.floor(projs.startLineTime / 60) + i }}</text>
 					</view>
 				</view>
 			</view>
@@ -23,16 +38,21 @@
 					:style="[
 						{ height: projs.tableHeight + 'px' },
 						{ background: 'linear-gradient(' + cfg.colBgc + ', ' + cfg.colBgcGradient + ')' },
-						{ 'box-shadow': isEmphasis(i) ? '2px 2px 5px 4px ' + cfg.highlightBorderColor : 'transparent' }
+						{
+							'box-shadow': isColHilight(i)
+								? '2px 2px 5px 4px ' + cfg.highlightBorderColor
+								: cfg.colBorderShow
+								? '2px 2px 5px 4px ' + cfg.colBorderColor
+								: 'transparent'
+						}
 					]"
 					v-for="(item1, i) in projs.days"
 					:key="i"
-					@click.stop="onNewClass"
 					@longpress.stop="onNewClass"
 					:data-class="item1"
 					:data-x="i"
-				>
-					<!--  -->
+					:data-y="-1"
+				> 
 					<view
 						class="dp-fc fw-w item-frame o-h"
 						v-for="(item2, j) in item1.classes"
@@ -41,137 +61,120 @@
 							{ 'margin-top': item2.margintop + 'px' },
 							{ height: item2.height + 'px' },
 							{ background: 'linear-gradient(' + item2.classBgc + ', ' + item2.classBgcGradient + ')' },
-							{ border: item2.classShowBorder ? '1px solid' + item2.classBorderColor : transparent },
-							{ 'border-radius': item2.borderRadio + 'px' }
+							{ border: item2.classBorderShow ? '2px solid' + item2.classBorderColor : 'transparent' },
+							{ 'border-radius': item2.borderRadio + 'px' },
+							{
+								'box-shadow':
+									item2.classBorderShow && item2.classBorderShowShadow ? '-5px -5px 10px ' + item2.classBorderColor + ', 5px 5px 10px #ffffff' : 'transparent'
+							}
 						]"
 						@longpress.stop="onEditClass"
-						@click.stop="onEditClass"
 						:data-class="item2"
 						:data-x="i"
 						:data-y="j"
 					>
-						<view
-							class="atom dp-fc w100 h100"
-							:style="[
-								{ border: item2.textShowBorder ? '1px solid ' + item2.textBorderColor : transparent },
-								{ 'border-radius': item2.textBorderRadio + 'px' },
-								{ color: item2.textColor },
-								{ 'background-color': item2.textBgc }
-							]"
-							v-show="item2.showName"
-						>
-							<text style="overflow: hidden;" :style="{ 'font-size': item2.textSize + 'px' }">{{ item2.name }}</text>
+						<view class="w100 dp-f fb-100 f-1 ai-c" style="height: 70%;" v-if="item2.showName || item2.showIcon">
+							<cmd-icon class="dp-f ai-c jc-c w100 h100" v-if="item2.showIcon" :type="item2.icon" :size="item2.iconSize" :color="item2.iconColor"/>
+							<view
+								class="dp-f ai-c jc-c w100 h100"
+								:style="[
+									{ border: item2.textShowBorder ? '1px solid ' + item2.textBorderColor : transparent },
+									{ 'border-radius': item2.textBorderRadio + 'px' },
+									{ color: item2.textColor },
+									{ 'background-color': item2.textBgc }
+								]"
+								v-show="item2.showName"
+							>
+								<text style="overflow: hidden;" :style="{ 'font-size': item2.textSize + 'px' }">{{ item2.name }}</text>
+							</view>						
 						</view>
 
-						<view
-							class="iconfont f-1"
-							:class="item2.icon"
-							style="text-align: center;margin: 0 auto;text-align: center;width: 100%;"
-							:style="[
-								{ border: item2.iconShowBorder ? '1px solid ' + item2.iconBorderCorlor : transparent },
-								{ 'border-radius': item2.iconBorderRadio + 'px' },
-								{ color: item2.iconColor },
-								{ 'background-color': item2.iconBgc },
-								{ 'font-size': item2.iconSize + 'px' }
-							]"
-							v-if="item2.showIcon"
-						/>
-						<view class="w100 dp-f fb-100">
+						<view class="w100 dp-f fb-100" style="height:30%" v-if="item2.showStime || item2.showDur">
 							<text
+								class="item-time dp-fc w100 f-1"
 								v-if="item2.showStime"
 								:style="[
 									{ border: item2.stimeShowBorder ? '1px solid ' + item2.stimeBorderCorlor : transparent },
 									{ 'border-radius': item2.stimeBorderRadio ? '20px 0 0 20px' : '' },
 									{ color: item2.stimeColor },
-									{ 'font-size': item2.stimeSize + 'px' }
+									{ 'font-size': item2.stimeSize + 'px' },
+									{ 'background-color': item2.stimeBgc }
 								]"
 							>
 								{{ formatDate(item2.time) }}
 							</text>
-							<text v-if="item2.showDur">/</text>
 							<text
+								class="item-dur dp-fc w100 f-1"
 								:style="[
 									{ border: item2.durShowBorder ? '1px solid ' + item2.durBorderCorlor : transparent },
 									{ 'border-radius': item2.durBorderRadio ? '20px 0 0 20px' : '' },
 									{ color: item2.durColor },
-									{ 'font-size': item2.durSize + 'px' }
+									{ 'font-size': item2.durSize + 'px' },
+									{ 'background-color': item2.durBgc }
 								]"
 								v-if="item2.showDur"
 							>
 								{{ formatDate(item2.dur) }}
 							</text>
 						</view>
-						<!-- 						<image
-							src="../../static/apiIndex.png"
-							:style="[
-								{ border: item2.iconShowBorder ? '1px solid ' + item2.iconBorderCorlor : transparent },
-								{ 'border-radius': item2.iconBorderRadio + 'px' },
-								{ color: item2.iconColor },
-								{ 'background-color': item2.iconBgColor },
-								{ 'font-size': item2.iconSize + 'px' }
-							]"
-							v-show="item2.showIcon"
-						></image> -->
 					</view>
 				</view>
 			</view>
-			<!-- <view class="foot"></view> -->
 		</view>
 
 		<uni-popup ref="popupCfg" type="center">
-			<!-- <uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showPop > 0" @change="cfgChanged = false"> -->
-			<view id="popupCfgBase" class="dp-f fd-c jc-sb ai-s bg-ff ac-fs p-0-40 w100 h100" show-scrollbar="true">
-				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
-					<view class="iconfont">
+			<!-- <view class="dp-fc fd-c ac-fs ai-c of-s c-e0 mt-15" :style="[{ width:systemInfo.windowWidth+'px'},{height: systemInfo.windowHeight + 'px' }]"> -->
+			<view class="dp-f fd-c h100 ai-s ac-fs p-0-20 pt-20">
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15"/>
+			<!-- <view class="dp-f fd-c h100 ai-s ac-fs p-0-20 pt-20"> -->
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15">
+				<!-- <view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0"> -->
+					<view class="iconfont dp-f ai-c">
 						<text class="icon-xiuli"></text>
-						<text class="form-item-text">课程</text>
+						<text class="fs-32 c-3c">课程</text>
 					</view>
 					<input class="pop-input" style="display: flex;flex: 1;align-items: center;" @input="onUpdateClassName" :value="classTmp.name" />
 				</view>
-
-				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15">
 					<view class="iconfont dp-f ai-c">
 						<text class="icon-xianshimoshi c-27"></text>
 						<text class="fs-32 c-3c">日期</text>
 					</view>
 
-					<!-- <view class="iconfont fs-32 f-1">
-						<text class="icon-xingqiyi c-27"></text>
-						<text class="icon-xingqier c-27"></text>
-						<text class="icon-xingqisan c-27"></text>
-						<text class="icon-xingqisi c-27"></text>
-						<text class="icon-xingqiwu c-27"></text>
-						<text class="icon-xingqiliu c-27"></text>
-						<text class="icon-xingqiri c-27"></text>
-					</view> -->
-					<uni-segmented-control class="f-1" :current="weekTabIndex" :values="weekTabItems" style-type="button" active-color="#007aff" @clickItem="onChangeWeekTabItem" />
+					<uni-segmented-control
+						class="f-1"
+						:current="classTmp.weekday"
+						:values="weekTabItems"
+						style-type="button"
+						active-color="#007aff"
+						@clickItem="onChangeWeekTabItem"
+					/>
 				</view>
-
-				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15">
 					<view class="iconfont">
 						<text class="icon-xiuli"></text>
 						<text class="form-item-text">开始时间 {{ formatDate(classTmp.time) }}</text>
 					</view>
 					<view class="pop-text-warning" v-show="classTmp.time >= 1200">太晚了吧，救救孩子</view>
 				</view>
-				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
-					<view class="slide-sub-btn pop-title" @click="onSubClassTime">-</view>
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15">
+					<view class="slide-sub-btn pop-title" @click="classTmp.time--">-</view>
 					<slider style="flex:1" :value="classTmp.time" @change="sliderClassTimeChange" @changing="sliderClassTimeChange" max="1439" step="5" />
-					<view class="slide-add-btn pop-title" @click="onAddClassTime">+</view>
+					<view class="slide-add-btn pop-title" @click="classTmp.time++">+</view>
 				</view>
 
-				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15">
 					<view class="content">
 						<text class="cuIcon-circlefill text-grey"></text>
 						<text class="text-grey">时长:{{ formatDate(classTmp.dur) }}</text>
 					</view>
 					<view class="pop-text-warning" v-show="classTmp.dur >= 240">时间太长了吧，救救孩子</view>
 				</view>
-				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15">
 					<text class="text-grey slide-sub-btn" @click="classTmp.dur--">-</text>
-					<slider style="flex:1" :value="classTmp.dur" @changing="sliderClassDurChange" :max="durMax" step="5" />
+					<slider style="flex:1" :value="classTmp.dur" @change="sliderClassDurChange" @changing="sliderClassDurChange" :max="durMax" step="5" />
 					<view class="text-grey slide-sub-btn" @click="classTmp.dur++">+</view>
-					<view class="text-grey slide-sub-btn" @click="onExtendClassDurMax" v-show="classTmp.dur >= 240">></view>
+					<view class="text-grey slide-sub-btn" @click="durMax += 10" v-show="classTmp.dur >= 240">></view>
 				</view>
 
 				<view class="uni-padding-wrap mt-50">
@@ -183,13 +186,13 @@
 						@clickItem="onChangeClassStyleTabItem"
 					/>
 				</view>
-				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 0">
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">课程背景颜色</text>
+				<view class="dp-f fd-c ai-s of-s" :style="{ height: systemInfo.windowHeight * 0.3 + 'px' }" v-if="classStyleTabIndex == 0">
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">课程背景颜色</text>
 						</view>
-						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
+						<view class="dp-fc">
 							<color-picker w="60" h="60" :defColor="classTmp.classBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetClassBgc" />
 							<color-picker
 								w="60"
@@ -202,24 +205,24 @@
 						</view>
 					</view>
 
-					<view class="dp-f jc-sb c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示课程外框</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-yanse c-27"></text>
+							<text class="fs-32 c-3c">显示课程外框</text>
 						</view>
 						<switch
 							class="switch-outline"
-							@change="classTmp.classShowBorder = !classTmp.classShowBorder"
-							:class="classTmp.classShowBorder ? 'checked' : ''"
+							@change="classTmp.classBorderShow = !classTmp.classBorderShow"
+							:class="classTmp.classBorderShow ? 'checked' : ''"
 							color="#39B54A"
-							:checked="cfg.classShowBorder ? true : false"
+							:checked="classTmp.classBorderShow ? true : false"
 						></switch>
 					</view>
 
-					<view class="dp-f jc-sb c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">外框颜色</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.classBorderShow">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-yanse c-27"></text>
+							<text class="fs-32 c-3c">外框颜色</text>
 						</view>
 						<color-picker
 							w="60"
@@ -230,20 +233,32 @@
 							@loadColorPicker="cpGetClassBorderColor"
 						/>
 					</view>
-
-					<view class="dp-f jc-sb ai-c c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">外框弧度</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.classBorderShow">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-yanse c-27"></text>
+							<text class="fs-32 c-3c">外框弧度</text>
 						</view>
-						<slider style="flex:1" :value="classTmp.borderRadio" @change="sliderBorderRadio" min="0" max="20" show-value />
+						<slider style="flex:1" :value="classTmp.borderRadio" @changing="sliderBorderRadio" @change="sliderBorderRadio" min="0" max="20" show-value />
+					</view>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.classBorderShow">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-yanse c-27"></text>
+							<text class="fs-32 c-3c">显示阴影</text>
+						</view>
+						<switch
+							class="switch-outline"
+							@change="classTmp.classBorderShowShadow = !classTmp.classBorderShowShadow"
+							:class="classTmp.classBorderShowShadow ? 'checked' : ''"
+							color="#39B54A"
+							:checked="classTmp.classBorderShowShadow ? true : false"
+						></switch>
 					</view>
 				</view>
-				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 1">
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示课程名称</text>
+				<view class="dp-f fd-c ai-s of-s" :style="{ height: systemInfo.windowHeight * 0.3 + 'px' }" v-if="classStyleTabIndex == 1">
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">显示课程名称</text>
 						</view>
 						<switch
 							class="switch-class"
@@ -254,10 +269,10 @@
 						></switch>
 					</view>
 
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">名称颜色/名称背景颜色</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showName">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">名称颜色/名称背景颜色</text>
 						</view>
 						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
 							<color-picker w="60" h="60" :defColor="classTmp.textColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetTextColor" />
@@ -265,18 +280,18 @@
 						</view>
 					</view>
 
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">名称大小</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showName">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">名称大小</text>
 						</view>
-						<slider style="flex:1" :value="classTmp.textSize" @change="sliderTextSize" min="0" max="30" show-value />
+						<slider style="flex:1" :value="classTmp.textSize" @change="sliderTextSize" @changing="sliderTextSize" min="0" max="30" show-value />
 					</view>
 
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示文字边框</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">显示文字边框</text>
 						</view>
 						<switch
 							class="switch-outline"
@@ -287,27 +302,27 @@
 						></switch>
 					</view>
 
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">文字边框颜色</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.textShowBorder">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">文字边框颜色</text>
 						</view>
 						<color-picker w="60" h="60" :defColor="classTmp.textBorderColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetTextBorderColor" />
 					</view>
 
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">文字边框弧度</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.textShowBorder">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">文字边框弧度</text>
 						</view>
-						<slider style="flex:1" :value="classTmp.textBorderRadio" @change="sliderTextBorderRadio" min="0" max="10" show-value />
+						<slider style="flex:1" :value="classTmp.textBorderRadio" @change="sliderTextBorderRadio" @changing="sliderTextBorderRadio" min="0" max="10" show-value />
 					</view>
 				</view>
-				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 2">
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示图标</text>
+				<view class="dp-f fd-c ai-s of-s" :style="{ height: systemInfo.windowHeight * 0.3 + 'px' }" v-if="classStyleTabIndex == 2">
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">显示图标</text>
 						</view>
 						<switch
 							class="switch-icon"
@@ -317,35 +332,34 @@
 							:checked="classTmp.showIcon ? true : false"
 						></switch>
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="dp-f jc-sb ai-c">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">选择图标</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showIcon">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">选择图标</text>
 						</view>
-						<!-- <view class="iconfont" :class="classTmp.icon" @click="showIconPicker = true" /> -->
-						<icon-picker w="80" h="80" :defIcon="classTmp.icon" tabItems="iconSetNames" :iconSets="icons" @loadIconPicker="cpGetIcon" />
+						<icon-picker w="40" h="40" :defIcon="classTmp.icon" tabItems="iconSetNames" :iconSets="icons" @loadIconPicker="ipGetIcon" />
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">图标颜色/图标背景颜色</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showIcon">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">图标颜色/图标背景颜色</text>
 						</view>
 						<view class="z-flex" style="--dir:var(--dir-row);--wrap:var(--wrap-yes);">
 							<color-picker w="60" h="60" :defColor="classTmp.iconColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetIconColor" />
 							<color-picker w="60" h="60" :defColor="classTmp.iconBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetIconBgc" />
 						</view>
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">图标大小</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showIcon">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">图标大小</text>
 						</view>
-						<slider style="flex:1" :value="classTmp.iconSize" @change="sliderIconSize" min="0" max="50" show-value />
+						<slider style="flex:1" :value="classTmp.iconSize" @change="sliderIconSize" @changing="sliderIconSize" min="0" max="50" show-value />
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示图标边框</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">显示图标边框</text>
 						</view>
 						<switch
 							class="switch-outline"
@@ -356,10 +370,10 @@
 						></switch>
 					</view>
 
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">图标边框颜色</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.iconShowBorder">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">图标边框颜色</text>
 						</view>
 						<color-picker
 							w="60"
@@ -370,19 +384,19 @@
 							@loadColorPicker="cpGetIconBorderColor"
 						/>
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">图标边框弧度</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.iconShowBorder">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">图标边框弧度</text>
 						</view>
-						<slider style="flex:1" :value="classTmp.iconBorderRadio" @change="sliderIconBorderRadio" min="0" max="10" show-value />
+						<slider style="flex:1" :value="classTmp.iconBorderRadio" @change="sliderIconBorderRadio" @changing="sliderIconBorderRadio" min="0" max="10" show-value />
 					</view>
 				</view>
-				<view class="dp-f fd-c ai-fs w100 " v-if="classStyleTabIndex == 3">
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示开始时间</text>
+				<view class="dp-f fd-c ai-s of-s" :style="{ height: systemInfo.windowHeight * 0.3 + 'px' }" v-if="classStyleTabIndex == 3">
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">显示开始时间</text>
 						</view>
 						<switch
 							class="switch-time"
@@ -392,55 +406,28 @@
 							:checked="classTmp.showStime ? true : false"
 						/>
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">颜色/背景颜色</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showStime">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">颜色/背景颜色</text>
 						</view>
 						<view class="dp-fc">
 							<color-picker w="60" h="60" :defColor="classTmp.stimeColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetStimeColor" />
 							<color-picker w="60" h="60" :defColor="classTmp.stimeBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetStimeBgc" />
 						</view>
 					</view>
-					<view class="dp-f jc-sb ai-c c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">字体大小</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showStime">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">字体大小</text>
 						</view>
-						<slider style="flex:1" :value="classTmp.stimeSize" @change="sliderSimeSize" min="0" max="50" show-value />
-					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示边框</text>
-						</view>
-						<switch
-							class="switch-outline"
-							@change="classTmp.stimeShowBorder = !classTmp.stimeShowBorder"
-							:class="classTmp.stimeShowBorder ? 'checked' : ''"
-							color="#39B54A"
-							:checked="classTmp.stimeShowBorder ? true : false"
-						/>
-					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">边框颜色</text>
-						</view>
-						<color-picker
-							w="60"
-							h="60"
-							:defColor="classTmp.stimeBorderColor"
-							:tabItems="colorSetNames"
-							:colorSets="colorSets"
-							@loadColorPicker="cpGetStimeBorderColor"
-						/>
+						<slider style="flex:1" :value="classTmp.stimeSize" @change="sliderStimeSize" @changing="sliderStimeSize" min="0" max="50" show-value />
 					</view>
 
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示课程时长</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">显示课程时长</text>
 						</view>
 						<switch
 							class="switch-timeLen"
@@ -450,166 +437,72 @@
 							:checked="classTmp.showDur ? true : false"
 						/>
 					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">颜色/背景颜色</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showDur">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">颜色/背景颜色</text>
 						</view>
 						<view class="dp-fc">
 							<color-picker w="60" h="60" :defColor="classTmp.durColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetDurColor" />
 							<color-picker w="60" h="60" :defColor="classTmp.durBgc" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetDurBgc" />
 						</view>
 					</view>
-					<view class="dp-f jc-sb ai-c c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">字体大小</text>
+					<view class="dp-f ff-rn jc-sb mt-10 c-fff indent-us" v-if="classTmp.showDur">
+						<view class="dp-fc iconfont dp-f ai-c">
+							<text class="icon-xianshimoshi c-27"></text>
+							<text class="fs-32 c-3c">字体大小</text>
 						</view>
-						<slider style="flex:1" :value="classTmp.durSize" @change="sliderDurSize" min="0" max="50" show-value />
-					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">显示边框</text>
-						</view>
-						<switch
-							class="switch-outline"
-							@change="classTmp.durShowBorder = !classTmp.durShowBorder"
-							:class="classTmp.durShowBorder ? 'checked' : ''"
-							color="#39B54A"
-							:checked="classTmp.durShowBorder ? true : false"
-						/>
-					</view>
-					<view class="dp-f jc-sb mt-10 c-fff w100">
-						<view class="content">
-							<text class="cuIcon-circlefill text-grey"></text>
-							<text class="text-grey">边框颜色</text>
-						</view>
-						<color-picker w="60" h="60" :defColor="classTmp.durBorderColor" :tabItems="colorSetNames" :colorSets="colorSets" @loadColorPicker="cpGetDurBorderColor" />
+						<slider style="flex:1" :value="classTmp.durSize" @change="sliderDurSize" @changing="sliderDurSize" min="0" max="50" show-value />
 					</view>
 				</view>
 
-				<view class="dp-f fd-r jc-sb ai-c m-10-a p-0-20 w100 c-e0">
+				<view class="dp-f fd-r jc-sb ai-c c-e0 mt-15">
 					<button type="primary" @click="submitUpdateClass" v-show="showPop == 1">修改</button>
 					<button type="primary" @click="submitAddClass" v-show="showPop == 2">增加</button>
 					<button type="default" @click="cancelCreateProj">取消</button>
+					<button type="default" @click="copyProj">复制</button>
+					<button type="default" @click="pasteProj">黏贴</button>
 					<button type="warn" @click="onDeleteCurrClass" v-show="showPop == 1">删除</button>
 				</view>
 			</view>
 		</uni-popup>
-		<!--		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showColorPicker > 0" @change="transChange">
-			<view class="form-top-view dp-fc fd-c w100 h100">
-				<view class="uni-padding-wrap uni-common-mt">
-					<uni-segmented-control
-						:current="colorSetsTabIndex"
-						:values="colorSetsTabItems"
-						style-type="button"
-						active-color="#007aff"
-						@clickItem="onChangeColorSetTabItem"
-					/>
-				</view>
- 				<view class="pop-item-base" style="flex-flow:row wrap" v-if="colorSetsTabIndex == 0">
-					<view
-						class="pop-color-block"
-						:class="[
-							{
-								popColorBlockSelected:
-									(colors[i].color == cfg.bgc && showColorPicker == 1) ||
-									(colors[i].color == cfg.bgcGradient && showColorPicker == 2) ||
-									(colors[i].color == cfg.colBgc && showColorPicker == 3) ||
-									(colors[i].color == cfg.colBgcGradient && showColorPicker == 4) ||
-									(colors[i].color == cfg.axisColor && showColorPicker == 5) ||
-									(colors[i].color == cfg.axisColor1 && showColorPicker == 6) ||
-									(colors[i].color == cfg.axisTextColor && showColorPicker == 7) ||
-									(colors[i].color == cfg.axisTextBgColor && showColorPicker == 8)
-							}
-						]"
-						:style="{ background: item.color }"
-						v-for="(item, i) in colorSets[0].colors"
-						:key="i"
-						@click="onSelectColor"
-						:data-color="item"
-						:data-index="i"
-					></view>
-				</view>
-				<view class="pop-item-base" style="flex-flow:row wrap" v-if="colorSetsTabIndex == 1">
-					<view class="pop-title">颜色</view>
-					<view
-						class="pop-color-block"
-						:class="[
-							{
-								popColorBlockSelected:
-									(colors[i].color == cfg.bgc && showColorPicker == 1) ||
-									(colors[i].color == cfg.bgcGradient && showColorPicker == 2) ||
-									(colors[i].color == cfg.colBgc && showColorPicker == 3) ||
-									(colors[i].color == cfg.colBgcGradient && showColorPicker == 4) ||
-									(colors[i].color == cfg.axisColor && showColorPicker == 5) ||
-									(colors[i].color == cfg.axisColor1 && showColorPicker == 6) ||
-									(colors[i].color == cfg.axisTextColor && showColorPicker == 7) ||
-									(colors[i].color == cfg.axisTextBgColor && showColorPicker == 8)
-							}
-						]"
-						:style="{ background: item.color }"
-						v-for="(item, i) in colorSets[1].colors"
-						:key="i"
-						@click="onSelectColor"
-						:data-color="item"
-						:data-index="i"
-					></view>
-				</view>
-				<view class="dp-fc"><view class="dp-fc btn w-200 h-80 mt-50 c-000" @click="showColorPicker = false">确定</view></view>
-			</view>
-		</uni-transition> -->
-		<!-- <uni-popup ref="popupIcon" type="center"> -->
-		<!-- 		<uni-transition :mode-class="['fade']" :styles="transfromClass" :show="showIconPicker" @change="cfgChanged = false">
-			<scroll-view class="dp-fc mt-20 bc-333 bg-8e" style="z-index: 99999;" scroll-y="true" :style="{ height: projs.tableHeight + 'px' }" show-scrollbar="true">
-				<view
-					class="iconfont icon-block"
-					:class="[
-						{
-							popColorBlockSelected: item == classTmp.icon
-						},
-						item
-					]"
-					style="display:inline-block;font-size: 30px;text-align: center;"
-					v-for="(item, i) in icons"
-					:key="i"
-					@click="onSelectIcon"
-					:data-icon="item"
-				/>
-				<view class="pop-item-base" style="flex-flow:row wrap;justify-content: center;">
-					<view class="atom" style="width: 100%;justify-content: center;display: flex;" @click="showIconPicker = false">确定</view>
-				</view>
-			</scroll-view>
-		</uni-transition> -->
-		<!-- </uni-popup> -->
 	</view>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import uniTag from '@/components/uni-tag/uni-tag.vue';
-import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
+// import uniTag from '@/components/uni-tag/uni-tag.vue';
+// import uniDrawer from '@/components/uni-drawer/uni-drawer.vue';
 import uniPopup from '@/components/uni-popup/uni-popup.vue';
-import uniTransition from '@/components/uni-transition/uni-transition.vue';
+// import uniTransition from '@/components/uni-transition/uni-transition.vue';
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
 import uniSection from '@/components/uni-section/uni-section.vue';
-var util = require('../../common/util.js');
+// import colorPicker from '@/components/color-picker.vue';
+
+var util = require('@/utils/util.js');
 // let wsAPI = require('@/common/wxApi.js');
 let wxapi = require('@/common/wx.js');
+let {formatTime, dateUtil} = require('@/utils/DateUtil.js');
 
 export default {
 	components: {
-		uniTag,
-		uniDrawer,
+		// uniTag,
+		// uniDrawer,
 		uniPopup,
-		uniTransition,
+		// uniTransition,
 		uniSegmentedControl,
 		uniSection
 	},
 	data() {
 		return {
-			weekTabIndex: 0,
+			formatTime: formatTime,
+			// date: {
+			// 	'currentDate': '',
+			// 	'daysInThisMonth': -1,
+			// 	'firstDayOfWeek': -1,
+			// 	'weekofYear': -1,
+			// 	'week':[]
+			// },
 			classStyleTabIndex: 0,
 			colorSetsTabIndex: 0,
 			weekTabItems: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
@@ -634,9 +527,10 @@ export default {
 
 				classBgc: 'transparent', //课程背景颜色
 				classBgcGradient: 'transparent', //课程背景渐变色
-				classShowBorder: false, //是否显示课程外框
+				classBorderShow: false, //是否显示课程外框
 				classBorderColor: '#123456', //课程外框颜色
 				classBorderRadio: 20, //课程边框弧度
+				classBorderShowShadow: true,
 
 				showName: false, //是否显示课程名称
 				textColor: '#FFFFFF', //名称颜色
@@ -667,6 +561,7 @@ export default {
 				durShowBorder: false,
 				durBorderColor: '#00ff00'
 			},
+			classCopied: {},
 			classTmp: {
 				weekday: 0,
 				weekdayPrevious: 0,
@@ -679,9 +574,10 @@ export default {
 
 				classBgc: 'transparent', //课程背景颜色
 				classBgcGradient: 'transparent', //课程背景渐变色
-				classShowBorder: false, //是否显示课程外框
+				classBorderShow: false, //是否显示课程外框
 				classBorderColor: '#123456', //课程外框颜色
 				classBorderRadio: 20, //课程边框弧度
+				classBorderShowShadow: true,
 
 				showName: false, //是否显示课程名称
 				textColor: '#FFFFFF', //名称颜色
@@ -715,24 +611,9 @@ export default {
 			x: 0,
 			y: 0,
 			systemInfo: [],
-			util1: util,
+			util: util,
 			timestamp: 'abc',
-			today: 1,
-			showPop: 0,
-			transfromClass: {
-				position: 'fixed',
-				bottom: 0,
-				top: 0,
-				left: 0,
-				right: 0,
-				width: '100%',
-				height: '100%',
-				margin: 'auto',
-				display: 'flex',
-				'justify-content': 'center',
-				'align-items': 'center',
-				'background-color': 'rgba(0, 0, 0, 0.99)'
-			}
+			showPop: 0
 		};
 	},
 	methods: {
@@ -782,7 +663,8 @@ export default {
 		cpGetDurBorderColor(c) {
 			this.classTmp.durBorderColor = c;
 		},
-		cpGetIcon(icon) {
+		ipGetIcon(icon) {
+			console.log('ipGetIcon' + icon);
 			this.classTmp.icon = icon;
 		},
 		getStorage: function() {
@@ -872,11 +754,12 @@ export default {
 			this.showPop = 2;
 			this.classTmp = this.classDefault;
 			this.classTmp.weekday = e.currentTarget.dataset.x;
-			this.weekTabIndex = e.currentTarget.dataset.x;
+			this.classTmp.weekdayPrevious = e.currentTarget.dataset.x;
+			// this.weekTabIndex = e.currentTarget.dataset.x;
 			this.$refs.popupCfg.open();
 		},
 		onEditClass(e) {
-			this.weekTabIndex = e.currentTarget.dataset.x;
+			// this.weekTabIndex = e.currentTarget.dataset.x;
 			this.showPop = 1;
 			console.log('onEditClass');
 			this.classTmp = e.currentTarget.dataset.class;
@@ -899,24 +782,56 @@ export default {
 		},
 		submitUpdateClass: function() {
 			console.log('submitUpdateClass: ' + this.classTmp.showName);
+			this.$refs.popupCfg.close();			
 			this.classTmp.height = this.classTmp.dur * this.projs.rpx;
-			this.$refs.popupCfg.close();
 			this.updateClass({ classTmp: this.classTmp, x: this.x, y: this.y });
 			this.updateProjs();
-
-			// this.setStorage();
 		},
 		submitAddClass: function() {
-			this.$refs.popupCfg.close();
 			console.log('submitAddClass');
-			// this.classTmp.height = this.classTmp.dur * this.projs.rpx;
+			this.$refs.popupCfg.close();
+			let newClassStart = this.classTmp.time;
+			let newClassEnd = this.classTmp.time + this.classTmp.dur;
+			try {
+				this.projs.days[this.classTmp.weekday].classes.forEach(function(i1, i) {
+					let oriClassStart = i1.time;
+					let oriClassEnd = i1.time + i1.dur;
+					console.log('oriClassStart:' + oriClassStart + ' oriClassEnd' + oriClassEnd);
+					if ((newClassStart >= oriClassStart && newClassStart < oriClassEnd) || (newClassEnd > oriClassStart && newClassEnd <= oriClassEnd)) {
+						console.log('returned...1');
+						throw 'jump out here';
+						console.log('returned...2');
+					}
+					console.log('returned...3');
+				});
+			} catch (e) {
+				console.log(JSON.stringify(e));
+				uni.showToast({
+					title: '时间重复了哦，请重新选择时间',
+					mask: false,
+					duration: 1000,
+					icon: 'none'
+				});
+				console.log('returned...5');
+				return;
+			}
+			console.log('returned...4');
+			this.classTmp.height = this.classTmp.dur * this.projs.rpx;
+
 			this.addClass(this.classTmp);
 			this.updateProjs();
-
-			// this.setStorage();
 		},
 		cancelCreateProj: function() {
 			this.$refs.popupCfg.close();
+		},
+		copyProj() {
+			this.classCopied = this.classTmp;
+		},
+		pasteProj() {
+			let day = this.classTmp.weekday;
+			this.classTmp = this.classCopied;
+			this.classTmp.weekday = day;
+			this.classTmp.weekdayPrevious = day;
 		},
 		onDeleteCurrClass: function() {
 			console.log('onDeleteCurrClass');
@@ -946,50 +861,27 @@ export default {
 		sliderIconBorderRadio: function(e) {
 			this.classTmp.iconBorderRadio = e.detail.value;
 		},
-		onSubClassTime: function() {
-			this.classTmp.time--;
+		sliderStimeSize: function(e) {
+			this.classTmp.stimeSize = e.detail.value;
 		},
-		onAddClassTime: function() {
-			this.classTmp.time++;
-		},
-		onSubClassDur: function() {
-			this.classTmp.dur--;
-		},
-		onAddClassDur: function() {
-			this.classTmp.dur++;
-		},
-		onExtendClassDurMax: function() {
-			this.durMax += 10;
-			// this.classTmp.dur ++;
+		sliderDurSize: function(e) {
+			this.classTmp.durSize = e.detail.value;
 		},
 		onUpdateClassName: function(e) {
 			this.classTmp.name = e.detail.value;
-		}, 
+		},
 		onUpdateStartTime: function(e) {
 			this.classTmp.time = e.detail.value;
 		},
-		isEmphasis: function(day) {
-			// console.log('isEmphasis');
-			if (this.today == day && this.cfg.hilightCurrentDay) return true;
-			else return false;
+		isColHilight: function(day) {
+			
+			let show =false;
+			if (this.date.weekday - 1 == day && this.cfg.hilightCurrentDay) show = true;
+			else show = false;
+			// console.log('isColHilight.day'+ day + ' show:' + show);
+			return show;
 		},
 		transChange: function() {},
-		onSelectColor: function(e) {
-			//双色模式
-			this.e = e;
-			if (this.showColorPicker == 1) this.classTmp.bgc = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 2) this.classTmp.bgcGradient = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 3) this.classTmp.borderColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 4) this.classTmp.textColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 5) this.classTmp.textBgColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 6) this.classTmp.textBorderColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 7) this.classTmp.iconColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 8) this.classTmp.iconBgColor = e.currentTarget.dataset.color.color;
-			else if (this.showColorPicker == 9) this.classTmp.iconBorderCorlor = e.currentTarget.dataset.color.color;
-			else {
-				console.log('onSelectColor.exception');
-			}
-		},
 		onSelectIcon: function(e) {
 			this.classTmp.icon = e.currentTarget.dataset.icon;
 		},
@@ -1014,8 +906,18 @@ export default {
 				return res;
 			});
 		},
+		test1: function(aa) {
+			return aa;
+		},
+		test2: function() {
+			return 'helloworld';
+		},
 		initTable: function() {
 			console.log('initTable');
+			this.$uni(this.test2)().then(res => {
+				console.log('test2 return:' + JSON.stringify(res));
+			});
+
 			console.log('getSystemInfo');
 			this.$uni(uni.getSystemInfo)()
 				.then(res => {
@@ -1034,6 +936,12 @@ export default {
 				.then(res => {
 					console.log('promise4');
 				});
+		},
+		isEmptyObject(obj) {
+			for (var key in obj) {
+				return false; //返回false，不为空对象
+			}
+			return true; //返回true，为空对象
 		}
 	},
 	computed: {
@@ -1047,7 +955,7 @@ export default {
 				this.$store.commit('setProjs', val);
 			}
 		},
-		...mapState(['cfg', 'colors', 'icons', 'colorSets', 'colorSetNames'])
+		...mapState(['cfg', 'colors', 'icons', 'colorSets', 'colorSetNames','sysInfo', 'date'])
 	},
 	onLoad() {
 		// 获取系统信息
@@ -1058,6 +966,23 @@ export default {
 		console.log('onLoad');
 		// this.initTable();
 		console.log('initTable is done');
+		//获取当前日期，1：星期一。。。
+		let date = {};
+		let d = new Date();
+		date.currentDate = util.getTime(0);
+		date.today = d.getDay();
+		if(date.today == 0)
+			date.today = 6;		
+		date.year = d.getFullYear();
+		date.month = d.getMonth();
+		date.year = d.getFullYear();
+		date.daysInThisMonth = util.getThisMonthDays(date.year, date.month);
+		date.firstDayOfWeek = util.getFirstDayOfWeek(date.year, date.month);
+		date.weekofYear = util.getWeekOfYear();
+		date.week = util.getCurrentWeek().week;
+		date.weekday = util.getCurrentWeek().weekday;
+		console.log('date:' + JSON.stringify(date));
+		this.$store.commit('setDate', date);
 
 		/////////////////////////
 		// this.$uni(uni.showModal)({
@@ -1087,55 +1012,27 @@ export default {
 				this.$store.commit('setSysInfo', res);
 			}
 		});
-		console.log('2');
-		console.log('3');
-		console.log('4');
-		console.log('5');
-
 		//this.loadData();
 		// this.getStorage();
 		this.updateProjs();
-		//获取当前日期，1：星期一。。。
-		this.today = new Date().getDay() - 1;
 	},
 	created() {
-		// this.timestamp = new Date().getTime();
-		// console.log('timestamp:' + this.timestamp);
+		console.log('created');
 	},
 	//监听页面初次渲染完成。注意如果渲染速度快，会在页面进入动画完成前触发
 	onReady() {
 		console.log('jellyTable onReady');
-		//
-		// this.initTable();
+		this.initTable();
 	},
 	onShow() {
 		console.log('jellyTable onShow');
-		this.initTable();
+		// this.initTable();
 	}
 };
 </script>
 
 <style lang="scss">
 @import '../../common/vuecolors.scss';
-.devide5 {
-	flex-grow: 1;
-	-webkit-flex-grow: 1;
-	flex-shrink: 1;
-	-webkit-flex-shrink: 1;
-	flex-basis: 20%;
-	-webkit-flex-basis: 20%;
-	width: 1px;
-}
-
-.devide7 {
-	flex-grow: 1;
-	-webkit-flex-grow: 1;
-	flex-shrink: 1;
-	-webkit-flex-shrink: 1;
-	flex-basis: 14%;
-	-webkit-flex-basis: 14%;
-	width: 1px;
-}
 .slide-sub-btn {
 	width: 20px;
 	height: 20px;
@@ -1186,7 +1083,7 @@ export default {
 	border-radius: 5px;
 	align-items: stretch;
 	// background: linear-gradient(#74fff4, #448de0);
-	box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+	// box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
 	color: #757575;
 	font-size: 13px;
 	text-align: center;
@@ -1207,22 +1104,39 @@ export default {
 	// border-radius: 10px;
 	// align-items: stretch;
 	// box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
-	box-shadow: -5px -5px 10px #666666, 5px 5px 10px #ffffff;
 	color: #757575;
 	font-size: 13px;
+	position: relative;
 	// text-align: left;
 	// justify-content: center;
 	// background-clip: border-box;
 	// flex-flow: column wrap;
 	// overflow: hidden;
+
+	.item-name {
+		position: absolute;
+		top: 0;
+		font-size: 13px;
+		color: #ffffff;
+		// background: #b73615;
+		//box-shadow: 0 0 20rpx 0 rgba(0, 0, 0, 0.5);
+		border-radius: 5rpx;
+	}
+	.item-name:before {
+		content: '\e637';
+	}
+	.item-time {
+		// position: absolute;
+		bottom: 1px;
+		left: 1px;
+	}
+	.item-dur {
+		// position: absolute;
+		bottom: 1px;
+		right: 1px;
+	}
 }
-.item-name {
-	font-size: 13px;
-	color: #ffffff;
-	// background: #b73615;
-	//box-shadow: 0 0 20rpx 0 rgba(0, 0, 0, 0.5);
-	border-radius: 5rpx;
-}
+
 .item-start-time {
 	font-size: 10px;
 	color: #ffffff;
@@ -1284,11 +1198,11 @@ export default {
 	font-family: Arial, Helvetica, sans-serif;
 	// display: flex;
 	width: 100%;
-	height: 100%;
+	// height: 100%;
 	// flex-flow: row nowrap;
 	justify-content: center;
 	align-items: center;
-	z-index: -99;
+	// z-index: -99;
 }
 .ruler-dummy {
 	align-items: center;
@@ -1309,7 +1223,7 @@ export default {
 }
 .head {
 	display: flex;
-	flex-direction: row;
+	// flex-direction: row;
 	width: 100%;
 	height: 10%;
 	align-content: flex-start;
@@ -1374,8 +1288,8 @@ export default {
 	// right: -10px;
 	width: 20px;
 	height: 20px;
-	border: 1px solid $blue-base;
-	border-radius: 50%;
+	// border: 1px solid $blue-base;
+	border-radius: 40%;
 	// background: #98FB98;
 }
 
@@ -1413,5 +1327,13 @@ export default {
 }
 .switch-timeLen::before {
 	content: '\e747';
+}
+.item-class {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
 }
 </style>

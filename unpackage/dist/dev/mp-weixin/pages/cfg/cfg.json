@@ -4,7 +4,6 @@
     "uni-transition": "/components/uni-transition/uni-transition",
     "view-highlight": "/components/view-highlight",
     "uni-badge": "/components/uni-badge/uni-badge",
-    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control",
-    "color-picker": "/components/color-picker"
+    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"
   }
 }

@@ -1,7 +1,7 @@
 {
   "usingComponents": {
-    "uni-tag": "/components/uni-tag/uni-tag",
     "uni-drawer": "/components/uni-drawer/uni-drawer",
+    "uni-tag": "/components/uni-tag/uni-tag",
     "uni-popup": "/components/uni-popup/uni-popup",
     "uni-transition": "/components/uni-transition/uni-transition"
   }

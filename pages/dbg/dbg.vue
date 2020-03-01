@@ -317,7 +317,7 @@ import uniPopup from '@/components/uni-popup/uni-popup.vue';
 import uniTransition from '@/components/uni-transition/uni-transition.vue';
 import uniSegmentedControl from '@/components/uni-segmented-control/uni-segmented-control.vue';
 import uniSection from '@/components/uni-section/uni-section.vue';
-var util = require('../../common/util.js');
+var util = require('../../utils/util.js');
 
 export default {
 	components: {

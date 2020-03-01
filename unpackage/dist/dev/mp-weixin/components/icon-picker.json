@@ -1,5 +1,7 @@
 {
   "usingComponents": {
+    "cmd-icon": "/components/cmd-icon/cmd-icon",
+    "uni-popup": "/components/uni-popup/uni-popup",
     "uni-transition": "/components/uni-transition/uni-transition",
     "view-highlight": "/components/view-highlight",
     "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"

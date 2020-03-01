@@ -1,8 +1,8 @@
 {
   "usingComponents": {
-    "uni-transition": "/components/uni-transition/uni-transition",
-    "view-highlight": "/components/view-highlight",
-    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control",
+    "view-highlight": "/components/view-highlight"
   },
   "component": true
 }

@@ -30,7 +30,17 @@
 			"style": {
 				// "navigationBarTitleText": "test1"
 			}
-		}
+		},
+		{
+		    "path": "pages/login/login",
+		    "style": {}
+		}, {
+		    "path": "pages/login/forget",
+		    "style": {}
+		}, {
+		    "path": "pages/login/register",
+		    "style": {}
+		} 
     ],
 
 	"globalStyle": {
@@ -68,12 +78,6 @@
 				"selectedIconPath": "static/apiHL.png",
 				"text": "关于"
 			}
-			// {
-			// 	"pagePath": "pages/dbg/dbg",
-			// 	"iconPath": "static/api.png",
-			// 	"selectedIconPath": "static/apiHL.png",
-			// 	"text": "debug"
-			// }
 		]
 	}
 }

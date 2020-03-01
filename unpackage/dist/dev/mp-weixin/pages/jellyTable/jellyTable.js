@@ -29,7 +29,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _jellyTable_vue_vue_type_template_id_6c8b022a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jellyTable.vue?vue&type=template&id=6c8b022a& */ 25);
 /* harmony import */ var _jellyTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./jellyTable.vue?vue&type=script&lang=js& */ 27);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _jellyTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _jellyTable_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./jellyTable.vue?vue&type=style&index=0&lang=scss& */ 31);
+/* harmony import */ var _jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./jellyTable.vue?vue&type=style&index=0&lang=scss& */ 32);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 14);
 
 var renderjs
@@ -95,79 +95,104 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
-var components
+var components = {
+  "cmd-icon": () =>
+    __webpack_require__.e(/*! import() | components/cmd-icon/cmd-icon */ "components/cmd-icon/cmd-icon").then(__webpack_require__.bind(null, /*! @/components/cmd-icon/cmd-icon.vue */ 78)),
+  "uni-popup": () =>
+    __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 150)),
+  "uni-segmented-control": () =>
+    __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 157))
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l1 = _vm.__map(_vm.projs.days, function(item1, i) {
+  var l0 = _vm.__map(_vm.date.week, function(item, i) {
     var m0 = _vm.isDayDisplayed(i)
-    var m1 = _vm.isEmphasis(i)
+    return {
+      $orig: _vm.__get_orig(item),
+      m0: m0
+    }
+  })
 
-    var l0 = _vm.__map(item1.classes, function(item2, j) {
-      var m2 = _vm.formatDate(item2.time)
-      var m3 = _vm.formatDate(item2.dur)
+  var g0 = Math.floor(_vm.projs.startLineTime / 60)
+
+  var l2 = _vm.__map(_vm.projs.days, function(item1, i) {
+    var m1 = _vm.isDayDisplayed(i)
+    var m2 = _vm.isColHilight(i)
+
+    var l1 = _vm.__map(item1.classes, function(item2, j) {
+      var m3 = _vm.formatDate(item2.time)
+      var m4 = _vm.formatDate(item2.dur)
       return {
         $orig: _vm.__get_orig(item2),
-        m2: m2,
-        m3: m3
+        m3: m3,
+        m4: m4
       }
     })
 
     return {
       $orig: _vm.__get_orig(item1),
-      m0: m0,
       m1: m1,
-      l0: l0
+      m2: m2,
+      l1: l1
     }
   })
 
-  var m4 = _vm.formatDate(_vm.classTmp.time)
-  var m5 = _vm.formatDate(_vm.classTmp.dur)
+  var m5 = _vm.formatDate(_vm.classTmp.time)
+  var m6 = _vm.formatDate(_vm.classTmp.dur)
 
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
-      _vm.classTmp.dur--
+      _vm.classTmp.time--
     }
 
     _vm.e1 = function($event) {
-      _vm.classTmp.dur++
+      _vm.classTmp.time++
     }
 
     _vm.e2 = function($event) {
-      _vm.classTmp.classShowBorder = !_vm.classTmp.classShowBorder
+      _vm.classTmp.dur--
     }
 
     _vm.e3 = function($event) {
-      _vm.classTmp.showName = !_vm.classTmp.showName
+      _vm.classTmp.dur++
     }
 
     _vm.e4 = function($event) {
-      _vm.classTmp.textShowBorder = !_vm.classTmp.textShowBorder
+      _vm.durMax += 10
     }
 
     _vm.e5 = function($event) {
-      _vm.classTmp.showIcon = !_vm.classTmp.showIcon
+      _vm.classTmp.classBorderShow = !_vm.classTmp.classBorderShow
     }
 
     _vm.e6 = function($event) {
-      _vm.classTmp.iconShowBorder = !_vm.classTmp.iconShowBorder
+      _vm.classTmp.classBorderShowShadow = !_vm.classTmp.classBorderShowShadow
     }
 
     _vm.e7 = function($event) {
-      _vm.classTmp.showStime = !_vm.classTmp.showStime
+      _vm.classTmp.showName = !_vm.classTmp.showName
     }
 
     _vm.e8 = function($event) {
-      _vm.classTmp.stimeShowBorder = !_vm.classTmp.stimeShowBorder
+      _vm.classTmp.textShowBorder = !_vm.classTmp.textShowBorder
     }
 
     _vm.e9 = function($event) {
-      _vm.classTmp.showDur = !_vm.classTmp.showDur
+      _vm.classTmp.showIcon = !_vm.classTmp.showIcon
     }
 
     _vm.e10 = function($event) {
-      _vm.classTmp.durShowBorder = !_vm.classTmp.durShowBorder
+      _vm.classTmp.iconShowBorder = !_vm.classTmp.iconShowBorder
+    }
+
+    _vm.e11 = function($event) {
+      _vm.classTmp.showStime = !_vm.classTmp.showStime
+    }
+
+    _vm.e12 = function($event) {
+      _vm.classTmp.showDur = !_vm.classTmp.showDur
     }
   }
 
@@ -175,9 +200,11 @@ var render = function() {
     {},
     {
       $root: {
-        l1: l1,
-        m4: m4,
-        m5: m5
+        l0: l0,
+        g0: g0,
+        l2: l2,
+        m5: m5,
+        m6: m6
       }
     }
   )
@@ -686,146 +713,39 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 150));};var uniSegmentedControl = function uniSegmentedControl() {return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 157));};var uniSection = function uniSection() {return __webpack_require__.e(/*! import() | components/uni-section/uni-section */ "components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/components/uni-section/uni-section.vue */ 64));};
 
 
 
 
 
 
+// import colorPicker from '@/components/color-picker.vue';
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _vuex = __webpack_require__(/*! vuex */ 19);function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniTag = function uniTag() {return __webpack_require__.e(/*! import() | components/uni-tag/uni-tag */ "components/uni-tag/uni-tag").then(__webpack_require__.bind(null, /*! @/components/uni-tag/uni-tag.vue */ 103));};var uniDrawer = function uniDrawer() {return __webpack_require__.e(/*! import() | components/uni-drawer/uni-drawer */ "components/uni-drawer/uni-drawer").then(__webpack_require__.bind(null, /*! @/components/uni-drawer/uni-drawer.vue */ 110));};var uniPopup = function uniPopup() {return __webpack_require__.e(/*! import() | components/uni-popup/uni-popup */ "components/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @/components/uni-popup/uni-popup.vue */ 117));};var uniTransition = function uniTransition() {return __webpack_require__.e(/*! import() | components/uni-transition/uni-transition */ "components/uni-transition/uni-transition").then(__webpack_require__.bind(null, /*! @/components/uni-transition/uni-transition.vue */ 124));};var uniSegmentedControl = function uniSegmentedControl() {return __webpack_require__.e(/*! import() | components/uni-segmented-control/uni-segmented-control */ "components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/components/uni-segmented-control/uni-segmented-control.vue */ 131));};var uniSection = function uniSection() {return __webpack_require__.e(/*! import() | components/uni-section/uni-section */ "components/uni-section/uni-section").then(__webpack_require__.bind(null, /*! @/components/uni-section/uni-section.vue */ 138));};
-
-
-
-
-
-
-var util = __webpack_require__(/*! ../../common/util.js */ 29);
+var util = __webpack_require__(/*! @/utils/util.js */ 29);
 // let wsAPI = require('@/common/wxApi.js');
-var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
+var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _require =
+__webpack_require__(/*! @/utils/DateUtil.js */ 31),formatTime = _require.formatTime,dateUtil = _require.dateUtil;var _default =
 
 {
   components: {
-    uniTag: uniTag,
-    uniDrawer: uniDrawer,
+    // uniTag,
+    // uniDrawer,
     uniPopup: uniPopup,
-    uniTransition: uniTransition,
+    // uniTransition,
     uniSegmentedControl: uniSegmentedControl,
     uniSection: uniSection },
 
   data: function data() {
     return {
-      weekTabIndex: 0,
+      formatTime: formatTime,
+      // date: {
+      // 	'currentDate': '',
+      // 	'daysInThisMonth': -1,
+      // 	'firstDayOfWeek': -1,
+      // 	'weekofYear': -1,
+      // 	'week':[]
+      // },
       classStyleTabIndex: 0,
       colorSetsTabIndex: 0,
       weekTabItems: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
@@ -850,9 +770,10 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
 
         classBgc: 'transparent', //课程背景颜色
         classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
+        classBorderShow: false, //是否显示课程外框
         classBorderColor: '#123456', //课程外框颜色
         classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: true,
 
         showName: false, //是否显示课程名称
         textColor: '#FFFFFF', //名称颜色
@@ -883,6 +804,7 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
         durShowBorder: false,
         durBorderColor: '#00ff00' },
 
+      classCopied: {},
       classTmp: {
         weekday: 0,
         weekdayPrevious: 0,
@@ -895,9 +817,10 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
 
         classBgc: 'transparent', //课程背景颜色
         classBgcGradient: 'transparent', //课程背景渐变色
-        classShowBorder: false, //是否显示课程外框
+        classBorderShow: false, //是否显示课程外框
         classBorderColor: '#123456', //课程外框颜色
         classBorderRadio: 20, //课程边框弧度
+        classBorderShowShadow: true,
 
         showName: false, //是否显示课程名称
         textColor: '#FFFFFF', //名称颜色
@@ -931,24 +854,9 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
       x: 0,
       y: 0,
       systemInfo: [],
-      util1: util,
+      util: util,
       timestamp: 'abc',
-      today: 1,
-      showPop: 0,
-      transfromClass: {
-        position: 'fixed',
-        bottom: 0,
-        top: 0,
-        left: 0,
-        right: 0,
-        width: '100%',
-        height: '100%',
-        margin: 'auto',
-        display: 'flex',
-        'justify-content': 'center',
-        'align-items': 'center',
-        'background-color': 'rgba(0, 0, 0, 0.99)' } };
-
+      showPop: 0 };
 
   },
   methods: _objectSpread({},
@@ -998,7 +906,8 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
     cpGetDurBorderColor: function cpGetDurBorderColor(c) {
       this.classTmp.durBorderColor = c;
     },
-    cpGetIcon: function cpGetIcon(icon) {
+    ipGetIcon: function ipGetIcon(icon) {
+      console.log('ipGetIcon' + icon);
       this.classTmp.icon = icon;
     },
     getStorage: function getStorage() {var _this = this;
@@ -1088,11 +997,12 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
       this.showPop = 2;
       this.classTmp = this.classDefault;
       this.classTmp.weekday = e.currentTarget.dataset.x;
-      this.weekTabIndex = e.currentTarget.dataset.x;
+      this.classTmp.weekdayPrevious = e.currentTarget.dataset.x;
+      // this.weekTabIndex = e.currentTarget.dataset.x;
       this.$refs.popupCfg.open();
     },
     onEditClass: function onEditClass(e) {
-      this.weekTabIndex = e.currentTarget.dataset.x;
+      // this.weekTabIndex = e.currentTarget.dataset.x;
       this.showPop = 1;
       console.log('onEditClass');
       this.classTmp = e.currentTarget.dataset.class;
@@ -1115,24 +1025,56 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
     },
     submitUpdateClass: function submitUpdateClass() {
       console.log('submitUpdateClass: ' + this.classTmp.showName);
-      this.classTmp.height = this.classTmp.dur * this.projs.rpx;
       this.$refs.popupCfg.close();
+      this.classTmp.height = this.classTmp.dur * this.projs.rpx;
       this.updateClass({ classTmp: this.classTmp, x: this.x, y: this.y });
       this.updateProjs();
-
-      // this.setStorage();
     },
     submitAddClass: function submitAddClass() {
-      this.$refs.popupCfg.close();
       console.log('submitAddClass');
-      // this.classTmp.height = this.classTmp.dur * this.projs.rpx;
+      this.$refs.popupCfg.close();
+      var newClassStart = this.classTmp.time;
+      var newClassEnd = this.classTmp.time + this.classTmp.dur;
+      try {
+        this.projs.days[this.classTmp.weekday].classes.forEach(function (i1, i) {
+          var oriClassStart = i1.time;
+          var oriClassEnd = i1.time + i1.dur;
+          console.log('oriClassStart:' + oriClassStart + ' oriClassEnd' + oriClassEnd);
+          if (newClassStart >= oriClassStart && newClassStart < oriClassEnd || newClassEnd > oriClassStart && newClassEnd <= oriClassEnd) {
+            console.log('returned...1');
+            throw 'jump out here';
+            console.log('returned...2');
+          }
+          console.log('returned...3');
+        });
+      } catch (e) {
+        console.log(JSON.stringify(e));
+        uni.showToast({
+          title: '时间重复了哦，请重新选择时间',
+          mask: false,
+          duration: 1000,
+          icon: 'none' });
+
+        console.log('returned...5');
+        return;
+      }
+      console.log('returned...4');
+      this.classTmp.height = this.classTmp.dur * this.projs.rpx;
+
       this.addClass(this.classTmp);
       this.updateProjs();
-
-      // this.setStorage();
     },
     cancelCreateProj: function cancelCreateProj() {
       this.$refs.popupCfg.close();
+    },
+    copyProj: function copyProj() {
+      this.classCopied = this.classTmp;
+    },
+    pasteProj: function pasteProj() {
+      var day = this.classTmp.weekday;
+      this.classTmp = this.classCopied;
+      this.classTmp.weekday = day;
+      this.classTmp.weekdayPrevious = day;
     },
     onDeleteCurrClass: function onDeleteCurrClass() {
       console.log('onDeleteCurrClass');
@@ -1162,21 +1104,11 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
     sliderIconBorderRadio: function sliderIconBorderRadio(e) {
       this.classTmp.iconBorderRadio = e.detail.value;
     },
-    onSubClassTime: function onSubClassTime() {
-      this.classTmp.time--;
+    sliderStimeSize: function sliderStimeSize(e) {
+      this.classTmp.stimeSize = e.detail.value;
     },
-    onAddClassTime: function onAddClassTime() {
-      this.classTmp.time++;
-    },
-    onSubClassDur: function onSubClassDur() {
-      this.classTmp.dur--;
-    },
-    onAddClassDur: function onAddClassDur() {
-      this.classTmp.dur++;
-    },
-    onExtendClassDurMax: function onExtendClassDurMax() {
-      this.durMax += 10;
-      // this.classTmp.dur ++;
+    sliderDurSize: function sliderDurSize(e) {
+      this.classTmp.durSize = e.detail.value;
     },
     onUpdateClassName: function onUpdateClassName(e) {
       this.classTmp.name = e.detail.value;
@@ -1184,28 +1116,15 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
     onUpdateStartTime: function onUpdateStartTime(e) {
       this.classTmp.time = e.detail.value;
     },
-    isEmphasis: function isEmphasis(day) {
-      // console.log('isEmphasis');
-      if (this.today == day && this.cfg.hilightCurrentDay) return true;else
-      return false;
+    isColHilight: function isColHilight(day) {
+
+      var show = false;
+      if (this.date.weekday - 1 == day && this.cfg.hilightCurrentDay) show = true;else
+      show = false;
+      // console.log('isColHilight.day'+ day + ' show:' + show);
+      return show;
     },
     transChange: function transChange() {},
-    onSelectColor: function onSelectColor(e) {
-      //双色模式
-      this.e = e;
-      if (this.showColorPicker == 1) this.classTmp.bgc = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 2) this.classTmp.bgcGradient = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 3) this.classTmp.borderColor = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 4) this.classTmp.textColor = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 5) this.classTmp.textBgColor = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 6) this.classTmp.textBorderColor = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 7) this.classTmp.iconColor = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 8) this.classTmp.iconBgColor = e.currentTarget.dataset.color.color;else
-      if (this.showColorPicker == 9) this.classTmp.iconBorderCorlor = e.currentTarget.dataset.color.color;else
-      {
-        console.log('onSelectColor.exception');
-      }
-    },
     onSelectIcon: function onSelectIcon(e) {
       this.classTmp.icon = e.currentTarget.dataset.icon;
     },
@@ -1230,8 +1149,18 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
         return res;
       });
     },
+    test1: function test1(aa) {
+      return aa;
+    },
+    test2: function test2() {
+      return 'helloworld';
+    },
     initTable: function initTable() {var _this3 = this;
       console.log('initTable');
+      this.$uni(this.test2)().then(function (res) {
+        console.log('test2 return:' + JSON.stringify(res));
+      });
+
       console.log('getSystemInfo');
       this.$uni(uni.getSystemInfo)().
       then(function (res) {
@@ -1250,6 +1179,12 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
       then(function (res) {
         console.log('promise4');
       });
+    },
+    isEmptyObject: function isEmptyObject(obj) {
+      for (var key in obj) {
+        return false; //返回false，不为空对象
+      }
+      return true; //返回true，为空对象
     } }),
 
   computed: _objectSpread({
@@ -1263,7 +1198,7 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
         this.$store.commit('setProjs', val);
       } } },
 
-  (0, _vuex.mapState)(['cfg', 'colors', 'icons', 'colorSets', 'colorSetNames'])),
+  (0, _vuex.mapState)(['cfg', 'colors', 'icons', 'colorSets', 'colorSetNames', 'sysInfo', 'date'])),
 
   onLoad: function onLoad() {var _this4 = this;
     // 获取系统信息
@@ -1274,6 +1209,23 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
     console.log('onLoad');
     // this.initTable();
     console.log('initTable is done');
+    //获取当前日期，1：星期一。。。
+    var date = {};
+    var d = new Date();
+    date.currentDate = util.getTime(0);
+    date.today = d.getDay();
+    if (date.today == 0)
+    date.today = 6;
+    date.year = d.getFullYear();
+    date.month = d.getMonth();
+    date.year = d.getFullYear();
+    date.daysInThisMonth = util.getThisMonthDays(date.year, date.month);
+    date.firstDayOfWeek = util.getFirstDayOfWeek(date.year, date.month);
+    date.weekofYear = util.getWeekOfYear();
+    date.week = util.getCurrentWeek().week;
+    date.weekday = util.getCurrentWeek().weekday;
+    console.log('date:' + JSON.stringify(date));
+    this.$store.commit('setDate', date);
 
     /////////////////////////
     // this.$uni(uni.showModal)({
@@ -1303,36 +1255,27 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
         _this4.$store.commit('setSysInfo', res);
       } });
 
-    console.log('2');
-    console.log('3');
-    console.log('4');
-    console.log('5');
-
     //this.loadData();
     // this.getStorage();
     this.updateProjs();
-    //获取当前日期，1：星期一。。。
-    this.today = new Date().getDay() - 1;
   },
   created: function created() {
-    // this.timestamp = new Date().getTime();
-    // console.log('timestamp:' + this.timestamp);
+    console.log('created');
   },
   //监听页面初次渲染完成。注意如果渲染速度快，会在页面进入动画完成前触发
   onReady: function onReady() {
     console.log('jellyTable onReady');
-    //
-    // this.initTable();
+    this.initTable();
   },
   onShow: function onShow() {
     console.log('jellyTable onShow');
-    this.initTable();
+    // this.initTable();
   } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 
-/***/ 31:
+/***/ 32:
 /*!*************************************************************************************************!*\
   !*** C:/proj/jellyClassTable/pages/jellyTable/jellyTable.vue?vue&type=style&index=0&lang=scss& ***!
   \*************************************************************************************************/
@@ -1341,14 +1284,14 @@ var wxapi = __webpack_require__(/*! @/common/wx.js */ 30);var _default =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./jellyTable.vue?vue&type=style&index=0&lang=scss& */ 32);
+/* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../HBuilderX/plugins/uniapp-cli/node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!../../../HBuilderX/plugins/uniapp-cli/node_modules/css-loader??ref--8-oneOf-1-2!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!../../../HBuilderX/plugins/uniapp-cli/node_modules/postcss-loader/src??ref--8-oneOf-1-3!../../../HBuilderX/plugins/uniapp-cli/node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!../../../HBuilderX/plugins/uniapp-cli/node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./jellyTable.vue?vue&type=style&index=0&lang=scss& */ 33);
 /* harmony import */ var _HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_1_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_index_js_ref_8_oneOf_1_2_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_HBuilderX_plugins_uniapp_cli_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_4_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_jellyTable_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 32:
+/***/ 33:
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-1!./node_modules/css-loader??ref--8-oneOf-1-2!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/sass-loader/lib/loader.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/proj/jellyClassTable/pages/jellyTable/jellyTable.vue?vue&type=style&index=0&lang=scss& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

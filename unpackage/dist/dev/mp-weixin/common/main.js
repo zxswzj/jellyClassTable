@@ -18,7 +18,8 @@ var _store = _interopRequireDefault(__webpack_require__(/*! ./store */ 15));
 
 
 
-var _uniPromise = _interopRequireDefault(__webpack_require__(/*! ./common/uniPromise.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var pageHead = function pageHead() {return __webpack_require__.e(/*! import() | components/page-head */ "components/page-head").then(__webpack_require__.bind(null, /*! ./components/page-head.vue */ 65));};var pageFoot = function pageFoot() {return __webpack_require__.e(/*! import() | components/page-foot */ "components/page-foot").then(__webpack_require__.bind(null, /*! ./components/page-foot.vue */ 70));};var uLink = function uLink() {return __webpack_require__.e(/*! import() | components/uLink */ "components/uLink").then(__webpack_require__.bind(null, /*! @/components/uLink.vue */ 77));};var viewHighlight = function viewHighlight() {return __webpack_require__.e(/*! import() | components/view-highlight */ "components/view-highlight").then(__webpack_require__.bind(null, /*! ./components/view-highlight.vue */ 82));};var colorPicker = function colorPicker() {return __webpack_require__.e(/*! import() | components/color-picker */ "components/color-picker").then(__webpack_require__.bind(null, /*! ./components/color-picker.vue */ 89));};var iconPicker = function iconPicker() {return __webpack_require__.e(/*! import() | components/icon-picker */ "components/icon-picker").then(__webpack_require__.bind(null, /*! ./components/icon-picker.vue */ 96));};
+var _uniPromise = _interopRequireDefault(__webpack_require__(/*! ./common/uniPromise.js */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var pageHead = function pageHead() {return __webpack_require__.e(/*! import() | components/page-head */ "components/page-head").then(__webpack_require__.bind(null, /*! ./components/page-head.vue */ 112));};var pageFoot = function pageFoot() {return __webpack_require__.e(/*! import() | components/page-foot */ "components/page-foot").then(__webpack_require__.bind(null, /*! ./components/page-foot.vue */ 117));};var uLink = function uLink() {return __webpack_require__.e(/*! import() | components/uLink */ "components/uLink").then(__webpack_require__.bind(null, /*! @/components/uLink.vue */ 124));};var viewHighlight = function viewHighlight() {return __webpack_require__.e(/*! import() | components/view-highlight */ "components/view-highlight").then(__webpack_require__.bind(null, /*! ./components/view-highlight.vue */ 129));};var colorPicker = function colorPicker() {return __webpack_require__.e(/*! import() | components/color-picker */ "components/color-picker").then(__webpack_require__.bind(null, /*! ./components/color-picker.vue */ 136));};var iconPicker = function iconPicker() {return __webpack_require__.e(/*! import() | components/icon-picker */ "components/icon-picker").then(__webpack_require__.bind(null, /*! ./components/icon-picker.vue */ 143));};
+// import uniAsync from '@/utils/uni-async.js'
 
 
 _vue.default.config.productionTip = false;
@@ -30,6 +31,7 @@ _vue.default.prototype.$backgroundAudioData = {
   formatedPlayTime: '00:00:00' };
 
 _vue.default.prototype.$uni = _uniPromise.default.uniPromise;
+// Vue.prototype.$uniAsync = uniAsync
 
 var json = function json(type) {
   //模拟异步请求数据
@@ -131,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 {
   onLaunch: function onLaunch() {
     console.log('App Launch');
@@ -161,6 +163,32 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
+
+    console.log('App Launch');
+    uni.getSystemInfo({
+      success: function success(e) {
+
+
+
+
+
+
+
+
+
+
+        Vue.prototype.StatusBar = e.statusBarHeight;
+        var custom = wx.getMenuButtonBoundingClientRect();
+        Vue.prototype.Custom = custom;
+        Vue.prototype.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
+
+
+
+
+
+
+      } });
+
   },
   onShow: function onShow() {
     console.log('App Show');
@@ -170,6 +198,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   },
   globalData: {
     test: '' } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 12 */

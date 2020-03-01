@@ -4,7 +4,10 @@
     "pages/cfg/cfg",
     "pages/dbg/dbg",
     "pages/test/test",
-    "pages/test1/test1"
+    "pages/test1/test1",
+    "pages/login/login",
+    "pages/login/forget",
+    "pages/login/register"
   ],
   "subPackages": [],
   "window": {
@@ -54,5 +57,5 @@
     "color-picker": "/components/color-picker",
     "icon-picker": "/components/icon-picker"
   },
-  "sitemapLocation": "sitemap24.json"
+  "sitemapLocation": "sitemap1.json"
 }
